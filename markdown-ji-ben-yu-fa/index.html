@@ -1,17 +1,25 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>Markdown 基本语法 | IMCM</title>
-<link rel="shortcut icon" href="http://imcmxyz.github.io/favicon.ico?v=1591611075396">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://imcmxyz.github.io/favicon.ico?v=1591613471831">
 <link rel="stylesheet" href="http://imcmxyz.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Markdown 基本语法 | IMCM - Atom Feed" href="http://imcmxyz.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="主要内容
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+主要内容
 
 Markdown是什么？
 谁创造了它？
@@ -22,84 +30,84 @@ Markdown是什么？
 
 正文
 1. Markdown是什么？
-Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTM..." />
+Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HT..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="http://imcmxyz.github.io">
-  <img class="avatar" src="http://imcmxyz.github.io/images/avatar.png?v=1591611075396" alt="">
-  </a>
-  <h1 class="site-title">
-    IMCM
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="http://imcmxyz.github.io">
+        <img src="http://imcmxyz.github.io/images/avatar.png?v=1591613471831" class="site-logo">
+        <h1 class="site-title">IMCM</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://imcmxyz.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Markdown 基本语法
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-06-08
-              </span>
-              <span>
-                6 min read
-              </span>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Markdown 基本语法</h2>
+            <div class="post-date">2020-06-08</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h2 id="主要内容">主要内容</h2>
+            <div class="post-content" v-pre>
+              <figure data-type="image" tabindex="1"><img src="https://cargo.dustincurtis.com/projects/markdown/mdown-header.png?5" alt="Markdown Mark" loading="lazy"></figure>
+<h2 id="主要内容">主要内容</h2>
 <blockquote>
 <h4 id="markdown是什么">Markdown<em>是什么</em>？</h4>
 <h4 id="谁创造了它"><em>谁</em>创造了它？</h4>
@@ -123,7 +131,7 @@ Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写�
 <li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
 <li><strong>2013</strong>年1月自杀身亡。</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" loading="lazy"></figure>
 <p>天才都有早逝的归途。</p>
 <h3 id="3-为什么要使用它">3. <em>为什么</em>要使用它？</h3>
 <ul>
@@ -327,144 +335,45 @@ printf(&quot;Hello, Markdown.&quot;);<br>
 </table>
 <p>关于其它扩展语法可参见具体工具的使用说明。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9">主要内容</a><br>
-*
-<ul>
-<li><a href="#markdown%E6%98%AF%E4%BB%80%E4%B9%88">Markdown<em>是什么</em>？</a></li>
-<li><a href="#%E8%B0%81%E5%88%9B%E9%80%A0%E4%BA%86%E5%AE%83"><em>谁</em>创造了它？</a></li>
-<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83"><em>为什么</em>要使用它？</a></li>
-<li><a href="#%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><em>怎么</em>使用？</a></li>
-<li><a href="#%E8%B0%81%E5%9C%A8%E7%94%A8"><em>谁</em>在用？</a></li>
-<li><a href="#%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B">尝试一下</a></li>
-</ul>
-</li>
-<li><a href="#%E6%AD%A3%E6%96%87">正文</a>
-<ul>
-<li><a href="#1-markdown%E6%98%AF%E4%BB%80%E4%B9%88">1. Markdown<em>是什么</em>？</a></li>
-<li><a href="#2-%E8%B0%81%E5%88%9B%E9%80%A0%E4%BA%86%E5%AE%83">2. <em>谁</em>创造了它？</a></li>
-<li><a href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83">3. <em>为什么</em>要使用它？</a></li>
-<li><a href="#4-%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8">4. <em>怎么</em>使用？</a>
-<ul>
-<li><a href="#41-%E6%A0%87%E9%A2%98">4.1 标题</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98">一级标题</a>
-<ul>
-<li><a href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98">二级标题</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98-2">一级标题</a>
-<ul>
-<li><a href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98-2">二级标题</a>
-<ul>
-<li><a href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98">三级标题</a>
-<ul>
-<li><a href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98">四级标题</a>
-<ul>
-<li><a href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98">五级标题</a>
-<ul>
-<li><a href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98">六级标题</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#42-%E6%AE%B5%E8%90%BD">4.2 段落</a></li>
-<li><a href="#43-%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8">4.3 区块引用</a></li>
-<li><a href="#44-%E4%BB%A3%E7%A0%81%E5%8C%BA%E5%9D%97">4.4 代码区块</a></li>
-<li><a href="#45-%E5%BC%BA%E8%B0%83">4.5 强调</a></li>
-<li><a href="#46-%E5%88%97%E8%A1%A8">4.6 列表</a></li>
-<li><a href="#47-%E5%88%86%E5%89%B2%E7%BA%BF">4.7 分割线</a></li>
-<li><a href="#48-%E9%93%BE%E6%8E%A5">4.8 链接</a></li>
-<li><a href="#49-%E5%9B%BE%E7%89%87">4.9 图片</a></li>
-<li><a href="#410-%E5%8F%8D%E6%96%9C%E6%9D%A0">4.10 反斜杠<code>\</code></a></li>
-<li><a href="#411-%E7%AC%A6%E5%8F%B7">4.11 符号'`'</a></li>
-<li><a href="#5-%E8%B0%81%E5%9C%A8%E7%94%A8">5. <em>谁</em>在用？</a></li>
-<li><a href="#6-%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B">6. 尝试一下</a></li>
-</ul>
-</li>
-<li><a href="#%E5%85%B6%E5%AE%83">其它：</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="http://imcmxyz.github.io/hello-gridea/">
+                  <h3 class="post-title">
+                    Hello Gridea
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="http://imcmxyz.github.io/hello-gridea/">
-              <h3 class="post-title">
-                Hello Gridea
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="http://imcmxyz.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>

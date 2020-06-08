@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://imcmxyz.github.io</id>
     <title>IMCM</title>
-    <updated>2020-06-08T10:11:19.887Z</updated>
+    <updated>2020-06-08T10:51:14.258Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://imcmxyz.github.io"/>
     <link rel="self" href="http://imcmxyz.github.io/atom.xml"/>
@@ -16,7 +16,8 @@
         <link href="http://imcmxyz.github.io/markdown-ji-ben-yu-fa/">
         </link>
         <updated>2020-06-08T10:04:09.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="主要内容">主要内容</h2>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://cargo.dustincurtis.com/projects/markdown/mdown-header.png?5" alt="Markdown Mark" loading="lazy"></figure>
+<h2 id="主要内容">主要内容</h2>
 <blockquote>
 <h4 id="markdown是什么">Markdown<em>是什么</em>？</h4>
 <h4 id="谁创造了它"><em>谁</em>创造了它？</h4>
@@ -40,7 +41,7 @@
 <li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
 <li><strong>2013</strong>年1月自杀身亡。</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" loading="lazy"></figure>
 <p>天才都有早逝的归途。</p>
 <h3 id="3-为什么要使用它">3. <em>为什么</em>要使用它？</h3>
 <ul>
