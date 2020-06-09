@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://344556.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-09T02:36:44.674Z</updated>
+    <updated>2020-06-09T02:41:24.239Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://344556.xyz"/>
     <link rel="self" href="https://344556.xyz/atom.xml"/>
@@ -12,15 +12,15 @@
     <rights>All rights reserved 2020, IMCM</rights>
     <entry>
         <title type="html"><![CDATA[Markdown 基本语法]]></title>
-        <id>https://344556.xyz/markdown-ji-ben-yu-fa/</id>
-        <link href="https://344556.xyz/markdown-ji-ben-yu-fa/">
+        <id>https://344556.xyz/post/markdown-ji-ben-yu-fa/</id>
+        <link href="https://344556.xyz/post/markdown-ji-ben-yu-fa/">
         </link>
         <updated>2020-06-08T10:04:09.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://344556.xyz/hello-gridea/</id>
-        <link href="https://344556.xyz/hello-gridea/">
+        <id>https://344556.xyz/post/hello-gridea/</id>
+        <link href="https://344556.xyz/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
