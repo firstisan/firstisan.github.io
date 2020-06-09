@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://344556.xyz</id>
+    <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-09T11:19:42.322Z</updated>
+    <updated>2020-06-09T11:24:50.804Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://344556.xyz"/>
-    <link rel="self" href="https://344556.xyz/atom.xml"/>
+    <link rel="alternate" href="https://imcm.xyz"/>
+    <link rel="self" href="https://imcm.xyz/atom.xml"/>
     <subtitle>摒弃世俗浮躁，追求技术精湛</subtitle>
-    <logo>https://344556.xyz/images/avatar.png</logo>
-    <icon>https://344556.xyz/favicon.ico</icon>
+    <logo>https://imcm.xyz/images/avatar.png</logo>
+    <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2020, IMCM</rights>
     <entry>
         <title type="html"><![CDATA[Git 忽略文件目录权限或文件拥有者的改变]]></title>
-        <id>https://344556.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/</id>
-        <link href="https://344556.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/">
+        <id>https://imcm.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/</id>
+        <link href="https://imcm.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/">
         </link>
         <updated>2020-06-09T09:12:49.000Z</updated>
         <summary type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
@@ -35,8 +35,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[备份树莓派系统（MacOS)]]></title>
-        <id>https://344556.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/</id>
-        <link href="https://344556.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/">
+        <id>https://imcm.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/</id>
+        <link href="https://imcm.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/">
         </link>
         <updated>2020-06-09T04:29:57.000Z</updated>
         <summary type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
@@ -49,7 +49,7 @@
 diskutil list 
 # 下面图片中的dev/disk2既对应的树莓派的TF卡
 </code></pre>
-<p><img src="https://344556.xyz/post-images/1591677273477.jpeg" alt="" loading="lazy"><br>
+<p><img src="https://imcm.xyz/post-images/1591677273477.jpeg" alt="" loading="lazy"><br>
 终端运行diskutil list 后显示的内容</p>
 <pre><code class="language-shell"># 使用dd进行备份，同时使用gzip将备份文件进行压缩
 sudo dd if=/dev/rdiskx bs=1m | gzip &gt; /path/to/backupImage.gz
@@ -67,13 +67,13 @@ df -f
 #卸载
 sudo diskutil unmount /dev/disk2s1
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://344556.xyz/post-images/1591677296376.jpeg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1591677296376.jpeg" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[删除Mac下Git上传项目代码时产生的.DS_Store文件]]></title>
-        <id>https://344556.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/</id>
-        <link href="https://344556.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/">
+        <id>https://imcm.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/</id>
+        <link href="https://imcm.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/">
         </link>
         <updated>2020-06-09T02:43:35.000Z</updated>
         <summary type="html"><![CDATA[<p>最近在 Mac 中使用 Git 上传项目时，发现 GitHub 仓库的每个文件夹下都生成了一个 .DS_Store 的文件，好奇查了一下这个文件格式，在网上搜索了一下解决办法，这里记录一下怎么删除 .DS_Store 文件以及如何在后续使用 Git时忽略掉 .DS_Store 文件。</p>
@@ -125,8 +125,8 @@ git push
     </entry>
     <entry>
         <title type="html"><![CDATA[Markdown 基本语法]]></title>
-        <id>https://344556.xyz/post/markdown-ji-ben-yu-fa/</id>
-        <link href="https://344556.xyz/post/markdown-ji-ben-yu-fa/">
+        <id>https://imcm.xyz/post/markdown-ji-ben-yu-fa/</id>
+        <link href="https://imcm.xyz/post/markdown-ji-ben-yu-fa/">
         </link>
         <updated>2020-06-08T10:04:09.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="主要内容">主要内容</h2>
@@ -367,8 +367,8 @@ printf(&quot;Hello, Markdown.&quot;);<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://344556.xyz/post/hello-gridea/</id>
-        <link href="https://344556.xyz/post/hello-gridea/">
+        <id>https://imcm.xyz/post/hello-gridea/</id>
+        <link href="https://imcm.xyz/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
