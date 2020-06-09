@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Hello Gridea | IMCM</title>
+<title>备份树莓派系统（MacOS) | IMCM</title>
 <link rel="shortcut icon" href="https://344556.xyz/favicon.ico?v=1591701546170">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://344556.xyz/styles/main.css">
@@ -99,49 +99,62 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Hello Gridea
+                    备份树莓派系统（MacOS)
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2018-12-12 ·
+                        · 2020-06-09 ·
                     </time>
                     
-                        <a href="https://344556.xyz/tag/vZN9VpH4g/" class="post-tags">
-                            # Gridea
+                        <a href="https://344556.xyz/tag/raspberrypi/" class="post-tags">
+                            # RaspberryPi
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+                    <p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
 <!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+<h3 id="备份系统">备份系统</h3>
+<p>将TF插入mac后，打开mac的“终端”</p>
+<pre><code class="language-shell">#查询盘符
+diskutil list 
+# 下面图片中的dev/disk2既对应的树莓派的TF卡
+</code></pre>
+<p><img src="https://344556.xyz/post-images/1591677273477.jpeg" alt="" loading="lazy"><br>
+终端运行diskutil list 后显示的内容</p>
+<pre><code class="language-shell"># 使用dd进行备份，同时使用gzip将备份文件进行压缩
+sudo dd if=/dev/rdiskx bs=1m | gzip &gt; /path/to/backupImage.gz
+#将“/dev/rdiskx ”改成您 Micro SD 卡的所在位置， if 參數是指定資料來源 (也就是 Micro #SD 卡)   of 則是指定備份影像檔的儲存路徑與檔案名稱 
+</code></pre>
+<p>回车后，读卡器会显示在读取数据灯在闪烁，备份过程有点长，根据卡的大小，可能会在1小时左右。</p>
+<h3 id="恢复系统">恢复系统</h3>
+<pre><code class="language-shell">★ 將壓縮的備份影像檔回復至 Micro SD 卡中
+gzip -dc /path/to/backupImage.gz | sudo dd of=/dev/rdiskx bs=1m
+※ /dev/rdiskx 請改成您 Micro SD 卡的所在位置
+</code></pre>
+<p>如果系统显示resource busy,表明需要先将TF卡从系统中卸载。</p>
+<pre><code class="language-shell">#列出盘符名称，这里的名称显示和之前的不一样
+df -f
+#卸载
+sudo diskutil unmount /dev/disk2s1
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://344556.xyz/post-images/1591677296376.jpeg" alt="" loading="lazy"></figure>
 
                 </div>
             </article>
         </div>
 
         
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://344556.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/" class="post-title gt-a-link">
+                    删除Mac下Git上传项目代码时产生的.DS_Store文件
+                </a>
+            </div>
+        
 
         
-            <span id="/post/" class="leancloud_visitors" data-flag-title="Hello Gridea">
+            <span id="/post/" class="leancloud_visitors" data-flag-title="备份树莓派系统（MacOS)">
                 <em class="post-meta-item-text">阅读量 </em>
                 <i class="leancloud-visitors-count">0</i>
             </span>

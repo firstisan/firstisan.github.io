@@ -2,20 +2,126 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://344556.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-09T02:50:27.536Z</updated>
+    <updated>2020-06-09T11:19:09.843Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://344556.xyz"/>
     <link rel="self" href="https://344556.xyz/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>摒弃世俗浮躁，追求技术精湛</subtitle>
     <logo>https://344556.xyz/images/avatar.png</logo>
     <icon>https://344556.xyz/favicon.ico</icon>
     <rights>All rights reserved 2020, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[Git 忽略文件目录权限或文件拥有者的改变]]></title>
+        <id>https://344556.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/</id>
+        <link href="https://344556.xyz/post/git-hu-lue-wen-jian-mu-lu-quan-xian-huo-wen-jian-yong-you-zhe-de-gai-bian/">
+        </link>
+        <updated>2020-06-09T09:12:49.000Z</updated>
+        <summary type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
+<!-- more -->
+<p>当前版本库忽略文件权限</p>
+<pre><code class="language-shell">git config core.filemode false
+</code></pre>
+<p>复制所有版本库忽略文件权限</p>
+<pre><code class="language-shell">git config --global core.fileMode false
+</code></pre>
+<p>这样就设置了忽略文件权限。</p>
+<p>查看 git 的配置文件：</p>
+<pre><code class="language-shell">cat .git/config
+</code></pre>
+<p>这时候再更新代码就 OK 了。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[备份树莓派系统（MacOS)]]></title>
+        <id>https://344556.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/</id>
+        <link href="https://344556.xyz/post/bei-fen-shu-mei-pai-xi-tong-macos/">
+        </link>
+        <updated>2020-06-09T04:29:57.000Z</updated>
+        <summary type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
+<!-- more -->
+<h3 id="备份系统">备份系统</h3>
+<p>将TF插入mac后，打开mac的“终端”</p>
+<pre><code class="language-shell">#查询盘符
+diskutil list 
+# 下面图片中的dev/disk2既对应的树莓派的TF卡
+</code></pre>
+<p><img src="https://344556.xyz/post-images/1591677273477.jpeg" alt="" loading="lazy"><br>
+终端运行diskutil list 后显示的内容</p>
+<pre><code class="language-shell"># 使用dd进行备份，同时使用gzip将备份文件进行压缩
+sudo dd if=/dev/rdiskx bs=1m | gzip &gt; /path/to/backupImage.gz
+#将“/dev/rdiskx ”改成您 Micro SD 卡的所在位置， if 參數是指定資料來源 (也就是 Micro #SD 卡)   of 則是指定備份影像檔的儲存路徑與檔案名稱 
+</code></pre>
+<p>回车后，读卡器会显示在读取数据灯在闪烁，备份过程有点长，根据卡的大小，可能会在1小时左右。</p>
+<h3 id="恢复系统">恢复系统</h3>
+<pre><code class="language-shell">★ 將壓縮的備份影像檔回復至 Micro SD 卡中
+gzip -dc /path/to/backupImage.gz | sudo dd of=/dev/rdiskx bs=1m
+※ /dev/rdiskx 請改成您 Micro SD 卡的所在位置
+</code></pre>
+<p>如果系统显示resource busy,表明需要先将TF卡从系统中卸载。</p>
+<pre><code class="language-shell">#列出盘符名称，这里的名称显示和之前的不一样
+df -f
+#卸载
+sudo diskutil unmount /dev/disk2s1
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://344556.xyz/post-images/1591677296376.jpeg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[删除Mac下Git上传项目代码时产生的.DS_Store文件]]></title>
         <id>https://344556.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/</id>
         <link href="https://344556.xyz/post/shan-chu-mac-xia-git-shang-chuan-xiang-mu-dai-ma-shi-chan-sheng-de-ds_store-wen-jian/">
         </link>
         <updated>2020-06-09T02:43:35.000Z</updated>
+        <summary type="html"><![CDATA[<p>最近在 Mac 中使用 Git 上传项目时，发现 GitHub 仓库的每个文件夹下都生成了一个 .DS_Store 的文件，好奇查了一下这个文件格式，在网上搜索了一下解决办法，这里记录一下怎么删除 .DS_Store 文件以及如何在后续使用 Git时忽略掉 .DS_Store 文件。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>最近在 Mac 中使用 Git 上传项目时，发现 GitHub 仓库的每个文件夹下都生成了一个 .DS_Store 的文件，好奇查了一下这个文件格式，在网上搜索了一下解决办法，这里记录一下怎么删除 .DS_Store 文件以及如何在后续使用 Git时忽略掉 .DS_Store 文件。</p>
+<!-- more -->
+<h2 id="ds_store">.DS_Store</h2>
+<p>.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件，如文件的图标位置或背景色，删除后会自动生成，包含了一些文件的个人信息，如果不处理的话，可能会有一些你不一定希望别人看到的信息。</p>
+<h3 id="解决办法1创建一个-gitignore-文件来忽略-ds_store">解决办法1:创建一个 .gitignore 文件来忽略 .DS_Store</h3>
+<p>首先需要删除项目文件夹下已经生成的 .DS_Store 文件。</p>
+<p>终端切换到项目文件夹，输入 git status 来查看是否有 .DS_Store 文件，如果有相关文件，终端输入下面的命令将它删除。</p>
+<pre><code class="language-shell">find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+</code></pre>
+<p>创建一个名为.gitignore的文件</p>
+<pre><code class="language-shell">touch .gitignore
+</code></pre>
+<p>打开创建好的 .gitignore文件</p>
+<pre><code class="language-shell">open .gitignore
+</code></pre>
+<p>输入 .DS_Store ，然后换行继续输入 /.DS_Store ，command +s保存</p>
+<p>更新项目</p>
+<pre><code class="language-shell">git add --all
+</code></pre>
+<p>提交到远程仓库</p>
+<pre><code class="language-shell">git commit -m '.DS_Store ignore'
+git push
+</code></pre>
+<p>上面的办法只能对这个项目文件夹起作用，其它的 Git 项目文件夹要想忽略，还要重新搞一遍，所以可以做一盒全局忽略。</p>
+<h3 id="解决办法2创建全局-gitignore-文件来忽略-ds_store">解决办法2:创建全局 .gitignore 文件来忽略 .DS_Store</h3>
+<p>创建 .gitignore_global 文件</p>
+<pre><code class="language-shell">touch .gitignore_global 
+</code></pre>
+<p>打开创建好的 .gitignore_global 文件</p>
+<pre><code class="language-shell">Open .gitignore_global
+</code></pre>
+<p>输入 .DS_Store ，然后换行继续输入 /.DS_Store ，command +s保存</p>
+<p>打开 .gitconfig</p>
+<pre><code class="language-shell">open .gitconfig
+</code></pre>
+<p>在 ~/.gitconfig 中引入 .gitignore_global</p>
+<pre><code>[core]
+​    excludesfile = /Users/w/.gitignore_global
+</code></pre>
+<p>然后更新提交项目即可</p>
+<blockquote>
+<p>注意：user/后面填写你的电脑的用户名</p>
+</blockquote>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Markdown 基本语法]]></title>
@@ -23,6 +129,241 @@
         <link href="https://344556.xyz/post/markdown-ji-ben-yu-fa/">
         </link>
         <updated>2020-06-08T10:04:09.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="主要内容">主要内容</h2>
+<h4 id="-markdown是什么">- Markdown<em>是什么</em>？</h4>
+<h4 id="-谁创造了它">- <em>谁</em>创造了它？</h4>
+<h4 id="-为什么要使用它">- <em>为什么</em>要使用它？</h4>
+<h4 id="-怎么使用">- <em>怎么</em>使用？</h4>
+<h4 id="-谁在用">- <em>谁</em>在用？</h4>
+<h4 id="-尝试一下">- 尝试一下</h4>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="主要内容">主要内容</h2>
+<h4 id="-markdown是什么">- Markdown<em>是什么</em>？</h4>
+<h4 id="-谁创造了它">- <em>谁</em>创造了它？</h4>
+<h4 id="-为什么要使用它">- <em>为什么</em>要使用它？</h4>
+<h4 id="-怎么使用">- <em>怎么</em>使用？</h4>
+<h4 id="-谁在用">- <em>谁</em>在用？</h4>
+<h4 id="-尝试一下">- 尝试一下</h4>
+<!-- more -->
+<h2 id="正文">正文</h2>
+<h3 id="1-markdown是什么">1. Markdown<em>是什么</em>？</h3>
+<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br>
+<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
+<h3 id="2-谁创造了它">2. <em>谁</em>创造了它？</h3>
+<p>它由<a href="http://www.aaronsw.com/"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
+<p>他有着足以让你跪拜的人生经历：</p>
+<ul>
+<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
+<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
+<li><strong>2005</strong>年创建<a href="http://infogami.org/">Infogami</a>，之后与<a href="http://www.reddit.com/">Reddit</a>合并成为其合伙人。</li>
+<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
+<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
+<li><strong>2013</strong>年1月自杀身亡。</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" loading="lazy"></figure>
+<p>天才都有早逝的归途。</p>
+<h3 id="3-为什么要使用它">3. <em>为什么</em>要使用它？</h3>
+<ul>
+<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
+<li>兼容HTML，可以转换为HTML格式发布。</li>
+<li>跨平台使用。</li>
+<li>越来越多的网站支持Markdown。</li>
+<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
+<li>摆脱Word（我不是认真的）。</li>
+</ul>
+<h3 id="4-怎么使用">4. <em>怎么</em>使用？</h3>
+<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<p>Markdown语法主要分为如下几大部分：<br>
+<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号'`'</strong>。</p>
+<h4 id="41-标题">4.1 标题</h4>
+<p>两种形式：<br>
+1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
+<blockquote>
+<p>一级标题<br>
+<code>=========</code><br>
+二级标题<br>
+<code>---------</code></p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题">一级标题</h1>
+<h2 id="二级标题">二级标题</h2>
+</blockquote>
+<p>2）使用<code>#</code>，可表示1-6级标题。</p>
+<blockquote>
+<p># 一级标题<br>
+## 二级标题<br>
+### 三级标题<br>
+#### 四级标题<br>
+##### 五级标题<br>
+###### 六级标题</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题-2">一级标题</h1>
+<h2 id="二级标题-2">二级标题</h2>
+<h3 id="三级标题">三级标题</h3>
+<h4 id="四级标题">四级标题</h4>
+<h5 id="五级标题">五级标题</h5>
+<h6 id="六级标题">六级标题</h6>
+</blockquote>
+<h4 id="42-段落">4.2 段落</h4>
+<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
+<h4 id="43-区块引用">4.3 区块引用</h4>
+<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>&gt; 区块引用<br>
+&gt;&gt; 嵌套引用</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h4 id="44-代码区块">4.4 代码区块</h4>
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br>
+普通段落：</p>
+<p>void main()<br>
+{<br>
+printf(&quot;Hello, Markdown.&quot;);<br>
+}</p>
+<p>代码区块：</p>
+<pre><code>void main()
+{
+    printf(&quot;Hello, Markdown.&quot;);
+}
+</code></pre>
+<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
+<h4 id="45-强调">4.5 强调</h4>
+<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
+<blockquote>
+<p>*斜体*，_斜体_<br>
+**粗体**，__粗体__</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em>，<em>斜体</em><br>
+<strong>粗体</strong>，<strong>粗体</strong></p>
+</blockquote>
+<h4 id="46-列表">4.6 列表</h4>
+<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
+<blockquote>
+<p>-（+*） 第一项<br>
+-（+*） 第二项<br>
+- （+*）第三项</p>
+</blockquote>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
+<blockquote>
+<p>1 . 第一项<br>
+2 . 第二项<br>
+3 . 第三项</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+</blockquote>
+<h4 id="47-分割线">4.7 分割线</h4>
+<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
+<h4 id="48-链接">4.8 链接</h4>
+<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br>
+<strong>行内式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown &quot;Markdown&quot;)。</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
+</blockquote>
+<p><strong>参考式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库1][1]<br>
+[younghz的Markdown库2][2]<br>
+[1]:https:😕/github.com/younghz/Markdown &quot;Markdown&quot;<br>
+[2]:https:😕/github.com/younghz/Markdown &quot;Markdown&quot;</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br>
+<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
+</blockquote>
+<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
+<h4 id="49-图片">4.9 图片</h4>
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
+<h4 id="410-反斜杠">4.10 反斜杠<code>\</code></h4>
+<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
+<h4 id="411-符号">4.11 符号'`'</h4>
+<p>起到标记作用。如：</p>
+<blockquote>
+<p>`ctrl+a`</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><code>ctrl+a</code></p>
+</blockquote>
+<h4 id="5-谁在用">5. <em>谁</em>在用？</h4>
+<p>Markdown的使用者：</p>
+<ul>
+<li>GitHub</li>
+<li>简书</li>
+<li>Stack Overflow</li>
+<li>Apollo</li>
+<li>Moodle</li>
+<li>Reddit</li>
+<li>等等</li>
+</ul>
+<h4 id="6-尝试一下">6. 尝试一下</h4>
+<ul>
+<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
+<li><strong>在线</strong>的dillinger.io评价也不错</li>
+<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
+<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
+<li><strong>Linux</strong>下的ReText不错。</li>
+</ul>
+<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
+<hr>
+<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br>
+虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br>
+(http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/ )。</p>
+<hr>
+<p>以上基本是所有traditonal markdown的语法。</p>
+<h3 id="其它">其它：</h3>
+<p>列表的使用(非traditonal markdown)：</p>
+<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码库</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MarkDown</td>
+<td><a href="https://github.com/younghz/Markdown" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+<tr>
+<td style="text-align:center">MarkDownCopy</td>
+<td><a href="https://github.com/younghz/Markdown" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+</tbody>
+</table>
+<p>关于其它扩展语法可参见具体工具的使用说明。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
@@ -35,6 +376,25 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>
