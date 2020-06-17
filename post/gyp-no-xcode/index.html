@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>IMCM</title>
+<title>gyp: No Xcode or CLT version detected! | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1592378665026">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -42,11 +42,11 @@
     </script>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -95,37 +95,96 @@
         </div>
     </div>
 </nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    gyp: No Xcode or CLT version detected!
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-06-17 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/tag/node/" class="post-tags">
+                            # node
+                        </a>
+                    
+                        <a href="https://imcm.xyz/tag/mac/" class="post-tags">
+                            # Mac
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>npm install 安装依赖包报如下错误</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1592363327243.png" alt="" loading="lazy"></figure>
+<h3 id="解决思路">解决思路</h3>
+<p>Mac升级到High sierra 后，发现执行使用npm 或者yarn 的时候，不时会报<code>gyp: No Xcode or CLT version detected!</code> 的错误, 原因是缺了xcode 的CLI 工具, 只要执行下面的命令来安装就可以了。</p>
+<pre><code class="language-shell">sudo xcode-select --install
+</code></pre>
+<h4 id="再执行">再执行</h4>
+<pre><code class="language-shell"> $ xcode-select --install
+</code></pre>
+<h4 id="后出现错误">后出现错误</h4>
+<pre><code class="language-shell">xcode-select: error: command line tools are already installed, use &quot;Software Update&quot; to install updates
+</code></pre>
+<h3 id="解决办法">解决办法</h3>
+<pre><code class="language-shell">$ sudo rm -rf $(xcode-select -print-path)
+$ xcode-select --install
+</code></pre>
+<p>问题完美解决<br>
+如果提示权限不够那么加上sudo</p>
 
-        <div class="tags-container">
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/node/">#node</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/mac/">#Mac</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/laravel/">#Laravel</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/composer/">#Composer</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/openwrt/">#openwrt</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/docker/">#docker</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/git/">#Git</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/raspberrypi/">#RaspberryPi</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://imcm.xyz/tag/vZN9VpH4g/">#Gridea</a>
-            
+                </div>
+            </article>
         </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/post/laravel-composer-note/" class="post-title gt-a-link">
+                    Laravel Composer 笔记
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/" class="leancloud_visitors" data-flag-title="gyp: No Xcode or CLT version detected!">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://unpkg.com/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:50%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'iW2GV6c3WWUVu2hxWnFtQrFv-gzGzoHsz',
+		appKey: 'J6rmIHFFuPKWaRmMwyazuuTF',
+		avatar: 'robohash',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: '请输入您的评论',
+		visitor: true,
+	});
+</script>
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>

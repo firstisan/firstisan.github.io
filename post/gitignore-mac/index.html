@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>IMCM</title>
+<title>删除Mac下Git上传项目代码时产生的.DS_Store文件 | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1592378665026">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -42,11 +42,11 @@
     </script>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -95,128 +95,116 @@
         </div>
     </div>
 </nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    删除Mac下Git上传项目代码时产生的.DS_Store文件
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-06-09 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/tag/git/" class="post-tags">
+                            # Git
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>最近在 Mac 中使用 Git 上传项目时，发现 GitHub 仓库的每个文件夹下都生成了一个 .DS_Store 的文件，好奇查了一下这个文件格式，在网上搜索了一下解决办法，这里记录一下怎么删除 .DS_Store 文件以及如何在后续使用 Git时忽略掉 .DS_Store 文件。</p>
+<!-- more -->
+<h2 id="ds_store">.DS_Store</h2>
+<p>.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件，如文件的图标位置或背景色，删除后会自动生成，包含了一些文件的个人信息，如果不处理的话，可能会有一些你不一定希望别人看到的信息。</p>
+<h3 id="解决办法1创建一个-gitignore-文件来忽略-ds_store">解决办法1:创建一个 .gitignore 文件来忽略 .DS_Store</h3>
+<p>首先需要删除项目文件夹下已经生成的 .DS_Store 文件。</p>
+<p>终端切换到项目文件夹，输入 git status 来查看是否有 .DS_Store 文件，如果有相关文件，终端输入下面的命令将它删除。</p>
+<pre><code class="language-shell">find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+</code></pre>
+<p>创建一个名为.gitignore的文件</p>
+<pre><code class="language-shell">touch .gitignore
+</code></pre>
+<p>打开创建好的 .gitignore文件</p>
+<pre><code class="language-shell">open .gitignore
+</code></pre>
+<p>输入 .DS_Store ，然后换行继续输入 /.DS_Store ，command +s保存</p>
+<p>更新项目</p>
+<pre><code class="language-shell">git add --all
+</code></pre>
+<p>提交到远程仓库</p>
+<pre><code class="language-shell">git commit -m '.DS_Store ignore'
+git push
+</code></pre>
+<p>上面的办法只能对这个项目文件夹起作用，其它的 Git 项目文件夹要想忽略，还要重新搞一遍，所以可以做一盒全局忽略。</p>
+<h3 id="解决办法2创建全局-gitignore-文件来忽略-ds_store">解决办法2:创建全局 .gitignore 文件来忽略 .DS_Store</h3>
+<p>创建 .gitignore_global 文件</p>
+<pre><code class="language-shell">touch .gitignore_global 
+</code></pre>
+<p>打开创建好的 .gitignore_global 文件</p>
+<pre><code class="language-shell">Open .gitignore_global
+</code></pre>
+<p>输入 .DS_Store ，然后换行继续输入 /.DS_Store ，command +s保存</p>
+<p>打开 .gitconfig</p>
+<pre><code class="language-shell">open .gitconfig
+</code></pre>
+<p>在 ~/.gitconfig 中引入 .gitignore_global</p>
+<pre><code>[core]
+​    excludesfile = /Users/w/.gitignore_global
+</code></pre>
+<p>然后更新提交项目即可</p>
+<blockquote>
+<p>注意：user/后面填写你的电脑的用户名</p>
+</blockquote>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/post/markdown/" class="post-title gt-a-link">
+                    Markdown 基本语法
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/" class="leancloud_visitors" data-flag-title="删除Mac下Git上传项目代码时产生的.DS_Store文件">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
 
         
 
-<div class="archives-container">
-    
-        <h2 class="year gt-c-cotent-color-first">2020</h2>
         
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/gyp-no-xcode/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-17&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            gyp: No Xcode or CLT version detected!
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/laravel-composer-note/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-16&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            Laravel Composer 笔记
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/docker-openwrt/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-10&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            在Docker 中运行 OpenWrt 旁路网关
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/chown-git/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-09&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            Git 忽略文件目录权限或文件拥有者的改变
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/mac-backup-pi/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-09&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            备份树莓派系统（MacOS)
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/gitignore-mac/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-09&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            删除Mac下Git上传项目代码时产生的.DS_Store文件
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/markdown/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2020-06-08&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            Markdown 基本语法
-                        </div>
-                    </a>
-                </article>
-            
-        
-            
-        
-    
-        <h2 class="year gt-c-cotent-color-first">2018</h2>
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <article class="post">
-                    <a href="https://imcm.xyz/post/hello-gridea/">
-                        <div class="post-title gt-c-content-color-first">
-                            <small><b>2018-12-12&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
-                            Hello Gridea
-                        </div>
-                    </a>
-                </article>
-            
-        
-    
-</div>
+            <script src='https://unpkg.com/valine/dist/Valine.min.js'></script>
 
-        <div class="pagination-container">
-    
-    
-</div>
+<style>
+	div#vcomments{
+		width:50%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
 
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'iW2GV6c3WWUVu2hxWnFtQrFv-gzGzoHsz',
+		appKey: 'J6rmIHFFuPKWaRmMwyazuuTF',
+		avatar: 'robohash',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: '请输入您的评论',
+		visitor: true,
+	});
+</script>
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>
