@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-17T07:46:10.801Z</updated>
+    <updated>2020-06-22T03:31:01.058Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, IMCM</rights>
     <entry>
         <title type="html"><![CDATA[gyp: No Xcode or CLT version detected!]]></title>
-        <id>https://imcm.xyz/post/gyp-no-xcode/</id>
-        <link href="https://imcm.xyz/post/gyp-no-xcode/">
+        <id>https://imcm.xyz/gyp-no-xcode/</id>
+        <link href="https://imcm.xyz/gyp-no-xcode/">
         </link>
         <updated>2020-06-17T03:02:39.000Z</updated>
         <summary type="html"><![CDATA[<p>npm install 安装依赖包报如下错误</p>
@@ -41,8 +41,8 @@ $ xcode-select --install
     </entry>
     <entry>
         <title type="html"><![CDATA[Laravel Composer 笔记]]></title>
-        <id>https://imcm.xyz/post/laravel-composer-note/</id>
-        <link href="https://imcm.xyz/post/laravel-composer-note/">
+        <id>https://imcm.xyz/laravel-composer-note/</id>
+        <link href="https://imcm.xyz/laravel-composer-note/">
         </link>
         <updated>2020-06-16T07:33:42.000Z</updated>
         <summary type="html"><![CDATA[<p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
@@ -67,8 +67,8 @@ $ xcode-select --install
     </entry>
     <entry>
         <title type="html"><![CDATA[在Docker 中运行 OpenWrt 旁路网关]]></title>
-        <id>https://imcm.xyz/post/docker-openwrt/</id>
-        <link href="https://imcm.xyz/post/docker-openwrt/">
+        <id>https://imcm.xyz/docker-openwrt/</id>
+        <link href="https://imcm.xyz/docker-openwrt/">
         </link>
         <updated>2020-06-10T06:46:40.000Z</updated>
         <summary type="html"><![CDATA[<p>今天小苏为大家带来的是（咕很久的）在 Docker 中运行 OpenWrt 做旁路网关的教程~</p>
@@ -331,8 +331,8 @@ iface macvlan inet static
     </entry>
     <entry>
         <title type="html"><![CDATA[Git 忽略文件目录权限或文件拥有者的改变]]></title>
-        <id>https://imcm.xyz/post/chown-git/</id>
-        <link href="https://imcm.xyz/post/chown-git/">
+        <id>https://imcm.xyz/chown-git/</id>
+        <link href="https://imcm.xyz/chown-git/">
         </link>
         <updated>2020-06-09T09:12:49.000Z</updated>
         <summary type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
@@ -354,8 +354,8 @@ iface macvlan inet static
     </entry>
     <entry>
         <title type="html"><![CDATA[备份树莓派系统（MacOS)]]></title>
-        <id>https://imcm.xyz/post/mac-backup-pi/</id>
-        <link href="https://imcm.xyz/post/mac-backup-pi/">
+        <id>https://imcm.xyz/mac-backup-pi/</id>
+        <link href="https://imcm.xyz/mac-backup-pi/">
         </link>
         <updated>2020-06-09T04:29:57.000Z</updated>
         <summary type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
@@ -391,8 +391,8 @@ sudo diskutil unmount /dev/disk2s1
     </entry>
     <entry>
         <title type="html"><![CDATA[删除Mac下Git上传项目代码时产生的.DS_Store文件]]></title>
-        <id>https://imcm.xyz/post/gitignore-mac/</id>
-        <link href="https://imcm.xyz/post/gitignore-mac/">
+        <id>https://imcm.xyz/gitignore-mac/</id>
+        <link href="https://imcm.xyz/gitignore-mac/">
         </link>
         <updated>2020-06-09T02:43:35.000Z</updated>
         <summary type="html"><![CDATA[<p>最近在 Mac 中使用 Git 上传项目时，发现 GitHub 仓库的每个文件夹下都生成了一个 .DS_Store 的文件，好奇查了一下这个文件格式，在网上搜索了一下解决办法，这里记录一下怎么删除 .DS_Store 文件以及如何在后续使用 Git时忽略掉 .DS_Store 文件。</p>
@@ -444,8 +444,8 @@ git push
     </entry>
     <entry>
         <title type="html"><![CDATA[Markdown 基本语法]]></title>
-        <id>https://imcm.xyz/post/markdown/</id>
-        <link href="https://imcm.xyz/post/markdown/">
+        <id>https://imcm.xyz/markdown/</id>
+        <link href="https://imcm.xyz/markdown/">
         </link>
         <updated>2020-06-08T10:04:09.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="主要内容">主要内容</h2>
@@ -686,8 +686,8 @@ printf(&quot;Hello, Markdown.&quot;);<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://imcm.xyz/post/hello-gridea/</id>
-        <link href="https://imcm.xyz/post/hello-gridea/">
+        <id>https://imcm.xyz/hello-gridea/</id>
+        <link href="https://imcm.xyz/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
