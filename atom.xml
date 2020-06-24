@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-22T03:31:01.058Z</updated>
+    <updated>2020-06-24T07:37:23.534Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2020, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[使用腾讯云实现网易云自动打卡签到]]></title>
+        <id>https://imcm.xyz/netmusic-qcloud/</id>
+        <link href="https://imcm.xyz/netmusic-qcloud/">
+        </link>
+        <updated>2020-06-24T07:27:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>使用腾讯云云函数实现网易云自动打卡和签到功能！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>使用腾讯云云函数实现网易云自动打卡和签到功能！</p>
+<!-- more -->
+<p>在这篇文章中，我将主要介绍如何使用腾讯云中的云函数来实现网易云自动打卡和签到功能。本文中的 PHP 源代码可以在 <a href="https://github.com/wwxiaoqi/TencentNeteaseCloudPunch">GitHub</a> 上找到。</p>
+<p>说明：PHP 里面的 localurl，username，password 需要修改才能正常使用， 在这里提供一些网上公益的 <a href="https://tahicokey.oss-cn-shanghai.aliyuncs.com/Blog/TencentNeteaseCloudPunch/Netease_API.txt">API</a> ，完全性未知，在使用 API 过程中发生的一切事情均与我无关。</p>
+<h2 id="正文">正文</h2>
+<p>文章的正文分为两个部分：基础集成和原生部署，第一部分是文章的主体，第二部分供喜欢网易云的研究。</p>
+<p>当你按照此文章成功设置完成，将：</p>
+<ul>
+<li>拥有网易云自动打卡</li>
+<li>无需手动，完全自动</li>
+<li>定时签到</li>
+</ul>
+<h2 id="基础集成">基础集成</h2>
+<p>你需要准备的是：</p>
+<ul>
+<li>腾讯云账号，且实名验证完成</li>
+<li>一个网易云 API</li>
+<li>网易云音乐账号密码<br>
+首先，先打开 <a href="https://cloud.tencent.com/">腾讯云</a> ，找到 <a href="https://cloud.tencent.com/product/scf">云函数</a> 在新建函数页面填写函数基础信息，单击【下一步】，如下图所示：</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1592984081483.jpg" alt="1.jpg" loading="lazy"></figure>
+<ul>
+<li>函数名称：可随便命名</li>
+<li>运行环境：选择 “PHP 7.2”</li>
+<li>创建方式：选择 “空白函数”</li>
+</ul>
+<p>接着在函数配置界面中填写其他信息，然后点击【完成】，如下图所示：</p>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1592984087418.jpg" alt="2.jpg" loading="lazy"></figure>
+<p>此处代码修改为本文的 PHP 源代码</p>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1592984096560.jpg" alt="3.jpg" loading="lazy"></figure>
+<p>超时时间修改为 600s</p>
+<h2 id="基础触发">基础触发</h2>
+<p>接着配置一下触发方式，点击【保存】，如下图所示：</p>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1592984127329.jpg" alt="4.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://imcm.xyz/post-images/1592984141422.jpg" alt="5.jpg" loading="lazy"></figure>
+<ul>
+<li>定时任务名称：可随便命名</li>
+<li>触发周期：选择 “自定义触发”</li>
+<li>Cron 表达式：填写 “00 30 6 */1 * * *”<br>
+<img src="https://imcm.xyz/post-images/1592984152914.jpg" alt="6.jpg" loading="lazy"></li>
+</ul>
+<p>到此处基础部分就已经完成啦，下面是原生部署方式。</p>
+<h2 id="原生部署">原生部署</h2>
+<p>你需要准备的是：</p>
+<ul>
+<li>一台支持 Node.js 的服务器</li>
+<li>API 源代码：<a href="https://github.com/Binaryify/NeteaseCloudMusicApi">NeteaseCloudMusicApi</a></li>
+<li>会简单 Linux 基础<br>
+首先，先连接 Linux 并安装 Git，nodejs：</li>
+</ul>
+<pre><code class="language-shell">pkg install git
+pkg install nodejs
+pkg install nodejs-current
+</code></pre>
+<p>然后使用 Git 下载 API 源代码：</p>
+<pre><code class="language-shell">git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+npm install
+</code></pre>
+<p>在然后运行 app.js：</p>
+<pre><code class="language-shell">node app.js
+</code></pre>
+<p>如需要修改默认端口号，可这样实现：</p>
+<p>Mac/Linux：</p>
+<pre><code class="language-shell">PORT=4000 node app.js
+</code></pre>
+<p>Windows：</p>
+<pre><code class="language-shell">set PORT=4000 &amp;&amp; node app.js
+</code></pre>
+<h2 id="结尾">结尾</h2>
+<p>这就是本文的全部内容啦，经过一段时间的使用，体验还是非常棒的！</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[gyp: No Xcode or CLT version detected!]]></title>
         <id>https://imcm.xyz/gyp-no-xcode/</id>
