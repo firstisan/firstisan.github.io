@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>使用腾讯云实现网易云自动打卡签到 | IMCM</title>
+<title>搭建Vue脚手架以及创建项目 | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1593326632025">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -99,89 +99,144 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    使用腾讯云实现网易云自动打卡签到
+                    搭建Vue脚手架以及创建项目
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-24 ·
+                        · 2020-06-28 ·
                     </time>
                     
-                        <a href="https://imcm.xyz/node/" class="post-tags">
-                            # node
+                        <a href="https://imcm.xyz/vue/" class="post-tags">
+                            # Vue
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>使用腾讯云云函数实现网易云自动打卡和签到功能！</p>
+                    <h3 id="知识背景">知识背景</h3>
 <!-- more -->
-<p>在这篇文章中，我将主要介绍如何使用腾讯云中的云函数来实现网易云自动打卡和签到功能。本文中的 PHP 源代码可以在 <a href="https://github.com/wwxiaoqi/TencentNeteaseCloudPunch">GitHub</a> 上找到。</p>
-<p>说明：PHP 里面的 localurl，username，password 需要修改才能正常使用， 在这里提供一些网上公益的 <a href="https://tahicokey.oss-cn-shanghai.aliyuncs.com/Blog/TencentNeteaseCloudPunch/Netease_API.txt">API</a> ，完全性未知，在使用 API 过程中发生的一切事情均与我无关。</p>
-<h2 id="正文">正文</h2>
-<p>文章的正文分为两个部分：基础集成和原生部署，第一部分是文章的主体，第二部分供喜欢网易云的研究。</p>
-<p>当你按照此文章成功设置完成，将：</p>
-<ul>
-<li>拥有网易云自动打卡</li>
-<li>无需手动，完全自动</li>
-<li>定时签到</li>
-</ul>
-<h2 id="基础集成">基础集成</h2>
-<p>你需要准备的是：</p>
-<ul>
-<li>腾讯云账号，且实名验证完成</li>
-<li>一个网易云 API</li>
-<li>网易云音乐账号密码<br>
-首先，先打开 <a href="https://cloud.tencent.com/">腾讯云</a> ，找到 <a href="https://cloud.tencent.com/product/scf">云函数</a> 在新建函数页面填写函数基础信息，单击【下一步】，如下图所示：</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1592984081483.jpg" alt="1.jpg" loading="lazy"></figure>
-<ul>
-<li>函数名称：可随便命名</li>
-<li>运行环境：选择 “PHP 7.2”</li>
-<li>创建方式：选择 “空白函数”</li>
-</ul>
-<p>接着在函数配置界面中填写其他信息，然后点击【完成】，如下图所示：</p>
-<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1592984087418.jpg" alt="2.jpg" loading="lazy"></figure>
-<p>此处代码修改为本文的 PHP 源代码</p>
-<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1592984096560.jpg" alt="3.jpg" loading="lazy"></figure>
-<p>超时时间修改为 600s</p>
-<h2 id="基础触发">基础触发</h2>
-<p>接着配置一下触发方式，点击【保存】，如下图所示：</p>
-<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1592984127329.jpg" alt="4.jpg" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://imcm.xyz/post-images/1592984141422.jpg" alt="5.jpg" loading="lazy"></figure>
-<ul>
-<li>定时任务名称：可随便命名</li>
-<li>触发周期：选择 “自定义触发”</li>
-<li>Cron 表达式：填写 “00 30 6 */1 * * *”<br>
-<img src="https://imcm.xyz/post-images/1592984152914.jpg" alt="6.jpg" loading="lazy"></li>
-</ul>
-<p>到此处基础部分就已经完成啦，下面是原生部署方式。</p>
-<h2 id="原生部署">原生部署</h2>
-<p>你需要准备的是：</p>
-<ul>
-<li>一台支持 Node.js 的服务器</li>
-<li>API 源代码：<a href="https://github.com/Binaryify/NeteaseCloudMusicApi">NeteaseCloudMusicApi</a></li>
-<li>会简单 Linux 基础<br>
-首先，先连接 Linux 并安装 Git，nodejs：</li>
-</ul>
-<pre><code class="language-shell">pkg install git
-pkg install nodejs
-pkg install nodejs-current
+<blockquote>
+<p>什么是node.js</p>
+</blockquote>
+<p>nodo.js式基于chrome v8的js运行环境<br>
+使js可以当作一门后端语言<br>
+特征：基于事件驱动，非阻塞式IO模型<br>
+知乎上解释的很好：https://www.zhihu.com/question/33578075</p>
+<blockquote>
+<p>什么是npm</p>
+</blockquote>
+<p>npm 全称【node package management】是node.js内置的软件包管理器<br>
+说明：https://www.jianshu.com/p/c36666b306aa</p>
+<blockquote>
+<p>什么是webpack</p>
+</blockquote>
+<p>webpack是一个开源前端打包工具，Webpack 提供了前端开发缺乏的模块化开发方式，将各种静态资源视为模块，并从它生成优化过的代码。要使用Webpack 前须先安装Node.js。</p>
+<blockquote>
+<p>与Vue之间的关系</p>
+</blockquote>
+<p>我们通过vue.js开发项目通常使用npm做包管理器，npm运行依赖node.js；<br>
+构建一个vue项目的时候，推荐使用npm，这时候我们需要安装node.js。<br>
+一些说明：<br>
+https://www.cnblogs.com/jianxian/p/10734204.html<br>
+https://www.jianshu.com/p/9967c253da5b<br>
+https://www.cnblogs.com/Py-king/p/11669976.html</p>
+<h3 id="部署环境">部署环境</h3>
+<ol>
+<li>
+<p>安装 node.js<br>
+官网安装：https://nodejs.org/en/download/<br>
+windoes zip版安装过程：https://www.cnblogs.com/lxg0/p/9472851.html<br>
+本次安装以mac 10.15.4为例，win下去掉命令前的“sudo”</p>
+</li>
+<li>
+<p>查看版本<br>
+打开终端分别输入</p>
+</li>
+</ol>
+<pre><code class="language-shell">//查看node版本
+node -v
+//查看npm版本
+npm -v
 </code></pre>
-<p>然后使用 Git 下载 API 源代码：</p>
-<pre><code class="language-shell">git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
-npm install
+<ol start="3">
+<li>安装淘宝镜像（可选）</li>
+</ol>
+<p>因为大天朝的网络环境，国内可能连接不到，建议安装一下淘宝镜像。<br>
+--verbose 打印详细信息</p>
+<pre><code class="language-shell">sudo npm install -g cnpm --registry=https://registry.npm.taobao.org --verbose
 </code></pre>
-<p>在然后运行 app.js：</p>
-<pre><code class="language-shell">node app.js
+<ol start="4">
+<li>安装webpack<br>
+“-g”全局安装</li>
+</ol>
+<pre><code class="language-shell">//安装（官方镜像）
+sudo npm install webpack webpack-cli -g
+//安装（淘宝镜像）
+sudo cnpm install webpack webpack-cli -g
+//查看版本
+webpack -v
 </code></pre>
-<p>如需要修改默认端口号，可这样实现：</p>
-<p>Mac/Linux：</p>
-<pre><code class="language-shell">PORT=4000 node app.js
+<ol start="5">
+<li>安装vue-cli</li>
+</ol>
+<pre><code class="language-shell">//安装（官方镜像）
+sudo npm install -g vue-cli
+//安装（淘宝镜像）
+sudo cnpm install -g vue-cli
+//查看版本
+//注意这里是大写的“V”
+vue -V
 </code></pre>
-<p>Windows：</p>
-<pre><code class="language-shell">set PORT=4000 &amp;&amp; node app.js
+<h3 id="创建项目">创建项目</h3>
+<ol>
+<li>
+<p>项目位置<br>
+打开cmd cd到硬盘的某个路径，这个路径就是接下来项目的存放路径。</p>
+</li>
+<li>
+<p>创建</p>
+</li>
+</ol>
+<pre><code class="language-shell">vue init webpack demo（项目名，小写）
+Project name（项目名：默认“demo”）
+Project description （项目介绍：默认 A Vue.js project）
+Author （作者名）
+Vue build （Use arrow keys）
+Runtime + Compiler：recommended for most users（运行加编译）
+Runtime—only：about 6KB lighter min+gzip，but templaters（or any Vue-spcific HTML）are ONLY allowed in .Vue files - render functions are required elsewhere（仅运行）
+Install vue-router ? （Y/n）（安装Vue路由？）
+Use ESLint to lint your code ? （Y/n）（使用ESlint对代码进行校验？）
+Set up unit tests （Y/n）（使用单元测试？）
+Setup e2e tests with Nightwatch？ （Y/n）（使用e2e测试？）
+Should we run npm install fr you after the project has been created?（recommended）（Use arrow keys）
+Yes，use Npm
+Yes，use Yarn
+No，I whill handle that myself
+如果npm可以正常使用，选第一项
+如果使用淘宝镜像选最后一个
+根据提示
+cd demo
+cnpm install （or if using yarn ：yarn）
+npm run dev
 </code></pre>
-<h2 id="结尾">结尾</h2>
-<p>这就是本文的全部内容啦，经过一段时间的使用，体验还是非常棒的！</p>
+<h3 id="项目文件解释">项目文件解释</h3>
+<ul>
+<li>build（webpack 编译任务配置文件: 开发环境与生产环境）</li>
+<li>config（项目的配置文件）</li>
+<li>config&gt;index.js（项目的基础的配置信息）</li>
+<li>config&gt;dev.env.js（开发环境的配置信息）</li>
+<li>config&gt;pro.env.js（线上环境的配置信息）</li>
+<li>node_modules（项目所有依赖的包文件，比如vue-router、vuex等插件都会下载到这个文件夹里面）</li>
+<li>src（工作目录，主要写代码的地方）</li>
+<li>static（静态资源）</li>
+<li>.babelrc（语法解析器）</li>
+<li>.editorconfig（帮助配置编辑器 里 自动化 的语法）</li>
+<li>.gitignore（用来过滤一些版本控制的文件，比如node_modules文件夹）</li>
+<li>.postcssrc.js（是对postcss的一个配置项）</li>
+<li>index.html（入口文件）</li>
+<li>package.json（项目文件，记载着一些命令和依赖还有简要的项目描述信息）</li>
+<li>package-lock.json（package的锁文件，可以帮助确定安装第三包的具体版本，保持编程团队的统一）</li>
+<li>README.md（项目说明介绍）</li>
+</ul>
 
                 </div>
             </article>
@@ -190,8 +245,8 @@ npm install
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://imcm.xyz/gyp-no-xcode/" class="post-title gt-a-link">
-                    gyp: No Xcode or CLT version detected!
+                <a href="https://imcm.xyz/redis-basic/" class="post-title gt-a-link">
+                    Redis 基础学习
                 </a>
             </div>
         
