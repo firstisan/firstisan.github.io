@@ -1,15 +1,644 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
-    <title>IMCM</title>
-    <updated>2020-06-24T07:37:23.534Z</updated>
+    <title>CODEACC</title>
+    <updated>2020-06-28T03:38:47.199Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
     <subtitle>摒弃世俗浮躁，追求技术精湛</subtitle>
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
-    <rights>All rights reserved 2020, IMCM</rights>
+    <rights>All rights reserved 2020, CODEACC</rights>
+    <entry>
+        <title type="html"><![CDATA[Redis 基础学习]]></title>
+        <id>https://imcm.xyz/redis-basic/</id>
+        <link href="https://imcm.xyz/redis-basic/">
+        </link>
+        <updated>2020-06-28T03:27:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>redis 基础知识巩固一下</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>redis 基础知识巩固一下</p>
+<!-- more -->
+<h3 id="启动">启动</h3>
+<ol>
+<li>启动：redis-server.exe redis.windows.conf/redis-server</li>
+<li>连接：redis-cli.exe -h 127.0.0.1 -p 6379</li>
+</ol>
+<h3 id="redis-命令">redis 命令</h3>
+<ol>
+<li>启动客户端后利用 redis-cli 连接本地服务</li>
+<li>ping 检测 redis 服务是否启动</li>
+<li>执行远程 redis 服务：redis-cli -h host -p port -a password</li>
+</ol>
+<h3 id="数据类型">数据类型</h3>
+<ul>
+<li>
+<p>string （字符串）</p>
+</li>
+<li>
+<p>hash （哈希）</p>
+<ul>
+<li>key：value （键值对集合），适合存储对象</li>
+</ul>
+</li>
+<li>
+<p>list （列表）</p>
+<ul>
+<li>简单的字符串列表，可以添加元素到列表的头部和尾部</li>
+</ul>
+</li>
+<li>
+<p>set （集合）</p>
+<ul>
+<li>string 类型的无序集合</li>
+<li>集合是通过哈希表实现的</li>
+</ul>
+</li>
+<li>
+<p>zset （有序集合）</p>
+<ul>
+<li>zset 和 set 一样也是 string 类型元素的集合，且不允许重复的成员</li>
+<li>不同的是每个元素都会关联一个 double 类型的分数。redis 正是通过分数来为集合中的成员进行从小到大的排序</li>
+<li>zset 的成员是唯一的，但分数 (score) 却可以重复</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作指南">操作指南</h3>
+<ul>
+<li>key 操作</li>
+</ul>
+<pre><code class="language-shell">-- SET KEY_NAME VALUE（设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型）
+&gt; set name Lhao
+
+-- GET KEY_NAME （获取指定 key 的值。如果 key 不存在，返回 nil 。如果key 储存的值不是字符串类型，返回一   个错误）
+&gt; get name // 输出：Lhao
+
+-- DUMP KEY_NAME （序列化 name，输出序列化之后的值）
+&gt; dump name // 输出：&quot;\x00\x04Lhao\t\x00\xd3JL\xcf\xafsi\x8f&quot;
+
+-- EXISTS KEY_NAME （判断 key 是否存在）
+&gt; exists name // 输出：1
+
+-- Expire KEY_NAME TIME_IN_SECONDS (设置有效时间，过期之后则删除，单位：s , 可对已存在的 key 进行操作)
+&gt; expire name 10 // 输出：1
+
+-- Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP (指定过期时间戳)
+&gt; set name Lhao // 上面设置了过期时间，已经没了 ，哈哈
+&gt; expireat name 1551341040 // 输出：1
+
+-- KEYS PATTERN (用于查找所有符合给定模式 pattern 的 key )
+&gt; set name Lhao
+&gt; keys * //（返回所有键名）输出：name
+&gt; set naes haha
+&gt; keys na* // 输出：name、naes
+
+-- SELECT index (切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值)
+&gt; select 0 
+
+-- MOVE KEY_NAME DESTINATION_DATABASE (将当前数据库的 key 移动到给定的数据库 db 当)
+&gt; move name 1 // (移动 name 到 1 数据库中)
+&gt; exists name // 输出：0
+&gt; select 1
+&gt; exists name // 输出：1
+
+&gt; expire name 10
+
+-- TTL KEY_NAME (以秒为单位返回 key 的剩余过期时间)
+&gt; ttl name // 输出：8
+
+-- PERSIST KEY_NAME (移除给定 key 的过期时间，使得 key 永不过期)
+&gt; persist name // 输出：1
+&gt; ttl name // 输出：-1 （表示不过期）
+
+-- DEL KEY_NAME (删除已存在的键。不存在的 key 会被忽略)
+&gt; del name // 输出：1
+
+&gt; set name Lhao
+&gt; set age 24
+
+-- RANDOMKEY (从当前数据库中随机返回一个 key)
+&gt; randomkey // 输出：age
+
+-- FLUSHDB (清空当前数据库中的所有 key)
+&gt; flushdb
+
+&gt; set name Lhao
+
+-- RENAME OLD_KEY_NAME NEW_KEY_NAME (修改 key 的名称)
+&gt; rename name newname
+&gt; get name // 输出：nli (不存在)
+&gt; set namecopy wjh
+&gt; rename newname namecopy
+&gt; get namecopy // 输出：Lhao
+
+&gt; set name Lhao
+
+-- RENAMENX OLD_KEY_NAME NEW_KEY_NAME (用于在新的 key 不存在时修改 key 的名称)
+&gt; renamenx namecopy name // 输出：0 (此时修改 key 名不成功)
+
+-- TYPE KEY_NAME (返回 key 所储存的值的类型)
+&gt; type name // 输出：string
+</code></pre>
+<h3 id="字符串-操作">字符串 操作</h3>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/27672245">知乎：setbit\getbit 用法</a></p>
+</blockquote>
+<pre><code class="language-shell">&gt; flushdb
+
+&gt; set title &quot;my name is Lhao&quot;
+&gt; get title // 输出：my name is Lhao
+
+-- GETRANGE KEY_NAME start end （用于获取存储在指定 key 中字符串的子字符串。字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)）
+&gt; getrange title 0 4 // 输出：my na
+
+-- GETSET KEY_NAME VALUE (用于设置指定 key 的值，并返回 key 的旧值)
+&gt; getset title &quot;new title&quot; // 输出：my name is Lhao
+&gt; get title // 输出：new title
+
+-- MGET KEY1 KEY2 .. KEYN (返回所有(一个或多个)给定 key 的值。 如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil )
+&gt; mget title name 
+// 输出：
+ 1) (nil)
+ 2) &quot;new title&quot;
+
+-- SETEX KEY_NAME TIMEOUT VALUE (为指定的 key 设置值及其过期时间。如果 key 已经存在， SETEX 命令将会替换旧的值)
+&gt; setex name 60 liuhao
+
+&gt; del name
+
+-- SETNX KEY_NAME VALUE（SET if Not eXists） 命令在指定的 key 不存在时，为 key 设置指定的值
+&gt; setnx name Lhao // 输出：1
+&gt; setnx title Lhao // 输出：0
+
+-- SETRANGE KEY_NAME OFFSET VALUE （用指定的字符串覆盖给定 key 所储存的字符串值，覆盖的位置从偏移量 offset 开始）
+&gt; setrange name 3 Lhao // 输出：7
+&gt; get name // 输出：LhaLhao
+
+-- STRLEN KEY_NAME (用于获取指定 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误)
+&gt; strlen name // 输出：7
+
+-- 用于同时设置一个或多个 key-value 对 (MSET key1 value1 key2 value2 .. keyN valueN )
+&gt; mset name Lhao age 24 // 输出：ok
+&gt; mget name age 
+// 输出：
+ 1) &quot;Lhao&quot;
+ 2) &quot;24&quot;
+
+-- MSETNX key1 value1 key2 value2 .. keyN valueN （用于所有给定 key 都不存在时，同时设置一个或多个 key-value 对）
+&gt; msetnx name Lhao age 24 // 输出：0
+&gt; msetnx name Lhao25 sex men //输出：0
+&gt; get sex // 输出：nli
+
+-- INCR KEY_NAME 
+// 将 key 中储存的数字值增一。
+// 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。
+// 如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
+// 本操作的值限制在 64 位(bit)有符号数字表示之内。
+&gt; incr name // 输出：(error) ERR value is not an integer or out of range
+&gt; incr money // 输出：1
+
+-- DECRBY KEY_NAME DECREMENT_AMOUNT (将 key 中储存的数字加上指定的增量值)
+&gt; incrby money 80 // 输出：81
+
+-- DECR KEY_NAME （将 key 中储存的数字值减一）
+&gt; decr money // 输出：80
+
+-- DECRBY KEY_NAME DECREMENT_AMOUNT （将 key 所储存的值减去指定的减量值）
+&gt; decrby money 10 // 输出：70
+
+-- APPEND KEY_NAME NEW_VALUE
+// 为指定的 key 追加值。
+// 如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
+// 如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。
+&gt; append name &quot; love&quot; //  输出：8
+&gt; get name // 输出：Lhaolove
+</code></pre>
+<h3 id="哈希-操作">哈希 操作</h3>
+<pre><code class="language-shell">&gt; flushdb
+
+-- HSET KEY_NAME FIELD VALUE (用于为哈希表中的字段赋值;如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作;如果字段已经存在于哈希表中，旧值将被覆盖)
+&gt; hset user name Lhao // 输出：1
+
+-- HGET KEY_NAME FIELD_NAME (用于返回哈希表中指定字段的值)
+&gt; hget user name // 输出：Lhao
+
+&gt; hset user name wjh // 输出：0
+&gt; hget user name // 输出：wjh
+
+-- HMSET KEY_NAME FIELD1 VALUE1 ...FIELDN VALUEN (用于同时将多个 field-value (字段-值)对设置到哈希表中)
+&gt; hmset user name Lhao age 24 // 输出：ok
+&gt; hmget user name age
+// 输出：
+ 1) &quot;Lhao&quot;
+ 2) &quot;24&quot;
+
+-- HDEL KEY_NAME FIELD1.. FIELDN（用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略）
+&gt; hdel user name // 输出：1
+
+-- HEXISTS KEY_NAME FIELD_NAME (用于查看哈希表的指定字段是否存在)
+&gt; hexists user name // 输出：0
+
+-- HGETALL KEY_NAME (用于返回哈希表中，所有的字段和值;在返回值里，紧跟每个字段名(field name)之后是字段的值(value)，所以返回值的长度是哈希表大小的两倍)
+&gt; hgetall user
+// 输出：
+ 1) &quot;age&quot;
+ 2) &quot;24&quot;
+
+-- HINCRBY KEY_NAME FIELD_NAME INCR_BY_NUMBER（用于为哈希表中的字段值加上指定增量值）
+&gt; hincrby user age 1 // 输出：25
+
+-- HKEYS key (用于获取哈希表中的所有域（field）)
+&gt; hkeys user
+// 输出：
+1) &quot;age&quot;
+
+-- HLEN KEY_NAME （用于获取哈希表中字段的数量）
+&gt; hlen user //  输出：1
+
+-- HSETNX KEY_NAME FIELD VALUE（用于为哈希表中不存在的的字段赋值）
+&gt; hsetnx user name hao // 输出：1
+&gt; hsetnx user age 24 // 输出：0
+
+-- HVALS KEY_NAME FIELD VALUE（返回哈希表所有域(field)的值）
+&gt; hvals user 
+// 输出：
+1) &quot;25&quot;
+2) &quot;Lhao&quot;
+</code></pre>
+<h3 id="列表-操作">列表 操作</h3>
+<pre><code class="language-shell">&gt; flushdb
+
+-- LPUSH KEY_NAME VALUE1.. VALUEN （将一个或多个值插入到列表头部。 如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。 当 key 存在但不是列表类型时，返回一个错误。）
+&gt; lpush users Lhao wjh // 输出：2
+
+-- LRANGE KEY_NAME START END (返回列表中指定区间内的元素，区间以偏移量 START 和 END 指定。 其中 0 表示列表的第一个元素， 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推)
+&gt; lrange users 0 0 // 输出：wjh
+&gt; lrange users 0 -1 // 输出：wjh、Lhao 
+
+-- BLPOP LIST1 LIST2 .. LISTN TIMEOUT （移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止）
+&gt; blpop users 10 
+// 输出：
+1) &quot;users&quot;
+2) &quot;wjh&quot;
+&gt; lrange users 0 -1 // 输出：Lhao
+
+-- BRPOPLPUSH LIST1 ANOTHER_LIST TIMEOUT （从列表中弹出第一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。）
+&gt; brpoplpush users users_two 10 // 输出：Lhao
+&gt; lrange users 0 -1 // 输出：(empty list or set)
+&gt; lrange users_two 0 -1 // 输出：Lhao
+
+&gt; lpush users wjh Lhao
+
+-- LINDEX KEY_NAME INDEX_POSITION (用于通过索引获取列表中的元素。你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。)
+&gt; lindex users 0 // 输出：lhao
+&gt; lindex users -1 // 输出：wjh
+
+&gt; del users
+
+-- RPUSH KEY_NAME VALUE1..VALUEN (用于将一个或多个值插入到列表的尾部(最右边);如果列表不存在，一个空列表会被创建并执行 RPUSH 操作。 当列表存在但不是列表类型时，返回一个错误)
+&gt; rpush users Lhao wjh
+&gt; lrange 0 -1 // 输出：Lhao wjh
+
+-- LINSERT key BEFORE|AFTER pivot value (用于在列表的元素前或者后插入元素。当指定元素不存在于列表中时，不执行任何操作;当列表不存在时，被视为空列表，不执行任何操作;如果 key 不是列表类型，返回一个错误)
+&gt; linsert users before wjh love // 输出：3
+&gt; lrange 0 -1 // 输出：Lhao love wjh
+
+-- LLEN KEY_NAME (用于返回列表的长度。 如果列表 key 不存在，则 key 被解释为一个空列表，返回 0 。 如果 key 不是列表类型，返回一个错误)
+&gt; llen users // 输出：3
+
+-- Lpop KEY_NAME (用于移除并返回列表的第一个元素)
+&gt; lpop users // 输出：Lhao
+&gt; lrange users 0 -1 // 输出：love wjh
+
+-- LPUSHX KEY_NAME VALUE1.. VALUEN (将一个值插入到已存在的列表头部，列表不存在时操作无效)
+&gt; lpushx users Lhao // 输出：3
+&gt; lrange users 0 -1 // 输出：Lhao love wjh
+&gt; lpushx user you // 输出：0
+&gt; lpush users Lhao Lhao // 输出：5
+&gt; lrange users 0 -1 // 输出：Lhao Lhao Lhao love wjh
+
+-- LREM KEY_NAME COUNT VALUE
+// 根据参数 COUNT 的值，移除列表中与参数 VALUE 相等的元素
+// count &gt; 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT 。
+// count &lt; 0 : 从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。
+// count = 0 : 移除表中所有与 VALUE 相等的值。
+
+&gt; lrem users 2 Lhao // 输出：2
+&gt; lrange users 0 -1 // 输出：Lhao love wjh 
+
+-- LSET KEY_NAME INDEX VALUE (通过索引来设置元素的值;当索引参数超出范围，或对一个空列表进行 LSET 时，返回一个错误)
+&gt; lset users 0 liuhao // 输出：ok
+&gt; lrange users 0 -1 // 输出：liuhao love wjh
+
+&gt; lpush fruit apple cherry strawbrerry
+
+-- LTRIM KEY_NAME START STOP (对一个列表进行修剪(trim)，就是说，让列表只保留指定 区间内的元素，不在指定区间之内的元素都将被删除;下标 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。)
+&gt; ltrim fruit 1 -1 // 输出：ok
+&gt; lrange fruit 0 -1 // 输出：cherry apple
+
+-- RPOP KEY_NAME （用于移除列表的最后一个元素，返回值为移除的元素）
+&gt; rpop fruit // 输出：apple
+&gt; lrange fruit 0 -1 // 输出：cherry
+
+&gt; lpush fruit apple cherry // 输出：3
+
+-- RPOPLPUSH SOURCE_KEY_NAME DESTINATION_KEY_NAME （用于移除列表的最后一个元素，并将该元素添加到另一个列表并返回）
+&gt; rpoplpush fruit users // 输出：cherry
+&gt; lrange users 0 -1 // 输出：cherry、apple
+</code></pre>
+<h3 id="集合-操作">集合 操作</h3>
+<pre><code class="language-shell">&gt; flushdb
+
+-- SADD KEY_NAME VALUE1..VALUEN（将一个或多个成员元素加入到集合中，已经存在于集合的成员元素将被忽略；假如集合 key 不存在，则创建一个只包含添加的元素作成员的集合；当集合 key 不是集合类型时，返回一个错误。）
+&gt; sadd users wjh Lhao // 输出：2
+&gt; sadd users wjh // 输出：0 
+
+-- SMEMBERS key （返回集合中的所有的成员。 不存在的集合 key 被视为空集合）
+&gt; smembers users // 输出：wjh Lhao
+
+-- SCARD KEY_NAME (返回集合中元素的数量)
+&gt; scard users // 输出：2 
+
+&gt; sadd usersTwo abing laoxia 
+&gt; smembers usersTwo // 输出：abing laoxia
+
+-- SDIFF FIRST_KEY OTHER_KEY1..OTHER_KEYN (返回给定集合之间的差集。不存在的集合 key 将视为空集；差集的结果来自前面的 FIRST_KEY ,而不是后面的 OTHER_KEY1，也不是整个 FIRST_KEY OTHER_KEY1..OTHER_KEYN 的差集)
+&gt; sdiff users usersTwo // 输出：wjh Lhao
+&gt; sadd usersTwo Lhao
+&gt; sdiff users usersTwo // 输出：wjh
+
+-- SDIFFSTORE DESTINATION_KEY KEY1..KEYN (将给定集合之间的差集存储在指定的集合中。如果指定的集合 key 已存在，则会被覆盖)
+&gt; sdiffstore usersThree users usersTwo // 输出：1
+&gt; smembers usersThree // 输出：wjh
+
+&gt; del users usersTwo usersThree
+
+&gt; sadd users wjh Lhao
+&gt; sadd usersTwo Lhao abing laoxia
+
+-- SINTER KEY KEY1..KEYN (返回给定所有给定集合的交集。 不存在的集合 key 被视为空集。 当给定集合当中有一个空集时，结果也为空集(根据集合运算定律))
+&gt; sinter users usersTwo // 输出：Lhao
+
+-- SINTERSTORE DESTINATION_KEY KEY KEY1..KEYN (将给定集合之间的交集存储在指定的集合中。如果指定的集合已经存在，则将其覆盖)
+&gt; sinterstore usersThree users usersTwo 
+&gt; smembers usersThree // 输出：Lhao
+
+-- SISMEMBER KEY VALUE (判断成员元素是否是集合的成员)
+&gt; sismember users Lhao // 输出：1
+
+&gt; sadd fruits apple cherry
+&gt; sadd fruitsTwo strawbrerry
+
+-- SMOVE SOURCE DESTINATION MEMBER
+// 将指定成员 member 元素从 source 集合移动到 destination 集合。
+// SMOVE 是原子性操作。
+// 如果 source 集合不存在或不包含指定的 member 元素，则 SMOVE 命令不执行任何操作，仅返回 0 。否则， member 元素从 source 集合中被移除，并添加到 destination 集合中去。
+// 当 destination 集合已经包含 member 元素时， SMOVE 命令只是简单地将 source 集合中的 member 元素删除。
+// 当 source 或 destination 不是集合类型时，返回一个错误。
+&gt; smove fruitsTwo fruits strawbrerry  // 输出：1
+&gt; smembers fruits // 输出：cherry、apple、strawbrerry
+
+-- SPOP key [count] (移除集合中的指定 key 的一个或多个随机元素，移除后会返回移除的元素)
+&gt; spop fruits // 输出：cherry
+&gt; smembers druits // 输出：strawbrerry、apple
+
+-- SRANDMEMBER KEY [count] （返回集合中一个或多个随机数）
+&gt; srandmember fruit // 输出：apple 
+
+-- SREM KEY MEMBER1..MEMBERN （移除集合中的一个或多个成员元素，不存在的成员元素会被忽略）
+&gt; srem fruits apple // 输出：1
+&gt; smembers fruits // 输出：strawbrerry
+
+-- SUNION KEY KEY1..KEYN (返回给定集合的并集。不存在的集合 key 被视为空集)
+&gt; flushdb
+&gt; sadd fruits apple cherry 
+&gt; sadd fruitsTwo apple strawberry
+&gt; sunion fruits fruitsTwo // 输出：cherry、strawberry、apple
+
+-- SUNIONSTORE DESTINATION KEY KEY1..KEYN （将给定集合的并集存储在指定的集合 destination 中。如果 destination 已经存在，则将其覆盖）
+&gt; sunionstore fruitsThree fruits fruitsTwo
+&gt; smembers fruitsThree // 输出：cherry、strawberry、apple
+
+-- SSCAN key cursor [MATCH pattern] [COUNT count] （用于迭代集合中键的元素）
+&gt; sscan fruitsThree 0 match a* // (
+输出：1) &quot;0&quot;
+     2) 1) &quot;apple&quot;
+)
+</code></pre>
+<h4 id="有序集合-操作">有序集合 操作</h4>
+<pre><code class="language-shell"> &gt; flushdb
+
+ -- ZADD KEY_NAME SCORE1 VALUE1.. SCOREN VALUEN
+    // 用于将一个或多个成员元素及其分数值加入到有序集当中。
+    // 如果某个成员已经是有序集的成员，那么更新这个成员的分数值，并通过重新插入这个成员元素，来保证该成员在正确的位置上。
+    // 分数值可以是整数值或双精度浮点数。
+    // 如果有序集合 key 不存在，则创建一个空的有序集并执行 ZADD 操作。
+    // 当 key 存在但不是有序集类型时，返回一个错误。
+ &gt; zadd myzset 1 &quot;one&quot; // 输出：1
+ &gt; zadd myzset 1 &quot;uno&quot;
+ &gt; zadd myzset 2 &quot;two&quot; 3 &quot;three&quot;
+
+ -- ZRANGE key start stop [WITHSCORES]
+    // 返回有序集中，指定区间内的成员。
+    // 其中成员的位置按分数值递增(从小到大)来排序。
+    // 具有相同分数值的成员按字典序(lexicographical order )来排列。
+    // 如果你需要成员按值递减(从大到小)来排列，请使用 ZREVRANGE 命令。
+    // 下标参数 start 和 stop 都以 0 为底，也就是说，以 0 表示有序集第一个成员，以 1 表示有序集第二个成员，以此类推。
+    // 你也可以使用负数下标，以 -1 表示最后一个成员， -2 表示倒数第二个成员，以此类推
+ &gt; zrange myzset 0 -1 WITHSCORES
+ // 输出：
+     1) &quot;one&quot;
+     2) &quot;1&quot;
+     3) &quot;uno&quot;
+     4) &quot;1&quot;
+     5) &quot;two&quot;
+     6) &quot;2&quot;
+     7) &quot;three&quot;
+     8) &quot;3&quot;
+
+ -- ZCARD KEY_NAME （用于计算集合中元素的数量）
+ &gt; zcard myzset // 输出：4
+
+ -- ZCOUNT key min max (用于计算有序集合中指定分数区间的成员数量)
+ &gt; zcount myzset 1 3 // 输出：4
+
+ -- ZINCRBY key increment member (对有序集合中指定成员的分数加上增量 increment)
+ &gt; zincrby myzset 2 &quot;one&quot; // 输出：3
+ &gt; zrange myzset 0 -1 WITHSCORES
+ // 输出：
+     1) &quot;uno&quot;
+     2) &quot;1&quot;
+     3) &quot;two&quot;
+     4) &quot;2&quot;
+     5) &quot;one&quot;
+     6) &quot;3&quot;
+     7) &quot;three&quot;
+     8) &quot;3&quot;
+
+ &gt; zadd mid_test 70 Lhao 70 wjh
+ &gt; zadd fin_test 80 Lhao 78 wjh
+
+ -- ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] （计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。）
+ &gt; zinterstore sum_point 2 mid_test fin_test
+ &gt; zrange sum_point 0 -1 WITHSCORES
+ // 输出：
+     1) &quot;wjh&quot;
+     2) &quot;148&quot;
+     3) &quot;Lhao&quot;
+     4) &quot;150&quot;
+
+ -- ZLEXCOUNT KEY MIN MAX （计算有序集合中指定字典区间内成员数量）
+ &gt; zadd newzset 0 a 0 b 0 c 0 d 0 e 0 f 0 g
+ &gt; zlexcount newzset - + // 输出：7
+ &gt; zlexcount newzset [b [f // 输出：5
+
+ -- ZRANGEBYLEX key min max [LIMIT offset count] (通过字典区间返回有序集合的成员)
+ &gt; zrangebylex newzset - [c
+ // 输出：
+     1) &quot;b&quot;
+     2) &quot;a&quot;
+     3) &quot;c&quot;
+ &gt; zrangebylex newzset - (c
+  // 输出：
+     1) &quot;b&quot;
+     2) &quot;a&quot;
+ &gt; zrangebylex newzset [aaa (g
+  // 输出：
+     1) &quot;b&quot;
+     2) &quot;a&quot;
+     3) &quot;c&quot;
+     4) &quot;d&quot;
+     5) &quot;e&quot;
+     6) &quot;f&quot;
+
+ &gt; zadd salary 2500 jack 5000 tom 12000 peter
+
+ -- ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]
+    // 返回有序集合中指定分数区间的成员列表。有序集成员按分数值递增(从小到大)次序排列。
+    // 具有相同分数值的成员按字典序来排列(该属性是有序集提供的，不需要额外的计算)。
+    // 默认情况下，区间的取值使用闭区间 (小于等于或大于等于)，你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于)
+ &gt; zrangebyscore salary -inf +inf #显示整个有序集
+ // 输出：
+     1) &quot;jack&quot;
+     2) &quot;tom&quot;
+     3) &quot;peter&quot;
+ &gt; zrangebyscore salary -inf +inf WITHSCORES # 显示整个有序集及成员的 score 值
+ // 输出：
+     1) &quot;jack&quot;
+     2) &quot;2500&quot;
+     3) &quot;tom&quot;
+     4) &quot;5000&quot;
+     5) &quot;peter&quot;
+     6) &quot;12000&quot;
+ &gt; zrangebyscore salary -inf 5000 WITHSCORES # 显示工资 &lt;=5000 的所有成员
+ // 输出：
+     1) &quot;jack&quot;
+     2) &quot;2500&quot;
+     3) &quot;tom&quot;
+     4) &quot;5000&quot;
+ &gt; zrangebyscore salary (5000 400000 # 显示工资大于 5000 小于等于 400000 的成员
+ // 输出：
+    1) &quot;peter&quot;
+
+ -- ZRANK key member （返回有序集中指定成员的排名。其中有序集成员按分数值递增(从小到大)顺序排列）
+ &gt; zrank salary tom // 输出：1 （ # tom 的薪水排名，第二）
+
+ -- ZREM key member [member ...] (用于移除有序集中的一个或多个成员，不存在的成员将被忽略;当 key 存在但不是有序集类型时，返回一个错误)
+ &gt; zrem salary tom // 输出：1
+ &gt; zrangebyscore salary -inf +inf WITHSCORES
+ // 输出：
+     1) &quot;jack&quot;
+     2) &quot;2500&quot;
+     3) &quot;peter&quot;
+     4) &quot;12000&quot;
+
+ &gt; zadd myzset 0 aaaa 0 b 0 c 0 d 0 e 0 foo 0 zap 0 zip 0 ALPHA 0 alpha
+
+ -- ZREMRANGEBYLEX key min max（用于移除有序集合中给定的字典区间的所有成员）
+ &gt; zremrangebylex myzset [alpha [omega // 输出：6
+ &gt; zrange myzset 0 -1
+ // 输出：
+     1) &quot;ALPHA&quot;
+     2) &quot;aaaa&quot;
+     3) &quot;zap&quot;
+     4) &quot;zip&quot;
+
+ &gt; zadd salary 5000 tom
+
+ -- ZREMRANGEBYRANK key start stop（用于移除有序集中，指定排名(rank)区间内的所有成员）
+ &gt; zremrangebyrank salary 0 1 // 输出：2
+ &gt; zrange salary 0 -1 WITHSCORES 
+ // 输出：
+     1) &quot;peter&quot;
+     2) &quot;12000&quot;
+
+ &gt; zadd salary 2500 jack 5000 tom
+
+ -- ZREMRANGEBYSCORE key min max (用于移除有序集中，指定分数（score）区间内的所有成员)
+ &gt; zremrangebyscore salary 1500 3500 // 输出：1
+ &gt; zrange salary 0 -1 WITHSCORES
+ // 输出：
+     1) &quot;tom&quot;
+     2) &quot;5000&quot;
+     3) &quot;peter&quot;
+     4) &quot;12000&quot;
+
+ &gt; zadd salary 2500 jack
+
+ -- ZREVRANGE key start stop [WITHSCORES]（返回有序集中，指定区间内的成员；其中成员的位置按分数值递减(从大到小)来排列。具有相同分数值的成员按字典序的逆序(reverse lexicographical order)排列；除了成员按分数值递减的次序排列这一点外， ZREVRANGE 命令的其他方面和 ZRANGE 命令一样）
+ &gt; zrevrange salary 0 -1 WITHSCORES
+ // 输出：
+     1) &quot;peter&quot;
+     2) &quot;12000&quot;
+     3) &quot;tom&quot;
+     4) &quot;5000&quot;
+     5) &quot;jack&quot;
+     6) &quot;2500&quot;
+
+ -- ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]（返回有序集中指定分数区间内的所有的成员。有序集成员按分数值递减(从大到小)的次序排列）
+ &gt; zrevrangebyscore salary +inf -inf # 逆序排列所有成员
+ //输出：
+     1) &quot;peter&quot;
+     2) &quot;tom&quot;
+     3) &quot;jack&quot;
+ &gt; zrevrangebyscore salary 10000 200 # 逆序排列薪水介于 10000 和 2000 之间的成员
+ // 输出：
+     1) &quot;tom&quot;
+     2) &quot;jack&quot;
+
+ -- ZREVRANK key member（返回有序集中成员的排名。其中有序集成员按分数值递减(从大到小)排序；排名以 0 为底，也就是说， 分数值最大的成员排名为 0 ；使用 ZRANK 命令可以获得成员按分数值递增(从小到大)排列的排名）
+ &gt; zrevrank salary peter // 输出：0
+ &gt; zrevrank salary tom // 输出：1
+
+ -- ZSCORE key member (返回有序集中，成员的分数值。 如果成员元素不是有序集 key 的成员，或 key 不存在，返回 nil )
+ &gt; zscore salary peter // 输出：12000
+
+ &gt; zadd programmer 2000 peter 3500 jack 5000 tom
+ &gt; zadd manager 2000 herry 3500 mary 4000 bob
+
+ -- ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX]（计算给定的一个或多个有序集的并集，其中给定 key 的数量必须以 numkeys 参数指定，并将该并集(结果集)储存到 destination；默认情况下，结果集中某个成员的分数值是所有给定集下该成员分数值之和）
+
+ &gt; zunionstore salary 2 programmer manager WEIGHTS 1 3 # # 公司决定加薪。。。除了程序员。。。
+ &gt; zrange salary 0 -1 WITHSCORES
+ // 输出：
+      1) &quot;peter&quot;
+      2) &quot;2000&quot;
+      3) &quot;jack&quot;
+      4) &quot;3500&quot;
+      5) &quot;tom&quot;
+      6) &quot;5000&quot;
+      7) &quot;herry&quot;
+      8) &quot;6000&quot;
+      9) &quot;mary&quot;
+     10) &quot;10500&quot;
+     11) &quot;bob&quot;
+     12) &quot;12000&quot;
+</code></pre>
+<h3 id="结束语">结束语</h3>
+<p>这里只是简单的对 redis 的各种类型做了一下介绍以及一些操作方法</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[使用腾讯云实现网易云自动打卡签到]]></title>
         <id>https://imcm.xyz/netmusic-qcloud/</id>
