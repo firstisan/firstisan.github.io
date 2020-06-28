@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-06-28T06:43:56.406Z</updated>
+    <updated>2020-06-28T07:16:03.198Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -855,6 +855,32 @@ npm install
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Laravel Composer 笔记]]></title>
+        <id>https://imcm.xyz/laravel-composer-note/</id>
+        <link href="https://imcm.xyz/laravel-composer-note/">
+        </link>
+        <updated>2020-06-20T07:33:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
+<!-- more -->
+<h3 id="使用-composer-安装">使用 Composer 安装：</h3>
+<pre><code class="language-shell">$ composer require &quot;barryvdh/laravel-debugbar:~3.2&quot; --dev
+</code></pre>
+<p>以上命令，版本限定符 ~ 意味着我们希望安装 <code>&gt;= 3.2</code> 并且 <code>&lt; 4.0</code> 的版本，例如 <code>3.2.1</code>、 <code>3.11.3</code>、 <code>3.8</code>。根据语义化版本的定义，次版本号的变化是新增功能，所以 API 是稳定的，也就是可以安全更新的。</p>
+<h3 id="什么是语义化版本">什么是语义化版本？</h3>
+<p>版本格式：主版本号。次版本号。修订号，如 <code>1.0.1</code>, <code>3.2.39</code>。版本号递增规则如下：</p>
+<ul>
+<li><strong>主版本号</strong>：当你做了不兼容的 API 修改</li>
+<li><strong>次版本号</strong>：当你做了向下兼容的功能性新增</li>
+<li><strong>修订号</strong>：当你做了向下兼容的问题修正。<br>
+另外，先行版本号及版本编译信息可以加到 <code>主版本号.次版本号.修订号</code> 的后面，作为延伸。</li>
+</ul>
+<p>一般我们使用 3 个部分来表示一个版本，例如：1.4.23，1 为主版本号，4 为次版本号，23 为修订号或者补丁版本号。先行版本如 <code>1.0.0-alpha1</code> 这样在后面添加修饰符号来表示。</p>
+<p>最后 Composer 安装时 <code>--dev</code> 参数是指明只在 <strong>开发环境</strong> 中使用，这样上线代码到 <strong>生产环境</strong> 时，我们可使用 <code>composer install --no-dev</code> 命令来排除这些扩展包的安装。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[gyp: No Xcode or CLT version detected!]]></title>
         <id>https://imcm.xyz/gyp-no-xcode/</id>
         <link href="https://imcm.xyz/gyp-no-xcode/">
@@ -884,37 +910,11 @@ $ xcode-select --install
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Laravel Composer 笔记]]></title>
-        <id>https://imcm.xyz/laravel-composer-note/</id>
-        <link href="https://imcm.xyz/laravel-composer-note/">
-        </link>
-        <updated>2020-06-16T07:33:42.000Z</updated>
-        <summary type="html"><![CDATA[<p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
-<!-- more -->
-<h3 id="使用-composer-安装">使用 Composer 安装：</h3>
-<pre><code class="language-shell">$ composer require &quot;barryvdh/laravel-debugbar:~3.2&quot; --dev
-</code></pre>
-<p>以上命令，版本限定符 ~ 意味着我们希望安装 <code>&gt;= 3.2</code> 并且 <code>&lt; 4.0</code> 的版本，例如 <code>3.2.1</code>、 <code>3.11.3</code>、 <code>3.8</code>。根据语义化版本的定义，次版本号的变化是新增功能，所以 API 是稳定的，也就是可以安全更新的。</p>
-<h3 id="什么是语义化版本">什么是语义化版本？</h3>
-<p>版本格式：主版本号。次版本号。修订号，如 <code>1.0.1</code>, <code>3.2.39</code>。版本号递增规则如下：</p>
-<ul>
-<li><strong>主版本号</strong>：当你做了不兼容的 API 修改</li>
-<li><strong>次版本号</strong>：当你做了向下兼容的功能性新增</li>
-<li><strong>修订号</strong>：当你做了向下兼容的问题修正。<br>
-另外，先行版本号及版本编译信息可以加到 <code>主版本号.次版本号.修订号</code> 的后面，作为延伸。</li>
-</ul>
-<p>一般我们使用 3 个部分来表示一个版本，例如：1.4.23，1 为主版本号，4 为次版本号，23 为修订号或者补丁版本号。先行版本如 <code>1.0.0-alpha1</code> 这样在后面添加修饰符号来表示。</p>
-<p>最后 Composer 安装时 <code>--dev</code> 参数是指明只在 <strong>开发环境</strong> 中使用，这样上线代码到 <strong>生产环境</strong> 时，我们可使用 <code>composer install --no-dev</code> 命令来排除这些扩展包的安装。</p>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[在Docker 中运行 OpenWrt 旁路网关]]></title>
         <id>https://imcm.xyz/docker-openwrt/</id>
         <link href="https://imcm.xyz/docker-openwrt/">
         </link>
-        <updated>2020-06-10T06:46:40.000Z</updated>
+        <updated>2020-06-16T06:46:40.000Z</updated>
         <summary type="html"><![CDATA[<p>今天小苏为大家带来的是（咕很久的）在 Docker 中运行 OpenWrt 做旁路网关的教程~</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>今天小苏为大家带来的是（咕很久的）在 Docker 中运行 OpenWrt 做旁路网关的教程~</p>
@@ -1178,7 +1178,7 @@ iface macvlan inet static
         <id>https://imcm.xyz/chown-git/</id>
         <link href="https://imcm.xyz/chown-git/">
         </link>
-        <updated>2020-06-09T09:12:49.000Z</updated>
+        <updated>2020-06-13T09:12:49.000Z</updated>
         <summary type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
@@ -1201,7 +1201,7 @@ iface macvlan inet static
         <id>https://imcm.xyz/mac-backup-pi/</id>
         <link href="https://imcm.xyz/mac-backup-pi/">
         </link>
-        <updated>2020-06-09T04:29:57.000Z</updated>
+        <updated>2020-06-11T04:29:57.000Z</updated>
         <summary type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>在树莓派的SD卡中初始写入了一个img系统镜像，在安装各种软件以后我们有必要对树莓派的分区进行类似GHOST的备份</p>
