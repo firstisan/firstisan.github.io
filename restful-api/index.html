@@ -1,0 +1,435 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RESTful API 路由设计的最佳实践 | IMCM</title>
+<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1594034509372">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168899035-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-168899035-1');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            IMCM
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    RESTful API 路由设计的最佳实践
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-07-06 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/restful/" class="post-tags">
+                            # RESTful
+                        </a>
+                    
+                        <a href="https://imcm.xyz/api/" class="post-tags">
+                            # API
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>RESTful API = Http Method（动词，描述资源操作类型） + URI(名词+属性，描述资源的层级和位置)</p>
+<!-- more -->
+<h2 id="写在前面">写在前面</h2>
+<p>因为内容本身是一些规范约束性的理论，或许不会短时间内就能对日常开发工作有明显的促进作用，生搬硬套一些规则，为了使用而使用，可能反而会给自己的开发过程造成约束，影响效率。</p>
+<p>所以，不妨各抒己见，来讨论一番。</p>
+<h3 id="特别说明">特别说明</h3>
+<p>文章主体内容摘选自：<a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a>，侵删。</p>
+<h2 id="rest-是什么">REST 是什么？</h2>
+<blockquote>
+<p>表现层状态转换（英语：Representational State Transfer，缩写：REST）是 Roy Thomas Fielding 博士于 2000 年在他的博士论文 [1] 中提出来的一种万维网软件架构风格，目的是便于不同软件 / 程序在网络（例如互联网）中互相传递信息。表现层状态转换是根基于超文本传输协议（HTTP）之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。 —— 来源于自由的 WIKI 百科『<a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">表现层状态转换</a>』</p>
+</blockquote>
+<h4 id="tips">Tips:</h4>
+<p>由此可见，REST 只是一种「软件架构风格」，不是多么玄乎的东西，设计出来的目的是为了方便应用程序之间互相传递信息。通常说的 RESTful API 就是表明应用系统中 API 的架构设计符合 REST 规范，遵守这种规范某种程度上可以说明应用系统的架构设计优秀。</p>
+<p>近些年实际上出现了另外一种 API 设计风格 GraphQL 已经趋于成熟，各种编程语言的支持逐渐出现，也可以感受下『<a href="https://segmentfault.com/a/1190000018849004">为什么 GraphQL 是 API 的未来</a>』（规范的成熟不等同于实际项目中就可以直接落地使用，技术选型前要有自己的判断，预估一下未来能够投入的时间和人力成本，不要受网文推广的影响）</p>
+<h2 id="使用-http-动词表示一些含义">使用 HTTP 动词表示一些含义</h2>
+<p>任何 API 的使用者能够发送 GET、POST、PUT 和 DELETE 请求，它们很大程度明确了所给请求的目的。</p>
+<p>同时，GET 请求不能改变任何潜在的资源数据。测量和跟踪仍可能发生，但只会更新数据而不会更新由 URI 标识的资源数据。</p>
+<h3 id="合理的资源名">合理的资源名</h3>
+<p>合理的资源名称或者路径（如 /posts/23 而不是 /api?type=posts&amp;id=23）可以更明确一个请求的目的。</p>
+<p>使用 URL 查询串来过滤数据是很好的方式，但不应该用于定位资源名称。</p>
+<p>适当的资源名称为服务端请求提供上下文，增加服务端 API 的可理解性。</p>
+<p>通过 URI 名称分层地查看资源，可以给使用者提供一个友好的、容易理解的资源层次，以在他们的应用程序上应用。</p>
+<p><strong>资源名称应该是名词，避免为动词。使用 HTTP 方法来指定请求的动作部分，能让事情更加的清晰。</strong></p>
+<p><strong>Tips</strong>: 相关名词解释和理解</p>
+<p><strong>URL</strong>：<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6">统一资源定位符</a>（英语：Uniform Resource Locator，缩写：URL；或称统一资源定位器、定位地址、URL 地址 [1]，俗称网页地址或简称网址）是因特网上标准的资源的地址（Address），如同在网络上的门牌。—— 来自维基百科）</p>
+<p><strong>URI</strong>：<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E6%A0%87%E5%BF%97%E7%AC%A6">统一资源标识符</a>（英语：Uniform Resource Identifier，缩写：URI）—— 来自维基百科</p>
+<p>应用到 RESTful API 的路由设计中：</p>
+<p>API URL = Http Method（动词，描述对资源操作的类型 CRUD） + URI（Uniform Resource Identifier）（可以类比文件路径，体现资源层级以及描述资源位置）</p>
+<p>也就是在 API 的 URL 应该是用来描述去哪个位置找到资源，然后通过 Http Method 描述对资源进行怎样的操作，这样路由设计就清晰了</p>
+<p>至于 URI 如何定义，你可以类比平时是如何在磁盘中进行分类管理文件的，或许就思路清晰了。</p>
+<h3 id="相关定义">相关定义</h3>
+<p>我们一起简单过一下与 REST 有关的定义。</p>
+<h4 id="幂等性">幂等性</h4>
+<p>下面是来自维基百科的解释：</p>
+<blockquote>
+<p>在计算机科学中，术语幂等用于更全面地描述一个操作，一次或多次执行该操作产生的结果是一致的。根据应用的上下文，这可能有不同的含义。例如，在方法或者子例程调用具有副作用的情况下，意味着在第一调用之后被修改的状态也保持不变。</p>
+</blockquote>
+<p>从 REST 服务端的角度来看，由于操作（或服务端调用）是幂等的，客户端可以用重复的调用而产生<strong>相同的结果</strong>。注意，当幂等操作在服务器上产生相同的结果（副作用），响应本身可能是不同的（例如在多个请求之间，资源的状态可能会改变）。</p>
+<p>PUT 和 DELETE 方 法被定义为是幂等的。GET、HEAD、OPTIO 和 TRACE 方法自从被定义为安全的方法后，也被定义为幂等的。</p>
+<h4 id="安全">安全</h4>
+<p>来自维基百科：</p>
+<blockquote>
+<p>一些方法（例如 GET、HEAD、OPTIONS 和 TRACE）被定义为安全的方法，这意味着它们仅被用于信息检索，而不能更改服务器的状态。换句话说，它们不会有副作用，除了相对来说无害的影响如日志、缓存、横幅广告或计数服务等。任意的 GET 请求，不考虑应用状态的上下文，都被认为是安全的。</p>
+</blockquote>
+<p>总之，<strong>安全</strong>意味着调用的方法不会引起<strong>副作用</strong>。因此，客户端可以反复使用安全的请求而不用担心对服务端产生任何副作用。这意味着服务端必须遵守 GET、HEAD、OPTIONS 和 TRACE 操作的安全定义。否则，除了对客户端产生混淆外，它还会导致 Web 缓存，搜索引擎以及其它自动代理的问题 —— 这将在服务器上产生意想不到的后果。</p>
+<p>根据定义，安全操作是幂等的，因为它们在服务器上产生相同的结果。</p>
+<p>安全的方法被实现为<strong>只读</strong>操作。然而，安全并不意味着服务器必须每次都返回相同的响应。</p>
+<h3 id="http-动词-方法">Http 动词 / 方法</h3>
+<p>Http 动词主要遵循 “统一接口” 规则，并提供给我们对应的<strong>基于名词的资源</strong>的动作。</p>
+<p>最主要或者最常用的 http 动词（或者称之为方法，这样称呼可能更恰当些）有 POST、GET、PUT 和 DELETE。这些分别对应于创建、读取、更新和删除 (CRUD) 操作。</p>
+<p>也有许多其它的动词，但是使用频率比较低。在这些使用较少的方法中，OPTIONS 和 HEAD 往往使用得更多。</p>
+<h4 id="get">GET</h4>
+<p>HTTP 的 GET 方法用于**检索（或读取）**资源的数据。</p>
+<p>在正确的请求路径下，GET 方法会返回一个 xml 或者 json 格式的数据，以及一个 200 的 HTTP 响应代码（表示正确返回结果）。在错误情况下，它通常返回 404（不存在）或 400（错误的请求）。</p>
+<p>例如：</p>
+<pre><code>GET http://www.example.com/customers/12345
+GET http://www.example.com/customers/12345/orders
+GET http://www.example.com/buckets/sample
+</code></pre>
+<p>按照 HTTP 的设计规范，GET（以及附带的 HEAD）请求仅用于读取数据而不改变数据。因此，这种使用方式被认为是安全的。</p>
+<p>也就是说，它们的调用<strong>没有数据修改或污染的风险</strong> —— 调用 1 次和调用 10 次或者没有被调用的效果一样。</p>
+<p>此外，GET（以及 HEAD）是<strong>幂等</strong>的，这意味着使用多个相同的请求与使用单个的请求最终都拥有相同的结果。</p>
+<p>不要通过 GET 暴露不安全的操作 —— 它应该永远都不能修改服务器上的任何资源。</p>
+<h4 id="put">PUT</h4>
+<p>PUT 通常被用于<strong>更新</strong>资源。</p>
+<p>通过 PUT 请求一个已知的资源 URI 时，需要在<strong>请求的 body</strong> 中包含对原始资源的更新数据。</p>
+<p>不过，在资源 ID 是由客户端而非服务端提供的情况下，PUT 同样可以被用来创建资源。换句话说，如果 PUT 请求的 URI 中包含的资源 ID 值在服务器上不存在，则用于创建资源。同时请求的 body 中必须包含要创建的资源的数据。有人觉得这会产生歧义，所以除非真的需要，使用这种方法来创建资源应该被慎用。</p>
+<p>或者我们也可以在 body 中提供由客户端定义的资源 ID 然后使用 POST 来创建新的资源 —— 假设请求的 URI 中不包含要创建的资源 ID（参见下面 POST 的部分)。</p>
+<p>例如：</p>
+<pre><code>PUT http://www.example.com/customers/12345　
+PUT http://www.example.com/customers/12345/orders/98765
+PUT http://www.example.com/buckets/secret_stuff
+</code></pre>
+<p>当使用 PUT 操作更新成功时，会返回 200（或者返回 204，表示返回的 body 中不包含任何内容）。如果使用 PUT 请求创建资源，成功返回的 HTTP 状态码是 201。</p>
+<p>响应的 body 是可选的 —— 如果提供的话将会消耗更多的带宽。在创建资源时没有必要通过头部的位置返回链接，因为客户端已经设置了资源 ID。</p>
+<p>PUT <strong>不是一个安全的操作</strong>，因为它会修改（或创建）服务器上的状态，但它是<strong>幂等</strong>的。换句话说，如果你使用 PUT 创建或者更新资源，然后重复调用，资源仍然存在并且状态不会发生变化。</p>
+<p>但是，如果在资源<strong>增量计数器</strong>中调用 PUT，那么这个调用方法就不再是幂等的。这种情况有时候会发生，且可能足以证明它是非幂等性的。不过，建议保持 PUT 请求的幂等性。并<strong>强烈建议非幂等性的请求</strong>使用 POST。</p>
+<p><strong>Tips</strong>: 为什么 PUT 是幂等？</p>
+<p>比如，你第一次请求更新订单状态为配送中，第二次请求如果不加校验，让请求处理成功，订单也是被更新成了配送中的状态。两次请求得到的结果相同，都是将订单更新成了配送中的状态。（要理解结果相同和响应不一定相同这一点，多次请求对资源造成的结果相同就被定义成幂等）</p>
+<h4 id="post">POST</h4>
+<p>POST 请求经常被用于<strong>创建</strong>新的资源，特别是被用来<strong>创建从属资源</strong>。从属资源即归属于其它资源（如父资源）的资源。换句话说，当创建一个新资源时，POST 请求发送给父资源，服务端负责将新资源与父资源进行关联，并分配一个 ID（新资源的 URI），等等。</p>
+<p>例如：</p>
+<pre><code>POST &lt;http://www.example.com/customers
+POST &lt;http://www.example.com/customers/12345/orders
+</code></pre>
+<p>当创建成功时，返回 HTTP 状态码 201，并附带一个位置头（Location:xxx）信息，其中带有指向最先创建的资源的链接。</p>
+<p>POST 请求<strong>既不是安全的又不是幂等</strong>的，因此它被定义为非幂等性资源请求。</p>
+<p>使用两个相同的 POST 请求很可能会导致创建两个包含相同信息的资源。</p>
+<p><strong>Tips</strong>: 非幂等操作在实际项目中需要考虑的点</p>
+<p>在实际项目开发中遇到这种请求需要考虑并发情况，解决思路参考：前端增加校验，比如创建按钮禁用，不允许短时间内连续操作，必须等待后端返回成功后才能继续下一次创建操作；后端增加「业务锁」处理前端发送过来的请求前加锁，等业务处理完以后释放锁。</p>
+<h4 id="put-和-post-的创建比较">PUT 和 POST 的创建比较</h4>
+<p>总之，我们建议使用 POST 来创建资源。当由客户端来决定新资源具有哪些 URI（通过资源名称或 ID）时，使用 PUT：即如果客户端知道 URI（或资源 ID）是什么，则对该 URI 使用 PUT 请求。否则，当由服务器或服务端来决定创建的资源的 URI 时则使用 POST 请求。换句话说，当客户端在创建之前不知道（或无法知道）结果的 URI 时，使用 POST 请求来创建新的资源。</p>
+<p><strong>Tips:</strong></p>
+<p>可以简单点约定，获取 / 查询资源使用 GET；更新整个资源（相当于替换）使用 PUT；更新资源部分的内容使用 PATCH；删除资源使用 DELETE；创建资源使用 POST，以及非幂等性的请求使用 POST（比如更新资源内部的计数器等）。</p>
+<h4 id="delete">DELETE</h4>
+<p>DELETE 很容易理解。它被用来根据 URI 标识<strong>删除</strong>资源。</p>
+<p>例如：</p>
+<pre><code>DELETE &lt;http://www.example.com/customers/12345
+DELETE &lt;http://www.example.com/customers/12345/orders
+DELETE &lt;http://www.example.com/buckets/sample
+</code></pre>
+<p>当删除成功时，返回 HTTP 状态码 200（表示正确），同时会附带一个响应体 body，body 中可能包含了删除项的数据（这会占用一些网络带宽），或者封装的响应（参见下面的返回值）。也可以返回 HTTP 状态码 204（表示无内容）表示没有响应体。总之，可以返回状态码 204 表示没有响应体，或者返回状态码 200 同时附带 JSON 风格的响应体。</p>
+<p>根据 HTTP 规范，DELETE 操作是<strong>幂等</strong>的。如果你对一个资源进行 DELETE 操作，资源就被移除了。在资源上反复调用 DELETE 最终导致的结果都相同：即资源被移除了。</p>
+<p>但如果将 DELETE 的操作用于<strong>计数器</strong>（资源内部），则 DETELE 将不再是幂等的。如前面所述，只要数据没有被更新，统计和测量的用法依然可被认为是幂等的。<strong>建议非幂等性的资源请求使用 POST 操作</strong>。</p>
+<p>然而，这里有一个关于 DELETE 幂等性的警告。在一个资源上第二次调用 DELETE 往往会返回 404（未找到），因为该资源已经被移除了，所以找不到了。这使得 DELETE 操作不再是幂等的。如果资源是从数据库中删除而不是被简单地标记为删除，这种情况需要适当妥协。</p>
+<p><strong>Tips</strong>: 如何理解 DELETE 操作被定义为幂等？</p>
+<p>上面讨论的也就是「物理删除」和「软删除」的不同场景要不要都使用 DELETE，因为资源的「物理删除」不是幂等操作，第二次请求操作时资源在第一次就没了，对资源造成的结果不同。</p>
+<p>物理删除，都没有资源了还怎么操作资源，第一次是有操作结果，第二次没有操作结果（都没资源可以操作，哪来的结果？），两次操作结果不同，所以不是幂等</p>
+<p>软删除，第一次删除是更新资源的删除状态为删除，第二次删除即使不加校验，最终也是将资源更新为删除状态。</p>
+<h2 id="资源命名uri">资源命名（URI）</h2>
+<p>除了适当地使用 HTTP 动词，在创建一个可以理解的、易于使用的 Web 服务 API 时，资源命名可以说是最具有争议和最重要的概念。一个好的资源命名，它所对应的 API 看起来更直观并且易于使用。相反，如果命名不好，同样的 API 会让人感觉很笨拙并且难以理解和使用。当你需要为你的新 API 创建资源 URL 时，这里有一些小技巧值得借鉴。</p>
+<p>从本质上讲，一个 RESTFul API 最终都可以被简单地看作是一堆 URI 的集合，HTTP 调用这些 URI 以及一些用 JSON 和（或）XML 表示的资源，它们中有许多包含了相互关联的链接。RESTful 的可寻址能力主要依靠 URI。每个资源都有自己的地址或 URI—— 服务器能提供的每一个有用的信息都可以作为资源来公开。统一接口的原则部分地通过 URI 和 HTTP 动词的组合来解决，并符合使用标准和约定。</p>
+<p>在决定你系统中要使用的资源时，<strong>使用名词来命名这些资源，而不是用动词或动作来命名</strong>。换句话说，一个 RESTful URI 应该<strong>关联到一个具体的资源，而不是关联到一个动作</strong>。另外，名词还具有一些动词没有的属性，这也是另一个显著的因素。</p>
+<p>一些资源的例子：</p>
+<ul>
+<li>系统的用户</li>
+<li>学生登记的课程</li>
+<li>一个用户帖子的时间轴</li>
+<li>关注其他用户的用户</li>
+<li>一篇关于骑马的文章</li>
+<li></li>
+</ul>
+<p>服务套件中的每个资源至少有一个 URI 来标识。<strong>如果这个 URI 能表示一定的含义并且能够充分描述它所代表的资源，那么它就是一个最好的命名</strong>。</p>
+<p>URI 应该具备<strong>可预测性</strong>和<strong>分层结构</strong>，这将有助于提高它们的可理解性和可用性的：可预测指的是资源应该和名称保持一致；而分层指的是数据具有关系上的结构。这并非 REST 规则或规范，但是它强化了对 API 的定义。</p>
+<p>RESTful API 是提供给消费端（客户端）的，<strong>URI 的名称和结构应该将它所表达的含义传达给消费者</strong>。通常我们很难知道数据的边界是什么，但是从你的数据上你应该很有可能去尝试找到要返回给客户端的数据是什么。<strong>API 是为客户端而设计的，而不是为你的数据</strong>。</p>
+<p>假设我们现在要描述一个包括客户、订单，列表项，产品等功能的订单系统。考虑一下我们该如何来描述在这个服务中所涉及到的资源的 URIs：</p>
+<h3 id="准确的案例">准确的案例✅</h3>
+<p>为了在系统中插入（创建）一个新的用户，我们可以使用：</p>
+<pre><code>POST &lt;http://www.example.com/customers
+</code></pre>
+<p>读取编号为 33245 的用户信息：</p>
+<pre><code>GET &lt;http://www.example.com/customers/33245
+</code></pre>
+<p>使用 PUT 和 DELETE 来请求相同的 URI，可以更新和删除数据。</p>
+<p>下面是对产品相关的 URI 的一些建议：</p>
+<pre><code>POST &lt;http://www.example.com/products
+</code></pre>
+<p>用于创建新的产品。</p>
+<pre><code>GET|PUT|DELETE &lt;http://www.example.com/products/66432
+</code></pre>
+<p>分别用于读取、更新、删除编号为 66432 的产品。</p>
+<p>那么，如何为用户创建一个新的订单呢？</p>
+<p>一种方案是：</p>
+<pre><code>POST &lt;http://www.example.com/orders
+</code></pre>
+<p>这种方式可以用来创建订单，但缺少相应的用户数据。</p>
+<p>因为我们想为用户创建一个订单（注意之间的关系），这个 URI 可能不够直观，下面这个 URI 则更清晰一些：</p>
+<pre><code>POST &lt;http://www.example.com/customers/33245/orders
+</code></pre>
+<p>现在我们知道它是为编号 33245 的用户创建一个订单。（<strong>Tips</strong>: 体现上面提到的 URI 应该具备<strong>分层结构</strong>的特性）</p>
+<p>那下面这个请求返回的是什么呢？（<strong>Tips</strong>: 下面举例体现了 URI 应该具体<strong>可预测</strong>的特性，从 URI 中就可以推断出即将返回的资源数据）</p>
+<pre><code>GET &lt;http://www.example.com/customers/33245/orders
+</code></pre>
+<p>可能是一个编号为 33245 的用户所创建或拥有的订单列表。注意：我们可以屏蔽对该 URI 进行 DELETE 或 PUT 请求，因为它的操作对象是一个集合。</p>
+<p>继续深入，那下面这个 URI 的请求又代表什么呢？</p>
+<pre><code>POST &lt;http://www.example.com/customers/33245/orders/8769/lineitems
+</code></pre>
+<p>可能是（为编号 33245 的用户）增加一个编号为 8769 的订单条目。没错！如果使用 GET 方式请求这个 URI，则会返回这个订单的所有条目。但是，如果这些条目与用户信息无关，我们将会提供<code>POST www.example.com/orders/8769/lineitems</code> 这个 URI。</p>
+<p>从返回的这些条目来看，指定的资源可能会有多个 URIs，所以我们可能也需要要提供这样一个 URI <code>GET &lt;http://www.example.com/orders/8769</code>，用来在不知道用户 ID 的情况下根据订单 ID 来查询订单。&gt;</p>
+<p>更进一步：</p>
+<pre><code>GET &lt;http://www.example.com/customers/33245/orders/8769/lineitems/1
+</code></pre>
+<p>可能只返回同个订单中的第一个条目。</p>
+<p>现在你应该理解什么是分层结构了。它们并不是严格的规则，只是为了确保在你的服务中这些强制的结构能够更容易被用户所理解。与所有软件开发中的技能一样，<strong>命名是成功的关键</strong>。</p>
+<h3 id="错误的案例">错误的案例❌</h3>
+<p>前面我们已经讨论过一些恰当的资源命名的例子，然而有时一些反面的例子也很有教育意义。下面是一些不太具有 RESTful 风格的资源 URIs，看起来比较混乱。这些都是错误的例子！</p>
+<p>首先，一些 serivices 往往使用单一的 URI 来指定服务接口，然后通过查询参数来指定 HTTP 请求的动作。例如，要更新编号 12345 的用户信息，带有 JSON body 的请求可能是这样：</p>
+<pre><code>GET &lt;http://api.example.com/services?op=update_customer&amp;id=12345&amp;format=json
+</code></pre>
+<p>尽管上面 URL 中的”services” 的这个节点是一个名词，但这个 URL 不是<strong>自解释</strong>的，因为对于所有的请求而言，该 URI 的层级结构都是一样的。此外，它使用 GET 作为 HTTP 动词来执行一个更新操作，这简直就是反人类（甚至是危险的）。</p>
+<p>下面是另外一个更新用户的操作的例子：</p>
+<pre><code>GET &lt;http://api.example.com/update_customer/12345
+</code></pre>
+<p>以及它的一个变种：</p>
+<pre><code>GET &lt;http://api.example.com/customers/12345/update
+</code></pre>
+<p>你会经常看到在其他开发者的服务套件中有很多这样的用法。可以看出，这些开发者试图去创建 RESTful 的资源名称，而且已经有了一些进步。但是你仍然能够识别出 URL 中的动词短语。注意，在这个 URL 中我们不需要”update” 这个词，因为我们可以依靠 HTTP 动词来完成操作。下面这个 URL 正好说明了这一点：</p>
+<pre><code>PUT &lt;http://api.example.com/customers/12345/update
+</code></pre>
+<p>这个请求同时存在 PUT 和”update”，这会对消费者产生迷惑！这里的”update” 指的是一个资源吗？因此，这里我们费些口舌也是希望你能够明白……</p>
+<h3 id="是否需要使用复数形式">是否需要使用复数形式？</h3>
+<p>让我们来讨论一下复数和 “单数” 的争议… 还没听说过？但这种争议确实存在，事实上它可以归结为这个问题……</p>
+<p>在你的<strong>层级结构</strong>中 URI 节点是否需要被命名为单数或复数形式呢？举个例子，你用来检索用户资源的 URI 的命名是否需要像下面这样：</p>
+<pre><code>GET &lt;http://www.example.com/customer/33245
+</code></pre>
+<p>或者：</p>
+<pre><code>GET &lt;http://www.example.com/customers/33245
+</code></pre>
+<p>两种方式都没问题，但通常我们都会选择使用复数命名，以使得你的 API URI 在所有的 HTTP 方法中保持一致。原因是基于这样一种考虑：customers 是服务套件中的一个集合，而 ID33245 的这个用户则是这个集合中的其中一个。</p>
+<p>按照这个规则，一个使用复数形式的多节点的 URI 会是这样（注意粗体部分）：</p>
+<pre><code>GET &lt;http://www.example.com/**customers**/33245/**orders**/8769/**lineitems**/1
+</code></pre>
+<p>“customers”、“orders” 以及 “lineitems” 这些 URI 节点都使用的是复数形式。</p>
+<p>这意味着你的每个根资源只需要两个基本的 URL 就可以了，一个用于创建集合内的资源，另一个用来根据标识符获取、更新和删除资源。</p>
+<p>例如，以 customers 为例，创建资源可以使用下面的 URL 进行操作：</p>
+<pre><code>POST &lt;http://www.example.com/customers
+</code></pre>
+<p>而读取、更新和删除资源，使用下面的 URL 操作：</p>
+<pre><code>GET|PUT|DELETE &lt;http://www.example.com/customers/{id}
+</code></pre>
+<p>正如前面提到的，给定的资源可能有多个 URI，但作为一个最小的完整的增删改查功能，利用两个简单的 URI 来处理就够了。</p>
+<p>或许你会问：是否在有些情况下复数没有意义？嗯，事实上是这样的。当没有集合概念的时候（此时复数没有意义）。换句话说，当资源只有一个的情况下，使用单数资源名称也是可以的 —— 即一个单一的资源。</p>
+<p>例如，如果有一个单一的总体配置资源，你可以使用一个单数名称来表示：</p>
+<pre><code>GET|PUT|DELETE &lt;http://www.example.com/configuration
+</code></pre>
+<p>注意这里缺少 configuration 的 ID 以及 HTTP 动词 POST 的用法。假设每个用户有一个配置的话，那么这个 URL 会是这样：</p>
+<pre><code>GET|PUT|DELETE &lt;http://www.example.com/customers/12345/configuration
+</code></pre>
+<p>同样注意这里没有指定 configuration 的 ID，以及没有给定 POST 动词的用法。在这两个例子中，可能也会有人认为使用 POST 是有效的。好吧…</p>
+<h2 id="回顾">回顾</h2>
+<ul>
+<li>
+<p>Http Method 的使用场景<br>
+增：post、put（非幂等）<br>
+删：delete（幂等，类似修改计数器资源时非幂等）<br>
+改：put、patch（幂等，类似修改计数器资源时非幂等）<br>
+查：get、head（幂等）<br>
+其他：connect、options、trace（幂等）</p>
+</li>
+<li>
+<p>使用 PUT 创建 / 更新资源</p>
+</li>
+</ul>
+<p>创建资源：当由客户端来决定新资源具有哪些 URI（通过资源名称或 ID）时，使用 PUT http://www.example.com/article, 请求 body 中 id 为 123，用来修改资源名称的 id 为 123</p>
+<p>更新资源：PUT http://www.example.com/article/123，用来更新文章 123 的内容</p>
+<ul>
+<li>非幂等的请求建议统一使用 POST</li>
+<li>使用 Http Method 来描述 API 请求对资源的操作类型（CRUD）</li>
+<li>使用 URI 来描述 API 请求处理资源的<strong>位置</strong>和<strong>层级</strong>，UIR 可以是名词+描述名词的属性 , 需要具备可预测性和分层结构，能够自解释。</li>
+</ul>
+<h2 id="在-lumen-api-starter-中的应用">在 lumen-api-starter 中的应用</h2>
+<pre><code class="language-php">// routes/web.php
+Route::get('/', function () {
+    return app()-&gt;version();
+});
+
+Route::get('author', function () {
+    $response = Http::withOptions(['timeout' =&gt; 3])-&gt;get('&lt;https://api.github.com/users/Jiannei&gt;');
+    $response-&gt;throw();
+
+    return $response-&gt;json();
+});
+
+Route::get('configurations', 'ExampleController@configurations');
+Route::get('logs', 'ExampleController@logs');
+
+Route::post('users', 'UsersController@store');
+Route::get('users/{id}', 'UsersController@show');
+Route::get('users', 'UsersController@index');
+
+Route::post('authorization', 'AuthorizationController@store');
+Route::delete('authorization', 'AuthorizationController@destroy');
+Route::put('authorization', 'AuthorizationController@update');
+Route::get('authorization', 'AuthorizationController@show');
+</code></pre>
+<h2 id="扩展阅读">扩展阅读</h2>
+<p><a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a>（网友翻译的优质资源）<br>
+<a href="https://www.ruanyifeng.com/blog/2011/09/restful.html">理解 RESTful 架构</a>（阮一峰出品）</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.ibm.com/developerworks/cn/xml/x-urlni.html">分清 URI、URL 和 URN</a><br>
+<a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a><br>
+<a href="https://www.jianshu.com/p/49ebc4a78474">HTTP head 请求</a><br>
+<a href="https://learnku.com/articles/45526">HTTP 请求方法</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/laravel-admin-pjax/" class="post-title gt-a-link">
+                    Laravel Admin 自定义 JavaScript 的正确方式？
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
