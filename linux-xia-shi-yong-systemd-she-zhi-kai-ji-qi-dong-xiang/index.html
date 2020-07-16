@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Laravel | IMCM</title>
+<title>Linux 下使用 systemd 设置开机启动项 | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1594872397131">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -42,11 +42,11 @@
     </script>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -95,54 +95,84 @@
         </div>
     </div>
 </nav>
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #Laravel
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://imcm.xyz/laravel-composer-note/">
-                            <span class="post-title gt-c-content-color-first">Laravel Composer 笔记</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Linux 下使用 systemd 设置开机启动项
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-07-16 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/linux/" class="post-tags">
+                            # Linux
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>记录Composer版本说明和如何在正式环境使用Composer安装Laravel依赖并排除开发环境需要的第三方开发包</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-06-20 ·
-                        </time>
-                        
-                            <a href="https://imcm.xyz/laravel/" class="post-tag">
-                                # Laravel
-                            </a>
-                        
-                            <a href="https://imcm.xyz/composer/" class="post-tag">
-                                # Composer
-                            </a>
-                        
-                    </div>
+                    
+                        <a href="https://imcm.xyz/raspberrypi/" class="post-tags">
+                            # RaspberryPi
+                        </a>
+                    
                 </div>
-                
-                    <a href="https://imcm.xyz/laravel-composer-note/" class="post-feature-image"
-                       style="background-image: url('https://imcm.xyz/post-images/laravel-composer-note.jpg')">
-                    </a>
-                
+                <div class="post-content">
+                    <p>下面的教程将介绍如何将命令或程序配置为开机启动时自动运行的服务。完成配置之后，就可以通过 Linux 命令行来「启动/停止/禁用」这个服务了。</p>
+<!-- more -->
+<h2 id="创建服务">创建服务</h2>
+<p>在树莓派上创建一个 .service 文件。例如：</p>
+<p>myscript.service</p>
+<pre><code class="language-shell">[Unit]
+Description=My service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u main.py
+WorkingDirectory=/home/pi/myscript
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>在上面的范例中，服务会去以 Python 3 来运行 /home/pi/myscript 目录下面的 main.py 脚本。用这种方法，你不仅可以配置 Python 脚本，只需要将 ExecStart 这行改为需要启动的任何程序或脚本即可。</p>
+<p>将这个文件用 root 用户保存到 /etc/systemd/system 目录：</p>
+<pre><code class="language-shell">sudo cp myscript.service /etc/systemd/system/myscript.service
+</code></pre>
+<p>然后就可以用下面的命令尝试启动服务了：</p>
+<pre><code class="language-shell">sudo systemctl start myscript.service
+</code></pre>
+<p>停止服务：</p>
+<pre><code class="language-shell">sudo systemctl stop myscript.service
+</code></pre>
+<p>设置开机时自动运行：</p>
+<pre><code class="language-shell">sudo systemctl enable myscript.service
+</code></pre>
+<p>systemctl 命令还可以用来重启或禁用它。</p>
+<h2 id="注意事项">注意事项：</h2>
+<p>1、启动顺序取决于他们的依赖关系。如果是依赖于网络的服务，应当在引导过程中尽可能晚一点启动。<br>
+使用 man systemctl 命令或访问 https://fedoramagazine.org/what-is-an-init-system/ 了解更多。</p>
+<p>本文转自：<a href="https://shumeipai.nxez.com/2020/06/30/linux-usage-systemd.html">树莓派实验室</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/mac-nvm/" class="post-title gt-a-link">
+                    Mac 下安装 NVM
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>
