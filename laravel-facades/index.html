@@ -1,0 +1,406 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Facade 类参考 | IMCM</title>
+<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1595413504792">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168899035-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-168899035-1');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            IMCM
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Facade 类参考
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-07-22 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/laravel/" class="post-tags">
+                            # Laravel
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>这是一个查找给定 Facade 类 API 文档的工具。</p>
+<!-- more -->
+<table>
+<thead>
+<tr>
+<th>Facade</th>
+<th>类</th>
+<th>服务容器绑定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Foundation/Application.html">Illuminate\Foundation\Application</a></td>
+<td><code>app</code></td>
+</tr>
+<tr>
+<td>Artisan</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Console/Kernel.html">Illuminate\Contracts\Console\Kernel</a></td>
+<td><code>artisan</code></td>
+</tr>
+<tr>
+<td>Auth</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/AuthManager.html">Illuminate\Auth\AuthManager</a></td>
+<td><code>auth</code></td>
+</tr>
+<tr>
+<td>Auth (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Auth/Guard.html">Illuminate\Contracts\Auth\Guard</a></td>
+<td><code>auth.driver</code></td>
+</tr>
+<tr>
+<td>Blade</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/Compilers/BladeCompiler.html">Illuminate\View\Compilers\BladeCompiler</a></td>
+<td><code>blade.compiler</code></td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Broadcasting/Factory.html">Illuminate\Contracts\Broadcasting\Factory</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Broadcast (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Broadcasting/Broadcaster.html">Illuminate\Contracts\Broadcasting\Broadcaster</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Bus</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Bus/Dispatcher.html">Illuminate\Contracts\Bus\Dispatcher</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Cache</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cache/CacheManager.html">Illuminate\Cache\CacheManager</a></td>
+<td><code>cache</code></td>
+</tr>
+<tr>
+<td>Cache (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cache/Repository.html">Illuminate\Cache\Repository</a></td>
+<td><code>cache.store</code></td>
+</tr>
+<tr>
+<td>Config</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Config/Repository.html">Illuminate\Config\Repository</a></td>
+<td><code>config</code></td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cookie/CookieJar.html">Illuminate\Cookie\CookieJar</a></td>
+<td><code>cookie</code></td>
+</tr>
+<tr>
+<td>Crypt</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Encryption/Encrypter.html">Illuminate\Encryption\Encrypter</a></td>
+<td><code>encrypter</code></td>
+</tr>
+<tr>
+<td>DB</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/DatabaseManager.html">Illuminate\Database\DatabaseManager</a></td>
+<td><code>db</code></td>
+</tr>
+<tr>
+<td>DB (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/Connection.html">Illuminate\Database\Connection</a></td>
+<td><code>db.connection</code></td>
+</tr>
+<tr>
+<td>Event</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Events/Dispatcher.html">Illuminate\Events\Dispatcher</a></td>
+<td><code>events</code></td>
+</tr>
+<tr>
+<td>File</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Filesystem/Filesystem.html">Illuminate\Filesystem\Filesystem</a></td>
+<td><code>files</code></td>
+</tr>
+<tr>
+<td>Gate</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Auth/Access/Gate.html">Illuminate\Contracts\Auth\Access\Gate</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Hash</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Hashing/Hasher.html">Illuminate\Contracts\Hashing\Hasher</a></td>
+<td><code>hash</code></td>
+</tr>
+<tr>
+<td>Lang</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Translation/Translator.html">Illuminate\Translation\Translator</a></td>
+<td><code>translator</code></td>
+</tr>
+<tr>
+<td>Log</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Log/Logger.html">Illuminate\Log\Logger</a></td>
+<td><code>log</code></td>
+</tr>
+<tr>
+<td>Mail</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Mail/Mailer.html">Illuminate\Mail\Mailer</a></td>
+<td><code>mailer</code></td>
+</tr>
+<tr>
+<td>Notification</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Notifications/ChannelManager.html">Illuminate\Notifications\ChannelManager</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/Passwords/PasswordBrokerManager.html">Illuminate\Auth\Passwords\PasswordBrokerManager</a></td>
+<td><code>auth.password</code></td>
+</tr>
+<tr>
+<td>Password (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/Passwords/PasswordBroker.html">Illuminate\Auth\Passwords\PasswordBroker</a></td>
+<td><code>auth.password.broker</code></td>
+</tr>
+<tr>
+<td>Queue</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Queue/QueueManager.html">Illuminate\Queue\QueueManager</a></td>
+<td><code>queue</code></td>
+</tr>
+<tr>
+<td>Queue (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Queue/Queue.html">Illuminate\Contracts\Queue\Queue</a></td>
+<td><code>queue.connection</code></td>
+</tr>
+<tr>
+<td>Queue (Base Class)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Queue/Queue.html">Illuminate\Queue\Queue</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Redirect</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/Redirector.html">Illuminate\Routing\Redirector</a></td>
+<td><code>redirect</code></td>
+</tr>
+<tr>
+<td>Redis</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Redis/RedisManager.html">Illuminate\Redis\RedisManager</a></td>
+<td><code>redis</code></td>
+</tr>
+<tr>
+<td>Redis (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Redis/Connections/Connection.html">Illuminate\Redis\Connections\Connection</a></td>
+<td><code>redis.connection</code></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Http/Request.html">Illuminate\Http\Request</a></td>
+<td><code>request</code></td>
+</tr>
+<tr>
+<td>Response</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Routing/ResponseFactory.html">Illuminate\Contracts\Routing\ResponseFactory</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Response (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Http/Response.html">Illuminate\Http\Response</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Route</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/Router.html">Illuminate\Routing\Router</a></td>
+<td><code>router</code></td>
+</tr>
+<tr>
+<td>Schema</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/Schema/Builder.html">Illuminate\Database\Schema\Builder</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Session</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Session/SessionManager.html">Illuminate\Session\SessionManager</a></td>
+<td><code>session</code></td>
+</tr>
+<tr>
+<td>Session (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Session/Store.html">Illuminate\Session\Store</a></td>
+<td><code>session.store</code></td>
+</tr>
+<tr>
+<td>Storage</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Filesystem/FilesystemManager.html">Illuminate\Filesystem\FilesystemManager</a></td>
+<td><code>filesystem</code></td>
+</tr>
+<tr>
+<td>Storage (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Filesystem/Filesystem.html">Illuminate\Contracts\Filesystem\Filesystem</a></td>
+<td><code>filesystem.disk</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/UrlGenerator.html">Illuminate\Routing\UrlGenerator</a></td>
+<td><code>url</code></td>
+</tr>
+<tr>
+<td>Validator</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Validation/Factory.html">Illuminate\Validation\Factory</a></td>
+<td><code>validator</code></td>
+</tr>
+<tr>
+<td>Validator (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Validation/Validator.html">Illuminate\Validation\Validator</a></td>
+<td></td>
+</tr>
+<tr>
+<td>View</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/Factory.html">Illuminate\View\Factory</a></td>
+<td><code>view</code></td>
+</tr>
+<tr>
+<td>View (Instance)</td>
+<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/View.html">Illuminate\View\View</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/china-history/" class="post-title gt-a-link">
+                     中国大事记
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
