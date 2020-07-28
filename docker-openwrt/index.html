@@ -4,9 +4,9 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>在Docker 中运行 OpenWrt 旁路网关 | CodeACC</title>
-<link rel="shortcut icon" href="https://codea.cc/favicon.ico?v=1595901867719">
+<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1595903753197">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://codea.cc/styles/main.css">
+<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -106,11 +106,11 @@
                         · 2020-06-16 ·
                     </time>
                     
-                        <a href="https://codea.cc/openwrt/" class="post-tags">
+                        <a href="https://imcm.xyz/openwrt/" class="post-tags">
                             # openwrt
                         </a>
                     
-                        <a href="https://codea.cc/docker/" class="post-tags">
+                        <a href="https://imcm.xyz/docker/" class="post-tags">
                             # docker
                         </a>
                     
@@ -148,7 +148,7 @@
 <p>“树莓派爱好者基地”专版64位 Debian 功能介绍（内含下载链接）：</p>
 <p><a href="https://github.com/openfans-community-offical/Debian-Pi-Aarch64/blob/master/README_zh.md">https://github.com/openfans-community-offical/Debian-Pi-Aarch64</a></p>
 <p>下载时推荐选择“无桌面基础系统加强版”（如下图），如果你有图形界面需求，也可以选择带图形界面的其他版本镜像。</p>
-<figure data-type="image" tabindex="1"><img src="https://codea.cc/post-images/1591772689336.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1591772689336.png" alt="" loading="lazy"></figure>
 <p>下载镜像烧写到树莓派的 SD 卡并上电开机后，系统会自动完成扩展 SD 卡空间的操作，这个过程大约需要3~5分钟（期间会重启几次）。估摸着时间差不多以后，用网线将树莓派的板载网口与路由器的 Lan 口连接，之后连接树莓派的 SSH：</p>
 <p>用户名：pi<br>
 密码：raspberry</p>
@@ -279,14 +279,14 @@ bash为进入容器后执行的命令。<br>
 </li>
 </ol>
 <p>在 “网络 - 接口 - Lan - 修改” 界面中，勾选下方的 “忽略此接口（不在此接口提供 DHCP 服务）”，并“保存&amp;应用”。<br>
-<img src="https://codea.cc/post-images/1591772717735.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1591772717735.png" alt="" loading="lazy"></p>
 <ol start="9">
 <li>
 <h4 id="主路由-dhcp-设置">主路由 DHCP 设置</h4>
 </li>
 </ol>
 <p>进入路由器后台中，将主路由的 DHCP 的默认网关和 DNS 服务器设置为第 5 步中option ipaddr 项目中的 IP。<br>
-<img src="https://codea.cc/post-images/1591772738952.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1591772738952.png" alt="" loading="lazy"></p>
 <ol start="10">
 <li>
 <h4 id="重新连接路由器">重新连接路由器</h4>
@@ -300,7 +300,7 @@ bash为进入容器后执行的命令。<br>
 </li>
 </ol>
 <p>设置旁路路由后，若出现访问国内网站网速慢，不稳定的情况（多见于 Pandavan 及其改版固件，如华硕老毛子固件），请在路由器的控制面板中关闭有关 WLAN 的硬件加速，比如选择“Offload TCP/UDP for LAN”（若未出现此现象请忽略）：<br>
-<img src="https://codea.cc/post-images/1591772753376.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1591772753376.png" alt="" loading="lazy"></p>
 <ol start="2">
 <li>
 <h4 id="宿主机网络修复">宿主机网络修复</h4>
@@ -345,7 +345,7 @@ iface macvlan inet static
 </ol>
 <p>如果路由器固件不支持自定义 DHCP 服务的网关及 DNS 地址（常见于路由器官方固件），或者只希望局域网下的个别设备接入旁路网关时，须在接入设备上做以下配置：</p>
 <h5 id="安卓">安卓：</h5>
-<figure data-type="image" tabindex="2"><img src="https://codea.cc/post-images/1591772765001.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1591772765001.png" alt="" loading="lazy"></figure>
 <p>需要在安卓的 WIFI 设置内将 IP 获取方式更改为“静态”或“手动”，其中：<br>
 “IP 地址”项目需要更改为网段内不冲突的地址；<br>
 “网关”或“路由器”项目需要更改为旁路网关 IP 地址；<br>
@@ -353,7 +353,7 @@ iface macvlan inet static
 “DNS”项目需要更改为旁路网关 IP 地址（两个 DNS 输入框填写一个就可以）。</p>
 <p>完成并提交设置后，关闭 WIFI 开关再打开，连接设置的 WIFI 热点，若当前网络参数为设定值，则证明设置成功。</p>
 <h5 id="windows">Windows:</h5>
-<figure data-type="image" tabindex="3"><img src="https://codea.cc/post-images/1591772774844.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1591772774844.png" alt="" loading="lazy"></figure>
 <p>在无线热点的“属性”界面下，点击 “IP 设置 - 编辑”按钮，在弹出框中更改 IP 分配模式为“手动”，打开 IPV4 的开关，根据所处网段及上文安卓的相关设置填写相关参数即可。</p>
 <h3 id="注意事项">注意事项</h3>
 <ol>
@@ -378,7 +378,7 @@ iface macvlan inet static
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://codea.cc/chown-git/" class="post-title gt-a-link">
+                <a href="https://imcm.xyz/chown-git/" class="post-title gt-a-link">
                     Git 忽略文件目录权限或文件拥有者的改变
                 </a>
             </div>
@@ -408,11 +408,11 @@ iface macvlan inet static
         
     </div>
     <div class="footer-info">
-        <a href="http://www.miitbeian.gov.cn">粤ICP备16038460号-1</a>
+        
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://codea.cc/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
