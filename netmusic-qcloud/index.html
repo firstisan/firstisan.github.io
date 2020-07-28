@@ -4,9 +4,9 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>使用腾讯云实现网易云自动打卡签到 | CodeACC</title>
-<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1595899652512">
+<link rel="shortcut icon" href="https://codea.cc/favicon.ico?v=1595900992118">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
+<link rel="stylesheet" href="https://codea.cc/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -106,7 +106,7 @@
                         · 2020-06-24 ·
                     </time>
                     
-                        <a href="https://imcm.xyz/node/" class="post-tags">
+                        <a href="https://codea.cc/node/" class="post-tags">
                             # node
                         </a>
                     
@@ -132,26 +132,26 @@
 <li>网易云音乐账号密码<br>
 首先，先打开 <a href="https://cloud.tencent.com/">腾讯云</a> ，找到 <a href="https://cloud.tencent.com/product/scf">云函数</a> 在新建函数页面填写函数基础信息，单击【下一步】，如下图所示：</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1592984081483.jpg" alt="1.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://codea.cc/post-images/1592984081483.jpg" alt="1.jpg" loading="lazy"></figure>
 <ul>
 <li>函数名称：可随便命名</li>
 <li>运行环境：选择 “PHP 7.2”</li>
 <li>创建方式：选择 “空白函数”</li>
 </ul>
 <p>接着在函数配置界面中填写其他信息，然后点击【完成】，如下图所示：</p>
-<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1592984087418.jpg" alt="2.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://codea.cc/post-images/1592984087418.jpg" alt="2.jpg" loading="lazy"></figure>
 <p>此处代码修改为本文的 PHP 源代码</p>
-<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1592984096560.jpg" alt="3.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://codea.cc/post-images/1592984096560.jpg" alt="3.jpg" loading="lazy"></figure>
 <p>超时时间修改为 600s</p>
 <h2 id="基础触发">基础触发</h2>
 <p>接着配置一下触发方式，点击【保存】，如下图所示：</p>
-<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1592984127329.jpg" alt="4.jpg" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://imcm.xyz/post-images/1592984141422.jpg" alt="5.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://codea.cc/post-images/1592984127329.jpg" alt="4.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://codea.cc/post-images/1592984141422.jpg" alt="5.jpg" loading="lazy"></figure>
 <ul>
 <li>定时任务名称：可随便命名</li>
 <li>触发周期：选择 “自定义触发”</li>
 <li>Cron 表达式：填写 “00 30 6 */1 * * *”<br>
-<img src="https://imcm.xyz/post-images/1592984152914.jpg" alt="6.jpg" loading="lazy"></li>
+<img src="https://codea.cc/post-images/1592984152914.jpg" alt="6.jpg" loading="lazy"></li>
 </ul>
 <p>到此处基础部分就已经完成啦，下面是原生部署方式。</p>
 <h2 id="原生部署">原生部署</h2>
@@ -190,7 +190,7 @@ npm install
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://imcm.xyz/laravel-composer-note/" class="post-title gt-a-link">
+                <a href="https://codea.cc/laravel-composer-note/" class="post-title gt-a-link">
                     Laravel Composer 笔记
                 </a>
             </div>
@@ -224,7 +224,7 @@ npm install
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://codea.cc/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
