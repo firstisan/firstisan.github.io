@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Git 忽略文件目录权限或文件拥有者的改变 | IMCM</title>
+<title>zerotier | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1597217792062">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -42,11 +42,11 @@
     </script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -95,55 +95,55 @@
         </div>
     </div>
 </nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    Git 忽略文件目录权限或文件拥有者的改变
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-06-13 ·
-                    </time>
-                    
-                        <a href="https://imcm.xyz/git/" class="post-tags">
-                            # Git
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
-<!-- more -->
-<p>当前版本库忽略文件权限</p>
-<pre><code class="language-shell">git config core.filemode false
-</code></pre>
-<p>复制所有版本库忽略文件权限</p>
-<pre><code class="language-shell">git config --global core.fileMode false
-</code></pre>
-<p>这样就设置了忽略文件权限。</p>
-<p>查看 git 的配置文件：</p>
-<pre><code class="language-shell">cat .git/config
-</code></pre>
-<p>这时候再更新代码就 OK 了。</p>
-
-                </div>
-            </article>
+        <div class="current-tag-container">
+            <h2 class="title gt-c-content-color-first">
+                #zerotier
+            </h2>
         </div>
-
+        <div class="post-list-container">
+    <div class="post-inner">
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://imcm.xyz/mac-backup-pi/" class="post-title gt-a-link">
-                    备份树莓派系统（MacOS)
-                </a>
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://imcm.xyz/linux-zerotier-moon/">
+                            <span class="post-title gt-c-content-color-first">LinuxVPS 自建ZeroTier 的MOON根目录服务器</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <h3 id="说明">说明</h3>
+<p>zerotier 可以作为一款 p2p 的 vlan 内网穿透工具，功能强大且易用，同类产品还有 frp和 LanProxy等。最近有个朋友有创建 p2p vlan 的需求，在简单调研之后决定使用 zerotier 作为基础工具。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2020-08-12 ·
+                        </time>
+                        
+                            <a href="https://imcm.xyz/zerotier/" class="post-tag">
+                                # zerotier
+                            </a>
+                        
+                            <a href="https://imcm.xyz/linux/" class="post-tag">
+                                # Linux
+                            </a>
+                        
+                    </div>
+                </div>
+                
+                    <a href="https://imcm.xyz/linux-zerotier-moon/" class="post-feature-image"
+                       style="background-image: url('https://imcm.xyz/post-images/linux-zerotier-moon.jpeg')">
+                    </a>
+                
             </div>
         
-
-        
-
-        
-
-        
+    </div>
+</div>
+        <div class="pagination-container">
+    
+    
+</div>
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>

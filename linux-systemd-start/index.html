@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Git 忽略文件目录权限或文件拥有者的改变 | IMCM</title>
+<title>Linux 下使用 systemd 设置开机启动项 | IMCM</title>
 <link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1597217792062">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
@@ -99,32 +99,61 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Git 忽略文件目录权限或文件拥有者的改变
+                    Linux 下使用 systemd 设置开机启动项
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-13 ·
+                        · 2020-07-16 ·
                     </time>
                     
-                        <a href="https://imcm.xyz/git/" class="post-tags">
-                            # Git
+                        <a href="https://imcm.xyz/linux/" class="post-tags">
+                            # Linux
+                        </a>
+                    
+                        <a href="https://imcm.xyz/raspberrypi/" class="post-tags">
+                            # RaspberryPi
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
+                    <p>下面的教程将介绍如何将命令或程序配置为开机启动时自动运行的服务。完成配置之后，就可以通过 Linux 命令行来「启动/停止/禁用」这个服务了。</p>
 <!-- more -->
-<p>当前版本库忽略文件权限</p>
-<pre><code class="language-shell">git config core.filemode false
+<h2 id="创建服务">创建服务</h2>
+<p>在树莓派上创建一个 .service 文件。例如：</p>
+<p>myscript.service</p>
+<pre><code class="language-shell">[Unit]
+Description=My service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u main.py
+WorkingDirectory=/home/pi/myscript
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
-<p>复制所有版本库忽略文件权限</p>
-<pre><code class="language-shell">git config --global core.fileMode false
+<p>在上面的范例中，服务会去以 Python 3 来运行 /home/pi/myscript 目录下面的 main.py 脚本。用这种方法，你不仅可以配置 Python 脚本，只需要将 ExecStart 这行改为需要启动的任何程序或脚本即可。</p>
+<p>将这个文件用 root 用户保存到 /etc/systemd/system 目录：</p>
+<pre><code class="language-shell">sudo cp myscript.service /etc/systemd/system/myscript.service
 </code></pre>
-<p>这样就设置了忽略文件权限。</p>
-<p>查看 git 的配置文件：</p>
-<pre><code class="language-shell">cat .git/config
+<p>然后就可以用下面的命令尝试启动服务了：</p>
+<pre><code class="language-shell">sudo systemctl start myscript.service
 </code></pre>
-<p>这时候再更新代码就 OK 了。</p>
+<p>停止服务：</p>
+<pre><code class="language-shell">sudo systemctl stop myscript.service
+</code></pre>
+<p>设置开机时自动运行：</p>
+<pre><code class="language-shell">sudo systemctl enable myscript.service
+</code></pre>
+<p>systemctl 命令还可以用来重启或禁用它。</p>
+<h2 id="注意事项">注意事项：</h2>
+<p>1、启动顺序取决于他们的依赖关系。如果是依赖于网络的服务，应当在引导过程中尽可能晚一点启动。<br>
+使用 man systemctl 命令或访问 https://fedoramagazine.org/what-is-an-init-system/ 了解更多。</p>
+<p>本文转自：<a href="https://shumeipai.nxez.com/2020/06/30/linux-usage-systemd.html">树莓派实验室</a></p>
 
                 </div>
             </article>
@@ -133,8 +162,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://imcm.xyz/mac-backup-pi/" class="post-title gt-a-link">
-                    备份树莓派系统（MacOS)
+                <a href="https://imcm.xyz/mac-nvm/" class="post-title gt-a-link">
+                    Mac 下安装 NVM
                 </a>
             </div>
         

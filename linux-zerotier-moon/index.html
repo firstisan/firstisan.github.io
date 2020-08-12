@@ -1,0 +1,241 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LinuxVPS 自建ZeroTier 的MOON根目录服务器 | IMCM</title>
+<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1597217792062">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168899035-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-168899035-1');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            IMCM
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    LinuxVPS 自建ZeroTier 的MOON根目录服务器
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-08-12 ·
+                    </time>
+                    
+                        <a href="https://imcm.xyz/zerotier/" class="post-tags">
+                            # zerotier
+                        </a>
+                    
+                        <a href="https://imcm.xyz/linux/" class="post-tags">
+                            # Linux
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="说明">说明</h3>
+<p>zerotier 可以作为一款 p2p 的 vlan 内网穿透工具，功能强大且易用，同类产品还有 frp和 LanProxy等。最近有个朋友有创建 p2p vlan 的需求，在简单调研之后决定使用 zerotier 作为基础工具。</p>
+<!-- more -->
+<p>官方给出的使用方案比较简单。首先需要一个中心的节点用于两个内网节点的握手，该中心节点需要有一个公网 IP。zerotier 官网提供了中心节点相关服务，免费账户有一定的使用限制，但是由于其节点位于国外，延迟比较高，且可能还需要科学上网才能使用。除此之外，zerotier 也支持自己搭建中心节点服务器，也叫做 MOON 服务器。下面是它的搭建步骤。</p>
+<h3 id="moon-服务器配置">MOON 服务器配置</h3>
+<p>操作系统版本是 <code>Ubuntu 18.04, Zerotier One</code> 版本是 <code>v1.2.10</code>, 公网 (也就是 MOON 服务器) 地址是 1.1.1.1。</p>
+<h4 id="1-通过官网文档根据不同操作系统选择不同的安装方式这里直接通过命令行安装">1. 通过<a href="https://www.zerotier.com/">官网</a>文档根据不同操作系统选择不同的安装方式，这里直接通过命令行安装</h4>
+<pre><code class="language-shell">curl -s 'https://pgp.mit.edu/pks/lookup?op=get&amp;search=0x1657198823E52A61' | gpg --import &amp;&amp; \ if z=(curl -s 'https://install.zerotier.com/' | gpg); then echo &quot;z&quot; | sudo bash; fi
+</code></pre>
+<p>如果上述命令运行失败，那么使用下面命令(建议用这个)</p>
+<pre><code class="language-shell">curl -s https://install.zerotier.com/ | sudo bash
+</code></pre>
+<h4 id="2-将-moon-服务器加入-zerotier-局域网">2. 将 MOON 服务器加入 Zerotier 局域网</h4>
+<p>虽然搭建了 MOON 服务器，我们还是需要借助 <a href="https://my.zerotier.com/network">zerotier network</a>，也就是需要先通过 zerotier 官网创建一个 network，并且内网节点需要使用 <code>join</code> 命令加入该网络才能实现内网节点的互通，换句话说 MOON 节点只起到了加速的作用，虚拟网络的分配和管理还是需要 zerotier 服务端参与。</p>
+<pre><code class="language-shell">zerotier-cli join &lt;network id&gt;
+</code></pre>
+<h4 id="3-生成配置文件">3. 生成配置文件</h4>
+<pre><code class="language-shell">sudo chmod 777 /var/lib/zerotier-one # 这里为了有写入文件的权限
+cd /var/lib/zerotier-one
+sudo zerotier-idtool initmoon identity.public &gt; moon.json
+</code></pre>
+<h4 id="4-修改配置文件-moonjson主要是添加公网-ip修改内容如下9993-是默认端口">4. 修改配置文件 <code>moon.json</code>，主要是添加公网 IP，修改内容如下，<code>9993</code> 是默认端口</h4>
+<pre><code class="language-shell">&quot;stableEndpoints&quot;: [ &quot;1.1.1.1/9993&quot; ] #修改为VPS公网IP/9993
+</code></pre>
+<p>还需要注意 <code>moon.json</code> 中的 id 值，它是 MOON 服务器的 ID，是一个 10 位的字符串，我的为 <code>efe9e9a259</code>，也可以用 <code>sudo zerotier-cli info</code> 查看，后面会用到。</p>
+<h4 id="5-生成-moon-文件">5. 生成 moon 文件</h4>
+<pre><code class="language-shell">sudo zerotier-idtool genmoon moon.json
+</code></pre>
+<h4 id="6-在-varlibzerotier-one-目录下新建-moonsd-文件夹中并将生成的-moon-文件放到该文件夹下我的-moon-文件名为-000000efe9e9a259moon">6. 在 <code>/var/lib/zerotier-one</code> 目录下新建 <code>moons.d</code> 文件夹中，并将生成的 moon 文件放到该文件夹下，我的 moon 文件名为 <code>000000efe9e9a259.moon</code></h4>
+<pre><code class="language-shell">mv 000000efe9e9a259.moon moons.d/
+</code></pre>
+<h4 id="7-重启-zerotier-one">7. 重启 <code>zerotier-one</code></h4>
+<pre><code class="language-shell">sudo systemctl restart zerotier-one.service
+</code></pre>
+<h3 id="内网节点配置本地设备">内网节点配置(本地设备)</h3>
+<h4 id="1-在内网节点安装-zerotier安装方法和上面类似根据文档选择不同操作系统的方法进行安装即可-请参考文章zerotier-无公网-ip-实现内网穿透">1. 在内网节点安装 zerotier，安装方法和上面类似，根据<a href="https://www.moewah.com/go/aHR0cHM6Ly93d3cuemVyb3RpZXIuY29tL2Rvd25sb2FkLnNodG1s">文档</a>选择不同操作系统的方法进行安装即可。请参考文章<a href="https://www.moewah.com/archives/1474.html">《ZeroTier 无公网 IP 实现内网穿透》</a></h4>
+<h4 id="2-将-moon-节点添加到常规节点">2. 将 MOON 节点添加到常规节点</h4>
+<pre><code class="language-shell">sudo zerotier-cli orbit efe9e9a259 efe9e9a259 # 注意这里是两次根节点的ID
+</code></pre>
+<p>如果没返回 <code>200 orbit OK</code> 的话，需要手动拷贝生成的 moon 文件 <code>000000efe9e9a259.moon</code> 文件到常规节点的机器上，位置如下:</p>
+<pre><code>Windows: C:\ProgramData\ZeroTier\One
+Macintosh: /Library/Application Support/ZeroTier/One (在 Terminal 中应为 /Library/Application\ Support/ZeroTier/One)
+Linux: /var/lib/zerotier-one
+FreeBSD/OpenBSD: /var/db/zerotier-one
+</code></pre>
+<h4 id="3-然后重启-zerotier-one">3. 然后重启 zerotier-one</h4>
+<p>查看节点列表，出现根服务器的 MOON 节点表示成功</p>
+<pre><code class="language-shell"> ~ sudo zerotier-cli listpeers
+200 listpeers     
+200 listpeers 3dfa0fd16b - -1 - LEAF
+200 listpeers 8841408a2e 45.32.248.87/9993;11749;11453 252 1.1.5 PLANET
+200 listpeers 9d219039f3 128.199.197.217/9993;11749;11381 390 1.1.5 PLANET
+200 listpeers abfd31bd47 178.128.240.145/35368;6238;14319 509 1.2.5 LEAF
+200 listpeers efe9e9a259 1.1.1.1/9993;6238;1184 36 1.2.12 MOON
+</code></pre>
+<h4 id="4-我们再在内网节点上运行-ifconfigwindows-是-ipconfig可以看到-zerotier-vlan-分配给其的内网-ip">4. 我们再在内网节点上运行 ifconfig(windows 是 ipconfig)，可以看到 zerotier vlan 分配给其的内网 IP</h4>
+<pre><code class="language-shell">zt0: flags=8843 metric 5000 mtu 2800
+    ether 1a:42:9a:39:7d:3f
+    inet 10.147.18.127 netmask 0xffffff00 broadcast 10.147.18.255
+    inet6 fe80::1842:9aff:fe39:7d3f%zt0 prefixlen 64 scopeid 0xc
+    inet6 fcec:2f1a:a769:487e:c00e::1 prefixlen 40
+    nd6 options=201
+    media: autoselect
+    status: active
+    open (pid 84214)
+</code></pre>
+<p>这里的 <code>10.147.18.127</code>就是其虚拟局域网的 IP，在另外一个局域网中通过上述过程配置另外一个节点，它的虚拟局域网 IP 为 <code>10.147.18.30</code>，两个节点通过 <code>ping</code> 可以互相通</p>
+<p>转自：<a href="https://opt.gs/posts/56602/">vps侦探</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://imcm.xyz/laravel-facades/" class="post-title gt-a-link">
+                    Facade 类参考
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">摒弃世俗浮躁，追求技术精湛</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备16038460号
+</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
