@@ -2,14 +2,794 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-08-12T08:19:19.869Z</updated>
+    <updated>2020-11-19T08:34:23.997Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
-    <subtitle>摒弃世俗浮躁，追求技术精湛</subtitle>
+    <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;正在加载今日诗词....&lt;/span&gt;
+&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;br&gt;</subtitle>
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2020, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[术语对照表]]></title>
+        <id>https://imcm.xyz/net-info/</id>
+        <link href="https://imcm.xyz/net-info/">
+        </link>
+        <updated>2020-09-15T03:41:37.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="osi">OSI</h2>
+<p>开放式系统互联通信参考模型（英语：Open System Interconnection Reference Model，缩写为 OSI），简称为OSI模型（OSI model），一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界范围内互连为网络的标准框架</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="osi">OSI</h2>
+<p>开放式系统互联通信参考模型（英语：Open System Interconnection Reference Model，缩写为 OSI），简称为OSI模型（OSI model），一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界范围内互连为网络的标准框架</p>
+<!-- more -->
+<h2 id="tcpip">TCP/IP</h2>
+<p>互联网协议套件（英语：Internet Protocol Suite，缩写IPS）是一个网络通信模型，以及一整个网络传输协议家族，为网际网络的基础通信架构。它常被通称为TCP/IP协议族（英语：TCP/IP Protocol Suite，或TCP/IP Protocols），简称TCP/IP</p>
+<h2 id="dns">DNS</h2>
+<p>'域名系统（英文：Domain Name System，缩写： 'DNS）是互联网的一项服务。它作为将域名和 IP 地址相互映射的一个分布式数据库，能够使人更方便地访问互联网</p>
+<h2 id="udp">UDP</h2>
+<p>用户数据包协议（英语：User Datagram Protocol，缩写：UDP），又称用户数据包协议，是一个简单的面向数据报的传输层协议</p>
+<h2 id="icmp">ICMP</h2>
+<p>互联网控制消息协议（英语：Internet Control Message Protocol，缩写：ICMP）是互联网协议族的核心协议之一。它用于TCP/IP网络中发送控制消息，提供可能发生在通信环境中的各种问题反馈，通过这些信息，使管理者可以对所发生的问题作出诊断，然后采取适当的措施解决</p>
+<h2 id="tcp">TCP</h2>
+<p>传输控制协议（英语：Transmission Control Protocol，缩写：TCP）是一种面向连接的、可靠的、基于字节流的传输层通信协议</p>
+<h2 id="arq">ARQ</h2>
+<p>自动重传请求（Automatic Repeat-reQuest，ARQ）是OSI模型中数据链路层的错误纠正协议之一。它包括停止等待ARQ协议和连续ARQ协议，错误侦测（Error Detection）、正面确认（Positive Acknowledgment）、逾时重传（Retransmission after Timeout）与负面确认继以重传（Negative Acknowledgment and Retransmission）等机制</p>
+<h2 id="syn">SYN</h2>
+<p>同步序列编号（Synchronize Sequence Numbers）</p>
+<h2 id="ack">ACK</h2>
+<p>ACK (Acknowledgement）即是确认字符，在数据通信中，接收站发给发送站的一种传输类控制字符。表示发来的数据已确认接收无误</p>
+<h2 id="tcb">TCB</h2>
+<p>传输控制块 TCB(Transmission Control Block)存储了每一个连接中的一些重要信息，如：TCP 连接表，指向发送和接收缓存的指针，指向重传队列的指针，当前的发送和接收序号等等</p>
+<h2 id="http">HTTP</h2>
+<p>超文本传输协议（英语：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议</p>
+<h2 id="ssltls">SSL/TLS</h2>
+<p>传输层安全性协议（英语：Transport Layer Security，缩写作 TLS），及其前身安全套接层（Secure Sockets Layer，缩写作 SSL）是一种安全协议，目的是为互联网通信提供安全及数据完整性保障</p>
+<h2 id="adt">ADT</h2>
+<p>抽象数据类型（Abstract Data Type，ADT）是计算机科学中具有类似行为的特定类别的数据结构的数学模型；或者具有类似语义的一种或多种程序设计语言的数据类型。抽象数据类型是间接定义的，通过其上的可执行的操作以及这些操作的效果的数学约束（与可能的代价）</p>
+<h2 id="php">PHP</h2>
+<p>PHP（全称：PHP：Hypertext Preprocessor，即“PHP：超文本预处理器”）是一种开源的通用计算机脚本语言，尤其适用于网络开发并可嵌入 HTML 中使用</p>
+<h2 id="fpm">FPM</h2>
+<p>FPM(FastCGI Process Manager, FPM)是 PHP FastCGI 运行模式的一个进程管理器</p>
+<h2 id="mvc">MVC</h2>
+<p>MVC模式（Model–view–controller）是软件工程中的一种软件架构模式，把软件系统分为三个基本部分：模型（Model）、视图（View）和控制器（Controller）</p>
+<h2 id="orm">ORM</h2>
+<p>对象关系映射（英语：Object Relational Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序设计技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换</p>
+<h2 id="pdo">PDO</h2>
+<p>PDO（PHP Data Objects） PHP 数据对象，是 PHP 应用中的一个数据库抽象层规范。PDO提供了一个统一的 API 接口可以使得你的 PHP 应用不去关心具体要 连接的数据库服务器系统类型</p>
+<h2 id="oop">OOP</h2>
+<p>面向对象编程（Object Oriented Programming，OOP，面向对象程序设计）是一种计算机编程架构</p>
+<h2 id="dom">DOM</h2>
+<p>文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展标志语言的标准编程接口。在网页上，组织页面（或文档）的对象被组织在一个树形结构中，用来表示文档中对象的标准模型就称为DOM</p>
+<h2 id="cors">CORS</h2>
+<h2 id="json">JSON</h2>
+<p>JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式</p>
+<h2 id="jsonp">JSONP</h2>
+<p>JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题</p>
+<h2 id="rdb">RDB</h2>
+<p>RDB(Redis Database)，在指定时间间隔对 Redis 内存数据进行快照存储</p>
+<h2 id="aof">AOF</h2>
+<p>只追加文件(append-only file，AOF)，在执行写命令时，将被执行的写命令复制到磁盘里面</p>
+<h2 id="ipc">IPC</h2>
+<p>进程间通信（IPC，Inter-Process Communication），指至少两个进程或线程间传送数据或信号的一些技术或方法</p>
+<h2 id="qps">QPS</h2>
+<p>每秒查询率 QPS(Query Per Second) 是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准</p>
+<h2 id="tps">TPS</h2>
+<p>Transactions Per Second（每秒传输的事物处理个数），即服务器每秒处理的事务数</p>
+<h2 id="xss">XSS</h2>
+<p>跨站脚本（英语：Cross-site scripting，通常简称为：XSS）是一种网站应用程序的安全漏洞攻击，是代码注入的一种。它允许恶意用户将代码注入到网页上，其他用户在观看网页时就会受到影响</p>
+<h2 id="csrf">CSRF</h2>
+<p>跨站请求伪造（英语：Cross-site request forgery），通常缩写为 CSRF， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法</p>
+<h2 id="ddos">DDOS</h2>
+<p>DDOS 又称为分布式拒绝服务，全称是 Distributed Denial of Service。DDOS 本是利用合理的请求造成资源过载，导致服务不可用</p>
+<h2 id="oop-2">OOP</h2>
+<p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针</p>
+<h2 id="sso">SSO</h2>
+<p>单点登录（英语：Single sign-on，缩写为 SSO），又译为单一签入，一种对于许多相互关连，但是又是各自独立的软件系统，提供访问控制的属性。当拥有这项属性时，当用户登录时，就可以获取所有系统的访问权限，不用对每个单一系统都逐一登录</p>
+<h2 id="rest">REST</h2>
+<p>表现层状态转换（英语：Representational State Transfer，缩写：REST）是一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息</p>
+<h2 id="jwt">JWT</h2>
+<p>JSON Web Token 是一种跨域认证解决方案</p>
+<h2 id="lvs">LVS</h2>
+<p>Linux 虚拟服务器（Linux Virtual Server，LVS）是一个虚拟的服务器集群系统，用于实现负载均衡</p>
+<p>以上内容均摘录自维基百科、百度百科</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PHP 5 String 函数]]></title>
+        <id>https://imcm.xyz/php-5-array/</id>
+        <link href="https://imcm.xyz/php-5-array/">
+        </link>
+        <updated>2020-09-10T03:10:45.000Z</updated>
+        <summary type="html"><![CDATA[<p>PHP String 函数是 PHP 核心的组成部分。无需安装即可使用这些函数。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>PHP String 函数是 PHP 核心的组成部分。无需安装即可使用这些函数。</p>
+<!-- more -->
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addcslashes()</td>
+<td>返回在指定的字符前添加反斜杠的字符串。</td>
+</tr>
+<tr>
+<td>addslashes()</td>
+<td>返回在预定义的字符前添加反斜杠的字符串。</td>
+</tr>
+<tr>
+<td>bin2hex()</td>
+<td>把 ASCII 字符的字符串转换为十六进制值。</td>
+</tr>
+<tr>
+<td>chop()</td>
+<td>移除字符串右侧的空白字符或其他字符。</td>
+</tr>
+<tr>
+<td>chr()</td>
+<td>从指定 ASCII 值返回字符。</td>
+</tr>
+<tr>
+<td>chunk_split()</td>
+<td>把字符串分割为一连串更小的部分。</td>
+</tr>
+<tr>
+<td>convert_cyr_string()</td>
+<td>把字符串由一种 Cyrillic 字符集转换成另一种。</td>
+</tr>
+<tr>
+<td>convert_uudecode()</td>
+<td>对 uuencode 编码的字符串进行解码。</td>
+</tr>
+<tr>
+<td>convert_uuencode()</td>
+<td>使用 uuencode 算法对字符串进行编码。</td>
+</tr>
+<tr>
+<td>count_chars()</td>
+<td>返回字符串所用字符的信息。</td>
+</tr>
+<tr>
+<td>crc32()</td>
+<td>计算一个字符串的 32 位 CRC（循环冗余校验）。</td>
+</tr>
+<tr>
+<td>crypt()</td>
+<td>单向的字符串加密法（hashing）。</td>
+</tr>
+<tr>
+<td>echo()</td>
+<td>输出一个或多个字符串。</td>
+</tr>
+<tr>
+<td>explode()</td>
+<td>把字符串打散为数组。</td>
+</tr>
+<tr>
+<td>fprintf()</td>
+<td>把格式化的字符串写入到指定的输出流。</td>
+</tr>
+<tr>
+<td>get_html_translation_table()</td>
+<td>返回 htmlspecialchars() 和 htmlentities() 使用的翻译表。</td>
+</tr>
+<tr>
+<td>hebrev()</td>
+<td>把希伯来（Hebrew）文本转换为可见文本。</td>
+</tr>
+<tr>
+<td>hebrevc()</td>
+<td>把希伯来（Hebrew）文本转换为可见文本，并把新行（\n）转换为 <br>。</td>
+</tr>
+<tr>
+<td>hex2bin()</td>
+<td>把十六进制值的字符串转换为 ASCII 字符。</td>
+</tr>
+<tr>
+<td>html_entity_decode()</td>
+<td>把 HTML 实体转换为字符。</td>
+</tr>
+<tr>
+<td>htmlentities()</td>
+<td>把字符转换为 HTML 实体。</td>
+</tr>
+<tr>
+<td>htmlspecialchars_decode()</td>
+<td>把一些预定义的 HTML 实体转换为字符。</td>
+</tr>
+<tr>
+<td>htmlspecialchars()</td>
+<td>把一些预定义的字符转换为 HTML 实体。</td>
+</tr>
+<tr>
+<td>implode()</td>
+<td>返回一个由数组元素组合成的字符串。</td>
+</tr>
+<tr>
+<td>join()</td>
+<td>implode() 的别名。</td>
+</tr>
+<tr>
+<td>lcfirst()</td>
+<td>把字符串中的首字符转换为小写。</td>
+</tr>
+<tr>
+<td>levenshtein()</td>
+<td>返回两个字符串之间的 Levenshtein 距离。</td>
+</tr>
+<tr>
+<td>localeconv()</td>
+<td>返回本地数字及货币格式信息。</td>
+</tr>
+<tr>
+<td>ltrim()</td>
+<td>移除字符串左侧的空白字符或其他字符。</td>
+</tr>
+<tr>
+<td>md5()</td>
+<td>计算字符串的 MD5 散列。</td>
+</tr>
+<tr>
+<td>md5_file()</td>
+<td>计算文件的 MD5 散列。</td>
+</tr>
+<tr>
+<td>metaphone()</td>
+<td>计算字符串的 metaphone 键。</td>
+</tr>
+<tr>
+<td>money_format()</td>
+<td>返回格式化为货币字符串的字符串。</td>
+</tr>
+<tr>
+<td>nl_langinfo()</td>
+<td>返回指定的本地信息。</td>
+</tr>
+<tr>
+<td>nl2br()</td>
+<td>在字符串中的每个新行之前插入 HTML 换行符。</td>
+</tr>
+<tr>
+<td>number_format()</td>
+<td>通过千位分组来格式化数字。</td>
+</tr>
+<tr>
+<td>ord()</td>
+<td>返回字符串中第一个字符的 ASCII 值。</td>
+</tr>
+<tr>
+<td>parse_str()</td>
+<td>把查询字符串解析到变量中。</td>
+</tr>
+<tr>
+<td>print()</td>
+<td>输出一个或多个字符串。</td>
+</tr>
+<tr>
+<td>printf()</td>
+<td>输出格式化的字符串。</td>
+</tr>
+<tr>
+<td>quoted_printable_decode()</td>
+<td>把 quoted-printable 字符串转换为 8 位字符串。</td>
+</tr>
+<tr>
+<td>quoted_printable_encode()</td>
+<td>把 8 位字符串转换为 quoted-printable 字符串。</td>
+</tr>
+<tr>
+<td>quotemeta()</td>
+<td>引用元字符。</td>
+</tr>
+<tr>
+<td>rtrim()</td>
+<td>移除字符串右侧的空白字符或其他字符。</td>
+</tr>
+<tr>
+<td>setlocale()</td>
+<td>设置地区信息（地域信息）。</td>
+</tr>
+<tr>
+<td>sha1()</td>
+<td>计算字符串的 SHA-1 散列。</td>
+</tr>
+<tr>
+<td>sha1_file()</td>
+<td>计算文件的 SHA-1 散列。</td>
+</tr>
+<tr>
+<td>similar_text()</td>
+<td>计算两个字符串的相似度。</td>
+</tr>
+<tr>
+<td>soundex()</td>
+<td>计算字符串的 soundex 键。</td>
+</tr>
+<tr>
+<td>sprintf()</td>
+<td>把格式化的字符串写入一个变量中。</td>
+</tr>
+<tr>
+<td>sscanf()</td>
+<td>根据指定的格式解析来自一个字符串的输入。</td>
+</tr>
+<tr>
+<td>str_getcsv()</td>
+<td>把 CSV 字符串解析到数组中。</td>
+</tr>
+<tr>
+<td>str_ireplace()</td>
+<td>替换字符串中的一些字符（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>str_pad()</td>
+<td>把字符串填充为新的长度。</td>
+</tr>
+<tr>
+<td>str_repeat()</td>
+<td>把字符串重复指定的次数。</td>
+</tr>
+<tr>
+<td>str_replace()</td>
+<td>替换字符串中的一些字符（大小写敏感）。</td>
+</tr>
+<tr>
+<td>str_rot13()</td>
+<td>对字符串执行 ROT13 编码。</td>
+</tr>
+<tr>
+<td>str_shuffle()</td>
+<td>随机地打乱字符串中的所有字符。</td>
+</tr>
+<tr>
+<td>str_split()</td>
+<td>把字符串分割到数组中。</td>
+</tr>
+<tr>
+<td>str_word_count()</td>
+<td>计算字符串中的单词数。</td>
+</tr>
+<tr>
+<td>strcasecmp()</td>
+<td>比较两个字符串（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>strchr()</td>
+<td>查找字符串在另一字符串中的第一次出现。（strstr() 的别名。）</td>
+</tr>
+<tr>
+<td>strcmp()</td>
+<td>比较两个字符串（大小写敏感）。</td>
+</tr>
+<tr>
+<td>strcoll()</td>
+<td>比较两个字符串（根据本地设置）。</td>
+</tr>
+<tr>
+<td>strcspn()</td>
+<td>返回在找到任何指定的字符之前，在字符串查找的字符数。</td>
+</tr>
+<tr>
+<td>strip_tags()</td>
+<td>剥去字符串中的 HTML 和 PHP 标签。</td>
+</tr>
+<tr>
+<td>stripcslashes()</td>
+<td>删除由 addcslashes() 函数添加的反斜杠。</td>
+</tr>
+<tr>
+<td>stripslashes()</td>
+<td>删除由 addslashes() 函数添加的反斜杠。</td>
+</tr>
+<tr>
+<td>stripos()</td>
+<td>返回字符串在另一字符串中第一次出现的位置（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>stristr()</td>
+<td>查找字符串在另一字符串中第一次出现的位置（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>strlen()</td>
+<td>返回字符串的长度。中文字符串的处理使用 mb_strlen() 函数。</td>
+</tr>
+<tr>
+<td>strnatcasecmp()</td>
+<td>使用一种&quot;自然排序&quot;算法来比较两个字符串（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>strnatcmp()</td>
+<td>使用一种&quot;自然排序&quot;算法来比较两个字符串（大小写敏感）。</td>
+</tr>
+<tr>
+<td>strncasecmp()</td>
+<td>前 n 个字符的字符串比较（大小写不敏感）。</td>
+</tr>
+<tr>
+<td>strncmp()</td>
+<td>前 n 个字符的字符串比较（大小写敏感）。</td>
+</tr>
+<tr>
+<td>strpbrk()</td>
+<td>在字符串中搜索指定字符中的任意一个。</td>
+</tr>
+<tr>
+<td>strpos()</td>
+<td>返回字符串在另一字符串中第一次出现的位置（大小写敏感）。</td>
+</tr>
+<tr>
+<td>strrchr()</td>
+<td>查找字符串在另一个字符串中最后一次出现。</td>
+</tr>
+<tr>
+<td>strrev()</td>
+<td>反转字符串。</td>
+</tr>
+<tr>
+<td>strripos()</td>
+<td>查找字符串在另一字符串中最后一次出现的位置(大小写不敏感)。</td>
+</tr>
+<tr>
+<td>strrpos()</td>
+<td>查找字符串在另一字符串中最后一次出现的位置(大小写敏感)。</td>
+</tr>
+<tr>
+<td>strspn()</td>
+<td>返回在字符串中包含的特定字符的数目。</td>
+</tr>
+<tr>
+<td>strstr()</td>
+<td>查找字符串在另一字符串中的第一次出现（大小写敏感）。</td>
+</tr>
+<tr>
+<td>strtok()</td>
+<td>把字符串分割为更小的字符串。</td>
+</tr>
+<tr>
+<td>strtolower()</td>
+<td>把字符串转换为小写字母。</td>
+</tr>
+<tr>
+<td>strtoupper()</td>
+<td>把字符串转换为大写字母。</td>
+</tr>
+<tr>
+<td>strtr()</td>
+<td>转换字符串中特定的字符。</td>
+</tr>
+<tr>
+<td>substr()</td>
+<td>返回字符串的一部分。</td>
+</tr>
+<tr>
+<td>mb_substr()</td>
+<td>返回中文字符串的一部分。</td>
+</tr>
+<tr>
+<td>substr_compare()</td>
+<td>从指定的开始位置（二进制安全和选择性区分大小写）比较两个字符串。</td>
+</tr>
+<tr>
+<td>substr_count()</td>
+<td>计算子串在字符串中出现的次数。</td>
+</tr>
+<tr>
+<td>substr_replace()</td>
+<td>把字符串的一部分替换为另一个字符串。</td>
+</tr>
+<tr>
+<td>trim()</td>
+<td>移除字符串两侧的空白字符和其他字符。</td>
+</tr>
+<tr>
+<td>ucfirst()</td>
+<td>把字符串中的首字符转换为大写。</td>
+</tr>
+<tr>
+<td>ucwords()</td>
+<td>把字符串中每个单词的首字符转换为大写。</td>
+</tr>
+<tr>
+<td>vfprintf()</td>
+<td>把格式化的字符串写到指定的输出流。</td>
+</tr>
+<tr>
+<td>vprintf()</td>
+<td>输出格式化的字符串。</td>
+</tr>
+<tr>
+<td>vsprintf()</td>
+<td>把格式化字符串写入变量中。</td>
+</tr>
+<tr>
+<td>wordwrap()</td>
+<td>按照指定长度对字符串进行折行处理。</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux/Mac下统计当前文件夹下的文件个数、目录个数]]></title>
+        <id>https://imcm.xyz/linuxmac-list-fields/</id>
+        <link href="https://imcm.xyz/linuxmac-list-fields/">
+        </link>
+        <updated>2020-08-31T13:09:40.000Z</updated>
+        <summary type="html"><![CDATA[<p>这篇文章主要介绍了Linux下统计当前文件夹下的文件个数、目录个数,本文使用ls命令配合管理、grep命令实现统计需求</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>这篇文章主要介绍了Linux下统计当前文件夹下的文件个数、目录个数,本文使用ls命令配合管理、grep命令实现统计需求</p>
+<!-- more -->
+<h3 id="1-统计当前文件夹下文件的个数">1. 统计当前文件夹下文件的个数</h3>
+<pre><code class="language-shell">ls -l |grep &quot;^-&quot;|wc -l
+</code></pre>
+<h3 id="2-统计当前文件夹下目录的个数">2.  统计当前文件夹下目录的个数</h3>
+<pre><code class="language-shell">ls -l |grep &quot;^d&quot;|wc -l
+</code></pre>
+<h3 id="3-统计当前文件夹下文件的个数包括子文件夹里的">3. 统计当前文件夹下文件的个数，包括子文件夹里的</h3>
+<pre><code class="language-shell">ls -lR|grep &quot;^-&quot;|wc -l
+</code></pre>
+<h3 id="4-统计文件夹下目录的个数包括子文件夹里的">4. 统计文件夹下目录的个数，包括子文件夹里的</h3>
+<pre><code class="language-shell">ls -lR|grep &quot;^d&quot;|wc -l
+</code></pre>
+<h3 id="5-说明">5. 说明</h3>
+<ul>
+<li>代码如下:</li>
+</ul>
+<pre><code class="language-shell">ls -l
+</code></pre>
+<p>长列表输出当前文件夹下文件信息(注意这里的文件，不同于一般的文件，可能是目录、链接、设备文件等)</p>
+<ul>
+<li>代码如下:</li>
+</ul>
+<pre><code class="language-shell">grep &quot;^-&quot;
+</code></pre>
+<p>这里将长列表输出信息过滤一部分，只保留一般文件，如果只保留目录就是 ^d</p>
+<ul>
+<li>代码如下:</li>
+</ul>
+<pre><code class="language-shell">wc -l
+</code></pre>
+<p>统计输出信息的行数，因为已经过滤得只剩一般文件了，所以统计结果就是一般文件信息的行数，又由于一行信息对应一个文件，所以也就是文件的个数。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker CE 镜像源]]></title>
+        <id>https://imcm.xyz/docker-pi/</id>
+        <link href="https://imcm.xyz/docker-pi/">
+        </link>
+        <updated>2020-08-28T14:46:12.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="1-使用官方安装脚本自动安装-仅适用于公网环境">1. 使用官方安装脚本自动安装 （仅适用于公网环境）</h3>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="1-使用官方安装脚本自动安装-仅适用于公网环境">1. 使用官方安装脚本自动安装 （仅适用于公网环境）</h3>
+<!-- more -->
+<pre><code class="language-shell">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+</code></pre>
+<h3 id="2-手动安装帮助-阿里云ecs可以通过内网安装见注释部分内容">2. 手动安装帮助 (阿里云ECS可以通过内网安装，见注释部分内容)</h3>
+<h4 id="ubuntu-1404-1604-使用apt-get进行安装">Ubuntu 14.04 16.04 (使用apt-get进行安装)</h4>
+<pre><code class="language-shell"># step 1: 安装必要的一些系统工具
+sudo apt-get update
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+# step 2: 安装GPG证书
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+# Step 3: 写入软件源信息
+sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
+# Step 4: 更新并安装 Docker-CE
+sudo apt-get -y update
+sudo apt-get -y install docker-ce
+
+注意：其他注意事项在下面的注释中
+# 安装指定版本的Docker-CE:
+# Step 1: 查找Docker-CE的版本:
+# apt-cache madison docker-ce
+#   docker-ce | 17.03.1~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
+#   docker-ce | 17.03.0~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
+# Step 2: 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.1~ce-0~ubuntu-xenial)
+# sudo apt-get -y install docker-ce=[VERSION]
+
+# 通过经典网络、VPC网络内网安装时，用以下命令替换Step 2、Step 3中的命令
+# 经典网络：
+# curl -fsSL http://mirrors.aliyuncs.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyuncs.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
+# VPC网络：
+# curl -fsSL http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
+</code></pre>
+<h4 id="centos-7-使用yum进行安装">CentOS 7 (使用yum进行安装)</h4>
+<pre><code class="language-shell"># step 1: 安装必要的一些系统工具
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+# Step 2: 添加软件源信息
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# Step 3: 更新并安装 Docker-CE
+sudo yum makecache fast
+sudo yum -y install docker-ce
+# Step 4: 开启Docker服务
+sudo service docker start
+
+注意：其他注意事项在下面的注释中
+# 官方软件源默认启用了最新的软件，您可以通过编辑软件源的方式获取各个版本的软件包。例如官方并没有将测试版本的软件源置为可用，你可以通过以下方式开启。同理可以开启各种测试版本等。
+# vim /etc/yum.repos.d/docker-ce.repo
+#   将 [docker-ce-test] 下方的 enabled=0 修改为 enabled=1
+#
+# 安装指定版本的Docker-CE:
+# Step 1: 查找Docker-CE的版本:
+# yum list docker-ce.x86_64 --showduplicates | sort -r
+#   Loading mirror speeds from cached hostfile
+#   Loaded plugins: branch, fastestmirror, langpacks
+#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            docker-ce-stable
+#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            @docker-ce-stable
+#   docker-ce.x86_64            17.03.0.ce-1.el7.centos            docker-ce-stable
+#   Available Packages
+# Step2 : 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.0.ce.1-1.el7.centos)
+# sudo yum -y install docker-ce-[VERSION]
+# 注意：在某些版本之后，docker-ce安装出现了其他依赖包，如果安装失败的话请关注错误信息。例如 docker-ce 17.03 之后，需要先安装 docker-ce-selinux。
+# yum list docker-ce-selinux- --showduplicates | sort -r
+# sudo yum -y install docker-ce-selinux-[VERSION]
+
+# 通过经典网络、VPC网络内网安装时，用以下命令替换Step 2中的命令
+# 经典网络：
+# sudo yum-config-manager --add-repo http://mirrors.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
+# VPC网络：
+# sudo yum-config-manager --add-repo http://mirrors.could.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre>
+<h3 id="安装校验">安装校验</h3>
+<pre><code class="language-shell">root@iZbp12adskpuoxodbkqzjfZ:$ docker version
+Client:
+ Version:      17.03.0-ce
+ API version:  1.26
+ Go version:   go1.7.5
+ Git commit:   3a232c8
+ Built:        Tue Feb 28 07:52:04 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.03.0-ce
+ API version:  1.26 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   3a232c8
+ Built:        Tue Feb 28 07:52:04 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+</code></pre>
+<h3 id="常用命令">常用命令</h3>
+<pre><code class="language-shell">#查看 Docker 版本
+docker -v
+sudo docker pull 仓库/镜像:版本（留空的话默认为 latest）
+sudo docker run 加参数，用来创建容器
+#查看运行容器
+sudo docker ps
+#查看所有下载的镜像
+sudo docker images
+#进入容器终端
+sudo docker exec -i -t ha /bin/bash
+#实时查看10行的 ha 日志
+sudo docker logs -f -t --tail 10 ha
+#重启 systemctl 守护进程
+sudo systemctl daemon-reload
+#设置 Docker 开机启动
+sudo systemctl enable docker
+#开启 Docker 服务
+sudo systemctl start docker
+
+#下载 Docker 图形化界面 portainer
+sudo docker pull portainer/portainer
+#创建 portainer 容器
+sudo docker volume create portainer_data
+#运行 portainer
+sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+</code></pre>
+<h3 id="参考资料">参考资料</h3>
+<p>其他关于旧版本Docker卸载以及测试开发版本Docker安装的帮助，可以参考官方文档的说明进行安装</p>
+<p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">CentOS帮助链接</a><br>
+<a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Ubuntu帮助链接</a><br>
+<a href="https://docs.docker.com/engine/installation/linux/docker-ce/debian/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Debian帮助链接</a><br>
+<a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Fedora帮助链接</a></p>
+<p>转自：<a href="https://developer.aliyun.com/article/110806">阿里云开发社区</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[腾讯视频自动签到获得V力值]]></title>
+        <id>https://imcm.xyz/qcloud-v/</id>
+        <link href="https://imcm.xyz/qcloud-v/">
+        </link>
+        <updated>2020-08-16T15:27:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>本教程需要用到腾讯云的云函数SCF。没有腾讯云账户的请先申请账户，注册<a href="https://cloud.tencent.com/act/cps/redirect-all?redirect=10135&amp;opc_hash_key=XG7JfqCPIb8b1609">腾讯云</a>。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本教程需要用到腾讯云的云函数SCF。没有腾讯云账户的请先申请账户，注册<a href="https://cloud.tencent.com/act/cps/redirect-all?redirect=10135&amp;opc_hash_key=XG7JfqCPIb8b1609">腾讯云</a>。</p>
+<!-- more -->
+<h3 id="1-浏览器打开腾讯视频官网">1. 浏览器打开腾讯视频官网：</h3>
+<p>https://v.qq.com/<br>
+登录VIP账号</p>
+<h3 id="2-vip账号登录成功后打开另一个地址">2. VIP账号登录成功后，打开另一个地址：</h3>
+<p>https://vip.video.qq.com/fcgi-bin/comm_cgi?name=hierarchical_task_system&amp;cmd=2<br>
+（没错这个就是签到地址。APP抓出来的。）</p>
+<h3 id="3-在第二个地址按下快捷键ctrlshiftj">3. 在第二个地址，按下快捷键：CTRL+SHIFT+J</h3>
+<p>在&gt;后面输入：</p>
+<pre><code>document.cookie
+</code></pre>
+<p>回车，复制【引号里】的内容（脚本要用的cookies）：</p>
+<p>用qq或者微信登录<a href="https://console.cloud.tencent.com/scf">腾讯云scf</a>(无服务器云函数)</p>
+<p>函数服务=》（选择区域，上海，广州，成都，香港，北京）<br>
+=》新建=》空白函数=》函数名称（随便写，比如txsp_qiandao）=》运行环境（python3.6）=》下一步</p>
+<p>复制下面代码：</p>
+<pre><code class="language-python"># -*- coding: utf8 -*-
+ 
+import requests
+import re
+import time
+from urllib.parse import quote
+ 
+def start():
+    try:
+        s = requests.session()
+ 
+        cookie1 = 'TXSP_COOKIE'
+ 
+        this_time = int(round(time.time() * 1000))
+ 
+        login_url = 'https://vip.video.qq.com/fcgi-bin/comm_cgi?name=hierarchical_task_system&amp;cmd=2&amp;_=' + str(this_time)
+ 
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.204 Safari/537.36',
+            'Cookie': cookie1
+        }
+ 
+        res =s.get(login_url,headers=headers).text
+ 
+        print('访问结果：'+res)
+ 
+        if 'Account Verify Error' in res:
+            print('cookies失效，通知SERVER酱！')
+            requests.get('https://sc.ftqq.com/SCKEY.send?text=' + quote('腾讯视频自动签到失败~'+time.strftime('%Y.%m.%d',time.localtime(time.time()))) +'&amp;desp='+quote('cookies失效，请更新！\n'))
+        else:
+            print('签到完成')
+ 
+    except Exception as e:
+        print(&quot;地址访问失败，通知SERVER酱！&quot;)
+        requests.get('https://sc.ftqq.com/SCKEY.send?text=' + quote('腾讯视频自动签到失败~'+time.strftime('%Y.%m.%d',time.localtime(time.time()))) +'&amp;desp='+quote('异常代码：\n'+str(e)))
+ 
+ 
+def main_handler(event, context):
+    return start()
+ 
+ 
+if __name__ == '__main__':
+    start()
+</code></pre>
+<p>代码需要修改的地方3处，</p>
+<ul>
+<li>TXSP_COOKIE （一处，刚才获取的cookies字符串）</li>
+<li>https://sc.ftqq.com/XXXX.send （两处，server酱的地址，申请地址：http://sc.ftqq.com/）</li>
+</ul>
+<p>完成。</p>
+<h3 id="4-触发方式定时触发-名称txsp_timer-自定义触发周期0-0-3-保存">4. 触发方式=》定时触发 / 名称：txsp_timer / 自定义触发周期（0 0 3 * * * *）保存</h3>
+<h3 id="5-函数代码测试如果日志显示checkin_score-5这个5就是获得的v力值签到过也会有中文提示">5. 函数代码=》测试（如果日志显示”checkin_score”: 5，这个5就是获得的V力值，签到过也会有中文提示）</h3>
+<h3 id="其他说明">其他说明</h3>
+<h4 id="1-如果日志里提示">1. 如果日志里提示：</h4>
+<p>{“msg”:”Account Verify Error”,”ret”:-10006}说明COOKIES获取错误。</p>
+<h4 id="2-cookie能用多久还不知道反正我挂了40多天了-验证失败了也会微信通知更新下cookies就行">2. COOKIE能用多久还不知道，，反正我挂了40多天了。。。验证失败了，也会微信通知，更新下COOKIES就行。</h4>
+<h4 id="3签到分数不保证-现在大多是10分左右偶尔50分-这个腾讯的锅~就当腾讯云函数来背吧~">3.签到分数不保证。。现在大多是10分左右，偶尔50分+。。。这个腾讯的锅~<s>就当腾讯云函数来背吧</s>~</h4>
+<p>来源(Source)：<a href="https://lsdlhlx.top/2019/10/%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E8%8E%B7%E5%BE%97v%E5%8A%9B%E5%80%BC/">西瓜小窝</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ECMAScript 2015～2020 语法思维导图]]></title>
+        <id>https://imcm.xyz/ecmascript/</id>
+        <link href="https://imcm.xyz/ecmascript/">
+        </link>
+        <updated>2020-08-14T11:52:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>ECMAScript 2015～2020 思维导图</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>ECMAScript 2015～2020 思维导图</p>
+<!-- more -->
+<p><img src="https://imcm.xyz/post-images/1597377198390.jpg" alt="" loading="lazy"><br>
+<img src="https://imcm.xyz/post-images/1597377288128.jpg" alt="" loading="lazy"></p>
+<p>转自：<a href="http://es.xiecheng.live/">XieCheng</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LinuxVPS 自建ZeroTier 的MOON根目录服务器]]></title>
         <id>https://imcm.xyz/linux-zerotier-moon/</id>
@@ -593,1376 +1373,6 @@ WantedBy=multi-user.target
 <p>1、启动顺序取决于他们的依赖关系。如果是依赖于网络的服务，应当在引导过程中尽可能晚一点启动。<br>
 使用 man systemctl 命令或访问 https://fedoramagazine.org/what-is-an-init-system/ 了解更多。</p>
 <p>本文转自：<a href="https://shumeipai.nxez.com/2020/06/30/linux-usage-systemd.html">树莓派实验室</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Mac 下安装 NVM]]></title>
-        <id>https://imcm.xyz/mac-nvm/</id>
-        <link href="https://imcm.xyz/mac-nvm/">
-        </link>
-        <updated>2020-07-13T13:55:31.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="1-安装命令行工具">1. 安装命令行工具</h2>
-<p>你需要在 Mac 下安装苹果系统的命令行工具，你可以通过两个方法来安装，第一是在 App Store 上搜索 XCode 进行安装（推荐）；第二是通过以下命令来安装命令行工具：</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="1-安装命令行工具">1. 安装命令行工具</h2>
-<p>你需要在 Mac 下安装苹果系统的命令行工具，你可以通过两个方法来安装，第一是在 App Store 上搜索 XCode 进行安装（推荐）；第二是通过以下命令来安装命令行工具：</p>
-<!-- more -->
-<pre><code class="language-shell">$ xcode-select --install
-</code></pre>
-<blockquote>
-<p>如果你使用第一种方法安装 XCode 来安装命令行工具，你需要至少启动一次 XCode ，接受了苹果的软件使用协议后，才能正常使用。</p>
-</blockquote>
-<h2 id="2-安装-nvm">2. 安装 NVM</h2>
-<p>安装完成命令行工具后，即可通过以下命令来安装 nvm：</p>
-<pre><code class="language-shell">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-</code></pre>
-<p>或者你也可以选择手动安装 NVM，首先你把项目 <code>https://github.com/creationix/nvm</code> clone 到本地文件夹 <code>~/.nvm</code> ，然后将以下两行代码加到你的启动脚本中 (<code>~/.bash_profile</code>, <code>~/.zshrc</code>, <code>~/.profile</code>, 或者 <code>~/.bashrc</code>)：</p>
-<pre><code class="language-shell">export NVM_DIR=&quot;$HOME/.nvm&quot;
-[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm
-</code></pre>
-<p>其实，以上的 <code>install.sh</code> 脚本也是这样操作的，<a href="https://github.com/creationix/nvm#manual-install">详见这里</a>。</p>
-<p>NVM 安装后，你需要重启你的命令行会话，或者重新打开一个命令行窗口。</p>
-<h2 id="3-测试一下">3. 测试一下</h2>
-<p>命令行下测试：</p>
-<pre><code class="language-shell">$ nvm --version
-</code></pre>
-<p>会输出：</p>
-<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1594260048253.png" alt="" loading="lazy"></figure>
-<h2 id="4-nvm-的基本使用">4. NVM 的基本使用</h2>
-<p>查看本地所有可以用的 Node.js 版本：</p>
-<pre><code class="language-shell">$ nvm list
-</code></pre>
-<p>查看服务器端可用的 Node.js 版本：</p>
-<pre><code class="language-shell">$ nvm ls-remote
-</code></pre>
-<p>推荐使用 8.* LTS 版本 (长久维护版本) ，使用以下命令安装:</p>
-<pre><code class="language-shell">$ nvm install 8.11.2
-</code></pre>
-<p>设置默认版本：</p>
-<pre><code class="language-shell">$ nvm use 8.11.2
-$ nvm alias default 8.11.2
-</code></pre>
-<p>检查 Node.js 的版本：</p>
-<pre><code class="language-shell">$ node -v
-</code></pre>
-<p>你应该能看到如下：</p>
-<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1594260041310.png" alt="" loading="lazy"></figure>
-<p>使用淘宝进行加速 NPM ：</p>
-<pre><code class="language-shell">$ npm config set registry=https://registry.npm.taobao.org
-</code></pre>
-<p>使用以下命令将 NPM 更新到最新：</p>
-<pre><code class="language-shell">$ npm install -g npm
-</code></pre>
-<p>更新后使用以下命令检测版本：</p>
-<pre><code class="language-shell">$ npm -v
-</code></pre>
-<p>至此安装完成。</p>
-<p>本文章转载于 <a href="https://learnku.com/docs/environment-setup/install-nvm-under-mac/3132">LearnKu.com</a> 网站。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Github 的 Restful HTTP API 设计分解]]></title>
-        <id>https://imcm.xyz/github-restful-api/</id>
-        <link href="https://imcm.xyz/github-restful-api/">
-        </link>
-        <updated>2020-07-10T12:23:41.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="什么是-restful">什么是 RESTful</h2>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="什么是-restful">什么是 RESTful</h2>
-<!-- more -->
-<p>RESTful 是一种软件设计风格，由 <a href="http://roy.gbiv.com/">Roy Fielding</a> 在他的 <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">论文</a> 中提出，全称为 <code>Representational State Transfer</code>，直译为<code>表现层状态转移</code>，或许可以解释为<code>用 URL 定位资源，用 HTTP 动词描述操作</code>，不用太纠结于定义，接下来我们会详细讨论。</p>
-<p>RESTful 风格的接口，目前来看，实现的最好的就是 <a href="https://developer.github.com/v3/">Github API</a>，经常被效仿。接下来我们通过分析 Github API 来引出我们的 API 设计原则。</p>
-<h2 id="为什么选择-restful">为什么选择 RESTful</h2>
-<p>我认为一套接口应该尽量满足以下几个原则：</p>
-<ul>
-<li>安全可靠，高效，易扩展。</li>
-<li>简单明了，可读性强，没有歧义。</li>
-<li>API 风格统一，调用规则，传入参数和返回数据有统一的标准。</li>
-</ul>
-<p>我们当然可以根据自己的经验，或者参考知名公司的接口总结设计出一套满足要求的接口，但是每个人对接口的理解不同，设计出来的接口也会有所不同，接口的命名，请求参数的格式，响应的结果，错误响应的错误码，等等很多地方都会有不一样的实现。当你去寻求一种设计理念来帮助我们设计出满足要求的接口，一定会发现 RESTful。<br>
-RESTful 的设计理念基于 HTTP 协议，因为 <a href="http://roy.gbiv.com/">Roy Fielding</a> 就是 HTTP 协议（1.0 版和 1.1 版）的主要设计者。它是一种设计风格，没有规定我们一定如何实现，但是为我们提供了很好的设计理念。风格的统一，使得我们不需要过多的解释，就能让使用者明白该如何使用，同时也会有很多现成的工具来帮助我们实现 RESTful 风格的接口。</p>
-<h2 id="restful-设计原则">RESTful 设计原则</h2>
-<h3 id="1-https">1. HTTPS</h3>
-<p>HTTPS 为接口的安全提供了保障，可以有效防止通信被窃听和篡改。而且现在部署 HTTPS 的成本也越来越低，你可以通过 certbot 等工具，方便快速的制作免费的安全证书，所以生产环境，请务必使用 HTTPS。</p>
-<blockquote>
-<p>另外注意，非 HTTPS 的 API 调用，不要重定向到 HTTPS，而要直接返回调用错误以禁止不安全的调用。</p>
-</blockquote>
-<h3 id="2-域名">2. 域名</h3>
-<p>应当尽可能的将 API 与其主域名区分开，可以使用专用的域名，访问我们的 API，例如：</p>
-<pre><code>https://api.larabbs.com
-</code></pre>
-<p>或者可以放在主域名下，例如：</p>
-<pre><code>https://www.larabbs.com/api
-</code></pre>
-<h3 id="3-版本控制">3. 版本控制</h3>
-<p>随着业务的发展，需求的不断变化，API 的迭代是必然的，很可能当前版本正在使用，而我们就得开发甚至上线一个不兼容的新版本，为了让旧用户可以正常使用，为了保证开发的顺利进行，我们需要控制好 API 的版本。</p>
-<p>通常情况下，有两种做法：</p>
-<ul>
-<li>将版本号直接加入 URL 中<pre><code>https://api.larabbs.com/v1
-https://api.larabbs.com/v2
-</code></pre>
-</li>
-<li>使用 HTTP 请求头的 Accept 字段进行区分<pre><code>https://api.larabbs.com/
-    Accept: application/prs.larabbs.v1+json
-    Accept: application/prs.larabbs.v2+json
-</code></pre>
-</li>
-</ul>
-<p>Github Api 虽然默认使用了第一种方法，但是其实是推荐并实现了第二种方法的，我们同样也尽量使用第二种方式。</p>
-<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1594115088167.png" alt="current verson" loading="lazy"></figure>
-<h3 id="4-用-url-定位资源">4.  用 URL 定位资源</h3>
-<p>在 RESTful 的架构中，所有的一切都表示资源，每一个 URL 都代表着一种资源，资源应当是一个名词，而且大部分情况下是名词的复数，尽量不要在 URL 中出现动词。<br>
-先来看看 github 的 <a href="https://developer.github.com/v3/issues/comments/">例子</a>：</p>
-<pre><code>GET /issues                                      列出所有的 issue
-GET /orgs/:org/issues                            列出某个项目的 issue
-GET /repos/:owner/:repo/issues/:number           获取某个项目的某个 issue
-POST /repos/:owner/:repo/issues                  为某个项目创建 issue
-PATCH /repos/:owner/:repo/issues/:number         修改某个 issue
-PUT /repos/:owner/:repo/issues/:number/lock      锁住某个 issue
-DELETE /repos/:owner/:repo/issues/:number/lock   解锁某个 issue
-</code></pre>
-<blockquote>
-<p>例子中冒号开始的代表变量，例如 /repos/summerblue/larabbs/issues</p>
-</blockquote>
-<p>在 github 的实现中，我们可以总结出：</p>
-<ul>
-<li>资源的设计可以嵌套，表明资源与资源之间的关系。</li>
-<li>大部分情况下我们访问的是某个资源集合，想得到单个资源可以通过资源的 id 或 number 等唯一标识获取。</li>
-<li>某些情况下，资源会是单数形式，例如某个项目某个 issue 的锁，每个 issue 只会有一把锁，所以它是单数。</li>
-</ul>
-<p>错误的例子</p>
-<pre><code>POST https://api.larabbs.com/createTopic
-GET https://api.larabbs.com/topic/show/1
-POST https://api.larabbs.com/topics/1/comments/create
-POST https://api.larabbs.com/topics/1/comments/100/delete
-</code></pre>
-<p>正确的例子</p>
-<pre><code>POST https://api.larabbs.com/topics
-GET https://api.larabbs.com/topics/1
-POST https://api.larabbs.com/topics/1/comments
-DELETE https://api.larabbs.com/topics/1/comments/100
-</code></pre>
-<h3 id="5-用-http-动词描述操作">5. 用 HTTP 动词描述操作</h3>
-<p>HTTP 设计了很多动词，来表示不同的操作，RESTful 很好的利用的这一点，我们需要正确的使用 HTTP 动词，来表明我们要如何操作资源。<br>
-先来解释一个概念，<code>幂等性</code>，指一次和多次请求某一个资源应该具有同样的副作用，也就是一次访问与多次访问，对这个资源带来的变化是相同的。</p>
-<p>常用的动词及幂等性</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">动词</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">是否幂等</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">GET</td>
-<td style="text-align:left">获取资源，单个或多个</td>
-<td style="text-align:left">是</td>
-</tr>
-<tr>
-<td style="text-align:left">POST</td>
-<td style="text-align:left">创建资源</td>
-<td style="text-align:left">否</td>
-</tr>
-<tr>
-<td style="text-align:left">PUT</td>
-<td style="text-align:left">更新资源，客户端提供完整的资源数据</td>
-<td style="text-align:left">是</td>
-</tr>
-<tr>
-<td style="text-align:left">PATCH</td>
-<td style="text-align:left">更新资源，客户端提供部分的资源数据</td>
-<td style="text-align:left">否</td>
-</tr>
-<tr>
-<td style="text-align:left">DELETE</td>
-<td style="text-align:left">删除资源</td>
-<td style="text-align:left">是</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>为什么 PUT 是幂等的而 PATCH 是非幂等的，因为 PUT 是根据客户端提供了完整的资源数据，客户端提交什么就替换什么，而 PATCH 有可能是根据客户端提供的参数，动态的计算出某个值，例如每次请求后资源的某个参数减 1，所以多次调用，资源会有不同的变化。</p>
-</blockquote>
-<p>另外需要注意的是，GET 请求对于资源来说是安全的，不允许通过 GET 请求改变（更新或创建）资源，但是真实使用中，为了方便统计类的数据，会有一些例外情况，例如帖子详情，记录访问次数，每调用一次，访问次数 +1;</p>
-<h3 id="6-资源过滤">6. 资源过滤</h3>
-<p>我们需要提供合理的参数供客户端过滤资源，例如</p>
-<pre><code>?state=closed: 不同状态的资源
-?page=2&amp;per_page=100：访问第几页数据，每页多少条。
-?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。
-</code></pre>
-<h3 id="7-正确使用状态码">7. 正确使用状态码</h3>
-<p>HTTP 提供了丰富的状态码供我们使用，正确的使用状态码可以让响应数据更具可读性。</p>
-<ul>
-<li>200 OK - 对成功的 GET、PUT、PATCH 或 DELETE 操作进行响应。也可以被用在不创建新资源的 - POST 操作上</li>
-<li>201 Created - 对创建新资源的 POST 操作进行响应。应该带着指向新资源地址的 Location 头</li>
-<li>202 Accepted - 服务器接受了请求，但是还未处理，响应中应该包含相应的指示信息，告诉客户端该去哪里查询关于本次请求的信息</li>
-<li>204 No Content - 对不会返回响应体的成功请求进行响应（比如 DELETE 请求）</li>
-<li>304 Not Modified - HTTP 缓存 header 生效的时候用</li>
-<li>400 Bad Request - 请求异常，比如请求中的 body 无法解析</li>
-<li>401 Unauthorized - 没有进行认证或者认证非法</li>
-<li>403 Forbidden - 服务器已经理解请求，但是拒绝执行它</li>
-<li>404 Not Found - 请求一个不存在的资源</li>
-<li>405 Method Not Allowed - 所请求的 HTTP 方法不允许当前认证用户访问</li>
-<li>410 Gone - 表示当前请求的资源不再可用。当调用老版本 API 的时候很有用</li>
-<li>415 Unsupported Media Type - 如果请求中的内容类型是错误的</li>
-<li>422 Unprocessable Entity - 用来表示校验错误</li>
-<li>429 Too Many Requests - 由于请求频次达到上限而被拒绝访问</li>
-</ul>
-<h4 id="8-数据响应格式">8. 数据响应格式</h4>
-<p>考虑到响应数据的可读性及通用性，默认使用 JSON 作为数据响应格式。如果客户端有需求使用其他的响应格式，例如 XML，需要在 Accept 头中指定需要的格式。</p>
-<pre><code>https://api.larabbs.com/
-    Accept: application/prs.larabbs.v1+json
-    Accept: application/prs.larabbs.v1+xml
-</code></pre>
-<p>对于错误数据，默认使用如下结构：</p>
-<pre><code>'message' =&gt; ':message',          // 错误的具体描述
-'errors' =&gt; ':errors',            // 参数的具体错误描述，422 等状态提供
-'code' =&gt; ':code',                // 自定义的异常码
-'status_code' =&gt; ':status_code',  // http状态码
-'debug' =&gt; ':debug',              // debug 信息，非生产环境提供
-</code></pre>
-<p>例如</p>
-<pre><code>{
-    &quot;message&quot;: &quot;422 Unprocessable Entity&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;姓名 必须为字符串。&quot;
-        ]
-    },
-    &quot;status_code&quot;: 422
-}
-</code></pre>
-<pre><code>{
-    &quot;message&quot;: &quot;您无权访问该订单&quot;,
-    &quot;status_code&quot;: 403
-}
-</code></pre>
-<h3 id="9-调用频率限制">9. 调用频率限制</h3>
-<p>为了防止服务器被攻击，减少服务器压力，需要对接口进行合适的限流控制，需要在响应头信息中加入合适的信息，告知客户端当前的限流情况</p>
-<ul>
-<li>X-RateLimit-Limit :100 最大访问次数</li>
-<li>X-RateLimit-Remaining :93 剩余的访问次数</li>
-<li>X-RateLimit-Reset :1513784506 到该时间点，访问次数会重置为 <code>X-RateLimit-Limit</code><br>
-超过限流次数后，需要返回 <code>429 Too Many Requests</code> 错误。</li>
-</ul>
-<h3 id="10-编写文档">10. 编写文档</h3>
-<p>为了方便用户使用，我们需要提供清晰的文档，尽可能包括以下几点</p>
-<ul>
-<li>包括每个接口的请求参数，每个参数的类型限制，是否必填，可选的值等。</li>
-<li>响应结果的例子说明，包括响应结果中，每个参数的释义。</li>
-<li>对于某一类接口，需要有尽量详细的文字说明，比如针对一些特定场景，接口应该如何调用。</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[RESTful API 路由设计的最佳实践]]></title>
-        <id>https://imcm.xyz/restful-api/</id>
-        <link href="https://imcm.xyz/restful-api/">
-        </link>
-        <updated>2020-07-06T11:00:07.000Z</updated>
-        <summary type="html"><![CDATA[<p>RESTful API = Http Method（动词，描述资源操作类型） + URI(名词+属性，描述资源的层级和位置)</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>RESTful API = Http Method（动词，描述资源操作类型） + URI(名词+属性，描述资源的层级和位置)</p>
-<!-- more -->
-<h2 id="写在前面">写在前面</h2>
-<p>因为内容本身是一些规范约束性的理论，或许不会短时间内就能对日常开发工作有明显的促进作用，生搬硬套一些规则，为了使用而使用，可能反而会给自己的开发过程造成约束，影响效率。</p>
-<p>所以，不妨各抒己见，来讨论一番。</p>
-<h3 id="特别说明">特别说明</h3>
-<p>文章主体内容摘选自：<a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a>，侵删。</p>
-<h2 id="rest-是什么">REST 是什么？</h2>
-<blockquote>
-<p>表现层状态转换（英语：Representational State Transfer，缩写：REST）是 Roy Thomas Fielding 博士于 2000 年在他的博士论文 [1] 中提出来的一种万维网软件架构风格，目的是便于不同软件 / 程序在网络（例如互联网）中互相传递信息。表现层状态转换是根基于超文本传输协议（HTTP）之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。 —— 来源于自由的 WIKI 百科『<a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">表现层状态转换</a>』</p>
-</blockquote>
-<h4 id="tips">Tips:</h4>
-<p>由此可见，REST 只是一种「软件架构风格」，不是多么玄乎的东西，设计出来的目的是为了方便应用程序之间互相传递信息。通常说的 RESTful API 就是表明应用系统中 API 的架构设计符合 REST 规范，遵守这种规范某种程度上可以说明应用系统的架构设计优秀。</p>
-<p>近些年实际上出现了另外一种 API 设计风格 GraphQL 已经趋于成熟，各种编程语言的支持逐渐出现，也可以感受下『<a href="https://segmentfault.com/a/1190000018849004">为什么 GraphQL 是 API 的未来</a>』（规范的成熟不等同于实际项目中就可以直接落地使用，技术选型前要有自己的判断，预估一下未来能够投入的时间和人力成本，不要受网文推广的影响）</p>
-<h2 id="使用-http-动词表示一些含义">使用 HTTP 动词表示一些含义</h2>
-<p>任何 API 的使用者能够发送 GET、POST、PUT 和 DELETE 请求，它们很大程度明确了所给请求的目的。</p>
-<p>同时，GET 请求不能改变任何潜在的资源数据。测量和跟踪仍可能发生，但只会更新数据而不会更新由 URI 标识的资源数据。</p>
-<h3 id="合理的资源名">合理的资源名</h3>
-<p>合理的资源名称或者路径（如 /posts/23 而不是 /api?type=posts&amp;id=23）可以更明确一个请求的目的。</p>
-<p>使用 URL 查询串来过滤数据是很好的方式，但不应该用于定位资源名称。</p>
-<p>适当的资源名称为服务端请求提供上下文，增加服务端 API 的可理解性。</p>
-<p>通过 URI 名称分层地查看资源，可以给使用者提供一个友好的、容易理解的资源层次，以在他们的应用程序上应用。</p>
-<p><strong>资源名称应该是名词，避免为动词。使用 HTTP 方法来指定请求的动作部分，能让事情更加的清晰。</strong></p>
-<p><strong>Tips</strong>: 相关名词解释和理解</p>
-<p><strong>URL</strong>：<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6">统一资源定位符</a>（英语：Uniform Resource Locator，缩写：URL；或称统一资源定位器、定位地址、URL 地址 [1]，俗称网页地址或简称网址）是因特网上标准的资源的地址（Address），如同在网络上的门牌。—— 来自维基百科）</p>
-<p><strong>URI</strong>：<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E6%A0%87%E5%BF%97%E7%AC%A6">统一资源标识符</a>（英语：Uniform Resource Identifier，缩写：URI）—— 来自维基百科</p>
-<p>应用到 RESTful API 的路由设计中：</p>
-<p>API URL = Http Method（动词，描述对资源操作的类型 CRUD） + URI（Uniform Resource Identifier）（可以类比文件路径，体现资源层级以及描述资源位置）</p>
-<p>也就是在 API 的 URL 应该是用来描述去哪个位置找到资源，然后通过 Http Method 描述对资源进行怎样的操作，这样路由设计就清晰了</p>
-<p>至于 URI 如何定义，你可以类比平时是如何在磁盘中进行分类管理文件的，或许就思路清晰了。</p>
-<h3 id="相关定义">相关定义</h3>
-<p>我们一起简单过一下与 REST 有关的定义。</p>
-<h4 id="幂等性">幂等性</h4>
-<p>下面是来自维基百科的解释：</p>
-<blockquote>
-<p>在计算机科学中，术语幂等用于更全面地描述一个操作，一次或多次执行该操作产生的结果是一致的。根据应用的上下文，这可能有不同的含义。例如，在方法或者子例程调用具有副作用的情况下，意味着在第一调用之后被修改的状态也保持不变。</p>
-</blockquote>
-<p>从 REST 服务端的角度来看，由于操作（或服务端调用）是幂等的，客户端可以用重复的调用而产生<strong>相同的结果</strong>。注意，当幂等操作在服务器上产生相同的结果（副作用），响应本身可能是不同的（例如在多个请求之间，资源的状态可能会改变）。</p>
-<p>PUT 和 DELETE 方 法被定义为是幂等的。GET、HEAD、OPTIO 和 TRACE 方法自从被定义为安全的方法后，也被定义为幂等的。</p>
-<h4 id="安全">安全</h4>
-<p>来自维基百科：</p>
-<blockquote>
-<p>一些方法（例如 GET、HEAD、OPTIONS 和 TRACE）被定义为安全的方法，这意味着它们仅被用于信息检索，而不能更改服务器的状态。换句话说，它们不会有副作用，除了相对来说无害的影响如日志、缓存、横幅广告或计数服务等。任意的 GET 请求，不考虑应用状态的上下文，都被认为是安全的。</p>
-</blockquote>
-<p>总之，<strong>安全</strong>意味着调用的方法不会引起<strong>副作用</strong>。因此，客户端可以反复使用安全的请求而不用担心对服务端产生任何副作用。这意味着服务端必须遵守 GET、HEAD、OPTIONS 和 TRACE 操作的安全定义。否则，除了对客户端产生混淆外，它还会导致 Web 缓存，搜索引擎以及其它自动代理的问题 —— 这将在服务器上产生意想不到的后果。</p>
-<p>根据定义，安全操作是幂等的，因为它们在服务器上产生相同的结果。</p>
-<p>安全的方法被实现为<strong>只读</strong>操作。然而，安全并不意味着服务器必须每次都返回相同的响应。</p>
-<h3 id="http-动词-方法">Http 动词 / 方法</h3>
-<p>Http 动词主要遵循 “统一接口” 规则，并提供给我们对应的<strong>基于名词的资源</strong>的动作。</p>
-<p>最主要或者最常用的 http 动词（或者称之为方法，这样称呼可能更恰当些）有 POST、GET、PUT 和 DELETE。这些分别对应于创建、读取、更新和删除 (CRUD) 操作。</p>
-<p>也有许多其它的动词，但是使用频率比较低。在这些使用较少的方法中，OPTIONS 和 HEAD 往往使用得更多。</p>
-<h4 id="get">GET</h4>
-<p>HTTP 的 GET 方法用于**检索（或读取）**资源的数据。</p>
-<p>在正确的请求路径下，GET 方法会返回一个 xml 或者 json 格式的数据，以及一个 200 的 HTTP 响应代码（表示正确返回结果）。在错误情况下，它通常返回 404（不存在）或 400（错误的请求）。</p>
-<p>例如：</p>
-<pre><code>GET http://www.example.com/customers/12345
-GET http://www.example.com/customers/12345/orders
-GET http://www.example.com/buckets/sample
-</code></pre>
-<p>按照 HTTP 的设计规范，GET（以及附带的 HEAD）请求仅用于读取数据而不改变数据。因此，这种使用方式被认为是安全的。</p>
-<p>也就是说，它们的调用<strong>没有数据修改或污染的风险</strong> —— 调用 1 次和调用 10 次或者没有被调用的效果一样。</p>
-<p>此外，GET（以及 HEAD）是<strong>幂等</strong>的，这意味着使用多个相同的请求与使用单个的请求最终都拥有相同的结果。</p>
-<p>不要通过 GET 暴露不安全的操作 —— 它应该永远都不能修改服务器上的任何资源。</p>
-<h4 id="put">PUT</h4>
-<p>PUT 通常被用于<strong>更新</strong>资源。</p>
-<p>通过 PUT 请求一个已知的资源 URI 时，需要在<strong>请求的 body</strong> 中包含对原始资源的更新数据。</p>
-<p>不过，在资源 ID 是由客户端而非服务端提供的情况下，PUT 同样可以被用来创建资源。换句话说，如果 PUT 请求的 URI 中包含的资源 ID 值在服务器上不存在，则用于创建资源。同时请求的 body 中必须包含要创建的资源的数据。有人觉得这会产生歧义，所以除非真的需要，使用这种方法来创建资源应该被慎用。</p>
-<p>或者我们也可以在 body 中提供由客户端定义的资源 ID 然后使用 POST 来创建新的资源 —— 假设请求的 URI 中不包含要创建的资源 ID（参见下面 POST 的部分)。</p>
-<p>例如：</p>
-<pre><code>PUT http://www.example.com/customers/12345　
-PUT http://www.example.com/customers/12345/orders/98765
-PUT http://www.example.com/buckets/secret_stuff
-</code></pre>
-<p>当使用 PUT 操作更新成功时，会返回 200（或者返回 204，表示返回的 body 中不包含任何内容）。如果使用 PUT 请求创建资源，成功返回的 HTTP 状态码是 201。</p>
-<p>响应的 body 是可选的 —— 如果提供的话将会消耗更多的带宽。在创建资源时没有必要通过头部的位置返回链接，因为客户端已经设置了资源 ID。</p>
-<p>PUT <strong>不是一个安全的操作</strong>，因为它会修改（或创建）服务器上的状态，但它是<strong>幂等</strong>的。换句话说，如果你使用 PUT 创建或者更新资源，然后重复调用，资源仍然存在并且状态不会发生变化。</p>
-<p>但是，如果在资源<strong>增量计数器</strong>中调用 PUT，那么这个调用方法就不再是幂等的。这种情况有时候会发生，且可能足以证明它是非幂等性的。不过，建议保持 PUT 请求的幂等性。并<strong>强烈建议非幂等性的请求</strong>使用 POST。</p>
-<p><strong>Tips</strong>: 为什么 PUT 是幂等？</p>
-<p>比如，你第一次请求更新订单状态为配送中，第二次请求如果不加校验，让请求处理成功，订单也是被更新成了配送中的状态。两次请求得到的结果相同，都是将订单更新成了配送中的状态。（要理解结果相同和响应不一定相同这一点，多次请求对资源造成的结果相同就被定义成幂等）</p>
-<h4 id="post">POST</h4>
-<p>POST 请求经常被用于<strong>创建</strong>新的资源，特别是被用来<strong>创建从属资源</strong>。从属资源即归属于其它资源（如父资源）的资源。换句话说，当创建一个新资源时，POST 请求发送给父资源，服务端负责将新资源与父资源进行关联，并分配一个 ID（新资源的 URI），等等。</p>
-<p>例如：</p>
-<pre><code>POST &lt;http://www.example.com/customers
-POST &lt;http://www.example.com/customers/12345/orders
-</code></pre>
-<p>当创建成功时，返回 HTTP 状态码 201，并附带一个位置头（Location:xxx）信息，其中带有指向最先创建的资源的链接。</p>
-<p>POST 请求<strong>既不是安全的又不是幂等</strong>的，因此它被定义为非幂等性资源请求。</p>
-<p>使用两个相同的 POST 请求很可能会导致创建两个包含相同信息的资源。</p>
-<p><strong>Tips</strong>: 非幂等操作在实际项目中需要考虑的点</p>
-<p>在实际项目开发中遇到这种请求需要考虑并发情况，解决思路参考：前端增加校验，比如创建按钮禁用，不允许短时间内连续操作，必须等待后端返回成功后才能继续下一次创建操作；后端增加「业务锁」处理前端发送过来的请求前加锁，等业务处理完以后释放锁。</p>
-<h4 id="put-和-post-的创建比较">PUT 和 POST 的创建比较</h4>
-<p>总之，我们建议使用 POST 来创建资源。当由客户端来决定新资源具有哪些 URI（通过资源名称或 ID）时，使用 PUT：即如果客户端知道 URI（或资源 ID）是什么，则对该 URI 使用 PUT 请求。否则，当由服务器或服务端来决定创建的资源的 URI 时则使用 POST 请求。换句话说，当客户端在创建之前不知道（或无法知道）结果的 URI 时，使用 POST 请求来创建新的资源。</p>
-<p><strong>Tips:</strong></p>
-<p>可以简单点约定，获取 / 查询资源使用 GET；更新整个资源（相当于替换）使用 PUT；更新资源部分的内容使用 PATCH；删除资源使用 DELETE；创建资源使用 POST，以及非幂等性的请求使用 POST（比如更新资源内部的计数器等）。</p>
-<h4 id="delete">DELETE</h4>
-<p>DELETE 很容易理解。它被用来根据 URI 标识<strong>删除</strong>资源。</p>
-<p>例如：</p>
-<pre><code>DELETE &lt;http://www.example.com/customers/12345
-DELETE &lt;http://www.example.com/customers/12345/orders
-DELETE &lt;http://www.example.com/buckets/sample
-</code></pre>
-<p>当删除成功时，返回 HTTP 状态码 200（表示正确），同时会附带一个响应体 body，body 中可能包含了删除项的数据（这会占用一些网络带宽），或者封装的响应（参见下面的返回值）。也可以返回 HTTP 状态码 204（表示无内容）表示没有响应体。总之，可以返回状态码 204 表示没有响应体，或者返回状态码 200 同时附带 JSON 风格的响应体。</p>
-<p>根据 HTTP 规范，DELETE 操作是<strong>幂等</strong>的。如果你对一个资源进行 DELETE 操作，资源就被移除了。在资源上反复调用 DELETE 最终导致的结果都相同：即资源被移除了。</p>
-<p>但如果将 DELETE 的操作用于<strong>计数器</strong>（资源内部），则 DETELE 将不再是幂等的。如前面所述，只要数据没有被更新，统计和测量的用法依然可被认为是幂等的。<strong>建议非幂等性的资源请求使用 POST 操作</strong>。</p>
-<p>然而，这里有一个关于 DELETE 幂等性的警告。在一个资源上第二次调用 DELETE 往往会返回 404（未找到），因为该资源已经被移除了，所以找不到了。这使得 DELETE 操作不再是幂等的。如果资源是从数据库中删除而不是被简单地标记为删除，这种情况需要适当妥协。</p>
-<p><strong>Tips</strong>: 如何理解 DELETE 操作被定义为幂等？</p>
-<p>上面讨论的也就是「物理删除」和「软删除」的不同场景要不要都使用 DELETE，因为资源的「物理删除」不是幂等操作，第二次请求操作时资源在第一次就没了，对资源造成的结果不同。</p>
-<p>物理删除，都没有资源了还怎么操作资源，第一次是有操作结果，第二次没有操作结果（都没资源可以操作，哪来的结果？），两次操作结果不同，所以不是幂等</p>
-<p>软删除，第一次删除是更新资源的删除状态为删除，第二次删除即使不加校验，最终也是将资源更新为删除状态。</p>
-<h2 id="资源命名uri">资源命名（URI）</h2>
-<p>除了适当地使用 HTTP 动词，在创建一个可以理解的、易于使用的 Web 服务 API 时，资源命名可以说是最具有争议和最重要的概念。一个好的资源命名，它所对应的 API 看起来更直观并且易于使用。相反，如果命名不好，同样的 API 会让人感觉很笨拙并且难以理解和使用。当你需要为你的新 API 创建资源 URL 时，这里有一些小技巧值得借鉴。</p>
-<p>从本质上讲，一个 RESTFul API 最终都可以被简单地看作是一堆 URI 的集合，HTTP 调用这些 URI 以及一些用 JSON 和（或）XML 表示的资源，它们中有许多包含了相互关联的链接。RESTful 的可寻址能力主要依靠 URI。每个资源都有自己的地址或 URI—— 服务器能提供的每一个有用的信息都可以作为资源来公开。统一接口的原则部分地通过 URI 和 HTTP 动词的组合来解决，并符合使用标准和约定。</p>
-<p>在决定你系统中要使用的资源时，<strong>使用名词来命名这些资源，而不是用动词或动作来命名</strong>。换句话说，一个 RESTful URI 应该<strong>关联到一个具体的资源，而不是关联到一个动作</strong>。另外，名词还具有一些动词没有的属性，这也是另一个显著的因素。</p>
-<p>一些资源的例子：</p>
-<ul>
-<li>系统的用户</li>
-<li>学生登记的课程</li>
-<li>一个用户帖子的时间轴</li>
-<li>关注其他用户的用户</li>
-<li>一篇关于骑马的文章</li>
-<li></li>
-</ul>
-<p>服务套件中的每个资源至少有一个 URI 来标识。<strong>如果这个 URI 能表示一定的含义并且能够充分描述它所代表的资源，那么它就是一个最好的命名</strong>。</p>
-<p>URI 应该具备<strong>可预测性</strong>和<strong>分层结构</strong>，这将有助于提高它们的可理解性和可用性的：可预测指的是资源应该和名称保持一致；而分层指的是数据具有关系上的结构。这并非 REST 规则或规范，但是它强化了对 API 的定义。</p>
-<p>RESTful API 是提供给消费端（客户端）的，<strong>URI 的名称和结构应该将它所表达的含义传达给消费者</strong>。通常我们很难知道数据的边界是什么，但是从你的数据上你应该很有可能去尝试找到要返回给客户端的数据是什么。<strong>API 是为客户端而设计的，而不是为你的数据</strong>。</p>
-<p>假设我们现在要描述一个包括客户、订单，列表项，产品等功能的订单系统。考虑一下我们该如何来描述在这个服务中所涉及到的资源的 URIs：</p>
-<h3 id="准确的案例">准确的案例✅</h3>
-<p>为了在系统中插入（创建）一个新的用户，我们可以使用：</p>
-<pre><code>POST &lt;http://www.example.com/customers
-</code></pre>
-<p>读取编号为 33245 的用户信息：</p>
-<pre><code>GET &lt;http://www.example.com/customers/33245
-</code></pre>
-<p>使用 PUT 和 DELETE 来请求相同的 URI，可以更新和删除数据。</p>
-<p>下面是对产品相关的 URI 的一些建议：</p>
-<pre><code>POST &lt;http://www.example.com/products
-</code></pre>
-<p>用于创建新的产品。</p>
-<pre><code>GET|PUT|DELETE &lt;http://www.example.com/products/66432
-</code></pre>
-<p>分别用于读取、更新、删除编号为 66432 的产品。</p>
-<p>那么，如何为用户创建一个新的订单呢？</p>
-<p>一种方案是：</p>
-<pre><code>POST &lt;http://www.example.com/orders
-</code></pre>
-<p>这种方式可以用来创建订单，但缺少相应的用户数据。</p>
-<p>因为我们想为用户创建一个订单（注意之间的关系），这个 URI 可能不够直观，下面这个 URI 则更清晰一些：</p>
-<pre><code>POST &lt;http://www.example.com/customers/33245/orders
-</code></pre>
-<p>现在我们知道它是为编号 33245 的用户创建一个订单。（<strong>Tips</strong>: 体现上面提到的 URI 应该具备<strong>分层结构</strong>的特性）</p>
-<p>那下面这个请求返回的是什么呢？（<strong>Tips</strong>: 下面举例体现了 URI 应该具体<strong>可预测</strong>的特性，从 URI 中就可以推断出即将返回的资源数据）</p>
-<pre><code>GET &lt;http://www.example.com/customers/33245/orders
-</code></pre>
-<p>可能是一个编号为 33245 的用户所创建或拥有的订单列表。注意：我们可以屏蔽对该 URI 进行 DELETE 或 PUT 请求，因为它的操作对象是一个集合。</p>
-<p>继续深入，那下面这个 URI 的请求又代表什么呢？</p>
-<pre><code>POST &lt;http://www.example.com/customers/33245/orders/8769/lineitems
-</code></pre>
-<p>可能是（为编号 33245 的用户）增加一个编号为 8769 的订单条目。没错！如果使用 GET 方式请求这个 URI，则会返回这个订单的所有条目。但是，如果这些条目与用户信息无关，我们将会提供<code>POST www.example.com/orders/8769/lineitems</code> 这个 URI。</p>
-<p>从返回的这些条目来看，指定的资源可能会有多个 URIs，所以我们可能也需要要提供这样一个 URI <code>GET &lt;http://www.example.com/orders/8769</code>，用来在不知道用户 ID 的情况下根据订单 ID 来查询订单。&gt;</p>
-<p>更进一步：</p>
-<pre><code>GET &lt;http://www.example.com/customers/33245/orders/8769/lineitems/1
-</code></pre>
-<p>可能只返回同个订单中的第一个条目。</p>
-<p>现在你应该理解什么是分层结构了。它们并不是严格的规则，只是为了确保在你的服务中这些强制的结构能够更容易被用户所理解。与所有软件开发中的技能一样，<strong>命名是成功的关键</strong>。</p>
-<h3 id="错误的案例">错误的案例❌</h3>
-<p>前面我们已经讨论过一些恰当的资源命名的例子，然而有时一些反面的例子也很有教育意义。下面是一些不太具有 RESTful 风格的资源 URIs，看起来比较混乱。这些都是错误的例子！</p>
-<p>首先，一些 serivices 往往使用单一的 URI 来指定服务接口，然后通过查询参数来指定 HTTP 请求的动作。例如，要更新编号 12345 的用户信息，带有 JSON body 的请求可能是这样：</p>
-<pre><code>GET &lt;http://api.example.com/services?op=update_customer&amp;id=12345&amp;format=json
-</code></pre>
-<p>尽管上面 URL 中的”services” 的这个节点是一个名词，但这个 URL 不是<strong>自解释</strong>的，因为对于所有的请求而言，该 URI 的层级结构都是一样的。此外，它使用 GET 作为 HTTP 动词来执行一个更新操作，这简直就是反人类（甚至是危险的）。</p>
-<p>下面是另外一个更新用户的操作的例子：</p>
-<pre><code>GET &lt;http://api.example.com/update_customer/12345
-</code></pre>
-<p>以及它的一个变种：</p>
-<pre><code>GET &lt;http://api.example.com/customers/12345/update
-</code></pre>
-<p>你会经常看到在其他开发者的服务套件中有很多这样的用法。可以看出，这些开发者试图去创建 RESTful 的资源名称，而且已经有了一些进步。但是你仍然能够识别出 URL 中的动词短语。注意，在这个 URL 中我们不需要”update” 这个词，因为我们可以依靠 HTTP 动词来完成操作。下面这个 URL 正好说明了这一点：</p>
-<pre><code>PUT &lt;http://api.example.com/customers/12345/update
-</code></pre>
-<p>这个请求同时存在 PUT 和”update”，这会对消费者产生迷惑！这里的”update” 指的是一个资源吗？因此，这里我们费些口舌也是希望你能够明白……</p>
-<h3 id="是否需要使用复数形式">是否需要使用复数形式？</h3>
-<p>让我们来讨论一下复数和 “单数” 的争议… 还没听说过？但这种争议确实存在，事实上它可以归结为这个问题……</p>
-<p>在你的<strong>层级结构</strong>中 URI 节点是否需要被命名为单数或复数形式呢？举个例子，你用来检索用户资源的 URI 的命名是否需要像下面这样：</p>
-<pre><code>GET &lt;http://www.example.com/customer/33245
-</code></pre>
-<p>或者：</p>
-<pre><code>GET &lt;http://www.example.com/customers/33245
-</code></pre>
-<p>两种方式都没问题，但通常我们都会选择使用复数命名，以使得你的 API URI 在所有的 HTTP 方法中保持一致。原因是基于这样一种考虑：customers 是服务套件中的一个集合，而 ID33245 的这个用户则是这个集合中的其中一个。</p>
-<p>按照这个规则，一个使用复数形式的多节点的 URI 会是这样（注意粗体部分）：</p>
-<pre><code>GET &lt;http://www.example.com/**customers**/33245/**orders**/8769/**lineitems**/1
-</code></pre>
-<p>“customers”、“orders” 以及 “lineitems” 这些 URI 节点都使用的是复数形式。</p>
-<p>这意味着你的每个根资源只需要两个基本的 URL 就可以了，一个用于创建集合内的资源，另一个用来根据标识符获取、更新和删除资源。</p>
-<p>例如，以 customers 为例，创建资源可以使用下面的 URL 进行操作：</p>
-<pre><code>POST &lt;http://www.example.com/customers
-</code></pre>
-<p>而读取、更新和删除资源，使用下面的 URL 操作：</p>
-<pre><code>GET|PUT|DELETE &lt;http://www.example.com/customers/{id}
-</code></pre>
-<p>正如前面提到的，给定的资源可能有多个 URI，但作为一个最小的完整的增删改查功能，利用两个简单的 URI 来处理就够了。</p>
-<p>或许你会问：是否在有些情况下复数没有意义？嗯，事实上是这样的。当没有集合概念的时候（此时复数没有意义）。换句话说，当资源只有一个的情况下，使用单数资源名称也是可以的 —— 即一个单一的资源。</p>
-<p>例如，如果有一个单一的总体配置资源，你可以使用一个单数名称来表示：</p>
-<pre><code>GET|PUT|DELETE &lt;http://www.example.com/configuration
-</code></pre>
-<p>注意这里缺少 configuration 的 ID 以及 HTTP 动词 POST 的用法。假设每个用户有一个配置的话，那么这个 URL 会是这样：</p>
-<pre><code>GET|PUT|DELETE &lt;http://www.example.com/customers/12345/configuration
-</code></pre>
-<p>同样注意这里没有指定 configuration 的 ID，以及没有给定 POST 动词的用法。在这两个例子中，可能也会有人认为使用 POST 是有效的。好吧…</p>
-<h2 id="回顾">回顾</h2>
-<ul>
-<li>
-<p>Http Method 的使用场景<br>
-增：post、put（非幂等）<br>
-删：delete（幂等，类似修改计数器资源时非幂等）<br>
-改：put、patch（幂等，类似修改计数器资源时非幂等）<br>
-查：get、head（幂等）<br>
-其他：connect、options、trace（幂等）</p>
-</li>
-<li>
-<p>使用 PUT 创建 / 更新资源</p>
-</li>
-</ul>
-<p>创建资源：当由客户端来决定新资源具有哪些 URI（通过资源名称或 ID）时，使用 PUT http://www.example.com/article, 请求 body 中 id 为 123，用来修改资源名称的 id 为 123</p>
-<p>更新资源：PUT http://www.example.com/article/123，用来更新文章 123 的内容</p>
-<ul>
-<li>非幂等的请求建议统一使用 POST</li>
-<li>使用 Http Method 来描述 API 请求对资源的操作类型（CRUD）</li>
-<li>使用 URI 来描述 API 请求处理资源的<strong>位置</strong>和<strong>层级</strong>，UIR 可以是名词+描述名词的属性 , 需要具备可预测性和分层结构，能够自解释。</li>
-</ul>
-<h2 id="在-lumen-api-starter-中的应用">在 lumen-api-starter 中的应用</h2>
-<pre><code class="language-php">// routes/web.php
-Route::get('/', function () {
-    return app()-&gt;version();
-});
-
-Route::get('author', function () {
-    $response = Http::withOptions(['timeout' =&gt; 3])-&gt;get('&lt;https://api.github.com/users/Jiannei&gt;');
-    $response-&gt;throw();
-
-    return $response-&gt;json();
-});
-
-Route::get('configurations', 'ExampleController@configurations');
-Route::get('logs', 'ExampleController@logs');
-
-Route::post('users', 'UsersController@store');
-Route::get('users/{id}', 'UsersController@show');
-Route::get('users', 'UsersController@index');
-
-Route::post('authorization', 'AuthorizationController@store');
-Route::delete('authorization', 'AuthorizationController@destroy');
-Route::put('authorization', 'AuthorizationController@update');
-Route::get('authorization', 'AuthorizationController@show');
-</code></pre>
-<h2 id="扩展阅读">扩展阅读</h2>
-<p><a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a>（网友翻译的优质资源）<br>
-<a href="https://www.ruanyifeng.com/blog/2011/09/restful.html">理解 RESTful 架构</a>（阮一峰出品）</p>
-<h2 id="参考">参考</h2>
-<p><a href="https://www.ibm.com/developerworks/cn/xml/x-urlni.html">分清 URI、URL 和 URN</a><br>
-<a href="https://www.cnblogs.com/jaxu/p/7908111.html#a_1">RESTful 服务最佳实践</a><br>
-<a href="https://www.jianshu.com/p/49ebc4a78474">HTTP head 请求</a><br>
-<a href="https://learnku.com/articles/45526">HTTP 请求方法</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Laravel Admin 自定义 JavaScript 的正确方式？]]></title>
-        <id>https://imcm.xyz/laravel-admin-pjax/</id>
-        <link href="https://imcm.xyz/laravel-admin-pjax/">
-        </link>
-        <updated>2020-06-29T12:47:29.000Z</updated>
-        <summary type="html"><![CDATA[<p><a href="https://laravel-admin.org/">Laravel Admin</a> 使用的是 Pjax ，所以自定义 JS 时候需要按照 Pjax 的事件周期来。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p><a href="https://laravel-admin.org/">Laravel Admin</a> 使用的是 Pjax ，所以自定义 JS 时候需要按照 Pjax 的事件周期来。</p>
-<!-- more -->
-<p>Pjax 事件请见 <a href="https://github.com/defunkt/jquery-pjax#usage">jquery-pjax</a></p>
-<h3 id="第一步">第一步</h3>
-<p>加载 JS 文件</p>
-<p>app/Admin/bootstrap.php</p>
-<pre><code class="language-PHP">Admin::js('/js/admin-extended.js');
-</code></pre>
-<h3 id="第二步">第二步</h3>
-<p>public/js/admin-extended.js</p>
-<pre><code class="language-PHP">(function($){
-    var AdminExtended = {
-        init: function(){
-            var self = this;
-
-            // Pjax 所有事件请见：https://github.com/defunkt/jquery-pjax#usage
-
-            $(document).on('pjax:start', function() {
-
-            });
-
-            //  after replacing content
-            $(document).on('pjax:end', function() {
-
-                // Pjax 模式里页面加载成功后的初始化
-                self.siteBootUp();
-            });
-
-            // always fires after ajax, regardless of result
-            $(document).on('pjax:complete', function() {
-
-            });
-
-
-            // 正常页面加载成功后的初始化
-            self.siteBootUp();
-        },
-
-        siteBootUp: function(){
-            var self = this;
-
-            self.replaceEnglish();
-        },
-
-        replaceEnglish: function(){
-            // 创建页面
-            $('.file-drop-zone-title').text(&quot;拖动文件到此上传...&quot;);
-
-            // 左边搜索框
-            $('.sidebar-form .input-group input.form-control.autocomplete').attr(&quot;placeholder&quot;, '搜索...');
-        },
-
-    };
-    window.AdminExtended = AdminExtended;
-})(jQuery);
-
-$(document).ready(function()
-{
-    AdminExtended.init();
-});
-</code></pre>
-<p>本文转自： <a href="https://learnku.com/articles/42041">learnku.com</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[搭建Vue脚手架以及创建项目]]></title>
-        <id>https://imcm.xyz/vue-introduction/</id>
-        <link href="https://imcm.xyz/vue-introduction/">
-        </link>
-        <updated>2020-06-28T10:36:55.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="知识背景">知识背景</h3>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="知识背景">知识背景</h3>
-<!-- more -->
-<blockquote>
-<p>什么是node.js</p>
-</blockquote>
-<p>nodo.js式基于chrome v8的js运行环境<br>
-使js可以当作一门后端语言<br>
-特征：基于事件驱动，非阻塞式IO模型<br>
-知乎上解释的很好：https://www.zhihu.com/question/33578075</p>
-<blockquote>
-<p>什么是npm</p>
-</blockquote>
-<p>npm 全称【node package management】是node.js内置的软件包管理器<br>
-说明：https://www.jianshu.com/p/c36666b306aa</p>
-<blockquote>
-<p>什么是webpack</p>
-</blockquote>
-<p>webpack是一个开源前端打包工具，Webpack 提供了前端开发缺乏的模块化开发方式，将各种静态资源视为模块，并从它生成优化过的代码。要使用Webpack 前须先安装Node.js。</p>
-<blockquote>
-<p>与Vue之间的关系</p>
-</blockquote>
-<p>我们通过vue.js开发项目通常使用npm做包管理器，npm运行依赖node.js；<br>
-构建一个vue项目的时候，推荐使用npm，这时候我们需要安装node.js。<br>
-一些说明：<br>
-https://www.cnblogs.com/jianxian/p/10734204.html<br>
-https://www.jianshu.com/p/9967c253da5b<br>
-https://www.cnblogs.com/Py-king/p/11669976.html</p>
-<h3 id="部署环境">部署环境</h3>
-<ol>
-<li>
-<p>安装 node.js<br>
-官网安装：https://nodejs.org/en/download/<br>
-windoes zip版安装过程：https://www.cnblogs.com/lxg0/p/9472851.html<br>
-本次安装以mac 10.15.4为例，win下去掉命令前的“sudo”</p>
-</li>
-<li>
-<p>查看版本<br>
-打开终端分别输入</p>
-</li>
-</ol>
-<pre><code class="language-shell">//查看node版本
-node -v
-//查看npm版本
-npm -v
-</code></pre>
-<ol start="3">
-<li>安装淘宝镜像（可选）</li>
-</ol>
-<p>因为大天朝的网络环境，国内可能连接不到，建议安装一下淘宝镜像。<br>
---verbose 打印详细信息</p>
-<pre><code class="language-shell">sudo npm install -g cnpm --registry=https://registry.npm.taobao.org --verbose
-</code></pre>
-<ol start="4">
-<li>安装webpack<br>
-“-g”全局安装</li>
-</ol>
-<pre><code class="language-shell">//安装（官方镜像）
-sudo npm install webpack webpack-cli -g
-//安装（淘宝镜像）
-sudo cnpm install webpack webpack-cli -g
-//查看版本
-webpack -v
-</code></pre>
-<ol start="5">
-<li>安装vue-cli</li>
-</ol>
-<pre><code class="language-shell">//安装（官方镜像）
-sudo npm install -g vue-cli
-//安装（淘宝镜像）
-sudo cnpm install -g vue-cli
-//查看版本
-//注意这里是大写的“V”
-vue -V
-</code></pre>
-<h3 id="创建项目">创建项目</h3>
-<ol>
-<li>
-<p>项目位置<br>
-打开cmd cd到硬盘的某个路径，这个路径就是接下来项目的存放路径。</p>
-</li>
-<li>
-<p>创建</p>
-</li>
-</ol>
-<pre><code class="language-shell">vue init webpack demo（项目名，小写）
-Project name（项目名：默认“demo”）
-Project description （项目介绍：默认 A Vue.js project）
-Author （作者名）
-Vue build （Use arrow keys）
-Runtime + Compiler：recommended for most users（运行加编译）
-Runtime—only：about 6KB lighter min+gzip，but templaters（or any Vue-spcific HTML）are ONLY allowed in .Vue files - render functions are required elsewhere（仅运行）
-Install vue-router ? （Y/n）（安装Vue路由？）
-Use ESLint to lint your code ? （Y/n）（使用ESlint对代码进行校验？）
-Set up unit tests （Y/n）（使用单元测试？）
-Setup e2e tests with Nightwatch？ （Y/n）（使用e2e测试？）
-Should we run npm install fr you after the project has been created?（recommended）（Use arrow keys）
-Yes，use Npm
-Yes，use Yarn
-No，I whill handle that myself
-如果npm可以正常使用，选第一项
-如果使用淘宝镜像选最后一个
-根据提示
-cd demo
-cnpm install （or if using yarn ：yarn）
-npm run dev
-</code></pre>
-<h3 id="项目文件解释">项目文件解释</h3>
-<ul>
-<li>build（webpack 编译任务配置文件: 开发环境与生产环境）</li>
-<li>config（项目的配置文件）</li>
-<li>config&gt;index.js（项目的基础的配置信息）</li>
-<li>config&gt;dev.env.js（开发环境的配置信息）</li>
-<li>config&gt;pro.env.js（线上环境的配置信息）</li>
-<li>node_modules（项目所有依赖的包文件，比如vue-router、vuex等插件都会下载到这个文件夹里面）</li>
-<li>src（工作目录，主要写代码的地方）</li>
-<li>static（静态资源）</li>
-<li>.babelrc（语法解析器）</li>
-<li>.editorconfig（帮助配置编辑器 里 自动化 的语法）</li>
-<li>.gitignore（用来过滤一些版本控制的文件，比如node_modules文件夹）</li>
-<li>.postcssrc.js（是对postcss的一个配置项）</li>
-<li>index.html（入口文件）</li>
-<li>package.json（项目文件，记载着一些命令和依赖还有简要的项目描述信息）</li>
-<li>package-lock.json（package的锁文件，可以帮助确定安装第三包的具体版本，保持编程团队的统一）</li>
-<li>README.md（项目说明介绍）</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Redis 基础学习]]></title>
-        <id>https://imcm.xyz/redis-basic/</id>
-        <link href="https://imcm.xyz/redis-basic/">
-        </link>
-        <updated>2020-06-26T03:27:42.000Z</updated>
-        <summary type="html"><![CDATA[<p>redis 基础知识巩固一下</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>redis 基础知识巩固一下</p>
-<!-- more -->
-<h3 id="启动">启动</h3>
-<ol>
-<li>启动：redis-server.exe redis.windows.conf/redis-server</li>
-<li>连接：redis-cli.exe -h 127.0.0.1 -p 6379</li>
-</ol>
-<h3 id="redis-命令">redis 命令</h3>
-<ol>
-<li>启动客户端后利用 redis-cli 连接本地服务</li>
-<li>ping 检测 redis 服务是否启动</li>
-<li>执行远程 redis 服务：redis-cli -h host -p port -a password</li>
-</ol>
-<h3 id="数据类型">数据类型</h3>
-<ul>
-<li>
-<p>string （字符串）</p>
-</li>
-<li>
-<p>hash （哈希）</p>
-<ul>
-<li>key：value （键值对集合），适合存储对象</li>
-</ul>
-</li>
-<li>
-<p>list （列表）</p>
-<ul>
-<li>简单的字符串列表，可以添加元素到列表的头部和尾部</li>
-</ul>
-</li>
-<li>
-<p>set （集合）</p>
-<ul>
-<li>string 类型的无序集合</li>
-<li>集合是通过哈希表实现的</li>
-</ul>
-</li>
-<li>
-<p>zset （有序集合）</p>
-<ul>
-<li>zset 和 set 一样也是 string 类型元素的集合，且不允许重复的成员</li>
-<li>不同的是每个元素都会关联一个 double 类型的分数。redis 正是通过分数来为集合中的成员进行从小到大的排序</li>
-<li>zset 的成员是唯一的，但分数 (score) 却可以重复</li>
-</ul>
-</li>
-</ul>
-<h3 id="操作指南">操作指南</h3>
-<ul>
-<li>key 操作</li>
-</ul>
-<pre><code class="language-shell">-- SET KEY_NAME VALUE（设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型）
-&gt; set name Lhao
-
--- GET KEY_NAME （获取指定 key 的值。如果 key 不存在，返回 nil 。如果key 储存的值不是字符串类型，返回一   个错误）
-&gt; get name // 输出：Lhao
-
--- DUMP KEY_NAME （序列化 name，输出序列化之后的值）
-&gt; dump name // 输出：&quot;\x00\x04Lhao\t\x00\xd3JL\xcf\xafsi\x8f&quot;
-
--- EXISTS KEY_NAME （判断 key 是否存在）
-&gt; exists name // 输出：1
-
--- Expire KEY_NAME TIME_IN_SECONDS (设置有效时间，过期之后则删除，单位：s , 可对已存在的 key 进行操作)
-&gt; expire name 10 // 输出：1
-
--- Expireat KEY_NAME TIME_IN_UNIX_TIMESTAMP (指定过期时间戳)
-&gt; set name Lhao // 上面设置了过期时间，已经没了 ，哈哈
-&gt; expireat name 1551341040 // 输出：1
-
--- KEYS PATTERN (用于查找所有符合给定模式 pattern 的 key )
-&gt; set name Lhao
-&gt; keys * //（返回所有键名）输出：name
-&gt; set naes haha
-&gt; keys na* // 输出：name、naes
-
--- SELECT index (切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值)
-&gt; select 0 
-
--- MOVE KEY_NAME DESTINATION_DATABASE (将当前数据库的 key 移动到给定的数据库 db 当)
-&gt; move name 1 // (移动 name 到 1 数据库中)
-&gt; exists name // 输出：0
-&gt; select 1
-&gt; exists name // 输出：1
-
-&gt; expire name 10
-
--- TTL KEY_NAME (以秒为单位返回 key 的剩余过期时间)
-&gt; ttl name // 输出：8
-
--- PERSIST KEY_NAME (移除给定 key 的过期时间，使得 key 永不过期)
-&gt; persist name // 输出：1
-&gt; ttl name // 输出：-1 （表示不过期）
-
--- DEL KEY_NAME (删除已存在的键。不存在的 key 会被忽略)
-&gt; del name // 输出：1
-
-&gt; set name Lhao
-&gt; set age 24
-
--- RANDOMKEY (从当前数据库中随机返回一个 key)
-&gt; randomkey // 输出：age
-
--- FLUSHDB (清空当前数据库中的所有 key)
-&gt; flushdb
-
-&gt; set name Lhao
-
--- RENAME OLD_KEY_NAME NEW_KEY_NAME (修改 key 的名称)
-&gt; rename name newname
-&gt; get name // 输出：nli (不存在)
-&gt; set namecopy wjh
-&gt; rename newname namecopy
-&gt; get namecopy // 输出：Lhao
-
-&gt; set name Lhao
-
--- RENAMENX OLD_KEY_NAME NEW_KEY_NAME (用于在新的 key 不存在时修改 key 的名称)
-&gt; renamenx namecopy name // 输出：0 (此时修改 key 名不成功)
-
--- TYPE KEY_NAME (返回 key 所储存的值的类型)
-&gt; type name // 输出：string
-</code></pre>
-<h3 id="字符串-操作">字符串 操作</h3>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/27672245">知乎：setbit\getbit 用法</a></p>
-</blockquote>
-<pre><code class="language-shell">&gt; flushdb
-
-&gt; set title &quot;my name is Lhao&quot;
-&gt; get title // 输出：my name is Lhao
-
--- GETRANGE KEY_NAME start end （用于获取存储在指定 key 中字符串的子字符串。字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)）
-&gt; getrange title 0 4 // 输出：my na
-
--- GETSET KEY_NAME VALUE (用于设置指定 key 的值，并返回 key 的旧值)
-&gt; getset title &quot;new title&quot; // 输出：my name is Lhao
-&gt; get title // 输出：new title
-
--- MGET KEY1 KEY2 .. KEYN (返回所有(一个或多个)给定 key 的值。 如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil )
-&gt; mget title name 
-// 输出：
- 1) (nil)
- 2) &quot;new title&quot;
-
--- SETEX KEY_NAME TIMEOUT VALUE (为指定的 key 设置值及其过期时间。如果 key 已经存在， SETEX 命令将会替换旧的值)
-&gt; setex name 60 liuhao
-
-&gt; del name
-
--- SETNX KEY_NAME VALUE（SET if Not eXists） 命令在指定的 key 不存在时，为 key 设置指定的值
-&gt; setnx name Lhao // 输出：1
-&gt; setnx title Lhao // 输出：0
-
--- SETRANGE KEY_NAME OFFSET VALUE （用指定的字符串覆盖给定 key 所储存的字符串值，覆盖的位置从偏移量 offset 开始）
-&gt; setrange name 3 Lhao // 输出：7
-&gt; get name // 输出：LhaLhao
-
--- STRLEN KEY_NAME (用于获取指定 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误)
-&gt; strlen name // 输出：7
-
--- 用于同时设置一个或多个 key-value 对 (MSET key1 value1 key2 value2 .. keyN valueN )
-&gt; mset name Lhao age 24 // 输出：ok
-&gt; mget name age 
-// 输出：
- 1) &quot;Lhao&quot;
- 2) &quot;24&quot;
-
--- MSETNX key1 value1 key2 value2 .. keyN valueN （用于所有给定 key 都不存在时，同时设置一个或多个 key-value 对）
-&gt; msetnx name Lhao age 24 // 输出：0
-&gt; msetnx name Lhao25 sex men //输出：0
-&gt; get sex // 输出：nli
-
--- INCR KEY_NAME 
-// 将 key 中储存的数字值增一。
-// 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。
-// 如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
-// 本操作的值限制在 64 位(bit)有符号数字表示之内。
-&gt; incr name // 输出：(error) ERR value is not an integer or out of range
-&gt; incr money // 输出：1
-
--- DECRBY KEY_NAME DECREMENT_AMOUNT (将 key 中储存的数字加上指定的增量值)
-&gt; incrby money 80 // 输出：81
-
--- DECR KEY_NAME （将 key 中储存的数字值减一）
-&gt; decr money // 输出：80
-
--- DECRBY KEY_NAME DECREMENT_AMOUNT （将 key 所储存的值减去指定的减量值）
-&gt; decrby money 10 // 输出：70
-
--- APPEND KEY_NAME NEW_VALUE
-// 为指定的 key 追加值。
-// 如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
-// 如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。
-&gt; append name &quot; love&quot; //  输出：8
-&gt; get name // 输出：Lhaolove
-</code></pre>
-<h3 id="哈希-操作">哈希 操作</h3>
-<pre><code class="language-shell">&gt; flushdb
-
--- HSET KEY_NAME FIELD VALUE (用于为哈希表中的字段赋值;如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作;如果字段已经存在于哈希表中，旧值将被覆盖)
-&gt; hset user name Lhao // 输出：1
-
--- HGET KEY_NAME FIELD_NAME (用于返回哈希表中指定字段的值)
-&gt; hget user name // 输出：Lhao
-
-&gt; hset user name wjh // 输出：0
-&gt; hget user name // 输出：wjh
-
--- HMSET KEY_NAME FIELD1 VALUE1 ...FIELDN VALUEN (用于同时将多个 field-value (字段-值)对设置到哈希表中)
-&gt; hmset user name Lhao age 24 // 输出：ok
-&gt; hmget user name age
-// 输出：
- 1) &quot;Lhao&quot;
- 2) &quot;24&quot;
-
--- HDEL KEY_NAME FIELD1.. FIELDN（用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略）
-&gt; hdel user name // 输出：1
-
--- HEXISTS KEY_NAME FIELD_NAME (用于查看哈希表的指定字段是否存在)
-&gt; hexists user name // 输出：0
-
--- HGETALL KEY_NAME (用于返回哈希表中，所有的字段和值;在返回值里，紧跟每个字段名(field name)之后是字段的值(value)，所以返回值的长度是哈希表大小的两倍)
-&gt; hgetall user
-// 输出：
- 1) &quot;age&quot;
- 2) &quot;24&quot;
-
--- HINCRBY KEY_NAME FIELD_NAME INCR_BY_NUMBER（用于为哈希表中的字段值加上指定增量值）
-&gt; hincrby user age 1 // 输出：25
-
--- HKEYS key (用于获取哈希表中的所有域（field）)
-&gt; hkeys user
-// 输出：
-1) &quot;age&quot;
-
--- HLEN KEY_NAME （用于获取哈希表中字段的数量）
-&gt; hlen user //  输出：1
-
--- HSETNX KEY_NAME FIELD VALUE（用于为哈希表中不存在的的字段赋值）
-&gt; hsetnx user name hao // 输出：1
-&gt; hsetnx user age 24 // 输出：0
-
--- HVALS KEY_NAME FIELD VALUE（返回哈希表所有域(field)的值）
-&gt; hvals user 
-// 输出：
-1) &quot;25&quot;
-2) &quot;Lhao&quot;
-</code></pre>
-<h3 id="列表-操作">列表 操作</h3>
-<pre><code class="language-shell">&gt; flushdb
-
--- LPUSH KEY_NAME VALUE1.. VALUEN （将一个或多个值插入到列表头部。 如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。 当 key 存在但不是列表类型时，返回一个错误。）
-&gt; lpush users Lhao wjh // 输出：2
-
--- LRANGE KEY_NAME START END (返回列表中指定区间内的元素，区间以偏移量 START 和 END 指定。 其中 0 表示列表的第一个元素， 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推)
-&gt; lrange users 0 0 // 输出：wjh
-&gt; lrange users 0 -1 // 输出：wjh、Lhao 
-
--- BLPOP LIST1 LIST2 .. LISTN TIMEOUT （移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止）
-&gt; blpop users 10 
-// 输出：
-1) &quot;users&quot;
-2) &quot;wjh&quot;
-&gt; lrange users 0 -1 // 输出：Lhao
-
--- BRPOPLPUSH LIST1 ANOTHER_LIST TIMEOUT （从列表中弹出第一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。）
-&gt; brpoplpush users users_two 10 // 输出：Lhao
-&gt; lrange users 0 -1 // 输出：(empty list or set)
-&gt; lrange users_two 0 -1 // 输出：Lhao
-
-&gt; lpush users wjh Lhao
-
--- LINDEX KEY_NAME INDEX_POSITION (用于通过索引获取列表中的元素。你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。)
-&gt; lindex users 0 // 输出：lhao
-&gt; lindex users -1 // 输出：wjh
-
-&gt; del users
-
--- RPUSH KEY_NAME VALUE1..VALUEN (用于将一个或多个值插入到列表的尾部(最右边);如果列表不存在，一个空列表会被创建并执行 RPUSH 操作。 当列表存在但不是列表类型时，返回一个错误)
-&gt; rpush users Lhao wjh
-&gt; lrange 0 -1 // 输出：Lhao wjh
-
--- LINSERT key BEFORE|AFTER pivot value (用于在列表的元素前或者后插入元素。当指定元素不存在于列表中时，不执行任何操作;当列表不存在时，被视为空列表，不执行任何操作;如果 key 不是列表类型，返回一个错误)
-&gt; linsert users before wjh love // 输出：3
-&gt; lrange 0 -1 // 输出：Lhao love wjh
-
--- LLEN KEY_NAME (用于返回列表的长度。 如果列表 key 不存在，则 key 被解释为一个空列表，返回 0 。 如果 key 不是列表类型，返回一个错误)
-&gt; llen users // 输出：3
-
--- Lpop KEY_NAME (用于移除并返回列表的第一个元素)
-&gt; lpop users // 输出：Lhao
-&gt; lrange users 0 -1 // 输出：love wjh
-
--- LPUSHX KEY_NAME VALUE1.. VALUEN (将一个值插入到已存在的列表头部，列表不存在时操作无效)
-&gt; lpushx users Lhao // 输出：3
-&gt; lrange users 0 -1 // 输出：Lhao love wjh
-&gt; lpushx user you // 输出：0
-&gt; lpush users Lhao Lhao // 输出：5
-&gt; lrange users 0 -1 // 输出：Lhao Lhao Lhao love wjh
-
--- LREM KEY_NAME COUNT VALUE
-// 根据参数 COUNT 的值，移除列表中与参数 VALUE 相等的元素
-// count &gt; 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT 。
-// count &lt; 0 : 从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。
-// count = 0 : 移除表中所有与 VALUE 相等的值。
-
-&gt; lrem users 2 Lhao // 输出：2
-&gt; lrange users 0 -1 // 输出：Lhao love wjh 
-
--- LSET KEY_NAME INDEX VALUE (通过索引来设置元素的值;当索引参数超出范围，或对一个空列表进行 LSET 时，返回一个错误)
-&gt; lset users 0 liuhao // 输出：ok
-&gt; lrange users 0 -1 // 输出：liuhao love wjh
-
-&gt; lpush fruit apple cherry strawbrerry
-
--- LTRIM KEY_NAME START STOP (对一个列表进行修剪(trim)，就是说，让列表只保留指定 区间内的元素，不在指定区间之内的元素都将被删除;下标 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。)
-&gt; ltrim fruit 1 -1 // 输出：ok
-&gt; lrange fruit 0 -1 // 输出：cherry apple
-
--- RPOP KEY_NAME （用于移除列表的最后一个元素，返回值为移除的元素）
-&gt; rpop fruit // 输出：apple
-&gt; lrange fruit 0 -1 // 输出：cherry
-
-&gt; lpush fruit apple cherry // 输出：3
-
--- RPOPLPUSH SOURCE_KEY_NAME DESTINATION_KEY_NAME （用于移除列表的最后一个元素，并将该元素添加到另一个列表并返回）
-&gt; rpoplpush fruit users // 输出：cherry
-&gt; lrange users 0 -1 // 输出：cherry、apple
-</code></pre>
-<h3 id="集合-操作">集合 操作</h3>
-<pre><code class="language-shell">&gt; flushdb
-
--- SADD KEY_NAME VALUE1..VALUEN（将一个或多个成员元素加入到集合中，已经存在于集合的成员元素将被忽略；假如集合 key 不存在，则创建一个只包含添加的元素作成员的集合；当集合 key 不是集合类型时，返回一个错误。）
-&gt; sadd users wjh Lhao // 输出：2
-&gt; sadd users wjh // 输出：0 
-
--- SMEMBERS key （返回集合中的所有的成员。 不存在的集合 key 被视为空集合）
-&gt; smembers users // 输出：wjh Lhao
-
--- SCARD KEY_NAME (返回集合中元素的数量)
-&gt; scard users // 输出：2 
-
-&gt; sadd usersTwo abing laoxia 
-&gt; smembers usersTwo // 输出：abing laoxia
-
--- SDIFF FIRST_KEY OTHER_KEY1..OTHER_KEYN (返回给定集合之间的差集。不存在的集合 key 将视为空集；差集的结果来自前面的 FIRST_KEY ,而不是后面的 OTHER_KEY1，也不是整个 FIRST_KEY OTHER_KEY1..OTHER_KEYN 的差集)
-&gt; sdiff users usersTwo // 输出：wjh Lhao
-&gt; sadd usersTwo Lhao
-&gt; sdiff users usersTwo // 输出：wjh
-
--- SDIFFSTORE DESTINATION_KEY KEY1..KEYN (将给定集合之间的差集存储在指定的集合中。如果指定的集合 key 已存在，则会被覆盖)
-&gt; sdiffstore usersThree users usersTwo // 输出：1
-&gt; smembers usersThree // 输出：wjh
-
-&gt; del users usersTwo usersThree
-
-&gt; sadd users wjh Lhao
-&gt; sadd usersTwo Lhao abing laoxia
-
--- SINTER KEY KEY1..KEYN (返回给定所有给定集合的交集。 不存在的集合 key 被视为空集。 当给定集合当中有一个空集时，结果也为空集(根据集合运算定律))
-&gt; sinter users usersTwo // 输出：Lhao
-
--- SINTERSTORE DESTINATION_KEY KEY KEY1..KEYN (将给定集合之间的交集存储在指定的集合中。如果指定的集合已经存在，则将其覆盖)
-&gt; sinterstore usersThree users usersTwo 
-&gt; smembers usersThree // 输出：Lhao
-
--- SISMEMBER KEY VALUE (判断成员元素是否是集合的成员)
-&gt; sismember users Lhao // 输出：1
-
-&gt; sadd fruits apple cherry
-&gt; sadd fruitsTwo strawbrerry
-
--- SMOVE SOURCE DESTINATION MEMBER
-// 将指定成员 member 元素从 source 集合移动到 destination 集合。
-// SMOVE 是原子性操作。
-// 如果 source 集合不存在或不包含指定的 member 元素，则 SMOVE 命令不执行任何操作，仅返回 0 。否则， member 元素从 source 集合中被移除，并添加到 destination 集合中去。
-// 当 destination 集合已经包含 member 元素时， SMOVE 命令只是简单地将 source 集合中的 member 元素删除。
-// 当 source 或 destination 不是集合类型时，返回一个错误。
-&gt; smove fruitsTwo fruits strawbrerry  // 输出：1
-&gt; smembers fruits // 输出：cherry、apple、strawbrerry
-
--- SPOP key [count] (移除集合中的指定 key 的一个或多个随机元素，移除后会返回移除的元素)
-&gt; spop fruits // 输出：cherry
-&gt; smembers druits // 输出：strawbrerry、apple
-
--- SRANDMEMBER KEY [count] （返回集合中一个或多个随机数）
-&gt; srandmember fruit // 输出：apple 
-
--- SREM KEY MEMBER1..MEMBERN （移除集合中的一个或多个成员元素，不存在的成员元素会被忽略）
-&gt; srem fruits apple // 输出：1
-&gt; smembers fruits // 输出：strawbrerry
-
--- SUNION KEY KEY1..KEYN (返回给定集合的并集。不存在的集合 key 被视为空集)
-&gt; flushdb
-&gt; sadd fruits apple cherry 
-&gt; sadd fruitsTwo apple strawberry
-&gt; sunion fruits fruitsTwo // 输出：cherry、strawberry、apple
-
--- SUNIONSTORE DESTINATION KEY KEY1..KEYN （将给定集合的并集存储在指定的集合 destination 中。如果 destination 已经存在，则将其覆盖）
-&gt; sunionstore fruitsThree fruits fruitsTwo
-&gt; smembers fruitsThree // 输出：cherry、strawberry、apple
-
--- SSCAN key cursor [MATCH pattern] [COUNT count] （用于迭代集合中键的元素）
-&gt; sscan fruitsThree 0 match a* // (
-输出：1) &quot;0&quot;
-     2) 1) &quot;apple&quot;
-)
-</code></pre>
-<h4 id="有序集合-操作">有序集合 操作</h4>
-<pre><code class="language-shell"> &gt; flushdb
-
- -- ZADD KEY_NAME SCORE1 VALUE1.. SCOREN VALUEN
-    // 用于将一个或多个成员元素及其分数值加入到有序集当中。
-    // 如果某个成员已经是有序集的成员，那么更新这个成员的分数值，并通过重新插入这个成员元素，来保证该成员在正确的位置上。
-    // 分数值可以是整数值或双精度浮点数。
-    // 如果有序集合 key 不存在，则创建一个空的有序集并执行 ZADD 操作。
-    // 当 key 存在但不是有序集类型时，返回一个错误。
- &gt; zadd myzset 1 &quot;one&quot; // 输出：1
- &gt; zadd myzset 1 &quot;uno&quot;
- &gt; zadd myzset 2 &quot;two&quot; 3 &quot;three&quot;
-
- -- ZRANGE key start stop [WITHSCORES]
-    // 返回有序集中，指定区间内的成员。
-    // 其中成员的位置按分数值递增(从小到大)来排序。
-    // 具有相同分数值的成员按字典序(lexicographical order )来排列。
-    // 如果你需要成员按值递减(从大到小)来排列，请使用 ZREVRANGE 命令。
-    // 下标参数 start 和 stop 都以 0 为底，也就是说，以 0 表示有序集第一个成员，以 1 表示有序集第二个成员，以此类推。
-    // 你也可以使用负数下标，以 -1 表示最后一个成员， -2 表示倒数第二个成员，以此类推
- &gt; zrange myzset 0 -1 WITHSCORES
- // 输出：
-     1) &quot;one&quot;
-     2) &quot;1&quot;
-     3) &quot;uno&quot;
-     4) &quot;1&quot;
-     5) &quot;two&quot;
-     6) &quot;2&quot;
-     7) &quot;three&quot;
-     8) &quot;3&quot;
-
- -- ZCARD KEY_NAME （用于计算集合中元素的数量）
- &gt; zcard myzset // 输出：4
-
- -- ZCOUNT key min max (用于计算有序集合中指定分数区间的成员数量)
- &gt; zcount myzset 1 3 // 输出：4
-
- -- ZINCRBY key increment member (对有序集合中指定成员的分数加上增量 increment)
- &gt; zincrby myzset 2 &quot;one&quot; // 输出：3
- &gt; zrange myzset 0 -1 WITHSCORES
- // 输出：
-     1) &quot;uno&quot;
-     2) &quot;1&quot;
-     3) &quot;two&quot;
-     4) &quot;2&quot;
-     5) &quot;one&quot;
-     6) &quot;3&quot;
-     7) &quot;three&quot;
-     8) &quot;3&quot;
-
- &gt; zadd mid_test 70 Lhao 70 wjh
- &gt; zadd fin_test 80 Lhao 78 wjh
-
- -- ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] （计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。）
- &gt; zinterstore sum_point 2 mid_test fin_test
- &gt; zrange sum_point 0 -1 WITHSCORES
- // 输出：
-     1) &quot;wjh&quot;
-     2) &quot;148&quot;
-     3) &quot;Lhao&quot;
-     4) &quot;150&quot;
-
- -- ZLEXCOUNT KEY MIN MAX （计算有序集合中指定字典区间内成员数量）
- &gt; zadd newzset 0 a 0 b 0 c 0 d 0 e 0 f 0 g
- &gt; zlexcount newzset - + // 输出：7
- &gt; zlexcount newzset [b [f // 输出：5
-
- -- ZRANGEBYLEX key min max [LIMIT offset count] (通过字典区间返回有序集合的成员)
- &gt; zrangebylex newzset - [c
- // 输出：
-     1) &quot;b&quot;
-     2) &quot;a&quot;
-     3) &quot;c&quot;
- &gt; zrangebylex newzset - (c
-  // 输出：
-     1) &quot;b&quot;
-     2) &quot;a&quot;
- &gt; zrangebylex newzset [aaa (g
-  // 输出：
-     1) &quot;b&quot;
-     2) &quot;a&quot;
-     3) &quot;c&quot;
-     4) &quot;d&quot;
-     5) &quot;e&quot;
-     6) &quot;f&quot;
-
- &gt; zadd salary 2500 jack 5000 tom 12000 peter
-
- -- ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]
-    // 返回有序集合中指定分数区间的成员列表。有序集成员按分数值递增(从小到大)次序排列。
-    // 具有相同分数值的成员按字典序来排列(该属性是有序集提供的，不需要额外的计算)。
-    // 默认情况下，区间的取值使用闭区间 (小于等于或大于等于)，你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于)
- &gt; zrangebyscore salary -inf +inf #显示整个有序集
- // 输出：
-     1) &quot;jack&quot;
-     2) &quot;tom&quot;
-     3) &quot;peter&quot;
- &gt; zrangebyscore salary -inf +inf WITHSCORES # 显示整个有序集及成员的 score 值
- // 输出：
-     1) &quot;jack&quot;
-     2) &quot;2500&quot;
-     3) &quot;tom&quot;
-     4) &quot;5000&quot;
-     5) &quot;peter&quot;
-     6) &quot;12000&quot;
- &gt; zrangebyscore salary -inf 5000 WITHSCORES # 显示工资 &lt;=5000 的所有成员
- // 输出：
-     1) &quot;jack&quot;
-     2) &quot;2500&quot;
-     3) &quot;tom&quot;
-     4) &quot;5000&quot;
- &gt; zrangebyscore salary (5000 400000 # 显示工资大于 5000 小于等于 400000 的成员
- // 输出：
-    1) &quot;peter&quot;
-
- -- ZRANK key member （返回有序集中指定成员的排名。其中有序集成员按分数值递增(从小到大)顺序排列）
- &gt; zrank salary tom // 输出：1 （ # tom 的薪水排名，第二）
-
- -- ZREM key member [member ...] (用于移除有序集中的一个或多个成员，不存在的成员将被忽略;当 key 存在但不是有序集类型时，返回一个错误)
- &gt; zrem salary tom // 输出：1
- &gt; zrangebyscore salary -inf +inf WITHSCORES
- // 输出：
-     1) &quot;jack&quot;
-     2) &quot;2500&quot;
-     3) &quot;peter&quot;
-     4) &quot;12000&quot;
-
- &gt; zadd myzset 0 aaaa 0 b 0 c 0 d 0 e 0 foo 0 zap 0 zip 0 ALPHA 0 alpha
-
- -- ZREMRANGEBYLEX key min max（用于移除有序集合中给定的字典区间的所有成员）
- &gt; zremrangebylex myzset [alpha [omega // 输出：6
- &gt; zrange myzset 0 -1
- // 输出：
-     1) &quot;ALPHA&quot;
-     2) &quot;aaaa&quot;
-     3) &quot;zap&quot;
-     4) &quot;zip&quot;
-
- &gt; zadd salary 5000 tom
-
- -- ZREMRANGEBYRANK key start stop（用于移除有序集中，指定排名(rank)区间内的所有成员）
- &gt; zremrangebyrank salary 0 1 // 输出：2
- &gt; zrange salary 0 -1 WITHSCORES 
- // 输出：
-     1) &quot;peter&quot;
-     2) &quot;12000&quot;
-
- &gt; zadd salary 2500 jack 5000 tom
-
- -- ZREMRANGEBYSCORE key min max (用于移除有序集中，指定分数（score）区间内的所有成员)
- &gt; zremrangebyscore salary 1500 3500 // 输出：1
- &gt; zrange salary 0 -1 WITHSCORES
- // 输出：
-     1) &quot;tom&quot;
-     2) &quot;5000&quot;
-     3) &quot;peter&quot;
-     4) &quot;12000&quot;
-
- &gt; zadd salary 2500 jack
-
- -- ZREVRANGE key start stop [WITHSCORES]（返回有序集中，指定区间内的成员；其中成员的位置按分数值递减(从大到小)来排列。具有相同分数值的成员按字典序的逆序(reverse lexicographical order)排列；除了成员按分数值递减的次序排列这一点外， ZREVRANGE 命令的其他方面和 ZRANGE 命令一样）
- &gt; zrevrange salary 0 -1 WITHSCORES
- // 输出：
-     1) &quot;peter&quot;
-     2) &quot;12000&quot;
-     3) &quot;tom&quot;
-     4) &quot;5000&quot;
-     5) &quot;jack&quot;
-     6) &quot;2500&quot;
-
- -- ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]（返回有序集中指定分数区间内的所有的成员。有序集成员按分数值递减(从大到小)的次序排列）
- &gt; zrevrangebyscore salary +inf -inf # 逆序排列所有成员
- //输出：
-     1) &quot;peter&quot;
-     2) &quot;tom&quot;
-     3) &quot;jack&quot;
- &gt; zrevrangebyscore salary 10000 200 # 逆序排列薪水介于 10000 和 2000 之间的成员
- // 输出：
-     1) &quot;tom&quot;
-     2) &quot;jack&quot;
-
- -- ZREVRANK key member（返回有序集中成员的排名。其中有序集成员按分数值递减(从大到小)排序；排名以 0 为底，也就是说， 分数值最大的成员排名为 0 ；使用 ZRANK 命令可以获得成员按分数值递增(从小到大)排列的排名）
- &gt; zrevrank salary peter // 输出：0
- &gt; zrevrank salary tom // 输出：1
-
- -- ZSCORE key member (返回有序集中，成员的分数值。 如果成员元素不是有序集 key 的成员，或 key 不存在，返回 nil )
- &gt; zscore salary peter // 输出：12000
-
- &gt; zadd programmer 2000 peter 3500 jack 5000 tom
- &gt; zadd manager 2000 herry 3500 mary 4000 bob
-
- -- ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX]（计算给定的一个或多个有序集的并集，其中给定 key 的数量必须以 numkeys 参数指定，并将该并集(结果集)储存到 destination；默认情况下，结果集中某个成员的分数值是所有给定集下该成员分数值之和）
-
- &gt; zunionstore salary 2 programmer manager WEIGHTS 1 3 # # 公司决定加薪。。。除了程序员。。。
- &gt; zrange salary 0 -1 WITHSCORES
- // 输出：
-      1) &quot;peter&quot;
-      2) &quot;2000&quot;
-      3) &quot;jack&quot;
-      4) &quot;3500&quot;
-      5) &quot;tom&quot;
-      6) &quot;5000&quot;
-      7) &quot;herry&quot;
-      8) &quot;6000&quot;
-      9) &quot;mary&quot;
-     10) &quot;10500&quot;
-     11) &quot;bob&quot;
-     12) &quot;12000&quot;
-</code></pre>
-<h3 id="结束语">结束语</h3>
-<p>这里只是简单的对 redis 的各种类型做了一下介绍以及一些操作方法</p>
 ]]></content>
     </entry>
 </feed>
