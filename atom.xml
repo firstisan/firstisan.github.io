@@ -2,15 +2,272 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-11-19T08:34:23.997Z</updated>
+    <updated>2020-12-23T02:20:08.589Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
     <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;正在加载今日诗词....&lt;/span&gt;
-&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;br&gt;</subtitle>
+&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</subtitle>
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2020, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[<转>新手入门 Github Webhooks 完美自动化部署教程]]></title>
+        <id>https://imcm.xyz/Github-webhook/</id>
+        <link href="https://imcm.xyz/Github-webhook/">
+        </link>
+        <updated>2020-12-22T14:26:59.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="前言">前言</h3>
+<p>之前使用GitHub Actions可以在提交代码后自动上传到腾讯云COS存储桶,实现静态网站完美自动化部署.那么非静态的网站或者项目需要自动化部署到VPS服务器上就可以使用GitHub Webhooks来实现.作为纯属新手来说,网上查阅了十几篇相关教程,都没法部署成功,最后总算找到了问题关键点,决定整理成文章分享出来,希望能帮助到新手用户.</p>
+<blockquote>
+<p>Webhook支持php,js等多种方式,可以实现简单的部署,也可以实现复杂的自动化构建等功能,本文介绍适合新手用户的php方式,来自动化部署网站.</p>
+</blockquote>
+<h3 id="webhook简单原理">Webhook简单原理</h3>
+<p>对于入门新手来说,Webhook可以理解为当你在本地完成代码工作后,Push提交到GitHub,GitHub检测到Push后,使用Webhook发送一条命令到你的VPS服务器上的Webhook.php文件,服务器检测到命令后根据webhook.php中的配置在服务器上执行Pull命令,同步GitHub上的代码到服务器.实现了简单的自动化部署工作.节省了你再次上传至服务器的多余操作.</p>
+<h3 id="部署流程">部署流程</h3>
+<h4 id="启用shell_exec">启用shell_exec</h4>
+<p>编辑php.ini</p>
+<pre><code class="language-shell">vim /usr/local/php/etc/php.ini
+</code></pre>
+<p>查找shell_exec,在disable_functions中删除shell_exec字段.<br>
+<img src="https://imcm.xyz/post-images/1608622210723.jpg" alt="" loading="lazy"></p>
+<p>重启php.ini保存设置</p>
+<pre><code class="language-shell">/etc/init.d/php-fpm restart
+</code></pre>
+<h4 id="配置站点目录权限">配置站点目录权限</h4>
+<p>由于Webhook的推送请求是通过http/https方式发送至服务器,根据webhook.php中的命令执行git pull的实为运行php的用户,根据以下命令可以查执行php用户为www.</p>
+<pre><code class="language-shell">ps aux | grep php
+</code></pre>
+<p>确保仓库所在的站点目录所有者为www</p>
+<pre><code class="language-shell">chown -R www:www /home/wwwroot
+</code></pre>
+<h4 id="切换为www账户">切换为www账户</h4>
+<p>以root账户登陆服务器,修改www的登录权限.</p>
+<pre><code class="language-shell">vim /etc/passwd
+</code></pre>
+<p>找到</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/sbin/nologin
+</code></pre>
+<p>修为改</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/bin/bash
+</code></pre>
+<h4 id="为www创建ssh公钥">为www创建ssh公钥</h4>
+<p>切换为www登陆</p>
+<pre><code class="language-shell">su www
+</code></pre>
+<p>创建ssh公钥</p>
+<pre><code class="language-shell">ssh-keygen -t rsa
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1608622389755.jpg" alt="" loading="lazy"></figure>
+<p>获取你的公钥id_rsa.pub</p>
+<pre><code class="language-shell">cat /home/www/.ssh/id_rsa.pub
+</code></pre>
+<h4 id="登陆github配置ssh公钥">登陆GitHub配置ssh公钥</h4>
+<p>登陆GitHub - 进入仓库 - Settings - Deploy keys - Add Deploy keys<br>
+粘贴刚才创建的公钥</p>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1608622410820.jpg" alt="" loading="lazy"></figure>
+<h4 id="首次git-clone仓库">首次git clone仓库</h4>
+<p>验证ssh公钥配置成功</p>
+<pre><code class="language-shell">ssh -T git@github.com
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1608622477397.jpg" alt="" loading="lazy"></figure>
+<p>首次clone仓库成功</p>
+<pre><code class="language-shell">git clone git@github.com:xxxxxx/xxxxxxx.git
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1608622485033.jpg" alt="" loading="lazy"></figure>
+<h4 id="配置webhookphp">配置webhook.php</h4>
+<p>在项目网站根目录创建webhook.php获得外网链接为https://yourdoamin.com/webhook.php<br>
+粘贴以下代码,只需要更改keySecret和wwwRoot即可.</p>
+<pre><code class="language-php">&lt;?php
+
+// 自行创建一个验证密码
+$keySecret = 'xxxxxx';
+
+// 修改为你自己的仓库绝对路径
+$wwwRoot = [
+    '/home/wwwroot/xxxx',
+];
+
+// 保存运行脚本的日志
+$logFile = 'log/webhook.log';
+
+// 执行git命令
+$gitCommand = 'git pull';
+
+// 判断是否开启秘钥认证(已实现gitee和github)
+if (isset($keySecret) &amp;&amp; !empty($keySecret)) {
+    list($headers, $gitType) = [[], null];
+    foreach ($_SERVER as $key =&gt; $value) {
+        'HTTP_' == substr($key, 0, 5) &amp;&amp; $headers[str_replace('_', '-', substr($key, 5))] = $value;
+        if (empty($gitType) &amp;&amp; strpos($key, 'GITEE') !== false) {
+            $gitType = 'GITEE';
+        }
+        if (empty($gitType) &amp;&amp; strpos($key, 'GITHUB') !== false) {
+            $gitType = 'GITHUB';
+        }
+    }
+    if ($gitType == 'GITEE') {
+        if (!isset($headers['X-GITEE-TOKEN']) || $headers['X-GITEE-TOKEN'] != $keySecret) {
+            die('GITEE - 请求失败，秘钥有误');
+        }
+    } elseif ($gitType == 'GITHUB') {
+        $json_content = file_get_contents('php://input');
+        $signature = &quot;sha1=&quot; . hash_hmac('sha1', $json_content, $keySecret);
+        if ($signature != $headers['X-HUB-SIGNATURE']) {
+            die('GITHUB - 请求失败，秘钥有误');
+        }
+    } else {
+        die('请求错误，未知git类型');
+    }
+}
+
+!is_array($wwwRoot) &amp;&amp; $wwwRoot = [$wwwRoot];
+foreach ($wwwRoot as $vo) {
+    $shell = sprintf(&quot;cd %s &amp;&amp; git pull 2&gt;&amp;1&quot;, $vo);
+    $output = shell_exec($shell);
+    $log = sprintf(&quot;[%s] %s \n&quot;, date('Y-m-d H:i:s', time()) . ' - ' . $vo, $output);
+    echo $log;
+    file_put_contents($logFile, $log, FILE_APPEND);
+}
+</code></pre>
+<h4 id="github-webhooks配置">GitHub Webhooks配置</h4>
+<p>登陆GitHub - 进入仓库 - Settings - Webhooks - Add webhook<br>
+Payload URL 输入刚才获取的webhook.php的外网链接.<br>
+Content type 保持默认<br>
+Secret 输入刚才配置webhook.php创建的验证密码<br>
+Add webhook 完成创建<br>
+<img src="https://imcm.xyz/post-images/1608622528975.jpg" alt="" loading="lazy"></p>
+<h4 id="恢复关闭www登陆">恢复关闭www登陆</h4>
+<p>exit退出www登陆切回root,在次关闭www登陆.</p>
+<pre><code class="language-shell">vim /etc/passwd
+</code></pre>
+<p>恢复为</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/sbin/nologin
+</code></pre>
+<h4 id="自动化部署成功">自动化部署成功</h4>
+<p>本地push代码到GitHub后,可以看到返回信息提示服务器pull成功.<br>
+<img src="https://imcm.xyz/post-images/1608622569768.jpg" alt="" loading="lazy"></p>
+<h3 id="关键点和相关错误">关键点和相关错误</h3>
+<h4 id="权限">权限</h4>
+<p>网上很多教程都没有提到权限问题,所以对于新手小白来说,就会不知道为什么不成功.而少数提到权限的教程,也没有非常详细指导用户如何配置.所以如果部署有问题,请检查权限问题,新手用户可以严格按照本教程先部署成功,在来自行修改你需要的配置.</p>
+<h4 id="webhookphp">webhook.php</h4>
+<p>webhook.php的代码网上也有很多种,有些能用有些无法使用,本文提供的是经过测试可用的,大家也可以自行搜索或者编辑.</p>
+<h4 id="service-timeout">Service Timeout</h4>
+<p>当遇到push大量代码时,服务器pull需要更长的时间,所以webhook返回给GitHub的信息如下图会出现Service Timeout超时错误,但实际上服务器也成功执行了pull,你可以登陆服务器检查来确认,同时也可以根据你的项目实际情况自行修改webhook.php执行配置.<br>
+<img src="https://imcm.xyz/post-images/1608622604663.jpg" alt="" loading="lazy"></p>
+<h4 id="证书错误">证书错误</h4>
+<p>有可能会出现下图中的证书错误提示,请更换证书,测试时使用的Let's Encrypt的泛域名证书就会报错,博主更换为腾讯云申请的单域名证书就可以了.<br>
+<img src="https://imcm.xyz/post-images/1608622614276.jpg" alt="" loading="lazy"></p>
+<h3 id="结语">结语</h3>
+<p>特别感谢以下两篇文章给予了关于www权限和webhook.php两个关键点的帮助:<br>
+<a href="https://learnku.com/articles/34320">gitee 和 GitHub 的 webhook 的使用，实现服务器代码的自动更新</a><br>
+<a href="https://www.jianshu.com/p/00bc0323e83f">gitlab之webhook自动部署</a></p>
+<p>本文转自:<a href="https://www.ioiox.com/archives/72.html">IOIOX</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题]]></title>
+        <id>https://imcm.xyz/libcrypto-ssh-waring/</id>
+        <link href="https://imcm.xyz/libcrypto-ssh-waring/">
+        </link>
+        <updated>2020-12-21T11:30:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
+<!-- more -->
+<h3 id="解决方法一">解决方法一</h3>
+<p>先来个最简单的解决方法。我出现的错误具体是这样的：</p>
+<pre><code class="language-shell">ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
+ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
+</code></pre>
+<p>我在 /usr目录下搜索了一下这个libcrypto.so.1.0.0 和 libcrypto.so.1.0.0：</p>
+<pre><code class="language-shell">imcm@mac-mini:~$ sudo find /usr -name libcrypto.so.1.0.0
+[sudo] imcm 的密码： 
+/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0
+/usr/local/openssl/lib/libcrypto.so.1.0.0
+</code></pre>
+<p>在网上看到有人说是因为引用了不受系统承认的版本，那我就试着把 /usr/local/openssl/lib/ 目录下的libcrypto.so.1.0.0 和 libcrypto.so.1.0.0删掉(为了保险起见，我做了移动)：</p>
+<pre><code class="language-shell">sudo mv /usr/local/openssl/lib/libcrypto.so.1.0.0 /usr/local/openssl/lib/libcrypto.so.1.0.0.bk
+sudo mv /usr/local/openssl/lib/libssl.so.1.0.0 /usr/local/openssl/lib/libssl.so.1.0.0.bk
+</code></pre>
+<p>然后，case closed！问题解决 :(滑稽)</p>
+<h3 id="解决方法二">解决方法二</h3>
+<p>还有一种解决方法，是重新编译 openssl，指定全局的库路径。由于这个方法我没有试过(在主用机上搞这些有风险 :(懒得理) )，这里就直接给出原链接：https://stackoverflow.com/questions/18390833/no-version-information-available，需要 FQ 才能打开，在这里搬运一下：</p>
+<p>下载 1.0.0. 版本的 openssl 源码，在解压后的根目录里新建一个”openssl.ld”文件，文件内容如下：</p>
+<pre><code class="language-shell">OPENSSL_1.0.0 {
+    global:
+    *;
+};
+</code></pre>
+<p>接着执行：</p>
+<pre><code class="language-shell">make clean
+./config --prefix=/usr/local --openssldir=/usr/local/openssl shared -Wl,--version-script=openssl.ld -Wl,-Bsymbolic-functions
+make
+make test
+make install
+ldconfig
+</code></pre>
+<p>大致上就是这样，我的建议还是如果不懂就不要轻易试这个方法，方法一都已经能解决大部分的问题。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux手动升级OpenSSL]]></title>
+        <id>https://imcm.xyz/linux-update-openssl/</id>
+        <link href="https://imcm.xyz/linux-update-openssl/">
+        </link>
+        <updated>2020-12-10T12:49:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
+<!-- more -->
+<h3 id="查看现有版本">查看现有版本</h3>
+<!-- more -->
+<pre><code class="language-shell">openssl version
+</code></pre>
+<p>输出：</p>
+<pre><code class="language-shell">OpenSSL 1.0.2g 1 Mar 2016
+</code></pre>
+<h3 id="备份旧版本">备份旧版本</h3>
+<pre><code class="language-shell">mv /usr/bin/openssl /usr/bin/openssl.old
+mv /usr/include/openssl /usr/include/openssl.old
+</code></pre>
+<h3 id="更新openssl">更新OpenSSL</h3>
+<ol>
+<li>下载</li>
+</ol>
+<pre><code class="language-shell">wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz
+</code></pre>
+<ol start="2">
+<li>解压</li>
+</ol>
+<pre><code class="language-shell">tar -zxvf openssl-1.1.1i.tar.gz
+</code></pre>
+<ol start="3">
+<li>编译安装</li>
+</ol>
+<pre><code class="language-shell">cd openssl-1.1.1i
+./config
+make &amp;&amp; make install
+</code></pre>
+<ol start="4">
+<li>设置软连接</li>
+</ol>
+<pre><code class="language-shell">ln -s /usr/local/openssl/bin/openssl /usr/bin/openssl
+ln -s /usr/local/openssl/include/openssl /usr/include/openssl
+</code></pre>
+<ol start="5">
+<li>设置动态地址库</li>
+</ol>
+<pre><code class="language-shell">echo '/usr/local/openssl/lib' &gt; /etc/ld.so.conf.d/openssl-ld.conf
+</code></pre>
+<h3 id="再次查看版本">再次查看版本</h3>
+<pre><code class="language-shell">openssl version
+</code></pre>
+<p>输出：</p>
+<pre><code class="language-shell">OpenSSL 1.1.1i 8 Dec 2020 (Library: OpenSSL 1.1.1d 10 Sep 2019)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[术语对照表]]></title>
         <id>https://imcm.xyz/net-info/</id>
@@ -867,512 +1124,6 @@ FreeBSD/OpenBSD: /var/db/zerotier-one
 </code></pre>
 <p>这里的 <code>10.147.18.127</code>就是其虚拟局域网的 IP，在另外一个局域网中通过上述过程配置另外一个节点，它的虚拟局域网 IP 为 <code>10.147.18.30</code>，两个节点通过 <code>ping</code> 可以互相通</p>
 <p>转自：<a href="https://opt.gs/posts/56602/">vps侦探</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Facade 类参考]]></title>
-        <id>https://imcm.xyz/laravel-facades/</id>
-        <link href="https://imcm.xyz/laravel-facades/">
-        </link>
-        <updated>2020-07-22T10:15:04.000Z</updated>
-        <summary type="html"><![CDATA[<p>这是一个查找给定 Facade 类 API 文档的工具。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这是一个查找给定 Facade 类 API 文档的工具。</p>
-<!-- more -->
-<table>
-<thead>
-<tr>
-<th>Facade</th>
-<th>类</th>
-<th>服务容器绑定</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>App</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Foundation/Application.html">Illuminate\Foundation\Application</a></td>
-<td><code>app</code></td>
-</tr>
-<tr>
-<td>Artisan</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Console/Kernel.html">Illuminate\Contracts\Console\Kernel</a></td>
-<td><code>artisan</code></td>
-</tr>
-<tr>
-<td>Auth</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/AuthManager.html">Illuminate\Auth\AuthManager</a></td>
-<td><code>auth</code></td>
-</tr>
-<tr>
-<td>Auth (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Auth/Guard.html">Illuminate\Contracts\Auth\Guard</a></td>
-<td><code>auth.driver</code></td>
-</tr>
-<tr>
-<td>Blade</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/Compilers/BladeCompiler.html">Illuminate\View\Compilers\BladeCompiler</a></td>
-<td><code>blade.compiler</code></td>
-</tr>
-<tr>
-<td>Broadcast</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Broadcasting/Factory.html">Illuminate\Contracts\Broadcasting\Factory</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Broadcast (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Broadcasting/Broadcaster.html">Illuminate\Contracts\Broadcasting\Broadcaster</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Bus</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Bus/Dispatcher.html">Illuminate\Contracts\Bus\Dispatcher</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Cache</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cache/CacheManager.html">Illuminate\Cache\CacheManager</a></td>
-<td><code>cache</code></td>
-</tr>
-<tr>
-<td>Cache (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cache/Repository.html">Illuminate\Cache\Repository</a></td>
-<td><code>cache.store</code></td>
-</tr>
-<tr>
-<td>Config</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Config/Repository.html">Illuminate\Config\Repository</a></td>
-<td><code>config</code></td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Cookie/CookieJar.html">Illuminate\Cookie\CookieJar</a></td>
-<td><code>cookie</code></td>
-</tr>
-<tr>
-<td>Crypt</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Encryption/Encrypter.html">Illuminate\Encryption\Encrypter</a></td>
-<td><code>encrypter</code></td>
-</tr>
-<tr>
-<td>DB</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/DatabaseManager.html">Illuminate\Database\DatabaseManager</a></td>
-<td><code>db</code></td>
-</tr>
-<tr>
-<td>DB (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/Connection.html">Illuminate\Database\Connection</a></td>
-<td><code>db.connection</code></td>
-</tr>
-<tr>
-<td>Event</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Events/Dispatcher.html">Illuminate\Events\Dispatcher</a></td>
-<td><code>events</code></td>
-</tr>
-<tr>
-<td>File</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Filesystem/Filesystem.html">Illuminate\Filesystem\Filesystem</a></td>
-<td><code>files</code></td>
-</tr>
-<tr>
-<td>Gate</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Auth/Access/Gate.html">Illuminate\Contracts\Auth\Access\Gate</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Hash</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Hashing/Hasher.html">Illuminate\Contracts\Hashing\Hasher</a></td>
-<td><code>hash</code></td>
-</tr>
-<tr>
-<td>Lang</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Translation/Translator.html">Illuminate\Translation\Translator</a></td>
-<td><code>translator</code></td>
-</tr>
-<tr>
-<td>Log</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Log/Logger.html">Illuminate\Log\Logger</a></td>
-<td><code>log</code></td>
-</tr>
-<tr>
-<td>Mail</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Mail/Mailer.html">Illuminate\Mail\Mailer</a></td>
-<td><code>mailer</code></td>
-</tr>
-<tr>
-<td>Notification</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Notifications/ChannelManager.html">Illuminate\Notifications\ChannelManager</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Password</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/Passwords/PasswordBrokerManager.html">Illuminate\Auth\Passwords\PasswordBrokerManager</a></td>
-<td><code>auth.password</code></td>
-</tr>
-<tr>
-<td>Password (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Auth/Passwords/PasswordBroker.html">Illuminate\Auth\Passwords\PasswordBroker</a></td>
-<td><code>auth.password.broker</code></td>
-</tr>
-<tr>
-<td>Queue</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Queue/QueueManager.html">Illuminate\Queue\QueueManager</a></td>
-<td><code>queue</code></td>
-</tr>
-<tr>
-<td>Queue (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Queue/Queue.html">Illuminate\Contracts\Queue\Queue</a></td>
-<td><code>queue.connection</code></td>
-</tr>
-<tr>
-<td>Queue (Base Class)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Queue/Queue.html">Illuminate\Queue\Queue</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Redirect</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/Redirector.html">Illuminate\Routing\Redirector</a></td>
-<td><code>redirect</code></td>
-</tr>
-<tr>
-<td>Redis</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Redis/RedisManager.html">Illuminate\Redis\RedisManager</a></td>
-<td><code>redis</code></td>
-</tr>
-<tr>
-<td>Redis (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Redis/Connections/Connection.html">Illuminate\Redis\Connections\Connection</a></td>
-<td><code>redis.connection</code></td>
-</tr>
-<tr>
-<td>Request</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Http/Request.html">Illuminate\Http\Request</a></td>
-<td><code>request</code></td>
-</tr>
-<tr>
-<td>Response</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Routing/ResponseFactory.html">Illuminate\Contracts\Routing\ResponseFactory</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Response (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Http/Response.html">Illuminate\Http\Response</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Route</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/Router.html">Illuminate\Routing\Router</a></td>
-<td><code>router</code></td>
-</tr>
-<tr>
-<td>Schema</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Database/Schema/Builder.html">Illuminate\Database\Schema\Builder</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Session</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Session/SessionManager.html">Illuminate\Session\SessionManager</a></td>
-<td><code>session</code></td>
-</tr>
-<tr>
-<td>Session (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Session/Store.html">Illuminate\Session\Store</a></td>
-<td><code>session.store</code></td>
-</tr>
-<tr>
-<td>Storage</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Filesystem/FilesystemManager.html">Illuminate\Filesystem\FilesystemManager</a></td>
-<td><code>filesystem</code></td>
-</tr>
-<tr>
-<td>Storage (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Contracts/Filesystem/Filesystem.html">Illuminate\Contracts\Filesystem\Filesystem</a></td>
-<td><code>filesystem.disk</code></td>
-</tr>
-<tr>
-<td>URL</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Routing/UrlGenerator.html">Illuminate\Routing\UrlGenerator</a></td>
-<td><code>url</code></td>
-</tr>
-<tr>
-<td>Validator</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Validation/Factory.html">Illuminate\Validation\Factory</a></td>
-<td><code>validator</code></td>
-</tr>
-<tr>
-<td>Validator (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/Validation/Validator.html">Illuminate\Validation\Validator</a></td>
-<td></td>
-</tr>
-<tr>
-<td>View</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/Factory.html">Illuminate\View\Factory</a></td>
-<td><code>view</code></td>
-</tr>
-<tr>
-<td>View (Instance)</td>
-<td><a href="https://laravel.com/api/%7B%7Bversion%7D%7D/Illuminate/View/View.html">Illuminate\View\View</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ 中国大事记]]></title>
-        <id>https://imcm.xyz/china-history/</id>
-        <link href="https://imcm.xyz/china-history/">
-        </link>
-        <updated>2020-07-17T10:25:10.000Z</updated>
-        <summary type="html"><![CDATA[<p>公元前4300前——2500年：大汶口文化中晚期，处于父系氏族公社时期。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>公元前4300前——2500年：大汶口文化中晚期，处于父系氏族公社时期。</p>
-<!-- more -->
-<p>约4000多年前：传说中的黄帝、尧、舜、禹时期。</p>
-<p>帝尧时期：尧命羲和观测天象，制定历法，以366日为一年。</p>
-<p>约公元前21世纪：禹将部落联盟首领之位传子启，夏朝建立。</p>
-<p>约公元前21前17世纪：二里头文化繁荣时期，二里头文化与我国历史记载中的夏朝时间基本相吻合。</p>
-<p>公元前2000年：中国约在此时已有凿井取水的技术。</p>
-<p>约公元前1600年：汤伐夏桀，战于鸣条，夏朝灭亡。</p>
-<p>约公元前16世纪：商汤制定刑法，后来称为《汤刑》。</p>
-<p>约公元前14世纪：盘庚即位，迁都于殷，商朝中兴。</p>
-<p>约公元前13世纪：商王武丁任命傅说为相，使商朝政治局面大有改善。</p>
-<p>约公元前12世纪：商朝进入青铜器全盛时代。</p>
-<p>公元前12世纪：周人首领古公亶父迁周人于岐山，周朝王业自此开始。</p>
-<p>公元前1046年：周武王率军伐商，在牧野之战中大败商军，灭亡商朝。</p>
-<p>公元前10世纪：周穆王西巡，会见西王母，在《穆天子传》中有记载。</p>
-<p>公元前9世纪：周厉王实行“专利”，引起国人不满。</p>
-<p>公元前841年：国人暴动，厉王出奔，召公、周公二相行政，号曰“共和”看，自此，中国历史始有准确年代。</p>
-<p>公元前828年：厉王死于彘，召公、周公立太子静为王，是为周宣王。</p>
-<p>公元前771年：申侯与缯、西夷犬戎攻周幽王，杀之于骊山，西周亡。</p>
-<p>公元前770年：周平王自镐京东迁洛邑，自是年起史称东周。</p>
-<p>公元前750年：秦文公伐戎，戎败，文公收其民。</p>
-<p>公元前722年：史书《春秋》记事从本年开始。</p>
-<p>公元前685年：齐桓公即位，以管仲为相，齐国实力大增，成为霸主。</p>
-<p>公元前684年：齐鲁长勺之战，齐师败绩。</p>
-<p>公元前632年：晋国联合齐、宋、秦之师破楚师于城濮，晋文公盟诸侯于践土。</p>
-<p>公元前594年：鲁国实行“初税亩”，标志井田制开始瓦解。</p>
-<p>公元前536年：郑国子产铸刑书。</p>
-<p>公元前514年：吴王阖闾召伍员为行人（外交官），与其共谋国事。</p>
-<p>公元前479年：孔子去世，孔子是我国古代著名思想家、教育家，为儒家学派创始人。</p>
-<p>公元前473年：越王勾践灭吴，后会齐、晋诸侯于徐州，成为诸侯霸主。</p>
-<p>公元前453年：晋国赵、韩、魏三家共灭智氏，三分其领地。</p>
-<p>公元前445年：魏文侯即位。他在位期间，任用李悝在魏国实行变法。</p>
-<p>公元前403年：周威烈王命赵、韩、魏列为诸侯。</p>
-<p>公元前391年：齐国田和迁齐康公于海上，田氏遂有齐国。</p>
-<p>公元前381年：楚悼王卒，他在位期间任用吴起在楚国变法。</p>
-<p>公元前356年：秦孝公任用商鞅，实行变法。</p>
-<p>公元前221年：战国时期结束，秦王嬴政建立起中国封建社会历史上第一个统一王朝——秦朝。</p>
-<p>公元前202年：刘邦称帝，是为汉高祖刘邦，建立汉朝，定都长安。</p>
-<p>公元前141年：汉景帝死，皇太子彻嗣位，是为汉武帝。文帝、景帝统治时期，汉朝社会经济逐渐发展，史称“文景之治”。</p>
-<p>公元前119年：卫青、霍去病分道出击匈奴，其后匈奴远徙，漠南无王庭。</p>
-<p>公元前51年：汉宣帝召集石渠阁会议，讲论五经异同。</p>
-<p>公元8年：王莽即真天子位，定国号曰“新”，西汉灭亡。</p>
-<p>公元25年：刘秀称帝，建元建武，是为东汉光武帝。</p>
-<p>公元92年：汉和帝与宦官郑众定议，诛大将军窦宪，郑众以功封侯，是为东汉宦官用权之始。</p>
-<p>公元166年：第一次党锢之祸，司隶校尉李膺等200余人被称为党人，逮捕下狱。</p>
-<p>公元184年：张角率众起义，因起义军皆戴黄巾，故称黄巾起义。</p>
-<p>公元265年：司马炎废魏主，称帝，是为晋武帝，定都洛阳。</p>
-<p>公元357年：前秦苻坚即位，称大秦天王，汉人王猛辅政。</p>
-<p>公元383年：晋秦淝水之战，前秦大败，内部分崩。</p>
-<p>公元399～412年：高僧法显前往天竺求佛，著有《佛国记》。</p>
-<p>公元420年：刘裕废晋恭帝自立，国号宋，史称刘宋，是为宋武帝。南朝开始。</p>
-<p>公元500年：祖冲之去世，生前首次把圆周率准确数值推算到小数点后七位数。</p>
-<p>公元581年：杨坚称帝，国号隋，是为隋文帝，建都长安。</p>
-<p>公元618年：李渊称帝，国号唐，是为唐高祖，隋朝亡。</p>
-<p>公元645年：玄奘取经而还，抵达长安，《大唐西域记》成书。</p>
-<p>公元690年：武则天废睿宗，称帝，改国号为周。</p>
-<p>公元705年：张柬之等人发动政变，逼武则天退位，复立中宗李显，复国号唐。</p>
-<p>公元713年：唐朝封靺鞨首领大祚荣为都督、渤海郡王。</p>
-<p>公元738年：《唐六典》成书。</p>
-<p>公元745年：唐玄宗敕改波斯（景教）寺为大秦寺。</p>
-<p>公元755年：唐朝爆发安史之乱，由盛转衰。</p>
-<p>公元813年：唐宪宗元和八年，李吉甫撰成《元和郡县图志》。</p>
-<p>公元907年：朱温逼唐哀帝禅让，即帝位，改名朱晃，是为后梁太祖，史称后梁，唐朝亡。</p>
-<p>公元916年：契丹首领耶律阿保机称帝，是为辽太祖，建契丹。</p>
-<p>公元960年：陈桥兵变，赵匡胤即位，是为宋太祖，国号宋，后周亡。</p>
-<p>公元993年：王小波、李顺起义。</p>
-<p>1038年：党项首领元昊称帝，国号大夏，史称西夏，是为西夏景宗，建都兴庆府。</p>
-<p>1127年：金军俘宋徽、钦二帝北还，北宋灭亡。康王赵构于南京应天府即位，是为宋高宗，建立南宋。</p>
-<p>1141年：宋金议和，史称绍兴和议。</p>
-<p>1164年：隆兴和议，宋金重订和约。</p>
-<p>1279年：元军攻破崖山，宋帝溺死，宋亡。</p>
-<p>1286年：《农桑辑要》颁行，为中国现存最古的官修农书。</p>
-<p>1345年：元朝修成《辽史》《金史》《宋史》。</p>
-<p>1355年：刘福通迎韩山童之子韩林儿为帝，建国号宋，改元龙凤，韩林儿号小明王。</p>
-<p>1368年：朱元璋在应天府即帝位，国号明，是为明太祖。</p>
-<p>1399～1402年：燕王朱棣发动靖难之役，攻占南京，即位称帝，是为明成祖。</p>
-<p>1405年：明成祖命宦官郑和与王景弘等使南洋各地，郑和下西洋自此始。</p>
-<p>1407年：明成祖永乐五年，《永乐大典》成书。</p>
-<p>1421年：明成祖迁都北京，以南京为留都。</p>
-<p>1429年：明朝设钞关，以船只大小收税，称“船料”。</p>
-<p>1449年：瓦剌也先犯大同，英宗率军亲征，在土木堡被瓦剌军所破，英宗被俘，史称“土木之变”。</p>
-<p>1457年：宦官曹吉祥及其党羽石亨等乘景帝病危，迎太上皇英宗复位，史称“夺门之变”。</p>
-<p>1521～1524年：大礼议之争，群臣力争，下狱者100多人。</p>
-<p>1542年：宫婢杨金英等谋杀世宗未遂，史称嘉靖“宫婢之变”。</p>
-<p>1563年：巡抚谭纶率戚继光、俞大猷、刘显三将大破倭寇，收复兴化，浙、闽倭寇渐平。</p>
-<p>1571年：明朝封俺答为顺义王，开互市。</p>
-<p>1581年：张居正进行赋役制度改革，全面推行一条鞭法。</p>
-<p>1587年：海瑞死于南京右都御史任上，百姓为之罢市致哀。</p>
-<p>1588年：努尔哈赤统一建州女真。</p>
-<p>1594年：顾宪成被责革职，遂回无锡修东林书院讲学，讽议朝政评论人物，东林党议始于此。</p>
-<p>1599年：明神宗遣宦官至各地征税、办矿，激起临清、沙市、武昌、汉阳等地民变。</p>
-<p>1600年：耶稣会教士利玛窦到达北京，明神宗允许在京师建教堂传教。</p>
-<p>1615年：努尔哈赤正式建立八旗制度。</p>
-<p>1616年：努尔哈赤在赫图阿拉称汗，国号金，史称后金。</p>
-<p>1618年：后金汗努尔哈赤以“七大恨”誓师伐明。</p>
-<p>1619年：萨尔浒之战，明军大败。</p>
-<p>1621年：后金攻陷沈阳，又陷辽阳，并迁都辽阳。</p>
-<p>1625年：后金迁都沈阳，改称盛京。</p>
-<p>1633年：高迎祥、李自成、张献忠等起义军渡黄河南下，进入豫西。</p>
-<p>1636年：皇太极即帝位，改国号为清。</p>
-<p>1637年：宋应星所著《天工开物》刊行。</p>
-<p>1641年：李自成起义军攻入洛阳，杀明福王朱常洵。</p>
-<p>1644年：李自成率大顺军攻占北京，明崇祯帝自缢，明亡。</p>
-<p>1655年：清世祖顺治帝于内十三衙门立铁牌，严禁太监干政。</p>
-<p>1661年：郑成功率军驱逐荷兰殖民者，收复台湾。</p>
-<p>1729年：因西北用兵，设军机房，后改为军机处。</p>
-<p>1735年：清世宗雍正帝去世，子弘历继位，是为清高宗，改元乾隆。</p>
-<p>1747年：大金川土司沙罗奔举兵反，清廷派重兵平叛，两年后平定。</p>
-<p>1762年：清廷设伊犁将军，总统新疆南北两路事务。</p>
-<p>1771年：土尔扈特部在首领渥巴锡率领下，长途跋涉，从沙俄重返祖国。</p>
-<p>1776年：大金川索诺木出降，大小金川之役结束。</p>
-<p>1782年：第一部《四库全书》修成。</p>
-<p>1784年：美国商船“中国皇后”号从纽约出发，绕道非洲好望角，驶抵广州。</p>
-<p>1785年：乾隆帝于乾清宫设“千叟宴”，60岁以上老人入宴者达3000人。</p>
-<p>1793年：乾隆帝在热河行宫接见英国马戛尔尼使团。</p>
-<p>1795年：乾隆帝立皇十五子颙琰为皇太子，定明年继承皇位，改元嘉庆。</p>
-<p>1813年：林清率领的起义军攻入紫禁城，旋即失败。</p>
-<p>1814年：纂辑《全唐文》告成，全书1000卷，收入作家3000多人，作品18000多篇。</p>
-<p>1814年：史学家赵翼去世，著有《廿二史札记》《皇朝武功纪盛》等。</p>
-<p>1821年：清廷重申禁烟令，严禁在澳门、黄埔囤放和售卖鸦片。</p>
-<p>1822年：清廷定例禁止银两出洋。</p>
-<p>1823年：医学家陈念祖去世，著作颇丰，以《医学三字经》广为流传。</p>
-<p>1824年：林则徐综办江浙水利。</p>
-<p>1825年：《西夏书事》刊行，吴广成辑唐以来诸史、文集和野史有关西夏史事，以编年体成书。</p>
-<p>1826年：贺长龄、魏源等编《皇朝经世文编》成书，120卷，搜录重要史料。</p>
-<p>1829年：洋钱、鸦片为害日甚，道光帝命严行查禁。</p>
-<p>1830年：小说家李汝珍约于此年去世，著有长篇小说《镜花缘》。</p>
-<p>1833年：清廷定洋银与纹银使用条例。</p>
-<p>1839年：林则徐在虎门海滩销毁收缴的鸦片。</p>
-<p>1840年：鸦片战争爆发。清廷命琦善为钦差大臣，赴广州与英谈判，林则徐被革职。</p>
-<p>1842年：清廷被迫与英国签订《南京条约》。</p>
-<p>1844年：清廷被迫先后签订中美《望厦条约》、中法《黄埔条约》。</p>
-<p>1845年：英国驻沪领事与上海道台订立《上海租地章程》，是为外国侵略者在中国设立租界的开始。</p>
-<p>1851年：太平天国起义爆发。</p>
-<p>1853年：太平军沿长江东下，占领南京，定为首都，改称天京。</p>
-<p>1853年：太平天国颁布《天朝田亩制度》。</p>
-<p>1855年：太平军北伐失败，主将林凤祥、李开芳牺牲。</p>
-<p>1856年：太平天国发生天京事变。</p>
-<p>1856年：英国借口“亚罗号事件”，挑起第二次鸦片战争。</p>
-<p>1857年：石达开受洪秀全猜忌，率众自天京出走。</p>
-<p>1858年：俄、美、英、法逼迫清廷相继签订《天津条约》。</p>
-<p>1859年：太平天国颁布《资政新篇》。</p>
-<p>1860年：美国人华尔组成“洋枪队”，协助清廷镇压太平军。</p>
-<p>1860年：英法联军攻陷北京，恭亲王与英、法、俄分别签订《北京条约》。</p>
-<p>1861年：咸丰卒，慈禧发动政变，慈禧、慈安两太后垂帘听政，史称“辛酉政变”。</p>
-<p>1864年：天京为清军攻陷，太平天国起义失败。</p>
-<p>1872年：李鸿章在上海创办轮船招商局，侨商陈启源在广东南海创办继昌隆缫丝局，中国民族资本主义近代工业开始出现。</p>
-<p>1875年：清廷以兵部侍郎郭嵩焘任出使英国钦差大臣，为中国正式派遣驻外使节的开始。</p>
-<p>1885年：清军取得谅山大捷，此后李鸿章和法国公使巴德诺在天津签订《中法新约》，中法战争结束。</p>
-<p>1888年：北洋海军建成，以丁汝昌为提督，林泰曾、刘步蟾为左、右翼总兵。</p>
-<p>1894年：中日甲午战争爆发。</p>
-<p>1898年：光绪帝下“明定国是”诏书，戊戌变法开始。八月初六（9月21日），慈禧幽禁光绪帝于瀛台，百日维新失败。</p>
-<p>1900年：由英国海军上将西摩尔统率的八国联军进犯北京。</p>
-<p>1901年：清廷与俄、英、美、日、德、法、意、奥、比、西、荷等十一国签订《辛丑条约》。</p>
-<p>1905年：清廷废除科举考试制度。</p>
-<p>1911年：四川保路运动爆发。</p>
-<p>1911年：辛亥革命。</p>
-<p>1912年：南京临时政府成立，孙中山就任临时大总统，定国号为中华民国。</p>
-<p>1913年：“二次革命”爆发，以失败告终。</p>
-<p>1914年：袁世凯废除《中华民国临时约法》，公布《中华民国约法》。</p>
-<p>1915年：日本提出灭亡中国的“二十一条”。</p>
-<p>1917年：张勋复辟，旋即失败。</p>
-<p>1919年：“五四”运动爆发。</p>
-<p>1919年：中华革命党改组为中国国民党。</p>
-<p>1921年：中国共产党成立。</p>
-<p>1922年：第一次直奉战争爆发。</p>
-<p>1923年：京汉铁路工人大罢工。</p>
-<p>1924年：黄埔军校建立。</p>
-<p>1925年：3月12日，孙中山在北京逝世。</p>
-<p>1927年：《现代评论》创刊于北京，形成现代评论派。</p>
-<p>1927年：汉口、九江民众收回英租界。</p>
-<p>1928年：皇姑屯事件，张作霖死。</p>
-<p>1930年：蒋阎冯中原大战。</p>
-<p>1931年：日本帝国主义在沈阳制造“九一八”事变。</p>
-<p>1935年：聂耳为电影《风云儿女》主题歌谱曲《义勇军进行曲》。</p>
-<p>1935年：曾朴于本年去世，著有长篇小说《孽海花》。</p>
-<p>1935年：“一二·九”运动爆发。</p>
-<p>1936年：12月12日，张学良、杨虎城发动西安事变。</p>
-<p>1937年：卢沟桥事变发生，全面抗日战争开始。</p>
-<p>1937年：12月，南京陷落，日军入城大肆杀戮。</p>
-<p>1940年：八路军发动百团大战。</p>
-<p>1941年：陈纳德飞虎队来中国协助抗战。</p>
-<p>1945年：中、美、英三国发表《波茨坦公告》，促令日本无条件投降。</p>
-<p>1945年：中印公路全线贯通。</p>
-<p>1945年：抗日战争胜利。</p>
-<p>1945年：孙犁创作短篇小说《荷花淀》。</p>
-<p>1946年：巴金写成中篇小说《寒夜》。</p>
-<p>1947年：土地改革运动在解放区全面展开。</p>
-<p>1949年：10月1日，中华人民共和国成立。</p>
-<p>1953年：开始执行发展国民经济的第一个五年计划。</p>
-<p>1955年：成（都）——阿（坝）公路全线通车，全长507千米。</p>
-<p>1957年：第一届中国出口商品交易会在广州举行（简称“广交会”）。</p>
-<p>1965年：中国人工合成结晶牛胰岛素，是世界上首次人工合成蛋白质。</p>
-<p>1980年：中国向太平洋预定海域发射的第一枚运载火箭获得圆满成功。</p>
-<p>1984年：中国体育代表团在美国洛杉矶举行的第23届奥运会上获得15枚金牌，实现了中国在奥运会金牌榜上零的突破。</p>
-<p>1987年：中葡两国政府在北京签署关于澳门问题的联合声明，确认中国政府于1999年12月20日对澳门恢复行使主权。</p>
-<p>1988年：北京正负电子对撞机首次对撞成功。</p>
-<p>1990年：第11届亚洲运动会在北京举行，这是中国第一次承办综合性国际体育大赛。</p>
-<p>1997年：7月1日，中国政府对香港恢复行使主权。</p>
-<p>1999年：12月20日，中国政府对澳门恢复行使主权。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux 下使用 systemd 设置开机启动项]]></title>
-        <id>https://imcm.xyz/linux-systemd-start/</id>
-        <link href="https://imcm.xyz/linux-systemd-start/">
-        </link>
-        <updated>2020-07-16T04:02:05.000Z</updated>
-        <summary type="html"><![CDATA[<p>下面的教程将介绍如何将命令或程序配置为开机启动时自动运行的服务。完成配置之后，就可以通过 Linux 命令行来「启动/停止/禁用」这个服务了。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>下面的教程将介绍如何将命令或程序配置为开机启动时自动运行的服务。完成配置之后，就可以通过 Linux 命令行来「启动/停止/禁用」这个服务了。</p>
-<!-- more -->
-<h2 id="创建服务">创建服务</h2>
-<p>在树莓派上创建一个 .service 文件。例如：</p>
-<p>myscript.service</p>
-<pre><code class="language-shell">[Unit]
-Description=My service
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/python3 -u main.py
-WorkingDirectory=/home/pi/myscript
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=pi
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>在上面的范例中，服务会去以 Python 3 来运行 /home/pi/myscript 目录下面的 main.py 脚本。用这种方法，你不仅可以配置 Python 脚本，只需要将 ExecStart 这行改为需要启动的任何程序或脚本即可。</p>
-<p>将这个文件用 root 用户保存到 /etc/systemd/system 目录：</p>
-<pre><code class="language-shell">sudo cp myscript.service /etc/systemd/system/myscript.service
-</code></pre>
-<p>然后就可以用下面的命令尝试启动服务了：</p>
-<pre><code class="language-shell">sudo systemctl start myscript.service
-</code></pre>
-<p>停止服务：</p>
-<pre><code class="language-shell">sudo systemctl stop myscript.service
-</code></pre>
-<p>设置开机时自动运行：</p>
-<pre><code class="language-shell">sudo systemctl enable myscript.service
-</code></pre>
-<p>systemctl 命令还可以用来重启或禁用它。</p>
-<h2 id="注意事项">注意事项：</h2>
-<p>1、启动顺序取决于他们的依赖关系。如果是依赖于网络的服务，应当在引导过程中尽可能晚一点启动。<br>
-使用 man systemctl 命令或访问 https://fedoramagazine.org/what-is-an-init-system/ 了解更多。</p>
-<p>本文转自：<a href="https://shumeipai.nxez.com/2020/06/30/linux-usage-systemd.html">树莓派实验室</a></p>
 ]]></content>
     </entry>
 </feed>

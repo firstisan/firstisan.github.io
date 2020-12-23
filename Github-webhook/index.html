@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+<title>&lt;转&gt;新手入门 Github Webhooks 完美自动化部署教程 - IMCM</title>
+<meta name="description" content="&lt;span id=&#34;jinrishici-sentence&#34;&gt;正在加载今日诗词....&lt;/span&gt;
+&lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="https://imcm.xyz/styles/main.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css" integrity="sha512-FwY1WVsm4UQgrOXt6kaQ53w83cOHa8fSvjFn/BvVOCYVPmkSR39k/xnU+8hht3zW6JL1TBd4C/aVQIAV58Cg6A==" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-dark.min.css" integrity="sha512-Jlyabam8ztU2kOGN19fSzv1Go9nt9A43UA6vhmL1MPsQMeoPZd+p7pbmegAtyl8kulna0Cqwb7Pgj4adGTLCXA==" crossorigin="anonymous" />
+<script type="text/javascript" src="https://imcm.xyz/media/scripts/jquery.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js" integrity="sha512-tHQeqtcNWlZtEh8As/4MmZ5qpy0wj04svWFK7MIzLmUVIzaHXS8eod9OmHxyBL1UET5Rchvw7Ih4ZDv5JojZww==" crossorigin="anonymous"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+</head>
+
+<body>
+  <div class="layout">
+    <div class="layout-header">
+
+	<div class="layout-header-main">
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+
+					<div class="navbar">
+
+						<div class="logo">
+							<a href="https://imcm.xyz">
+								<img class="logo" src="https://imcm.xyz/media/images/site_avatar.png?v=1608689898643"
+									alt="">
+							</a>
+						</div>
+
+						<div class="menu d-md-inline-block d-none">
+							<ul class="layout-navigation-list">
+								
+								<li class="layout-navigation-item"><a title="首页"
+										href="/">首页</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="归档"
+										href="/archives">归档</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="标签"
+										href="/tags">标签</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="关于"
+										href="/about">关于</a>
+								</li>
+								
+							</ul>
+						</div>
+
+						
+
+						<div class="nav d-md-none d-inline-block">
+							<div class="trigger">
+								<i class="fa fa-bars layout-btn-toggle" aria-hidden="true"></i>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+
+</div>
+    <div class="layout-collapse d-md-none">
+	<div class="layout-collapse-main">
+		<ul class="layout-collapse-list">
+			
+			<li class="layout-collapse-item"><a title="首页" href="/">首页</a></li>
+			
+			<li class="layout-collapse-item"><a title="归档" href="/archives">归档</a></li>
+			
+			<li class="layout-collapse-item"><a title="标签" href="/tags">标签</a></li>
+			
+			<li class="layout-collapse-item"><a title="关于" href="/about">关于</a></li>
+			
+
+		</ul>
+	</div>
+</div>
+
+    <div class="layout-content">
+      <div class="layout-content-main">
+        <div class="container">
+          <div class="row justify-content-lg-center">
+            <div class="col-12 col-lg-9">
+              <div class="layout-post">
+                <div class="layout-post-body">
+                  <div class="row">
+
+                    <div class="col-12 col-lg-10">
+                      <div class="layout-post-main m-right m-md-right">
+                        <div class="layout-post-header">
+                          <h1 class="layout-post-title">&lt;转&gt;新手入门 Github Webhooks 完美自动化部署教程</h1>
+                          <div class="layout-post-meta">
+                            <div class="item">
+                               <a href="https://imcm.xyz/github/" class="post--keyword"
+                                data-title="Github" data-type="post_tag" data-term-id="39">Github</a>
+                               <a href="https://imcm.xyz/webhook/" class="post--keyword"
+                                data-title="WebHook" data-type="post_tag" data-term-id="39">WebHook</a>
+                              
+                            </div>
+                            <div class="item">
+                              <span>2020-12-22</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layout-post-content">
+                          <div class="layout-post-item">
+                            
+                            <p class="with-img"><img src="https://imcm.xyz/post-images/Github-webhook.jpg"
+                                class="attachment-full size-full wp-post-image" alt="&lt;转&gt;新手入门 Github Webhooks 完美自动化部署教程" /></p>
+                            
+                            <h3 id="前言">前言</h3>
+<p>之前使用GitHub Actions可以在提交代码后自动上传到腾讯云COS存储桶,实现静态网站完美自动化部署.那么非静态的网站或者项目需要自动化部署到VPS服务器上就可以使用GitHub Webhooks来实现.作为纯属新手来说,网上查阅了十几篇相关教程,都没法部署成功,最后总算找到了问题关键点,决定整理成文章分享出来,希望能帮助到新手用户.</p>
+<blockquote>
+<p>Webhook支持php,js等多种方式,可以实现简单的部署,也可以实现复杂的自动化构建等功能,本文介绍适合新手用户的php方式,来自动化部署网站.</p>
+</blockquote>
+<h3 id="webhook简单原理">Webhook简单原理</h3>
+<p>对于入门新手来说,Webhook可以理解为当你在本地完成代码工作后,Push提交到GitHub,GitHub检测到Push后,使用Webhook发送一条命令到你的VPS服务器上的Webhook.php文件,服务器检测到命令后根据webhook.php中的配置在服务器上执行Pull命令,同步GitHub上的代码到服务器.实现了简单的自动化部署工作.节省了你再次上传至服务器的多余操作.</p>
+<h3 id="部署流程">部署流程</h3>
+<h4 id="启用shell_exec">启用shell_exec</h4>
+<p>编辑php.ini</p>
+<pre><code class="language-shell">vim /usr/local/php/etc/php.ini
+</code></pre>
+<p>查找shell_exec,在disable_functions中删除shell_exec字段.<br>
+<img src="https://imcm.xyz/post-images/1608622210723.jpg" alt="" loading="lazy"></p>
+<p>重启php.ini保存设置</p>
+<pre><code class="language-shell">/etc/init.d/php-fpm restart
+</code></pre>
+<h4 id="配置站点目录权限">配置站点目录权限</h4>
+<p>由于Webhook的推送请求是通过http/https方式发送至服务器,根据webhook.php中的命令执行git pull的实为运行php的用户,根据以下命令可以查执行php用户为www.</p>
+<pre><code class="language-shell">ps aux | grep php
+</code></pre>
+<p>确保仓库所在的站点目录所有者为www</p>
+<pre><code class="language-shell">chown -R www:www /home/wwwroot
+</code></pre>
+<h4 id="切换为www账户">切换为www账户</h4>
+<p>以root账户登陆服务器,修改www的登录权限.</p>
+<pre><code class="language-shell">vim /etc/passwd
+</code></pre>
+<p>找到</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/sbin/nologin
+</code></pre>
+<p>修为改</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/bin/bash
+</code></pre>
+<h4 id="为www创建ssh公钥">为www创建ssh公钥</h4>
+<p>切换为www登陆</p>
+<pre><code class="language-shell">su www
+</code></pre>
+<p>创建ssh公钥</p>
+<pre><code class="language-shell">ssh-keygen -t rsa
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1608622389755.jpg" alt="" loading="lazy"></figure>
+<p>获取你的公钥id_rsa.pub</p>
+<pre><code class="language-shell">cat /home/www/.ssh/id_rsa.pub
+</code></pre>
+<h4 id="登陆github配置ssh公钥">登陆GitHub配置ssh公钥</h4>
+<p>登陆GitHub - 进入仓库 - Settings - Deploy keys - Add Deploy keys<br>
+粘贴刚才创建的公钥</p>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1608622410820.jpg" alt="" loading="lazy"></figure>
+<h4 id="首次git-clone仓库">首次git clone仓库</h4>
+<p>验证ssh公钥配置成功</p>
+<pre><code class="language-shell">ssh -T git@github.com
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1608622477397.jpg" alt="" loading="lazy"></figure>
+<p>首次clone仓库成功</p>
+<pre><code class="language-shell">git clone git@github.com:xxxxxx/xxxxxxx.git
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1608622485033.jpg" alt="" loading="lazy"></figure>
+<h4 id="配置webhookphp">配置webhook.php</h4>
+<p>在项目网站根目录创建webhook.php获得外网链接为https://yourdoamin.com/webhook.php<br>
+粘贴以下代码,只需要更改keySecret和wwwRoot即可.</p>
+<pre><code class="language-php">&lt;?php
+
+// 自行创建一个验证密码
+$keySecret = 'xxxxxx';
+
+// 修改为你自己的仓库绝对路径
+$wwwRoot = [
+    '/home/wwwroot/xxxx',
+];
+
+// 保存运行脚本的日志
+$logFile = 'log/webhook.log';
+
+// 执行git命令
+$gitCommand = 'git pull';
+
+// 判断是否开启秘钥认证(已实现gitee和github)
+if (isset($keySecret) &amp;&amp; !empty($keySecret)) {
+    list($headers, $gitType) = [[], null];
+    foreach ($_SERVER as $key =&gt; $value) {
+        'HTTP_' == substr($key, 0, 5) &amp;&amp; $headers[str_replace('_', '-', substr($key, 5))] = $value;
+        if (empty($gitType) &amp;&amp; strpos($key, 'GITEE') !== false) {
+            $gitType = 'GITEE';
+        }
+        if (empty($gitType) &amp;&amp; strpos($key, 'GITHUB') !== false) {
+            $gitType = 'GITHUB';
+        }
+    }
+    if ($gitType == 'GITEE') {
+        if (!isset($headers['X-GITEE-TOKEN']) || $headers['X-GITEE-TOKEN'] != $keySecret) {
+            die('GITEE - 请求失败，秘钥有误');
+        }
+    } elseif ($gitType == 'GITHUB') {
+        $json_content = file_get_contents('php://input');
+        $signature = &quot;sha1=&quot; . hash_hmac('sha1', $json_content, $keySecret);
+        if ($signature != $headers['X-HUB-SIGNATURE']) {
+            die('GITHUB - 请求失败，秘钥有误');
+        }
+    } else {
+        die('请求错误，未知git类型');
+    }
+}
+
+!is_array($wwwRoot) &amp;&amp; $wwwRoot = [$wwwRoot];
+foreach ($wwwRoot as $vo) {
+    $shell = sprintf(&quot;cd %s &amp;&amp; git pull 2&gt;&amp;1&quot;, $vo);
+    $output = shell_exec($shell);
+    $log = sprintf(&quot;[%s] %s \n&quot;, date('Y-m-d H:i:s', time()) . ' - ' . $vo, $output);
+    echo $log;
+    file_put_contents($logFile, $log, FILE_APPEND);
+}
+</code></pre>
+<h4 id="github-webhooks配置">GitHub Webhooks配置</h4>
+<p>登陆GitHub - 进入仓库 - Settings - Webhooks - Add webhook<br>
+Payload URL 输入刚才获取的webhook.php的外网链接.<br>
+Content type 保持默认<br>
+Secret 输入刚才配置webhook.php创建的验证密码<br>
+Add webhook 完成创建<br>
+<img src="https://imcm.xyz/post-images/1608622528975.jpg" alt="" loading="lazy"></p>
+<h4 id="恢复关闭www登陆">恢复关闭www登陆</h4>
+<p>exit退出www登陆切回root,在次关闭www登陆.</p>
+<pre><code class="language-shell">vim /etc/passwd
+</code></pre>
+<p>恢复为</p>
+<pre><code class="language-shell">www:x:1003:1003::/home/www:/sbin/nologin
+</code></pre>
+<h4 id="自动化部署成功">自动化部署成功</h4>
+<p>本地push代码到GitHub后,可以看到返回信息提示服务器pull成功.<br>
+<img src="https://imcm.xyz/post-images/1608622569768.jpg" alt="" loading="lazy"></p>
+<h3 id="关键点和相关错误">关键点和相关错误</h3>
+<h4 id="权限">权限</h4>
+<p>网上很多教程都没有提到权限问题,所以对于新手小白来说,就会不知道为什么不成功.而少数提到权限的教程,也没有非常详细指导用户如何配置.所以如果部署有问题,请检查权限问题,新手用户可以严格按照本教程先部署成功,在来自行修改你需要的配置.</p>
+<h4 id="webhookphp">webhook.php</h4>
+<p>webhook.php的代码网上也有很多种,有些能用有些无法使用,本文提供的是经过测试可用的,大家也可以自行搜索或者编辑.</p>
+<h4 id="service-timeout">Service Timeout</h4>
+<p>当遇到push大量代码时,服务器pull需要更长的时间,所以webhook返回给GitHub的信息如下图会出现Service Timeout超时错误,但实际上服务器也成功执行了pull,你可以登陆服务器检查来确认,同时也可以根据你的项目实际情况自行修改webhook.php执行配置.<br>
+<img src="https://imcm.xyz/post-images/1608622604663.jpg" alt="" loading="lazy"></p>
+<h4 id="证书错误">证书错误</h4>
+<p>有可能会出现下图中的证书错误提示,请更换证书,测试时使用的Let's Encrypt的泛域名证书就会报错,博主更换为腾讯云申请的单域名证书就可以了.<br>
+<img src="https://imcm.xyz/post-images/1608622614276.jpg" alt="" loading="lazy"></p>
+<h3 id="结语">结语</h3>
+<p>特别感谢以下两篇文章给予了关于www权限和webhook.php两个关键点的帮助:<br>
+<a href="https://learnku.com/articles/34320">gitee 和 GitHub 的 webhook 的使用，实现服务器代码的自动更新</a><br>
+<a href="https://www.jianshu.com/p/00bc0323e83f">gitlab之webhook自动部署</a></p>
+<p>本文转自:<a href="https://www.ioiox.com/archives/72.html">IOIOX</a></p>
+
+                          </div>
+                        </div>
+                        <div class="layout-post-social">
+                          <div class="item reader">
+                            <div id="/post/Github-webhook/" class="leancloud-visitors view"
+                              data-flag-title="&lt;转&gt;新手入门 Github Webhooks 完美自动化部署教程">
+                              <span class="post-meta-item-text">阅读 </span>
+                              <span class="leancloud-visitors-count"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="layout-post-navigation">
+                          <div class="navigation-list">
+                            
+                            <div class="post-card row">
+                              
+                              <div class="card-content col-8 col-md-9">
+                                <div class="card-body">
+                                  <div class="header">
+                                    <a href="https://imcm.xyz/libcrypto-ssh-waring/" class="title">
+                                      <h4>Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题</h4>
+                                    </a>
+                                  </div>
+                                  <div class="inner d-none d-sm-block">
+                                    <div class="abstract">
+                                      <p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <div class="item"><span>下一篇</span></div>
+                                  <div class="item">2020-12-21</div>
+                                </div>
+                              </div>
+                              <div class="card-thumb col-4 col-md-3">
+                                <div class="thumb">
+                                  <a href="https://imcm.xyz/libcrypto-ssh-waring/"
+                                    style="background-image: url('https://imcm.xyz/post-images/libcrypto-ssh-waring.jpeg');"></a>
+                                </div>
+                              </div>
+                              
+                            </div>
+                            
+                          </div>
+                        </div>
+
+                        <div class="layout-comments" id="comments">
+                          
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-lg-2 d-none d-lg-block">
+                      <div class="layout-post-sidebar">
+                        <div class="layout-sidebar-item">
+                          <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#webhook%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86">Webhook简单原理</a></li>
+<li><a href="#%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B">部署流程</a>
+<ul>
+<li><a href="#%E5%90%AF%E7%94%A8shell_exec">启用shell_exec</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90">配置站点目录权限</a></li>
+<li><a href="#%E5%88%87%E6%8D%A2%E4%B8%BAwww%E8%B4%A6%E6%88%B7">切换为www账户</a></li>
+<li><a href="#%E4%B8%BAwww%E5%88%9B%E5%BB%BAssh%E5%85%AC%E9%92%A5">为www创建ssh公钥</a></li>
+<li><a href="#%E7%99%BB%E9%99%86github%E9%85%8D%E7%BD%AEssh%E5%85%AC%E9%92%A5">登陆GitHub配置ssh公钥</a></li>
+<li><a href="#%E9%A6%96%E6%AC%A1git-clone%E4%BB%93%E5%BA%93">首次git clone仓库</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEwebhookphp">配置webhook.php</a></li>
+<li><a href="#github-webhooks%E9%85%8D%E7%BD%AE">GitHub Webhooks配置</a></li>
+<li><a href="#%E6%81%A2%E5%A4%8D%E5%85%B3%E9%97%ADwww%E7%99%BB%E9%99%86">恢复关闭www登陆</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F">自动化部署成功</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E9%94%AE%E7%82%B9%E5%92%8C%E7%9B%B8%E5%85%B3%E9%94%99%E8%AF%AF">关键点和相关错误</a>
+<ul>
+<li><a href="#%E6%9D%83%E9%99%90">权限</a></li>
+<li><a href="#webhookphp">webhook.php</a></li>
+<li><a href="#service-timeout">Service Timeout</a></li>
+<li><a href="#%E8%AF%81%E4%B9%A6%E9%94%99%E8%AF%AF">证书错误</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%93%E8%AF%AD">结语</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-totop d-none"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+
+    	<div class="layout-footer">
+
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+					<div class="footer">
+						<div class="row">
+							<div class="col-12 col-md-9">
+								<div class="footer-copy">
+									
+									Copyright 2020 imcm.xyz. All Rights Reserved.
+|
+<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备16038460号
+</a>
+|
+<span id="jinrishici-sentence">正在加载今日诗词....</span>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+									<div class="footer-icp d-none d-sm-inline-block">
+										<span class="px-2">⋅</span>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 d-none d-md-block">
+								<div class="footer-links">
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src='https://imcm.xyz/media/scripts/main.js'></script>
+	
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?&lt;script&gt; var _hmt = _hmt || []; (function() {   var hm = document.createElement(&#34;script&#34;);   hm.src = &#34;https://hm.baidu.com/hm.js?b458c042ab39991f105ed855cfacfcd0&#34;;   var s = document.getElementsByTagName(&#34;script&#34;)[0];    s.parentNode.insertBefore(hm, s); })(); &lt;/script&gt;";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	
+
+  </div>
+</body>
+
+</html>

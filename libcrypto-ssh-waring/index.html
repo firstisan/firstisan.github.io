@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+<title>Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题 - IMCM</title>
+<meta name="description" content="&lt;span id=&#34;jinrishici-sentence&#34;&gt;正在加载今日诗词....&lt;/span&gt;
+&lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="https://imcm.xyz/styles/main.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css" integrity="sha512-FwY1WVsm4UQgrOXt6kaQ53w83cOHa8fSvjFn/BvVOCYVPmkSR39k/xnU+8hht3zW6JL1TBd4C/aVQIAV58Cg6A==" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-dark.min.css" integrity="sha512-Jlyabam8ztU2kOGN19fSzv1Go9nt9A43UA6vhmL1MPsQMeoPZd+p7pbmegAtyl8kulna0Cqwb7Pgj4adGTLCXA==" crossorigin="anonymous" />
+<script type="text/javascript" src="https://imcm.xyz/media/scripts/jquery.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js" integrity="sha512-tHQeqtcNWlZtEh8As/4MmZ5qpy0wj04svWFK7MIzLmUVIzaHXS8eod9OmHxyBL1UET5Rchvw7Ih4ZDv5JojZww==" crossorigin="anonymous"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+</head>
+
+<body>
+  <div class="layout">
+    <div class="layout-header">
+
+	<div class="layout-header-main">
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+
+					<div class="navbar">
+
+						<div class="logo">
+							<a href="https://imcm.xyz">
+								<img class="logo" src="https://imcm.xyz/media/images/site_avatar.png?v=1608689898643"
+									alt="">
+							</a>
+						</div>
+
+						<div class="menu d-md-inline-block d-none">
+							<ul class="layout-navigation-list">
+								
+								<li class="layout-navigation-item"><a title="首页"
+										href="/">首页</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="归档"
+										href="/archives">归档</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="标签"
+										href="/tags">标签</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="关于"
+										href="/about">关于</a>
+								</li>
+								
+							</ul>
+						</div>
+
+						
+
+						<div class="nav d-md-none d-inline-block">
+							<div class="trigger">
+								<i class="fa fa-bars layout-btn-toggle" aria-hidden="true"></i>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+
+</div>
+    <div class="layout-collapse d-md-none">
+	<div class="layout-collapse-main">
+		<ul class="layout-collapse-list">
+			
+			<li class="layout-collapse-item"><a title="首页" href="/">首页</a></li>
+			
+			<li class="layout-collapse-item"><a title="归档" href="/archives">归档</a></li>
+			
+			<li class="layout-collapse-item"><a title="标签" href="/tags">标签</a></li>
+			
+			<li class="layout-collapse-item"><a title="关于" href="/about">关于</a></li>
+			
+
+		</ul>
+	</div>
+</div>
+
+    <div class="layout-content">
+      <div class="layout-content-main">
+        <div class="container">
+          <div class="row justify-content-lg-center">
+            <div class="col-12 col-lg-9">
+              <div class="layout-post">
+                <div class="layout-post-body">
+                  <div class="row">
+
+                    <div class="col-12 col-lg-10">
+                      <div class="layout-post-main m-right m-md-right">
+                        <div class="layout-post-header">
+                          <h1 class="layout-post-title">Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题</h1>
+                          <div class="layout-post-meta">
+                            <div class="item">
+                               <a href="https://imcm.xyz/ssh/" class="post--keyword"
+                                data-title="SSH" data-type="post_tag" data-term-id="39">SSH</a>
+                               <a href="https://imcm.xyz/openssl/" class="post--keyword"
+                                data-title="OpenSSL" data-type="post_tag" data-term-id="39">OpenSSL</a>
+                               <a href="https://imcm.xyz/linux/" class="post--keyword"
+                                data-title="Linux" data-type="post_tag" data-term-id="39">Linux</a>
+                              
+                            </div>
+                            <div class="item">
+                              <span>2020-12-21</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layout-post-content">
+                          <div class="layout-post-item">
+                            
+                            <p class="with-img"><img src="https://imcm.xyz/post-images/libcrypto-ssh-waring.jpeg"
+                                class="attachment-full size-full wp-post-image" alt="Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题" /></p>
+                            
+                            <p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
+<!-- more -->
+<h3 id="解决方法一">解决方法一</h3>
+<p>先来个最简单的解决方法。我出现的错误具体是这样的：</p>
+<pre><code class="language-shell">ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
+ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
+</code></pre>
+<p>我在 /usr目录下搜索了一下这个libcrypto.so.1.0.0 和 libcrypto.so.1.0.0：</p>
+<pre><code class="language-shell">imcm@mac-mini:~$ sudo find /usr -name libcrypto.so.1.0.0
+[sudo] imcm 的密码： 
+/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0
+/usr/local/openssl/lib/libcrypto.so.1.0.0
+</code></pre>
+<p>在网上看到有人说是因为引用了不受系统承认的版本，那我就试着把 /usr/local/openssl/lib/ 目录下的libcrypto.so.1.0.0 和 libcrypto.so.1.0.0删掉(为了保险起见，我做了移动)：</p>
+<pre><code class="language-shell">sudo mv /usr/local/openssl/lib/libcrypto.so.1.0.0 /usr/local/openssl/lib/libcrypto.so.1.0.0.bk
+sudo mv /usr/local/openssl/lib/libssl.so.1.0.0 /usr/local/openssl/lib/libssl.so.1.0.0.bk
+</code></pre>
+<p>然后，case closed！问题解决 :(滑稽)</p>
+<h3 id="解决方法二">解决方法二</h3>
+<p>还有一种解决方法，是重新编译 openssl，指定全局的库路径。由于这个方法我没有试过(在主用机上搞这些有风险 :(懒得理) )，这里就直接给出原链接：https://stackoverflow.com/questions/18390833/no-version-information-available，需要 FQ 才能打开，在这里搬运一下：</p>
+<p>下载 1.0.0. 版本的 openssl 源码，在解压后的根目录里新建一个”openssl.ld”文件，文件内容如下：</p>
+<pre><code class="language-shell">OPENSSL_1.0.0 {
+    global:
+    *;
+};
+</code></pre>
+<p>接着执行：</p>
+<pre><code class="language-shell">make clean
+./config --prefix=/usr/local --openssldir=/usr/local/openssl shared -Wl,--version-script=openssl.ld -Wl,-Bsymbolic-functions
+make
+make test
+make install
+ldconfig
+</code></pre>
+<p>大致上就是这样，我的建议还是如果不懂就不要轻易试这个方法，方法一都已经能解决大部分的问题。</p>
+
+                          </div>
+                        </div>
+                        <div class="layout-post-social">
+                          <div class="item reader">
+                            <div id="/post/libcrypto-ssh-waring/" class="leancloud-visitors view"
+                              data-flag-title="Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题">
+                              <span class="post-meta-item-text">阅读 </span>
+                              <span class="leancloud-visitors-count"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="layout-post-navigation">
+                          <div class="navigation-list">
+                            
+                            <div class="post-card row">
+                              
+                              <div class="card-content col-8 col-md-9">
+                                <div class="card-body">
+                                  <div class="header">
+                                    <a href="https://imcm.xyz/Github-webhook/" class="title">
+                                      <h4>&lt;转&gt;新手入门 Github Webhooks 完美自动化部署教程</h4>
+                                    </a>
+                                  </div>
+                                  <div class="inner d-none d-sm-block">
+                                    <div class="abstract">
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <div class="item"><span>上一篇</span></div>
+                                  <div class="item">2020-12-22</div>
+                                </div>
+                              </div>
+                              <div class="card-thumb col-4 col-md-3">
+                                <div class="thumb">
+                                  <a href="https://imcm.xyz/Github-webhook/"
+                                    style="background-image: url('https://imcm.xyz/post-images/Github-webhook.jpg');"></a>
+                                </div>
+                              </div>
+                              
+                            </div>
+
+                            <div class="post-card row">
+                              
+                              <div class="card-content col-8 col-md-9">
+                                <div class="card-body">
+                                  <div class="header">
+                                    <a href="https://imcm.xyz/linux-update-openssl/" class="title">
+                                      <h4>Linux手动升级OpenSSL</h4>
+                                    </a>
+                                  </div>
+                                  <div class="inner d-none d-sm-block">
+                                    <div class="abstract">
+                                      <p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <div class="item"><span>下一篇</span></div>
+                                  <div class="item">2020-12-10</div>
+                                </div>
+                              </div>
+                              <div class="card-thumb col-4 col-md-3">
+                                <div class="thumb">
+                                  <a href="https://imcm.xyz/linux-update-openssl/"
+                                    style="background-image: url('https://imcm.xyz/post-images/linux-update-openssl.png');"></a>
+                                </div>
+                              </div>
+                              
+                            </div>
+
+                            
+                          </div>
+                        </div>
+
+                        <div class="layout-comments" id="comments">
+                          
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-lg-2 d-none d-lg-block">
+                      <div class="layout-post-sidebar">
+                        <div class="layout-sidebar-item">
+                          <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80">解决方法一</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C">解决方法二</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-totop d-none"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+
+    	<div class="layout-footer">
+
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+					<div class="footer">
+						<div class="row">
+							<div class="col-12 col-md-9">
+								<div class="footer-copy">
+									
+									Copyright 2020 imcm.xyz. All Rights Reserved.
+|
+<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备16038460号
+</a>
+|
+<span id="jinrishici-sentence">正在加载今日诗词....</span>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+									<div class="footer-icp d-none d-sm-inline-block">
+										<span class="px-2">⋅</span>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 d-none d-md-block">
+								<div class="footer-links">
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src='https://imcm.xyz/media/scripts/main.js'></script>
+	
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?&lt;script&gt; var _hmt = _hmt || []; (function() {   var hm = document.createElement(&#34;script&#34;);   hm.src = &#34;https://hm.baidu.com/hm.js?b458c042ab39991f105ed855cfacfcd0&#34;;   var s = document.getElementsByTagName(&#34;script&#34;)[0];    s.parentNode.insertBefore(hm, s); })(); &lt;/script&gt;";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	
+
+  </div>
+</body>
+
+</html>

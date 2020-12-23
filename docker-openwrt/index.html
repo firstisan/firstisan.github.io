@@ -1,122 +1,140 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
 <head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>在Docker 中运行 OpenWrt 旁路网关 | IMCM</title>
-<link rel="shortcut icon" href="https://imcm.xyz/favicon.ico?v=1605774861135">
-<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://imcm.xyz/styles/main.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="UTF-8" />
+<title>在Docker 中运行 OpenWrt 旁路网关 - IMCM</title>
+<meta name="description" content="&lt;span id=&#34;jinrishici-sentence&#34;&gt;正在加载今日诗词....&lt;/span&gt;
+&lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
-<!-- DEMO JS -->
-<!--<script src="media/scripts/index.js"></script>-->
+<link type="text/css" rel="stylesheet" href="https://imcm.xyz/styles/main.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css" integrity="sha512-FwY1WVsm4UQgrOXt6kaQ53w83cOHa8fSvjFn/BvVOCYVPmkSR39k/xnU+8hht3zW6JL1TBd4C/aVQIAV58Cg6A==" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-dark.min.css" integrity="sha512-Jlyabam8ztU2kOGN19fSzv1Go9nt9A43UA6vhmL1MPsQMeoPZd+p7pbmegAtyl8kulna0Cqwb7Pgj4adGTLCXA==" crossorigin="anonymous" />
+<script type="text/javascript" src="https://imcm.xyz/media/scripts/jquery.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js" integrity="sha512-tHQeqtcNWlZtEh8As/4MmZ5qpy0wj04svWFK7MIzLmUVIzaHXS8eod9OmHxyBL1UET5Rchvw7Ih4ZDv5JojZww==" crossorigin="anonymous"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168899035-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
 
-        gtag('js', new Date());
-        gtag('config', 'UA-168899035-1');
-    </script>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
+
 <body>
-<div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            IMCM
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
-            
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/about" class="menu gt-a-link">
-                            关于
-                        </a>
-                    
-                </div>
-            
-        </div>
-    </div>
-</nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    在Docker 中运行 OpenWrt 旁路网关
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-06-16 ·
-                    </time>
-                    
-                        <a href="https://imcm.xyz/openwrt/" class="post-tags">
-                            # openwrt
-                        </a>
-                    
-                        <a href="https://imcm.xyz/docker/" class="post-tags">
-                            # docker
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p>今天小苏为大家带来的是（咕很久的）在 Docker 中运行 OpenWrt 做旁路网关的教程~</p>
+  <div class="layout">
+    <div class="layout-header">
+
+	<div class="layout-header-main">
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+
+					<div class="navbar">
+
+						<div class="logo">
+							<a href="https://imcm.xyz">
+								<img class="logo" src="https://imcm.xyz/media/images/site_avatar.png?v=1608689898643"
+									alt="">
+							</a>
+						</div>
+
+						<div class="menu d-md-inline-block d-none">
+							<ul class="layout-navigation-list">
+								
+								<li class="layout-navigation-item"><a title="首页"
+										href="/">首页</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="归档"
+										href="/archives">归档</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="标签"
+										href="/tags">标签</a>
+								</li>
+								
+								<li class="layout-navigation-item"><a title="关于"
+										href="/about">关于</a>
+								</li>
+								
+							</ul>
+						</div>
+
+						
+
+						<div class="nav d-md-none d-inline-block">
+							<div class="trigger">
+								<i class="fa fa-bars layout-btn-toggle" aria-hidden="true"></i>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+
+</div>
+    <div class="layout-collapse d-md-none">
+	<div class="layout-collapse-main">
+		<ul class="layout-collapse-list">
+			
+			<li class="layout-collapse-item"><a title="首页" href="/">首页</a></li>
+			
+			<li class="layout-collapse-item"><a title="归档" href="/archives">归档</a></li>
+			
+			<li class="layout-collapse-item"><a title="标签" href="/tags">标签</a></li>
+			
+			<li class="layout-collapse-item"><a title="关于" href="/about">关于</a></li>
+			
+
+		</ul>
+	</div>
+</div>
+
+    <div class="layout-content">
+      <div class="layout-content-main">
+        <div class="container">
+          <div class="row justify-content-lg-center">
+            <div class="col-12 col-lg-9">
+              <div class="layout-post">
+                <div class="layout-post-body">
+                  <div class="row">
+
+                    <div class="col-12 col-lg-10">
+                      <div class="layout-post-main m-right m-md-right">
+                        <div class="layout-post-header">
+                          <h1 class="layout-post-title">在Docker 中运行 OpenWrt 旁路网关</h1>
+                          <div class="layout-post-meta">
+                            <div class="item">
+                               <a href="https://imcm.xyz/openwrt/" class="post--keyword"
+                                data-title="openwrt" data-type="post_tag" data-term-id="39">openwrt</a>
+                               <a href="https://imcm.xyz/docker/" class="post--keyword"
+                                data-title="docker" data-type="post_tag" data-term-id="39">docker</a>
+                              
+                            </div>
+                            <div class="item">
+                              <span>2020-06-16</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layout-post-content">
+                          <div class="layout-post-item">
+                            
+                            <p class="with-img"><img src="https://imcm.xyz/post-images/docker-openwrt.jpg"
+                                class="attachment-full size-full wp-post-image" alt="在Docker 中运行 OpenWrt 旁路网关" /></p>
+                            
+                            <p>今天小苏为大家带来的是（咕很久的）在 Docker 中运行 OpenWrt 做旁路网关的教程~</p>
 <!-- more -->
 <p>本文转自： <a href="https://mlapp.cn/376.html">美丽应用</a></p>
 <h3 id="场景1">场景1</h3>
@@ -371,58 +389,219 @@ iface macvlan inet static
 <li><a href="https://www.right.com.cn/forum/thread-506510-1-1.html">N1刷入LEAN OPENWRT做旁路网关，导致访问国内网站卡顿 - 恩山无线论坛</a></li>
 </ol>
 
+                          </div>
+                        </div>
+                        <div class="layout-post-social">
+                          <div class="item reader">
+                            <div id="/post/docker-openwrt/" class="leancloud-visitors view"
+                              data-flag-title="在Docker 中运行 OpenWrt 旁路网关">
+                              <span class="post-meta-item-text">阅读 </span>
+                              <span class="leancloud-visitors-count"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="layout-post-navigation">
+                          <div class="navigation-list">
+                            
+                            <div class="post-card row">
+                              
+                              <div class="card-content col-8 col-md-9">
+                                <div class="card-body">
+                                  <div class="header">
+                                    <a href="https://imcm.xyz/gyp-no-xcode/" class="title">
+                                      <h4>gyp: No Xcode or CLT version detected!</h4>
+                                    </a>
+                                  </div>
+                                  <div class="inner d-none d-sm-block">
+                                    <div class="abstract">
+                                      <p>npm install 安装依赖包报如下错误</p>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <div class="item"><span>上一篇</span></div>
+                                  <div class="item">2020-06-17</div>
+                                </div>
+                              </div>
+                              <div class="card-thumb col-4 col-md-3">
+                                <div class="thumb">
+                                  <a href="https://imcm.xyz/gyp-no-xcode/"
+                                    style="background-image: url('https://imcm.xyz/post-images/gyp-no-xcode.png');"></a>
+                                </div>
+                              </div>
+                              
+                            </div>
+
+                            <div class="post-card row">
+                              
+                              <div class="card-content col-8 col-md-9">
+                                <div class="card-body">
+                                  <div class="header">
+                                    <a href="https://imcm.xyz/chown-git/" class="title">
+                                      <h4>Git 忽略文件目录权限或文件拥有者的改变</h4>
+                                    </a>
+                                  </div>
+                                  <div class="inner d-none d-sm-block">
+                                    <div class="abstract">
+                                      <p>git 中可以加入忽略文件权限的配置，在 git 根目录运行如下命令：</p>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-footer">
+                                  <div class="item"><span>下一篇</span></div>
+                                  <div class="item">2020-06-13</div>
+                                </div>
+                              </div>
+                              <div class="card-thumb col-4 col-md-3">
+                                <div class="thumb">
+                                  <a href="https://imcm.xyz/chown-git/"
+                                    style="background-image: url('https://imcm.xyz/post-images/chown-git.svg');"></a>
+                                </div>
+                              </div>
+                              
+                            </div>
+
+                            
+                          </div>
+                        </div>
+
+                        <div class="layout-comments" id="comments">
+                          
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-lg-2 d-none d-lg-block">
+                      <div class="layout-post-sidebar">
+                        <div class="layout-sidebar-item">
+                          <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%9C%BA%E6%99%AF1">场景1</a></li>
+<li><a href="#%E5%9C%BA%E6%99%AF2">场景2</a></li>
+<li><a href="#%E6%97%81%E8%B7%AF%E7%BD%91%E5%85%B3">旁路网关</a></li>
+<li><a href="#%E9%95%9C%E5%83%8F%E4%BB%8B%E7%BB%8D">镜像介绍</a></li>
+<li><a href="#%E9%87%8D%E8%A6%81%E8%AF%B4%E6%98%8E">重要说明</a></li>
+<li><a href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87">前期准备</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E5%BC%80%E5%A7%8B">步骤开始</a>
+<ul>
+<li><a href="#%E6%89%93%E5%BC%80%E7%BD%91%E5%8D%A1%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F">打开网卡混杂模式</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E9%A1%BB%E7%BB%93%E5%90%88%E5%AE%9E%E9%99%85%E7%BD%91%E7%BB%9C%E6%83%85%E5%86%B5%E4%B8%8D%E8%83%BD%E7%85%A7%E6%8A%84%E5%91%BD%E4%BB%A4">创建网络(须结合实际网络情况，不能照抄命令)</a></li>
+<li><a href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F">拉取镜像</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8">创建并启动容器</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E5%B9%B6%E4%BF%AE%E6%94%B9%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0">进入容器并修改相关参数</a></li>
+<li><a href="#%E9%87%8D%E5%90%AF%E7%BD%91%E7%BB%9C">重启网络</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF">进入控制面板</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD-dhcp-%E6%9C%8D%E5%8A%A1">关闭 DHCP 服务</a></li>
+<li><a href="#%E4%B8%BB%E8%B7%AF%E7%94%B1-dhcp-%E8%AE%BE%E7%BD%AE">主路由 DHCP 设置</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E8%BF%9E%E6%8E%A5%E8%B7%AF%E7%94%B1%E5%99%A8">重新连接路由器</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E4%BF%AE%E5%A4%8D">其他修复</a>
+<ul>
+<li><a href="#%E5%85%B3%E9%97%AD-wlan-%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F">关闭 WLAN 硬件加速</a></li>
+<li><a href="#%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BF%AE%E5%A4%8D">宿主机网络修复</a></li>
+<li><a href="#%E6%89%8B%E5%8A%A8%E6%8C%87%E5%AE%9A%E7%BD%91%E5%85%B3">手动指定网关</a>
+<ul>
+<li><a href="#%E5%AE%89%E5%8D%93">安卓：</a></li>
+<li><a href="#windows">Windows:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </article>
-        </div>
-
-        
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://imcm.xyz/chown-git/" class="post-title gt-a-link">
-                    Git 忽略文件目录权限或文件拥有者的改变
-                </a>
+              </div>
             </div>
-        
-
-        
-
-        
-
-        
-
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first"><span id="jinrishici-sentence">正在加载今日诗词....</span>
-<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script><br></div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-info">
-        <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备16038460号
+
+    <div class="layout-totop d-none"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+
+    	<div class="layout-footer">
+
+		<div class="container">
+			<div class="row justify-content-lg-center">
+				<div class="col-12 col-lg-9">
+					<div class="footer">
+						<div class="row">
+							<div class="col-12 col-md-9">
+								<div class="footer-copy">
+									
+									Copyright 2020 imcm.xyz. All Rights Reserved.
+|
+<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备16038460号
 </a>
-    </div>
-    <div>
-        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://imcm.xyz/atom.xml" target="_blank">RSS</a></a>
-    </div>
-</div>
+|
+<span id="jinrishici-sentence">正在加载今日诗词....</span>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+									<div class="footer-icp d-none d-sm-inline-block">
+										<span class="px-2">⋅</span>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 d-none d-md-block">
+								<div class="footer-links">
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<script>
-    hljs.initHighlightingOnLoad()
-</script>
+	</div>
 
-    </div>
-</div>
+	<script type="text/javascript" src='https://imcm.xyz/media/scripts/main.js'></script>
+	
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?&lt;script&gt; var _hmt = _hmt || []; (function() {   var hm = document.createElement(&#34;script&#34;);   hm.src = &#34;https://hm.baidu.com/hm.js?b458c042ab39991f105ed855cfacfcd0&#34;;   var s = document.getElementsByTagName(&#34;script&#34;)[0];    s.parentNode.insertBefore(hm, s); })(); &lt;/script&gt;";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	
+
+  </div>
 </body>
+
 </html>
