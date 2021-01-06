@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2020-12-23T02:20:08.589Z</updated>
+    <updated>2021-01-06T10:53:34.840Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -10,7 +10,2051 @@
 &lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</subtitle>
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
-    <rights>All rights reserved 2020, IMCM</rights>
+    <rights>All rights reserved 2021, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[一万字总结Vue2.6.X]]></title>
+        <id>https://imcm.xyz/one-vue/</id>
+        <link href="https://imcm.xyz/one-vue/">
+        </link>
+        <updated>2021-01-06T10:37:59.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="vue">Vue</h2>
+<blockquote>
+<p>官网介绍它是一个构建用户界面的渐进式框架 ;</p>
+<p>渐进式框架 : 主张最少 , 每个框架都不可避免会有自己的一些特点 , 从而对使用者有一定的要求 , 这些要求就是主张 , 主张有强有弱，它的强势程度会影响在业务开发中的使用方式 ; 而 Vue 虽然有全家桶套餐 , 但是你可以只用它的一部分 , 而不是用了它的 核心库 就必须用它的全部 .</p>
+</blockquote>
+<h2 id="声明式渲染">声明式渲染</h2>
+<blockquote>
+<p>Vue.js 提供了简洁的模板语法声明式的将数据渲染至 DOM 中</p>
+</blockquote>
+<pre><code>&lt;div id=&quot;app&quot;&gt;
+	{{ message }}
+&lt;/div&gt;
+复制代码
+
+const vm = new Vue({
+	el: '#app',
+	data: {
+		message: 'hello vue'
+	}
+})
+复制代码
+</code></pre>
+<ul>
+<li><code>el</code> : 　元素挂载点；只有在 new 创建实例的时候生效 ; 实例挂载之后可以使用 <code>vm.$el</code> 访问</li>
+<li><code>data</code> : Vue 实例的数据对象 , Vue 会递归的将 data 的 property 转换为 getter 和 setter , 从而让 data 的 property 能够响应数据变化 ; 对象必须是纯粹的对象 (含有 0 个或者 多个 键值对) 浏览器 API 创建的对象 , 原型上的 property 会被忽略 , 大概来说 data 只能存在数据 , 不推荐观察拥有状态行为的对象 ;</li>
+<li><code>{{}}</code> : 插值表达式 ; 官网也称为 <code>Mustache</code> 语法</li>
+</ul>
+<h3 id="为什么组件中-data-是方法">为什么组件中 data 是方法</h3>
+<p>当一个组件被定义时 (非根组件) <code>data</code> 必须声明为一个返回对象的函数 , 因为组件可能被用来创建多个实例, 如果 data 仍然是一个对象 , 这样所有实例讲共享引用同一个数据对象 , 通过提供 data 函数 , 每次创建一个实例的时候 , 我们能够调用 data 函数 , 从而返回初始数据的一个全新数据对象</p>
+<pre><code>// 错误 示例
+let options = {
+  data: {
+    uname: 'zs'
+  }
+}
+function Component(options) {
+  this.data = options.data
+}
+
+let user1 = new Component(options)
+let user2 = new Component(options)
+
+user1.data.uname = 'ls' // 修改 user1  触发了所有
+console.log(user2.data.uname) // ls
+复制代码
+
+// 正确示例
+let options = {
+  data() {
+    return {
+      uname: 'zs'
+    }
+  }
+}
+function Component(options) {
+  this.data = options.data()
+}
+
+let user1 = new Component(options)
+let user2 = new Component(options)
+
+user1.data.uname = 'ls' 
+console.log(user2.data.uname) // zs
+console.log(user1.data.uname) // ls
+复制代码
+</code></pre>
+<p>由于组件是可以多次复用的 , 如果不使用 <code>function return</code> 每个组件的 data 在内存中都是指向同一个地址的 , 由于 JavaScript 复杂数据类型的特性 , 那一个数据改变其他的也改变了 , 但是如果用了 <code>function return</code> 其实就相当于申明了新变量 , 相互独立 , 自然就不存在以上例子中存在的问题 ; JavaScript 在赋值 <code>Object</code> 时 , 是直接一个相同的内存地址 , 所以为了每个组件的独立 , 采用了这种方式 ; 但由于根组件只有一个 , 不存在数据污染的情况 , 所以就可以是一个对象 ;</p>
+<p><strong>参考资料 :</strong></p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000021680253"></a><a href="https://segmentfault.com/a/1190000021680253">segmentfault.com/a/119000002…</a></li>
+<li><a href="https://axiu.me/coding/why-vue-component-data-must-be-function/"></a><a href="https://axiu.me/coding/why-vue-component-data-must-be-function/">axiu.me/coding/why-…</a></li>
+<li><a href="https://blog.csdn.net/shaleilei/article/details/78084171"></a><a href="https://blog.csdn.net/shaleilei/article/details/78084171">blog.csdn.net/shaleilei/a…</a></li>
+</ul>
+<h2 id="指令">指令</h2>
+<h3 id="v-cloak"><code>v-cloak</code></h3>
+<blockquote>
+<p>这个指令可以配合着 <code>CSS</code> 隐藏未编译的 <code>Mustache</code> 标签 , 直到实例准备完毕</p>
+</blockquote>
+<p><strong>问题展示 :</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://user-gold-cdn.xitu.io/2020/7/24/1737f87f3b1db6fe?imageslim" alt="" loading="lazy"></figure>
+<pre><code>/* css */
+[v-cloak] { display: none; }
+复制代码
+
+&lt;div v-cloak&gt;{{ root }}&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="v-text"><code>v-text</code></h3>
+<blockquote>
+<p>更新某个元素节点下的值 ; 注意 : 会更新全部内容 , 如果想要局部更新 , 可以使用 <code>Mustache</code> 语法</p>
+</blockquote>
+<pre><code>&lt;div v-text=&quot;root&quot;&gt;&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="v-html"><code>v-html</code></h3>
+<blockquote>
+<p>更新元素的 <code>innerHTML</code> 注意 : 普通 html 内容</p>
+<p>在网站上使用 HTML 是非常危险的 , 容易导致 XSS 工具 , 用户提交内容时 切记勿要使用</p>
+</blockquote>
+<pre><code>&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;
+复制代码
+
+new Vue({
+  el: '#app',
+  data: {
+    html: '&lt;p&gt;hello vue&lt;/p&gt;'
+  }
+})
+复制代码
+</code></pre>
+<h3 id="v-pre"><code>v-pre</code></h3>
+<blockquote>
+<p>原文输出 , 不会参与编译 , 输入什么内容就展示什么内容</p>
+</blockquote>
+<pre><code>&lt;div v-pre&gt;{{ will not compile }}&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="v-once"><code>v-once</code></h3>
+<blockquote>
+<p>被定义了 <code>v-once</code> 指令的元素或者组件 (包括元素或组件内的子孙节点) 只能被渲染一次 , 首次渲染收 , 即时数据发生变化 , 也不会被重新渲染 , 一般用于静态内容展示 ;</p>
+</blockquote>
+<pre><code>&lt;div v-once&gt;{{ content }}&lt;/div&gt;
+复制代码
+
+const vm = new Vue({
+  el: '#app',
+  data: {
+    content: 'this is init data'
+  }
+})
+vm.content = 'update data'
+复制代码
+</code></pre>
+<h3 id="v-show-与-v-if"><code>v-show</code> 与 <code>v-if</code></h3>
+<blockquote>
+<p>这里的 <code>v-if</code> 不单单是这一个指令 , 它包含 <code>v-else-if</code> <code>v-else</code> 功能差不多 , 这里就统一解释了</p>
+<p><strong><code>v-show</code></strong> : 根据表达式的真假值 , 判断元素是否隐藏 ( 切换元素的 display : block/none )</p>
+<p><strong><code>v-if</code></strong> : 根据表达式的值来有条件的渲染数据 , 在切换时元素以及它的数据绑定 / 组件被销毁并重建</p>
+</blockquote>
+<p><strong>差异 :</strong></p>
+<figure data-type="image" tabindex="2"><img src="https://user-gold-cdn.xitu.io/2020/7/24/1737f8831ff7a2be?imageslim" alt="" loading="lazy"></figure>
+<pre><code>&lt;div v-if=&quot;isShow&quot;&gt; v-if &lt;/div&gt;
+&lt;div v-show=&quot;isShow&quot;&gt; v-show &lt;/div&gt;
+复制代码
+</code></pre>
+<p><strong>分支判断代码演示</strong></p>
+<pre><code>&lt;!-- 最终一会展示一个 p 标签中的内容  --&gt;
+&lt;div&gt;
+  &lt;p v-if=&quot;score &gt; 90&quot;&gt; 
+  	&lt;span&gt;成绩优异 : {{ score }}&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p v-else-if=&quot;score &gt; 70&quot;&gt; 
+  	&lt;span&gt;成绩及格 : {{ score }}&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p v-else&gt; 
+  	&lt;span&gt;不及格 : {{ score }}&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="v-for"><code>v-for</code></h3>
+<blockquote>
+<p>在 <code>v-for</code> 中被循环的对象 , 必须是一个可迭代对象 <code>iterable</code> ( Array | Number | Object | String ... )</p>
+<p>语法格式为 <code>alias in expression</code> 其中的 in 也可以使用 of 替代</p>
+<p>可以为数组或者对象增加索引值</p>
+</blockquote>
+<pre><code>&lt;!-- 数组循环 --&gt;
+&lt;div v-for=&quot;(item, index) in items&quot;&gt;
+  {{ item.text }}
+&lt;/div&gt;
+复制代码
+
+&lt;!-- 对象循环 --&gt;
+&lt;div v-for=&quot;(val, key, index) in object&quot;&gt;
+  {{ val }} {{ key }} {{ index }}
+&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="为什么-v-for-必须添加唯一-key">为什么 <code>v-for</code> 必须添加唯一 <code>key</code></h3>
+<blockquote>
+<p>当 Vue 正在更新使用 v-for 渲染的数据列表时 , 它默认使用 就地更新 策略 , 如果数据项的顺序被改变 , Vue 将不会移动 DOM 来匹配数据项的数据 , 而是就地更新每个元素 , 保证它们在每个索引位置的正确渲染 ;</p>
+</blockquote>
+<h4 id="为什么要加-key">为什么要加 <code>key</code></h4>
+<ul>
+<li>为了给 Vue 一个提示 , 以便它跟踪每个节点的身份 , 从而重用 和 重新排序现有元素 需要为每一项提供一个唯一 key</li>
+<li>key 主要用在 Vue 的 虚拟 DOM 算法 , 在新旧节点对比时 , 辨识虚拟DOM , 如果不使用 <code>key</code> 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法 , 而如果使用了<code>key</code> 它会基于 <code>key</code> 的变化重新排列元素顺序 , 并且会移除 <code>key</code> 不存在的元素</li>
+</ul>
+<h4 id="为什么不能用-index-做-key">为什么不能用 <code>index</code> 做 <code>key</code></h4>
+<pre><code>// 组件数据定义
+const vm = new Vue({
+  el: '#app',
+  data: {
+    users: [
+      { id: 1, uname: 'zs', age: 23 },
+	     { id: 2, uname: 'ls', age: 24 },
+	     { id: 3, uname: 'we', age: 25 },
+	     { id: 4, uname: 'mz', age: 26 },
+	  ]
+  }
+})
+复制代码
+</code></pre>
+<p><strong><code>index</code> 错误示例</strong></p>
+<blockquote>
+<p>重点在于上面我们所说的会基于 Key 的变化重新排列元素顺序 , 可以看出如果我们用 index 作为 key 数组翻转的时候 , 其实 Key 的顺序是没有变的 , 但是传入的值完全变了 , 这时候原本不一样的数据 , 被误以为一样了 , 所以就造成以下问题 ;</p>
+</blockquote>
+<figure data-type="image" tabindex="3"><img src="https://user-gold-cdn.xitu.io/2020/7/24/1737f886ba386ae0?imageslim" alt="" loading="lazy"></figure>
+<pre><code>&lt;!-- 具体语法稍后介绍; 意思为点击翻转数组 --&gt;
+&lt;button @click=&quot;users.reverse()&quot;&gt;年龄排序&lt;/button&gt;
+&lt;ul&gt;
+  &lt;!-- 循环这个 users 生成一个数据列表 并且里面带有 多选框 以供我们测试 --&gt;
+  &lt;li v-for=&quot;(user, index) of users&quot; :key=&quot;index&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; /&gt;
+    &lt;span&gt;{{ user.uname }}&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+复制代码
+</code></pre>
+<p><strong>唯一 Id 正确示例</strong></p>
+<blockquote>
+<p>此时的 key 和数据做绑定 , 当你翻转数组的时候 , 绑定的其实是这一条数据 , 而不是索引 , 就不会造成以上问题了</p>
+</blockquote>
+<figure data-type="image" tabindex="4"><img src="https://user-gold-cdn.xitu.io/2020/7/24/1737f8894e82c1c8?imageslim" alt="" loading="lazy"></figure>
+<pre><code>&lt;li v-for=&quot;(user, index) of users&quot; :key=&quot;user.id&quot;&gt;
+  ......
+&lt;/li&gt;
+复制代码
+</code></pre>
+<p><strong>参考资料</strong> :</p>
+<p><a href="https://juejin.im/post/6844904113587634184"></a><a href="https://juejin.im/post/6844904113587634184">juejin.im/post/684490…</a></p>
+<h3 id="v-bind"><code>v-bind</code></h3>
+<blockquote>
+<p>属性绑定 ; 可缩写为 <code>:</code></p>
+</blockquote>
+<pre><code>// 绑定 attrbute
+&lt;div v-bind:content=&quot;message&quot;&gt;&lt;/div&gt;
+
+// 绑定 class 
+&lt;div :class=&quot;{box: isBox}&quot;&gt;&lt;/div&gt;
+&lt;div :class=&quot;['box', 'box1']&quot;&gt;&lt;/div&gt;
+&lt;div :class=&quot;['box', {box1: isBox}]&quot;&gt;&lt;/div&gt;
+
+// 绑定 style
+&lt;div :style=&quot;{fontSize: '20px', color: 'white'}&quot;&gt;&lt;/div&gt;
+&lt;div :style=&quot;[{fontSize: '20px'}, {color: 'white'}]&quot;&gt;&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="v-on"><code>v-on</code></h3>
+<blockquote>
+<p>事件绑定 ; 可缩写 <code>@</code> 监听DOM事件 , 并在触发时运行一些 js 代码</p>
+</blockquote>
+<pre><code>&lt;button v-on:click=&quot;count += 1&quot;&gt;&lt;/button&gt;
+{{ count }}
+复制代码
+</code></pre>
+<blockquote>
+<p>可以接收一个方法名称 ;</p>
+<p>注意 : 当只是一个方法名称时, 默认第一个参数为事件对象 e</p>
+<p>当需要传入参数时 , 那么事件对象就需要手动的传入, 最后一个 并且强制写成 <code>$event</code></p>
+</blockquote>
+<pre><code>&lt;button @click=&quot;handle&quot;&gt;点击1&lt;/button&gt;
+&lt;button @click=&quot;handle1('content', $event)&quot;&gt;点击2&lt;/button&gt;
+复制代码
+
+methods: {
+  handle(e) {
+    console.log(e.target)
+  },
+  handle1(ct, e) {
+  	console.log(ct)
+    console.log(e.target)
+  }
+}
+复制代码
+</code></pre>
+<h4 id="事件修饰符">事件修饰符</h4>
+<ul>
+<li>
+<p><code>.prevent</code> : 阻止默认事件</p>
+</li>
+<li>
+<p><code>.stop</code> : 阻止冒泡</p>
+</li>
+<li>
+<p><code>.self</code> : 只有当前元素触发事件</p>
+</li>
+<li>
+<p><code>.once</code> : 只触发一次该事件</p>
+</li>
+<li>
+<p><code>.native</code> : 监听组件根元素的原生事件</p>
+<p>// 定义子组件<br>
+Vue.component('my-component', {<br>
+template: <code>&lt;button @mousedown=&quot;handle&quot; :style=&quot;{color: 'white', lineHeight: '20px', backgroundColor: 'black'}&quot;&gt;组件&lt;/button&gt;</code>,<br>
+methods: {<br>
+handle() {<br>
+console.log('///')<br>
+}<br>
+}<br>
+})<br>
+复制代码</p>
+</li>
+</ul>
+<p>加了 <code>native</code> 相当于把自定义组件看成了 html 可以直接在上面监听原生事件, 否则自定义组件上面绑定的就是自定义事件 , 而你在自定义事件上没有定义这个事件 , 所以不加 <code>native</code> 不会执行</p>
+<pre><code>// 父组件中引用
+&lt;my-component @click.native=&quot;handle('父组件')&quot;&gt;&lt;/my-component&gt;
+复制代码
+</code></pre>
+<p><strong>参考资料</strong> :</p>
+<p><a href="https://segmentfault.com/q/1010000011186651"></a><a href="https://segmentfault.com/q/1010000011186651">segmentfault.com/q/101000001…</a></p>
+<ul>
+<li>
+<p><code>.capture</code> : 添加事件监听时 , 使用 捕获模式</p>
+<p>// 此时会优先捕获 box1</p>
+<div class="box" style="background: skyblue;  width: 180px;" @click.capture="handle('box1')">
+  <div class="box1 box" style="background: slateblue; width: 140px;" @click="handle('box2')">
+    <div class="box2 box" style="background: red;" @click="handle('box3')"></div>
+  </div>
+</div>
+复制代码
+<p>// 允许只有修饰符 prevent 阻止默认事件<br>
+&lt;a href=&quot;http://www.baidu.com&quot; @click.prevent &gt;百度</a></p>
+<p>// 多个事件修饰符可以连用触发时机也是相同的<br>
+&lt;a href=&quot;http://www.baidu.com&quot; @click.prevent.stop=&quot;handle('a')&quot;&gt;baidu</a><br>
+复制代码</p>
+</li>
+</ul>
+<h4 id="按键修饰符">按键修饰符</h4>
+<blockquote>
+<p>Vue 中允许为 <code>v-on</code> 监听键盘事件时添加键盘修饰符</p>
+<pre><code>&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+复制代码
+</code></pre>
+<p>当然提供了大多数的按键码别名 按键码</p>
+<p>还可以通过全局 <code>Vue.config.keyCodes</code> 自定义修饰符别名</p>
+<pre><code>Vue.config.keyCodes.f1 = 112
+复制代码
+</code></pre>
+</blockquote>
+<h3 id="v-model"><code>v-model</code></h3>
+<blockquote>
+<p>在表单元素上创建数据双向绑定 , 它会根据控件类型自动选取正确的值来更新元素</p>
+</blockquote>
+<pre><code>// 文本
+&lt;input type=&quot;text&quot; v-model=&quot;message&quot;&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+复制代码
+
+// 多行文本
+&lt;textarea cols=&quot;30&quot; rows=&quot;10&quot; v-model=&quot;message&quot;&gt;&lt;/textarea&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+复制代码
+
+// 单选框
+&lt;input type=&quot;radio&quot; value=&quot;男&quot; v-model=&quot;sex&quot;&gt;男
+&lt;input type=&quot;radio&quot; value=&quot;女&quot; v-model=&quot;sex&quot;&gt;女
+&lt;p&gt;{{ sex }}&lt;/p&gt;
+复制代码
+
+// 单个复选框
+&lt;input type=&quot;checkbox&quot; v-model=&quot;checked&quot;&gt;
+&lt;p&gt;{{ checked }}&lt;/p&gt;
+复制代码
+
+// 多个复选框
+&lt;input type=&quot;checkbox&quot; value=&quot;打篮球&quot; v-model=&quot;hobby&quot;/&gt;打篮球
+&lt;input type=&quot;checkbox&quot; value=&quot;打皮球&quot; v-model=&quot;hobby&quot;/&gt;打皮球
+&lt;input type=&quot;checkbox&quot; value=&quot;打气球&quot; v-model=&quot;hobby&quot;/&gt;打气球
+&lt;input type=&quot;checkbox&quot; value=&quot;打棒球&quot; v-model=&quot;hobby&quot;/&gt;打棒球
+&lt;p&gt;{{ hobby }}&lt;/p&gt;
+复制代码
+
+// 选择框 -&gt; 单选
+&lt;select v-model=&quot;selected&quot;&gt;
+  &lt;option&gt;javascript&lt;/option&gt;
+  &lt;option&gt;html&lt;/option&gt;
+  &lt;option&gt;css&lt;/option&gt;
+&lt;/select&gt;
+&lt;p&gt;{{ selected }}&lt;/p&gt;
+复制代码
+
+// 选择框 -&gt; 多选
+&lt;select v-model=&quot;selectList&quot; multiple&gt;
+  &lt;option&gt;javascript&lt;/option&gt;
+  &lt;option&gt;html&lt;/option&gt;
+  &lt;option&gt;css&lt;/option&gt;
+&lt;/select&gt;
+&lt;p&gt;{{ selectList }}&lt;/p&gt;
+复制代码
+
+// 实例对象
+new Vue({
+  el: '#app',
+  data: {
+    message: '', // 多行, 单行文本
+    sex: '', // 单选框
+    checked: false, // 复选框单个
+    hobby: [], // 复选框多个
+    selected: '', // 选择框 -&gt; 单个
+    selectList: [] // 选择框 -&gt; 多个
+  }
+})
+复制代码
+</code></pre>
+<h4 id="修饰符">修饰符</h4>
+<ul>
+<li>
+<p><code>.lazy</code> : 默认情况下 <code>v-model</code> 在每次的 input 事件触发后将输入框内容进行同步 , 添加 <code>lazy</code> 修饰符后 , 会变成 change 事件后同步数据</p>
+<input v-model.lazy="message">
+复制代码
+</li>
+<li>
+<p><code>.number</code> : 用户输入的值转为数值类型</p>
+<input v-model.number="age">
+复制代码
+</li>
+<li>
+<p><code>.trim</code> : 过滤输入框中的左右空白</p>
+<input v-model.trim="message">
+复制代码
+</li>
+</ul>
+<h2 id="vueset"><code>Vue.set</code></h2>
+<blockquote>
+<p>如果在实例创建之后添加新的属性到实例上 , 它不会触发更新视图 怎么理解呢 ?</p>
+</blockquote>
+<pre><code>data() {
+  return {
+    info: {
+      uname: 'zs'
+    }
+  }
+}
+mounted() {
+  // 此时是不会生效的 , 如果再模块化的开发中还会报错
+  this.info.age = 23
+}
+复制代码
+</code></pre>
+<p>受 ES5 的限制 , Vue 不能检测到对象属性的添加或者删除 , 因为 Vue 在初始化的时候将属性转换为<code>getter</code> <code>setter</code> 所以属性必须要在 data 对象上才能让 Vue 转换 , 只有在 data 对象上 才是响应式的</p>
+<pre><code>mounted() {
+  // 正确写法
+  this.$set(this.info, 'age', 23)
+}
+复制代码
+</code></pre>
+<p><strong>Vue.set()</strong> : 与 <code>this.$set</code> 没有区别, 一个全局 一个局部 官网说 <code>this.$set</code> 是 <code>Vue.set</code> 的一个别名</p>
+<h2 id="methods"><code>methods</code></h2>
+<blockquote>
+<p>methods 将会被混入到Vue 实例中 , 可以直接通过 vm 实例访问这些方法 , 或者在指令表达式中使用 , 方法中的 <code>this</code> 自动绑定 Vue 实例</p>
+<p>注意 : methods 中的 方法 不要使用 箭头函数 , 箭头函数中的 <code>this</code> 指向父级作用域的上下文 , 所以 <code>this</code> 将不会指向 Vue 实例</p>
+</blockquote>
+<pre><code>new Vue({
+  methods: {
+    handle() {
+      console.log(this)
+    }
+  }
+})
+复制代码
+</code></pre>
+<h2 id="计算属性-computed">计算属性 <code>computed</code></h2>
+<blockquote>
+<p>模板内写表达式固然是很方便的 , 但是你应该明白 , 表达式的初衷是用来计算的 , 比如处理一些字符串 , 时间格式等等 , 如果我们写成方法吧 ! 每次都要去调用 , 那就太麻烦了 , 为此 Vue 提供了 计算属性 computed</p>
+</blockquote>
+<p>可以看出每次我们都去调用这个参数 , 感觉很不方便</p>
+<pre><code>&lt;input type=&quot;text&quot; v-model.number=&quot;input1&quot;/&gt; + 
+&lt;input type=&quot;text&quot; v-model.number=&quot;input2&quot;/&gt; =
+&lt;span&gt;{{ getSum() }}&lt;/span&gt;
+复制代码
+
+data() {
+  return {
+    sum: '',
+    input1: '',
+    input2: ''
+  }
+},
+methods: {
+  getSum() {
+    return this.sum = this.input1 + this.input2
+  }
+}
+复制代码
+</code></pre>
+<p>下面我们使用计算属性解决 ; 可以看出我们去除了 data 中的 sum 属性 在 computed 中新增了 getSum 函数</p>
+<pre><code>&lt;input type=&quot;text&quot; v-model.number=&quot;input1&quot;/&gt; + 
+&lt;input type=&quot;text&quot; v-model.number=&quot;input2&quot;/&gt; =
+&lt;span&gt;{{ getSum }}&lt;/span&gt;
+复制代码
+
+data() {
+  return {
+    input1: '',
+    input2: ''
+  }
+},
+computed: {
+  getSum() {
+    return this.input1 + this.input2
+  }
+},
+复制代码
+</code></pre>
+<p>那么问题来了 为什么定义了一个函数, 却当成属性执行 ? 其实这个只是简写而已 , 算是一个语法糖 , 每一个计算属性包含 get 和 set 当只有 get 时可以简写为 函数的格式</p>
+<pre><code>export default {
+  computed: {
+    getSum: {
+      get() {
+       // 获取数据
+      },
+      set(val) {
+        // val 是这个计算属性被修改之后的数据  设置数据
+      }
+    }
+  }
+}
+复制代码
+</code></pre>
+<p>示例 : 看完这个例子就明白了为什么叫 计算属性了吧</p>
+<pre><code>&lt;input type=&quot;text&quot; v-model.number=&quot;input1&quot;/&gt; + 
+&lt;input type=&quot;text&quot; v-model.number=&quot;input2&quot;/&gt; =
+&lt;span&gt;{{ getSum }}&lt;/span&gt;
+&lt;!-- set 函数可以接收这里传递过来的值 --&gt;
+&lt;button @click=&quot;getSum = '未知数'&quot;&gt;修改 getSum&lt;/button&gt;
+复制代码
+
+computed: {
+  getSum: {
+    get() {
+      return this.input1  + this.input2
+    },
+    // 接收 getSum 这个属性改变后的值
+    set(val) {
+      console.log(val)
+      this.input1 = 20
+      this.input2 = 30
+    }
+  }
+},
+复制代码
+</code></pre>
+<h2 id="侦听属性-watch">侦听属性 <code>watch</code></h2>
+<p>虽然计算属性在大多数情况下都适用 , 但有时也需要一个自定义的侦听器 , 这个时候就需要 侦听属性 <code>watch</code></p>
+<p>仍然是计算两数之和 ; 在 watch 监听了 input1 的属性 input1 触发时 求出 sum ; 仔细看已经出现了问题, 修改 input2 的时候就不会再触发了 ;</p>
+<p>总结 : 它监听 data 某一个属性的变化 , 并不会创造新的属性</p>
+<pre><code>&lt;input type=&quot;text&quot; v-model.number=&quot;input1&quot;/&gt; + 
+&lt;input type=&quot;text&quot; v-model.number=&quot;input2&quot;/&gt; =
+&lt;span&gt;{{ getSum }}&lt;/span&gt;
+复制代码
+
+data() {
+  return {
+    input1: '',
+    input2: '',
+    getSum: ''
+  }
+},
+watch: {
+  // 这样写看着是一个函数, 和属性理解不一致, 当然还可以写成这样
+  input1(newVal, oldVal) {
+    console.log(newVal, oldVal)
+    this.getSum = this.input1 + this.input2
+  }
+  input2: {
+    // 回调函数监听 input2 的变化  函数名必须是 handler
+    handler(newVal, oldVal) {
+      console.log(newVal, oldVal)
+      this.getSum = this.input1 + this.input2
+    }
+  }
+}
+复制代码
+</code></pre>
+<p>如果我们需要侦听对象属性, 可以在选项参数中使用 <code>deep: true</code> 注意监听数据的变更不需要这么做</p>
+<pre><code>watch: {
+  obj: {
+    handler() {
+      // ....
+    },
+    deep: true 
+  }
+}
+复制代码
+</code></pre>
+<p>watch 使用时有一个特点 , 就是当值第一次绑定的时候 , 不会执行监听函数 , 只有值发生改变时才会执行 , 如果我们需要在最初绑定值的时候也执行函数 , 则需要用到 <code>immediate: true</code></p>
+<pre><code>watch: {
+  apiData: {
+    handler(newVal, oldVal) { },
+    deep: true,
+    immediate: true
+  }
+}
+复制代码
+</code></pre>
+<h2 id="methods-computed-watch-区别">methods computed watch 区别</h2>
+<ul>
+<li>
+<p><code>watch</code> 就是单纯的监听某个数据的变化 , 支持深度监听 , 接收两个参数一个最新值, 一个变化前的旧值 , 结果不会被缓存 , 并且 watch 可以处理异步任务</p>
+</li>
+<li>
+<p><code>computed</code> 是计算属性, 依赖于某个或者某些属性值 , 计算出来的结果会出现缓存 , 只有当数据的依赖项变化时才会发生变化 , 会创建一个新的属性</p>
+</li>
+<li>
+<p><code>methods</code> 是函数调用 , 没有缓存 , 主要处理一些业务逻辑, 而不是监听或者计算一些属性</p>
+</li>
+</ul>
+<h2 id="过滤器-filter">过滤器 <code>filter</code></h2>
+<blockquote>
+<p>可以被用于一些常见的文本格式化 , 允许被应用在两个地方 <code>{{}}</code> <code>v-bind</code> 中</p>
+</blockquote>
+<pre><code>{{ msg | formatMsg }}
+&lt;div v-bind:msg=&quot;msg | formatMsg&quot;&gt;&lt;/div&gt;
+复制代码
+</code></pre>
+<ul>
+<li>
+<p>可以在组件的选项中定义组件内私有的过滤器</p>
+<p>Vue.component('son-component', {<br>
+template: <code>&lt;div&gt;{{ msg | formatMsg }}&lt;/div&gt;</code>,<br>
+data() {<br>
+return {<br>
+msg: 'this is message'<br>
+}<br>
+},<br>
+filters: {<br>
+formatMsg(msg) {<br>
+return msg.toString().toUpperCase()<br>
+}<br>
+}<br>
+})<br>
+复制代码</p>
+</li>
+<li>
+<p>可以在创建 Vue 实例之前定义全局过滤器</p>
+<p>Vue.filter('formatMsg', function(msg) {<br>
+return msg.toString().toUpperCase()<br>
+})<br>
+复制代码</p>
+</li>
+<li>
+<p>过滤器默认是以 <code>|</code> 前面的的内容作为过滤器的第一个参数 , 还可以再次传入传输</p>
+<div>{{ msg | formatMsg('lower') }}</div>
+复制代码
+<p>Vue.filter('formatMsg', function(msg, args) {<br>
+console.log(msg) // lower<br>
+if (args === 'lower') {<br>
+return msg.toString().toLowerCase()<br>
+}<br>
+})<br>
+复制代码</p>
+</li>
+</ul>
+<h2 id="自定义指令-directive">自定义指令 <code>directive</code></h2>
+<blockquote>
+<p>与上面提到的指令一致 , 如果那些指令不能满足使用要求 , 可以自己进行定制</p>
+</blockquote>
+<p>自定获取焦点案例</p>
+<pre><code>&lt;input type=&quot;text&quot; v-focus/&gt;
+复制代码
+
+// 全局指令 定义时不需要 v-  调用时要加上 v- 前缀
+Vue.directive('focus', {
+  inserted(el) {
+    el.focus()
+  }
+})
+// 或者可以定义为局部
+directives: {
+  'focus': {
+    inserted(el) {
+      el.focus()
+    }
+  }
+}
+复制代码
+</code></pre>
+<h3 id="钩子函数">钩子函数</h3>
+<ul>
+<li><code>bind</code> : 只调用一次 , 指令第一次绑定元素时调用 , 在这里可以进行一次性的初始化设置 ;</li>
+<li><code>inserted</code> : 被绑定元素插入父节点时调用 , 不一定渲染完成 , html 已经创建好了</li>
+<li><code>update</code> : 所在组件的 VNode 更新时调用</li>
+<li><code>componentUpdated</code> : 指令所在的组件的 VNode 全部更新完成后</li>
+<li><code>unbind</code> : 指令与元素解绑时调用</li>
+</ul>
+<h3 id="钩子函数参数">钩子函数参数</h3>
+<ul>
+<li>
+<p><code>el</code> : 指令所绑定的元素 , 可以直接操作 DOM</p>
+</li>
+<li>
+<p><code>binding</code> : 指令相关的配置对象</p>
+<ul>
+<li><code>modifiers</code> : 一个包含修饰符的对象 示例 <code>v-drag.limit</code></li>
+<li><code>name</code> : 指令名 , 不包含前缀</li>
+<li><code>value</code> : 指令绑定的值 <code>v-drag=&quot;true&quot;</code></li>
+</ul>
+<div v-drag>
+复制代码
+<p>// 拖拽方块案例<br>
+Vue.directive('drag', {<br>
+// 初始化样式<br>
+bind(el) {<br>
+el.style.position = 'absolute'<br>
+el.style.top = 0<br>
+el.style.left = 0<br>
+el.style.width = '100px'<br>
+el.style.height = '100px'<br>
+el.style.background = 'skyblue'<br>
+el.style.cursor = 'pointer'<br>
+},<br>
+// 元素对象存在后, 开始写拖动逻辑<br>
+inserted(el, binding) {<br>
+let draging = false<br>
+let elLeft = 0<br>
+let elRight = 0</p>
+<pre><code>document.addEventListener('mousedown', function (e) {
+  draging = true
+  let move = el.getBoundingClientRect()
+  elLeft = e.clientX - move.left
+  elRight = e.clientY - move.top  
+})
+document.addEventListener('mousemove', function (e) {
+  let moveX = e.clientX - elLeft
+  let moveY = e.clientY - elRight
+  
+  if (draging) {
+    el.style.left = moveX + 'px'
+    el.style.top = moveY + 'px'
+  }
+})
+document.addEventListener('mouseup', function () {
+  draging = false
+})
+</code></pre>
+<p>}<br>
+})<br>
+复制代码</p>
+</li>
+</ul>
+<h3 id="自定义指令修饰符">自定义指令修饰符</h3>
+<blockquote>
+<p>相信大家仔细看上面的代码可能会发现这个方格拖拽还存在一些问题 ; 它还是可以拖拽到可视区域之外的 , 那么可不可以传递一个修饰符 , 来告诉他呢 ? 这时候就需要用到 binding 这个指令配置相关的对象了</p>
+</blockquote>
+<pre><code>// 我们先传入修饰符 limit 为自己定义的修饰符
+&lt;div v-drag.limit&gt;
+复制代码
+
+// 既然不想让他拖拽出视口, 那么就应该在鼠标移动的时候加入一些逻辑
+document.addEventListener('mousemove', function (e) {
+  let moveX = e.clientX - elLeft
+  let moveY = e.clientY - elRight
+  
+  // 是否传入了修饰符 limit 为什么这样可以获取 下面就上截图
+  if (binding.modifiers.limit) {
+    moveX = moveX &lt;= 0 ? moveX = 0 : moveX   
+    moveY = moveY &lt;= 0 ? moveY = 0 : moveY
+  }
+  if (draging) {
+    el.style.left = moveX + 'px'
+    el.style.top = moveY + 'px'
+  }
+  console.log(binding) // binding 对象
+})
+复制代码
+</code></pre>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="700" height="234"></svg>)</p>
+<h3 id="自定义指令传参">自定义指令传参</h3>
+<blockquote>
+<p>上面我们已经解决了拖出视口的问题 , 只要传递一个修饰符就解决了 , 那么现在我们希望可以手动的暂停拖拽 , 当然也是可行的 ;</p>
+</blockquote>
+<pre><code>&lt;div v-drag.limit=&quot;{isDrag: false}&quot;&gt;
+复制代码
+
+document.addEventListener('mousemove', function (e) {
+  let moveX = e.clientX - elLeft
+  let moveY = e.clientY - elRight
+  
+  // 是否传入了修饰符 limit
+  if (binding.modifiers.limit) {
+    moveX = moveX &lt;= 0 ? moveX = 0 : moveX   
+    moveY = moveY &lt;= 0 ? moveY = 0 : moveY
+  }
+  // 是否传入 isDrag 判断是否可滑动
+  if (!binding.value.isDrag) return
+  if (draging) {
+    el.style.left = moveX + 'px'
+    el.style.top = moveY + 'px'
+  }
+})
+复制代码
+</code></pre>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="784" height="254"></svg>)</p>
+<h2 id="组件">组件</h2>
+<blockquote>
+<p>通常一个组件会以一棵嵌套的组件数的形式来组织 ; 为了能在模板中使用 , 这些组件必须先注册以便 vue 能够识别 ;</p>
+</blockquote>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="495"></svg>)</p>
+<ul>
+<li>
+<p>全局组件</p>
+<p>Vue.component('GlobalComponent', {<br>
+template: <code>&lt;div&gt; hello component &lt;/div&gt;</code><br>
+})<br>
+复制代码</p>
+<p>// 命名时推荐驼峰 , 调用时推荐 - 链接, html 不识别大小写<br>
+<global-component></global-component><br>
+复制代码</p>
+</li>
+<li>
+<p>局部组件</p>
+<p>new Vue({<br>
+el: '#app',<br>
+components: {<br>
+SonComponent: {<br>
+template: <code>&lt;div&gt;hello private component&lt;/div&gt;</code><br>
+}<br>
+}<br>
+})<br>
+复制代码</p>
+<p>// 组件可以被复用多次<br>
+<private-component></private-component><br>
+<private-component></private-component><br>
+<private-component></private-component><br>
+复制代码</p>
+</li>
+<li>
+<p>模块化开发中的组件</p>
+<p>import SonComponent from '@/components/SonComponent.vue'</p>
+<p>export default {<br>
+components: {<br>
+SonComponent<br>
+}<br>
+}<br>
+复制代码</p>
+<p><son-component></son-component><br>
+复制代码</p>
+</li>
+</ul>
+<h3 id="通过-props-向子组件传递数据">通过 <code>props</code> 向子组件传递数据</h3>
+<blockquote>
+<p>prop 是组件上一些自定义的 attribute , 当一个值传递给一个 prop attribute 的时候 , 它就变成那个组件实例的 property ;</p>
+</blockquote>
+<pre><code>// 父组件
+&lt;div&gt;
+  &lt;son-component content=&quot;传递给子组件的数据, 如果动态传值可以加 v-bind&quot;&gt;&lt;/son-component&gt;
+&lt;/div&gt;
+复制代码
+
+// 子组件
+Vue.component('SonComponent', {
+   // 多个单词可以是驼峰式, 但是父组件传递时多个单词必须是 - 连接
+   // props 中的值, 可以像 data 中的数据一样访问  this.content / {{ content }} 
+   // props 是只读的 切记不要修改 会报错
+   props: ['content'],
+   template: `&lt;div&gt; {{ content }} &lt;/div&gt;`
+})
+复制代码
+</code></pre>
+<blockquote>
+<p>props 可以是数组也可以是一个对象 , 用来接收来自父组件的数据 ;</p>
+<p>对象允许配置高级选项 , 如类型检测等</p>
+</blockquote>
+<ul>
+<li>
+<p><code>type</code> : 可以是 <code>Number</code> <code>String</code> <code>Boolean</code> <code>Array</code> <code>Object</code> <code>Date</code> <code>Function</code> 任何自定义构造函数 , 或上述内容组成的数组 , 会检查一个 prop 是否是给定的类型 , 否则抛出异常</p>
+</li>
+<li>
+<p><code>default</code> : 默认值 , 对象或者数组的默认值必须从一个工厂函数中返回</p>
+</li>
+<li>
+<p><code>required</code> : boolean 是否为必填项</p>
+</li>
+<li>
+<p><code>validator</code> : Function 自定义验证函数会将 prop 的值作为唯一的参数传入</p>
+<p>props: {<br>
+content: {<br>
+type: String,<br>
+// default: 0, 普通值可直接默认返还<br>
+default: () =&gt; [1, 2, 3],<br>
+required: true,<br>
+// 如果传进来的 content 长度大于 20 就会报错<br>
+validator: (value) =&gt; value.length &gt;= 20<br>
+}<br>
+}<br>
+复制代码</p>
+</li>
+</ul>
+<h3 id="监听子组件事件-emit">监听子组件事件 <code>$emit</code></h3>
+<blockquote>
+<p>有些时候 , 父组件需要用的子组件中特定的值时 , 可以使用 <code>$emit</code> 把这个值传递出去</p>
+</blockquote>
+<ul>
+<li>
+<p>行内模式传值</p>
+<p>// 子组件<br>
+<template></p>
+  <div class="son">
+    // $emit 第一个参数自定义事件, 第二个及以后是传递的数据
+    <button @click="$emit(son-com, [1, 2, 3])"></button>
+  </div>
+</template>
+复制代码
+<p>// 父组件<br>
+// 监听子组件定义的自定义事件 , 通过 $event 访问第一个传递的参数<br>
+&lt;son-component @son-com=&quot;msg = $event&quot;&gt;</son-component><br>
+复制代码</p>
+</li>
+<li>
+<p>事件处理函数传值</p>
+<p>// 子组件<br>
+<template></p>
+  <div class="son">
+    <button @click="sonHandle"></button>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    sonHandle() {
+      this.$emit('son-com', '需要传递的值')
+    }
+  }
+}
+</script>
+复制代码
+<p>// 父组件<br>
+<template></p>
+  <div class="parent">
+    <son-component @son-com="parentHandle"></son-component>
+    // 显示传入其他参数的话 必须使用 $event 接收子组件传递过来的值
+    <son-component @son-com="parent('显示传入参数', $event)"></son-component>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    // 默认第一个值就是传递过来的参数
+    parentHandle(arg) {
+      	console.log(arg) // 需要传递的值
+    },
+    // 对应传入参数的位置
+    parent(params, arg) {
+      console.log(params) // 显示传入参数
+      console.log(arg) // 需要传递的值
+    }
+  }
+}
+</script>
+复制代码
+</li>
+<li>
+<p>事件处理函数传递多个值</p>
+<p>// 子组件<br>
+<template></p>
+  <div class="son">
+    <button @click="sonHandle"></button>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    sonHandle(event) {
+      // 事件对象可以在任意位置 , 放到前面相对比较好接收
+      this.$emit('son-com', event, '需要传递的值', '需要传递的第二个值')
+    }
+  }
+}
+</script>
+复制代码
+<p>// 父组件<br>
+<template></p>
+  <div class="son">
+    <button @son-com="parent"></button>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    parent(event, ...args) {
+      console.log(event)
+      // 如果不想使用剩余参数, 也可以多传递参数逐个使用
+      console.log(args)
+    }
+  }
+}
+</script>
+复制代码
+</li>
+</ul>
+<h4 id="组件上使用-v-model">组件上使用 <code>v-model</code></h4>
+<p>在使用这个功能之前我们需要先了解一个东西 , <code>v-model</code> 究竟是什么 ; 其实它从某种程度来说就是一个语法糖</p>
+<pre><code>&lt;input type=&quot;text&quot; v-model=&quot;msg&quot;/&gt;
+复制代码
+</code></pre>
+<p>等价于</p>
+<pre><code>&lt;input :value=&quot;msg&quot; @input=&quot;msg = $event.target.value&quot;/&gt;
+复制代码
+</code></pre>
+<p>应用到组件中就是下面这样 为了不引起歧义, 我把自定义的事件以及属性加了test 前缀详情看[官网](https://cn.vuejs.org/v2/guide/components.html target=)</p>
+<pre><code>// 父组件
+&lt;model-input 
+  :test-value=&quot;searchText&quot; 
+  @test-input=&quot;searchText = $event&quot;
+  &gt;
+&lt;/model-input&gt; 
+复制代码
+</code></pre>
+<ul>
+<li>
+<p>子组件的 result 必须绑定到 value 上面</p>
+</li>
+<li>
+<p>在这个 input 触发的时候 通过 <code>$emit</code> 将自定义的 test-input 在暴露出去</p>
+<p>// 子组件<br>
+&lt;input<br>
+type=&quot;text&quot;<br>
+v-bind:value=&quot;testValue&quot;<br>
+@input=&quot;$emit('test-input', $event.target.value)&quot;</p>
+<blockquote></blockquote>
+<p>// script<br>
+props: ['testValue'] // 自定义属性传递过来的值<br>
+复制代码</p>
+</li>
+</ul>
+<p>此时我们再优化一下 , 使用 <code>v-model</code></p>
+<pre><code>// 父组件
+&lt;model-input v-model=&quot;searchText&quot;&gt;&lt;/model-input&gt; 
+复制代码
+</code></pre>
+<p>由于我们组件中使用了 v-model 而前面我们也提到了 v-model 其实是 v-bind 和 v-on 的语法糖 , 所以只能用 value 属性和 input 事件</p>
+<pre><code>// 子组件
+&lt;input
+  type=&quot;text&quot;
+  v-bind:value=&quot;value&quot;
+  @input=&quot;$emit('input', $event.target.value)&quot;
+&gt;
+// script
+props: ['value'] 
+复制代码
+</code></pre>
+<blockquote>
+<p>那么问题来了 , 上面我们提过 v-model 默认是 value属性 和 input事件 , 但是像单选框 , 复选框等类型怎么处理 ? 对此 Vue 提供了 <code>model</code> 选项来避免这样的冲突</p>
+</blockquote>
+<h4 id="单个复选框组件绑定">单个复选框组件绑定</h4>
+<pre><code>// 父组件
+&lt;model-input v-model=&quot;isChecked&quot;&gt;&lt;/model-input&gt;
+
+// script
+data() {
+  return {
+    isChecked: false
+  }
+},
+复制代码
+</code></pre>
+<p>选中 和 未选中 返回 true / false</p>
+<pre><code>// 子组件
+&lt;input
+  type=&quot;checkbox&quot;
+  v-bind:checked=&quot;checked&quot;
+  @change=&quot;$emit('change', $event.target.checked)&quot;
+&gt;
+// script
+
+export default {
+  name: 'ModelInput',
+  // v-model 拆分
+  model: {
+    prop: 'checked', // 将传进来的 isChecked 变成 checked 供后面的 props 使用
+    event: 'change' //  定义 emit 自定义的事件名字
+  },
+  props: {
+    checked: {
+      type: Boolean
+    }
+  }
+}
+复制代码
+</code></pre>
+<h2 id="组件插槽">组件插槽</h2>
+<blockquote>
+<p>在 2.6.0 中 为具名插槽和作用域插槽提供了新的统一语法 <code>v-slot</code> 它取代了 <code>slot</code> 和 <code>slot-scope</code> 这两个目前已被废弃 , 但是还没有移除 (仍然可以使用)</p>
+<p>插槽 : 简单理解就是 占坑 在组件模板中占好位置 , 当使用该组件的标签时 , 组件标签的内容就会自动填坑 , ( 替换组件模板中的 <code>slot</code> 位置 ) , 并且可以作为承载分发内容的出口</p>
+</blockquote>
+<h3 id="内容插槽">内容插槽</h3>
+<pre><code>// 子组件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;这是组件的头部&lt;/p&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+    &lt;p&gt;这是组件的尾部&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+
+// 父组件
+&lt;&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 插槽内可以是任何内容 组件,文本,标签--&gt;
+    &lt;slot-test&gt;
+      &lt;p&gt;这是插槽的内容&lt;/p&gt;
+    &lt;/slot-test&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<p><strong>规则 :</strong> 父级模板里的所有内容都是在父级作用域中编译的 ; 子模板的所有内容都在子作用域中编译</p>
+<h3 id="默认内容插槽">默认内容插槽</h3>
+<blockquote>
+<p><code>&lt;slot&gt;</code> 标签内可以加入 组件, 文本, 标签等默认内容 , 如果父组件调用时, 没有传入内容, 那么就会展示默认的内容</p>
+</blockquote>
+<pre><code>// 子组件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;这是组件的头部&lt;/p&gt;
+    &lt;slot&gt;我是默认内容&lt;/slot&gt;
+    &lt;p&gt;这是组件的尾部&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<h3 id="具名插槽">具名插槽</h3>
+<blockquote>
+<p>有些时候一个插槽是不能满足需求的 , 我们可能需要多个 ; 对于这种情况 , <code>&lt;slot&gt;</code> 元素中有一个特殊的 attribute <code>name</code> 这个 attribute 用来定义额外的插槽</p>
+</blockquote>
+<pre><code>// 子组件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;header&gt;
+      &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;!-- 如果没有指定 name 默认的 name 为default --&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<blockquote>
+<p>在向具名插槽提供内容的时候 , 可以在一个 <code>template</code> 元素中上 使用<code>v-slot</code> 指令 并以参数的形式提供名称</p>
+</blockquote>
+<pre><code>// 父组件
+&lt;template&gt;
+  &lt;div&gt;
+	&lt;slot-test&gt;
+	  &lt;template v-slot:header&gt; 我是 header 内容 &lt;/template&gt;
+      我是 没有指定 name 的内容 &lt;!-- 或者也可以写成下面的内容 --&gt;
+      &lt;template v-slot:default&gt; 没有指定 name 的内容 &lt;/template&gt;
+      &lt;template v-slot:footer&gt; 我是 footer 内容 &lt;/template&gt;
+	&lt;/slot-test&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<blockquote>
+<p><code>&lt;template&gt;</code> 中的所有内容都会传入响应的插槽 , 任何没有包裹在带有 <code>v-slot</code> 的 <code>&lt;template&gt;</code> 中的内容都会被视为默认插槽的内容 ; 通俗一点来说 , 就是我在子组件中声明了多个 没有 <code>name</code> 的 <code>&lt;slot&gt;</code> , 那么 我在父组件中 , 只需要渲染一次 , 所有子组件的插槽就都会被渲染 ;</p>
+<p>注意 : <code>v-slot</code> 只能添加在 <code>&lt;template&gt;</code> 上 , 还有一种特殊情况后面会说</p>
+</blockquote>
+<h4 id="具名插槽缩写">具名插槽缩写</h4>
+<blockquote>
+<p><code>v-slot:</code> 替换为 <code>#</code></p>
+<p>注意 ： 只有带参数时可以使用 ， 其他情况下是无效的</p>
+</blockquote>
+<pre><code>// 子组件
+&lt;div&gt;
+  &lt;slot&gt;&lt;/slot&gt;
+&lt;/div&gt;
+复制代码
+
+/* 父组件 */
+
+// 错误示例
+&lt;slot-test&gt;
+  &lt;template #&gt;
+    &lt;!-- 内容。。。。--&gt;
+  &lt;/template&gt;
+&lt;/slot-test&gt;
+
+// 正确示例
+&lt;slot-test&gt;
+  &lt;template #default&gt;
+    &lt;!-- 内容。。。。--&gt;
+  &lt;/template&gt;
+&lt;/slot-test&gt;
+复制代码
+</code></pre>
+<h3 id="作用域插槽">作用域插槽</h3>
+<blockquote>
+<p>从某种意义上来说 , 插槽是子组件高可用 , 高定制化的一种手段 , 那么我们肯定会碰到插槽内容 , 需要访问子组件中数据的情况 ;</p>
+</blockquote>
+<p>我们可以通过 <code>v-bind</code> 把需要传递的值 绑定到 <code>&lt;slot&gt;</code> 上 , 然后在 父组件中 使用 <code>v-slot</code> 设置一个值来定义提供插槽的名字</p>
+<pre><code>// 子组件
+&lt;template&gt;
+  &lt;div&gt;
+	&lt;slot name=&quot;userInfo&quot; :user=&quot;userInfo&quot;&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      userInfo: {
+        firstName: 'firstName',
+        lastName: 'lastName'
+      }
+    }
+  }
+}
+&lt;/script&gt;
+复制代码
+
+// 父组件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;slot-test&gt;
+      &lt;!-- 如果只有一个插槽可以吧 v-slot 写到 组件上面 具体看下面--&gt;
+      &lt;template v-slot:userInfo=&quot;slotProps&quot;&gt;
+        {{ slotProps.user.firstName }}
+      &lt;/template&gt;
+    &lt;/slot-test&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<h4 id="独占默认插槽缩写语法">独占默认插槽缩写语法</h4>
+<blockquote>
+<p>当被提供的内容只有默认插槽时 , 组件的标签才可以当做插槽的模板使用 , 这样我们就可以把 <code>v-slot</code> 直接用在组件上</p>
+</blockquote>
+<pre><code>// 子组件
+&lt;div&gt;
+  &lt;slot :user=&quot;userInfo&quot;&gt;&lt;/slot&gt;
+&lt;/div&gt;
+
+// 组件数据
+data(){
+  return {
+    userInfo: {
+      firstName: 'firstName',
+      lastName: 'lastName'
+    }
+  }
+}
+复制代码
+
+// 父组件
+&lt;div&gt;
+  &lt;slot-test v-slot=&quot;slotProps&quot;&gt;
+    {{ slotProps.user.firstName }}
+  &lt;/slot-test&gt;
+&lt;/div&gt;
+复制代码
+</code></pre>
+<ul>
+<li>不要尝试插槽的 &quot;缩写语法&quot; 和 &quot;具名插槽混用&quot; 会导致作用域不明确</li>
+<li>只要出现多个插槽 , 需要始终为所有的插槽使用 <code>&lt;template&gt;</code> 语法</li>
+<li>参考官网 : [默认插槽](https://cn.vuejs.org/v2/guide/components-slots.html target=)</li>
+</ul>
+<h4 id="解构插槽-prop">解构插槽 <code>Prop</code></h4>
+<blockquote>
+<p>插槽支持通过 ES6 结构传入具体的插槽 prop 至于原理 ;</p>
+<p>官网说 : 作用域插槽内部原理是将你的插槽内容包括在一个传入单个参数的函数里 ; 没有听懂 😂 自身档次还不够， 还是看看怎么用的吧</p>
+</blockquote>
+<pre><code>&lt;div&gt;
+  &lt;slot-test v-slot=&quot;{ user }&quot;&gt;
+    {{ user.firstName }}
+  &lt;/slot-test&gt;
+&lt;/div&gt;
+复制代码
+</code></pre>
+<p>在提供多个 prop 的时候 ，它同样开启了 prop 重命名的功能</p>
+<pre><code>&lt;div&gt;
+  &lt;slot-test v-slot=&quot;{ user: preson }&quot;&gt;
+    {{ preson.firstName }}
+  &lt;/slot-test&gt;
+&lt;/div&gt;
+复制代码
+</code></pre>
+<h3 id="插槽其他示例">插槽其他示例</h3>
+<blockquote>
+<p>插槽 prop 允许我们将插槽转换为可复用的模板 ， 这些模板可以基于输入不同的 prop 渲染出不同的内容；</p>
+</blockquote>
+<p>比如我们设计一个 <code>&lt;todo-list&gt;</code> 组件 ，它是一个列表且包含一定的逻辑</p>
+<pre><code>// 子组件
+&lt;template&gt;
+  &lt;ul&gt;
+    &lt;li v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;
+      &lt;!-- 这里把控制逻辑交出去，由父组件去控制一定的逻辑 --&gt;
+      &lt;slot name=&quot;todo&quot; :item=&quot;item&quot;&gt;
+        {{ item.uname }}
+      &lt;/slot&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+// 数据
+[
+  {id: 1, uname: 'zs'},
+  {id: 2, uname: 'ls'},
+  {id: 3, uname: 'we'},
+  {id: 4, uname: 'mz'},
+]
+复制代码
+
+// 父组件
+&lt;test v-slot:todo=&quot;slotProps&quot;&gt;
+  &lt;!-- 本来是显示名字的改成了显示id --&gt;
+  {{ slotProps.item.id }}
+&lt;/test&gt;
+复制代码
+</code></pre>
+<h2 id="动态组件-component">动态组件 <code>component</code></h2>
+<p>在说动态组件之前， 先动手实现一个 tab 分页，不然貌似不是很好理解 😂</p>
+<pre><code>// 模板
+&lt;div&gt;
+  &lt;button @click=&quot;handle('post')&quot; :style=&quot;{background: !isShow ? 'red' : ''}&quot;&gt;post&lt;/button&gt;
+  &lt;button @click=&quot;handle('list')&quot; :style=&quot;{background: isShow ? 'red' : ''}&quot;&gt;list&lt;/button&gt;
+  &lt;item-post v-show=&quot;!isShow&quot;&gt;&lt;/item-post&gt;
+  &lt;item-list v-show=&quot;isShow&quot;&gt;&lt;/item-list&gt;
+&lt;/div&gt;
+
+// script
+import ItemPost from '@/components/ItemPost.vue'
+import ItemList from '@/components/ItemList.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    ItemPost,
+    ItemList
+  },
+  data() {
+    return {
+      isShow: true
+    }
+  },
+  methods: {
+    handle(title) {
+      title === 'list' ? this.isShow = true : this.isShow = false
+    }
+  }
+}
+复制代码
+</code></pre>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="830" height="396"></svg>)</p>
+<blockquote>
+<p>可以看出上面我们写了两个小组件，做了一个简易的 tab 选项卡 ；</p>
+<p>重点可以看我们引入组件的方式；就是简单的在模板中应用；常规操做；现在只引入两个标签还好，那如果三五十来个就显得有点麻烦了</p>
+</blockquote>
+<h3 id="动态组件应用">动态组件应用</h3>
+<blockquote>
+<p>有了动态组件之后， 类似这种简易的 tab 切换我们就不需要再模板中使用这么多的组件标签了</p>
+</blockquote>
+<p>看代码示例， 我们只需要 template 中引入组件的部分 以及在 script 中的 data 新增一个属性</p>
+<pre><code>&lt;!-- 每次点击 button 的时候触发 handle事件函数时 is绑定的值会重新渲染组件 --&gt;
+&lt;component :is=&quot;showWhat&quot;&gt;&lt;/component&gt;
+复制代码
+
+data() {
+  return {
+    showWhat: 'ItemPost',
+    isShow: true
+  }
+},
+methods: {
+  handle(title) {
+    // 这里同时控制了切换之后 active 的样式，所以就不删了
+    title === 'list' ? this.isShow = true : this.isShow = false
+    // 加一层判断切换逻辑
+    title === 'list' ? this.showWhat = 'ItemList' : this.showWhat = 'ItemPost'
+  }
+}
+复制代码
+</code></pre>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="830" height="396"></svg>)</p>
+<blockquote>
+<p>这里就出现了一些问题， 虽然我们完成了 组件之间的切换，但是关于 input 的选中状态我们没有保留下来，<strong>原因是每次切换的时候，Vue 都会创建一个新的 <code>showWhat</code> 实例</strong> 重新创建动态组件的行为通常来说还是非常有用的，但是在我们这个案例中，更希望它能够保留下来 为了解决这个问题，Vue 中提供了一个内置元素 <code>&lt;keep-alive&gt;</code> 只需要将该元素把组件包裹起来即可</p>
+</blockquote>
+<pre><code>&lt;!-- 失活的 tab 将会被缓存 --&gt;
+&lt;keep-alive&gt;  
+  &lt;component :is=&quot;showWhat&quot;&gt;&lt;/component&gt;
+&lt;/keep-alive&gt;
+复制代码
+</code></pre>
+<h2 id="异步组件">异步组件</h2>
+<blockquote>
+<p>在大型应用中， 我们可能需要将应用中分割成小一些的代码块，并且只在需要的时候，再次加载这个模块；道理和 webpack 的按需加载是一样的；</p>
+</blockquote>
+<p>这里先创建一个简单的组件</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;这是一个简单的组件&lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<p>然后在主组件内常规引入看下效果</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;dynamic&gt;&lt;/dynamic&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import Dynamic from '@/component/Dynamic.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    Dynamic
+  }
+}
+&lt;/script&gt;
+复制代码
+</code></pre>
+<p>看下图， 上面的书写方式，加载出来的组件，会被全部渲染到一个文件里面，如果我们的这个页面组件很多，或者说有些组件，只有触发了特定操作后才会显示，我们是不是就没有必要在页面渲染时，就把所有的组件全部加载呢 ？</p>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="827" height="470"></svg>)</p>
+<h3 id="异步组件示例">异步组件示例</h3>
+<p>根据上面的例子，我们修改一下 script 部分</p>
+<pre><code>export default {
+  components: {
+    // script 头部的导入， 直接在组件内导入
+    Dynamic: () =&gt; import Dynamic from '@/component/Dynamic.vue'
+  }
+}
+复制代码
+</code></pre>
+<p>可以看出下图多出了 <code>0.js</code> 由此可见 vue-cli 帮助我们分开打包了文件；这个文件在被加载之后，就会被缓存起来；这个例子只是看出了它被拆开了，并不能证明咱们开始说的按需渲染的道理；基于这个例子可以再改一下，加一个判断逻辑</p>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="931" height="498"></svg>)</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    // 就是增加一个按钮，点击控制，这里就给大家简化了
+    &lt;dynamic  v-if=&quot;isShow&quot;&gt;&lt;/dynamic&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+复制代码
+</code></pre>
+<p>下图可以看出没有显示子组件时， 把这个文件给缓存起来了，只有真正调用到的时候才会加载对应的资源；</p>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1015" height="549"></svg>)</p>
+<p>当然这只是其中一个功能，比如网络不好的时候，组件加载的用户体验会受到损害，超时的处理等等；具体配置参考 vue 官网 ： [处理加载状态](https://cn.vuejs.org/v2/guide/components-dynamic-async.html target=)</p>
+<h2 id="访问子组件实例或子元素-ref">访问子组件实例或子元素 <code>ref</code></h2>
+<p>尽管存在 prop 和事件 , 有的时候你扔可能需要再 JavaScript 中直接访问一个子组件 , 为了达到这个目的你可以使用 <code>ref</code> 这个属性为子组件赋予一个 id 引用</p>
+<pre><code>// 模板
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;item-list ref=&quot;itemRef&quot;&gt;&lt;/item-list&gt;
+    &lt;input type=&quot;text&quot; ref=&quot;inputRef&quot;/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+// script
+export default {
+  mounted() {
+    // 子组件的实例对象
+    console.log(this.$refs.itemRef)
+    // 元素的实例对象, 可以操作 dom
+    console.log(this.$refs.inputRef)
+  }
+}
+复制代码
+</code></pre>
+<p>如果 ref 和 v-for 一起使用的话 , 那么 <code>this.refs</code> 将会得到一个元素数组</p>
+<pre><code>&lt;ul&gt;
+  &lt;li v-for=&quot;user of userList&quot; :key=&quot;user.id&quot; :style=&quot;{listStyle: 'none'}&quot; ref=&quot;forRef&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; /&gt;
+    {{ user.id }} --- {{ user.uname }} --- {{ user.age }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+mounted() {
+  console.log(this.$refs.forRef)
+}
+复制代码
+</code></pre>
+<blockquote>
+<p><code>$refs</code> 只会在组件渲染完成后生效 , 并且它不是响应式的 , 这仅作为用于直接操作子组件的 逃生舱 应该尽量避免在模板或者计算属性中访问 <code>$refs</code></p>
+</blockquote>
+<h2 id="组件生命周期">组件生命周期</h2>
+<blockquote>
+<p>每个 Vue 实例创建时都需要经过一系列的初始化 ; 开始创建 , 初始化数据 , 编译模板, 挂载DOM , 更新 , 渲染 , 卸载等一系列过程 , 成为 生命周期 , 同时在这些过程中也会运行一些叫做生命周期钩子的函数</p>
+</blockquote>
+<ul>
+<li>
+<p><code>beforeCreate</code> : <strong>创建前</strong> 实例初始化之后，this指向创建的实例，不能访问到<code>data</code>、<code>computed</code>、<code>watch</code>、<code>methods</code>上的方法和数据</p>
+</li>
+<li>
+<p><code>created</code> : <strong>创建后</strong> 实例创建完成 , 可以访问 <code>data</code> <code>computed</code> <code>watch</code> <code>methods</code> 数据 , 没有渲染进 浏览器 无法访问 DOM ; <strong>注意 :</strong> 这个生命周期内发送 ajax 请求 是没有什么方法对实例化过程进行拦截的 , 因此加入某些数据必须获取之后才能进入这个页面的话 , 并不适合在这个方法内完成 , 建议使用 <code>beforeRouterEnter</code> 路由钩子中完成</p>
+</li>
+<li>
+<p><code>beforeMount</code> : <strong>挂载前</strong> 挂载开始之前调用 , <code>beforeMount</code> 之前会找到对应的 template 编译成 render 函数</p>
+</li>
+<li>
+<p><code>mounted</code> : <strong>挂载后</strong> 实例挂载到 DOM , 可以操作DOM <code>$ref</code> 可以使用 ; 此时可以做一些 ajax 操作 , mounted 只会执行一次</p>
+</li>
+<li>
+<p><code>beforeUpdate</code> : <strong>更新前</strong> 响应式数据更新时调用 , DOM 重新渲染和打补丁之前 , 可以在这里进一步更改状态 , 不会进行二次渲染</p>
+</li>
+<li>
+<p><code>updated</code> : <strong>更新后</strong> 虚拟DOM重新渲染和打补丁之后调用 , 组件已经更新 , 可以执行后续操作 ; 避免在这里操作数据 , 可能会陷入死循环</p>
+</li>
+<li>
+<p><code>activated</code> : <strong>被 keep-alive 缓存的组件激活时调用</strong></p>
+</li>
+<li>
+<p><code>deacticated</code> : <strong>被 keep-alive 缓存的组件停用时调用</strong></p>
+<p>// 子组件<br>
+// 要在子组件的声命周期内 , 才会触发这两个钩子函数<br>
+activated() {<br>
+console.log('itemList 被激活')<br>
+},<br>
+deactivated() {<br>
+console.log('itemList 被停用 / 失活')<br>
+},<br>
+复制代码</p>
+<p>// 父组件<br>
+// toggle 切换时触发子组件中的这两个钩子函数<br>
+&lt;button @click=&quot;com = 'ItemPost'&quot;&gt;post</button><br>
+&lt;button @click=&quot;com = 'ItemList'&quot;&gt;list</button></p>
+<keep-alive>
+  <component :is="com"></component>
+</keep-alive>
+复制代码
+</li>
+<li>
+<p><code>beforeDestroy</code> : <strong>销毁前</strong> 实例销毁之前调用 , 这里各种数据仍然可以访问 ; 可以再次销毁定时器, 解绑事件等操作</p>
+</li>
+<li>
+<p><code>destroyed</code> : <strong>销毁后</strong> 实例销毁后调用 , Vue 实例的所有内容都会解除绑定 , 所有事件事件监听器会被移除 , 所有子实例也会被销毁</p>
+<template>
+  <div>
+    <p>this is $el</p>
+    <button @click="info = '修改后的值'">{{ info }}</button> 
+    <button @click="handle">卸载</button> 
+  </div>
+</template>
+<script>
+export default {
+  name: 'HomePage',
+  data() {
+    return {
+      info: 'data options',
+      flag: true
+    }
+  },
+  methods: {
+    handle() {
+      this.$destroy()
+    }
+  },
+  beforeCreate() {
+    console.group('##### 组件创建前 beforeCreate #####')
+    console.log('Vue', this)
+    console.log(this.info)
+    console.log(this.$el)
+  },
+  created() {
+    console.group('##### 组件创建后 created #####')
+    console.log(this.info)
+    console.log(this.$el)
+  },
+  beforeMount() {
+    console.group('##### 组件挂载前 beforeMount #####')
+    console.log(this.info)
+    console.log(this.$el)
+  },
+  mounted() {
+    console.group('##### 组件挂载后 mounted #####')
+    console.log(this.$el)
+  },
+  beforeUpdate() {
+    console.group('##### 组件更新前 beforeUpdate #####')
+    console.log(`这里的数据已经修改了只是没有渲染 ----- `+ this.info)
+    this.info  = '又修改了一次'
+  },
+  updated() {
+    console.group('##### 组件更新后 updated #####')
+    console.log('更新后的新值: ', this.info)
+  },
+  beforeDestroy() {
+    console.group('##### 组件卸载前 updated #####')
+    console.log(this.info)
+    console.log(this.$el)
+  },
+  destroyed() {
+    console.group('##### 组件卸载后 updated #####')
+    console.log(this.info)
+    console.log(this.$el)
+  }
+}
+</script>
+复制代码
+</li>
+</ul>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1165" height="473"></svg>)</p>
+<h3 id="父子组件生命周期">父子组件生命周期</h3>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="859" height="303"></svg>)</p>
+<ul>
+<li>父组件执行完 <code>beforeMount</code> 钩子之后就会去加载 子组件 , 只组件加载完成后才会触发父组件的 <code>Mounted</code></li>
+<li>子组件更新不会触发父组件的更新, ( 不涉及父子组件交互数据 )</li>
+<li>子组件的卸载会触发父组件的更新</li>
+</ul>
+<h2 id="过渡-动画">过渡 动画</h2>
+<blockquote>
+<p>Vue 在插入，更新或者移出 DOM 时，提供多种不同的过渡效果</p>
+<p>在下列情形中可以给任何元素添加进入/离开过渡</p>
+<ul>
+<li>条件渲染 （<code>v-if v-show</code>）</li>
+<li>动态组件 (<code>component</code>)</li>
+<li>组件根节点</li>
+</ul>
+</blockquote>
+<p>过渡的类名：在进入/离开的过渡中，会有6个 class 切换</p>
+<ul>
+<li><code>v-enter</code> : 定义过渡的开始 , 在元素被插入之前生效 , 在元素被插入之后的下一帧移除</li>
+<li><code>v-enter-active</code> : 定义进入过渡生效时的状态 , 在整个进入过渡的阶段中都会应用 . 在元素被插入之前生效 . 咋过渡/动画结束之后移除 , 这个类可以被定义进入过渡的过程时间 , 延迟 和曲线函数</li>
+<li><code>v-enter-to</code> : 定义进入过渡的结束状态 , 在元素被插入后的下一帧生效 ( 同时 v-enter 移除 ), 在过渡动画完成之后移除</li>
+<li><code>v-leave</code> : 定义离开过渡的开始时间 , 在离开过渡被触发时立刻生效 , 下一帧被移除</li>
+<li><code>v-leave-active</code> : 定义离开过渡生效时的状态 , 在整个离开过渡的阶段中应用 , 在离开过渡被触发时 立即生效 , 在过渡动画完成之后移除 , 这个类可以被定义离开过渡的过程时间 , 延迟和曲线函数</li>
+<li><code>v-leave-to</code> : 定义离开过渡的结束状态 , 在离开过渡被触发后下一帧生效 (同时 v-leave 移除), 在过渡东环完成之后移除</li>
+</ul>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="600"></svg>)</p>
+<pre><code>&lt;transition&gt;
+  &lt;dynamic v-if=&quot;isShow&quot;&gt;&lt;/dynamic&gt;
+&lt;/transition&gt;
+复制代码
+</code></pre>
+<p>如果 <code>&lt;transition&gt;</code> 没有 name 属性 类名默认是 <code>v-</code> 开头 , 如果使用了自定义名字 , 替换成自定名字开头 ; <strong>transition 不会被渲染成真是的 DOM 元素</strong></p>
+<p>示例 : <code>&lt;transition name=&quot;my-trans&quot;&gt;</code> <code>my-trans-enter</code></p>
+<pre><code>&lt;style lang=&quot;css&quot;&gt;
+  .v-enter, .v-leave-to{
+    opacity: 0;
+    transition: all .5s ;
+  }
+  .v-enter-to, .v-leave{
+    opacity: 1;
+    transition: all .5s ;
+  }
+&lt;/style&gt;
+复制代码
+</code></pre>
+<h3 id="多个组件的过渡">多个组件的过渡</h3>
+<pre><code>&lt;transition&gt;
+  &lt;keep-alive&gt;  
+    &lt;component :is=&quot;showWhat&quot;&gt;&lt;/component&gt;
+  &lt;/keep-alive&gt;
+&lt;/transition&gt;
+复制代码
+
+&lt;style lang=&quot;css&quot;&gt;
+  .v-enter, .v-leave-to{
+    opacity: 0;
+  }
+  .v-enter-active, .v-leave-active{
+    transition: opacity .3s ease;
+  }
+&lt;/style&gt;
+复制代码
+</code></pre>
+<p>![](https://juejin.cn/post/data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1015" height="549"></svg>)</p>
+<h4 id="过渡模式">过渡模式</h4>
+<blockquote>
+<p>在切换 tab 的时候 内容被重绘了 , 一个是离开过渡的时候, 另一个是进入过渡 , 这是 <code>&lt;transition&gt;</code> 的默认行为 , 进入和离开同时发生 ; 过渡模式仅适用于组件之间</p>
+<p>同时生效的进入和离开的过渡不能满足所有要求，所以 Vue 提供了<strong>过渡模式</strong></p>
+</blockquote>
+<ul>
+<li><code>in-out</code> : 新元素先进行过渡 , 完成之后当前元素过渡离开</li>
+<li><code>out-in</code> : 当前元素先进行过渡 , 完成之后新元素过渡进入</li>
+</ul>
+<p>可以看出上图的动画效果为当前元素还没有完成 , 新元素就进来了 , 此时我们可以使用 <code>out-in</code> 模式即可解决上述问题</p>
+<pre><code>&lt;transition mode=&quot;out-in&quot;&gt;
+  &lt;keep-alive&gt;  
+    &lt;component :is=&quot;showWhat&quot;&gt;&lt;/component&gt;
+  &lt;/keep-alive&gt;
+&lt;/transition&gt;
+复制代码
+</code></pre>
+<h3 id="初始渲染过渡">初始渲染过渡</h3>
+<p>可以通过 <code>appear</code> 属性设置节点的初始渲染过渡 ; 需要注意的是, 这个关键字加上之后, 默认就会带有过渡效果 , <code>translateY</code> 也可以自定义类名和钩子 ; [初始渲染过渡](https://cn.vuejs.org/v2/guide/transitions.html target=)</p>
+<pre><code>&lt;transition appear&gt;
+  &lt;div v-if=&quot;toggle&quot;&gt;post&lt;/div&gt;
+  &lt;div v-else&gt;list&lt;/div&gt;
+&lt;/transition&gt;
+复制代码
+</code></pre>
+<h3 id="列表过渡">列表过渡</h3>
+<p>列表过渡需要用到 <code>&lt;transition-group&gt;</code></p>
+<ul>
+<li>
+<p>会产生标签名, 默认为 span 可以通过 tag 属性进行设置</p>
+</li>
+<li>
+<p>过渡模式不可用</p>
+<transition-group  tag="ul" appear>
+  <li v-for="user of users" :key="user.id">
+    <p>{{ user.uname }}</p>
+  </li>
+</transition-group>
+复制代码
+</li>
+</ul>
+<p>更多动画相关 : <a href="https://cn.vuejs.org/v2/guide/transitions.html">Vue过渡动画</a></p>
+<h2 id="nexttick">nextTick</h2>
+<blockquote>
+<p>Vue 在更新 DOM 的时候是异步的 , 只要侦听到数据的变化 , 并缓存在同一事件循环中 , 等待事件循环中的所有的数据变化完成后, 统一更新视图 , 为了得到最新的DOM 所以设置了 <code>nextTick()</code></p>
+<p>将回调延迟到下次 DOM 更新循环之后执行 , 在修改数据之后立即使用他 , 然后等待 DOM 更新 ;</p>
+<p>简单理解就是 : <code>nextTick</code> 是将这个回调函数延迟在下一次 DOM 更新数据后调用 , 即 DOM 重新渲染后自动执行该函数</p>
+</blockquote>
+<pre><code>created() {
+  // created 钩子中可以操作 DOM 元素
+  this.$nextTick(() =&gt; {
+    this.$refs.divRef.innerHTML = 'hello vue'
+  })
+}
+复制代码
+</code></pre>
+<h2 id="混入-mixin">混入 Mixin</h2>
+<blockquote>
+<p>混入提供一种很灵活的方式, 来分发 Vue 组件中的可复用功能, 一个混入对象可以包含任意组件选项 (data, components, methods, created 等), 当组件使用混入对象时, 所有混入对象的选项将被混合进组件本身的选项 ;</p>
+</blockquote>
+<p>假设我们现在要封装一个 button 组件, 我们可以尝试着不再 components 文件夹中去封装, 在同级目录中新建一个 Mixin 文件夹 实例</p>
+<pre><code>&lt;!-- path: Mixin/MyButton/MyButton.vue --&gt;
+&lt;template&gt;
+  &lt;button :class=&quot;['my-btn', type]&quot;&gt;
+    &lt;!-- 我们希望用户输入按钮的名字所以使用插槽 --&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/button&gt;
+&lt;/template&gt;
+&lt;script&gt;
+// 我们希望用户传递进来一个 type 来定制 btn 样式
+export default {
+  props: {
+    type: {
+      type: String,
+      default: 'my-primay'
+    }
+  }
+}
+&lt;/script&gt;
+&lt;style scoped&gt;
+ /* 基类样式 */
+ .my-btn {
+    border: none;
+    outline: none;
+    line-height: 30px;
+    width: 50px;
+  }
+ /* 用户可拓展样式 */
+.btn-primary {
+  background: skyblue;
+}
+.btn-danger {
+  background: orange;
+}
+.btn-success {
+  background: palegreen;
+}
+&lt;/style&gt;
+复制代码
+</code></pre>
+<p>然后我们在同级别的目录下建立一个 Mixin 对象</p>
+<pre><code>// path: Mixin/MyButton/index.js
+import MyButton from './MyButton.vue'
+export default {
+  // 这里我们使用了 组件中的 components 对象
+  components: {
+    MyButton
+  }
+}
+复制代码
+</code></pre>
+<p>然后我们在页面中去使用它</p>
+<pre><code>&lt;!-- views/page.vue --&gt;
+&lt;template&gt;
+  &lt;!-- 此时我们只需要传入指定不同的类名即可变换 button 的样式 --&gt;
+  &lt;my-button type=&quot;btn-danger&quot;&gt;按钮&lt;/my-button&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import MyButton from './mixin/MyButton'
+export default {
+  // 组件内使用 mixins 将这个对象混入, 
+  mixins: [MyButton]  
+}
+&lt;/script&gt;
+复制代码
+</code></pre>
+<blockquote>
+<p>简单总结一下, 可以看出我们上面虽然用的有些牵强, 不晓得有没有注意到 , 我们实际上等于把 注册组件的方式给抽离出去了, 取而代之的是把他混入进去, 这里就可以简单理解, 很想 合并了两个对象的概念 , 那么接下来就看一下细节</p>
+</blockquote>
+<h3 id="选项合并">选项合并</h3>
+<blockquote>
+<p>当组件和混入对象含有同名选项时 , 这些选项将以<strong>恰当</strong> 的方式进行<strong>合并</strong></p>
+<p>什么叫恰当 😂 看示例</p>
+</blockquote>
+<ul>
+<li>
+<p>输入对象会进行递归合并 ， 并在发生冲突时，以组件数据优先</p>
+</li>
+<li>
+<p>同名的钩子函数会合并成为一个数组，依次调用，<strong>mixin的钩子优先执行</strong></p>
+</li>
+<li>
+<p>对象类型选项会合并为同一个对象，<strong>如果键名冲突，以组件内为主</strong></p>
+<p>// mixin/index.js<br>
+export default {<br>
+data() {<br>
+return {<br>
+m_name: 'lisi',<br>
+m_list: [1, 2, 3]<br>
+}<br>
+},<br>
+created() {<br>
+// 混入之后会被调用 同时我们也可以在混入之前调用组件内的数据<br>
+console.log(this.m_name, this.m_list, 'mixin')<br>
+console.log(this.c_name, this.c_list, 'component')</p>
+<pre><code>// 执行 handle 
+this.handle() // 这个handle 实际就是调用了 组件中的handle 而不是 mixin 中的handle
+this.handle1()
+</code></pre>
+<p>},<br>
+methods: {<br>
+// 由于此处的 handle 与 组件内存在同名 按照上面说明， 这个handle被覆盖以下面组件中为主<br>
+handle() {<br>
+console.log('mixin handle')<br>
+},<br>
+handle1() {<br>
+console.log('mixin handle1')<br>
+}<br>
+}<br>
+}<br>
+复制代码</p>
+<template>
+  <div></div>
+</template>
+<script>
+import mixin from '@/mixin'
+export default {
+  mixins: [mixin],
+  data() {
+    return {
+      c_name: 'zhangsan',
+      c_list: [1, 2, 3]
+    }
+  },
+  created() {
+    // 同理这里也可以直接访问 mixin 中的数据，这里就不演示了
+    console.log('this is component')
+<pre><code>// 调用handle 
+this.handle() 
+</code></pre>
+<p>},<br>
+methods: {<br>
+handle() {<br>
+console.log('component handle')<br>
+}<br>
+}<br>
+}<br>
+</script><br>
+复制代码</p>
+</li>
+</ul>
+<h3 id="全局混入">全局混入</h3>
+<blockquote>
+<p>混入也可以全局注册 ， 使用时需要小心， 全局混入会影响每一个之后创建的 vue 组件，也就是说以后创建的每一个 Vue 组件会混入这个 mixin 都会执行这里面的操作</p>
+</blockquote>
+<pre><code>// main.js
+Vue.mixin({
+  data() {
+    return {}
+  },
+  created() {},
+  // ......
+})
+复制代码
+</code></pre>
+<h2 id="provide-inject-依赖注入">provide / inject 依赖注入</h2>
+<blockquote>
+<p><code>provide</code> 和 <code>inject</code> 主要开发高阶插件/组件库时使用，并不推荐用于普通应用程序中</p>
+<p>这对选项要一起使用，允许一个祖先组件向自己所有的子孙组件注入依赖，不论组件层间有多深；</p>
+<p>也就说这对选项可以跨越组件的传值 下面看示例</p>
+</blockquote>
+<pre><code>// App.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      info: { name: 'zs', age: 23 }
+    }
+  },
+  // 使用 provide 把值传递出去
+  // 这里碰到一点小问题，官网说可以是 Objct | function 返回一个对象，这里试了 Object 就是不能成功不知道为啥😭
+  provide() {
+    return {
+      info: this.info,
+      reload: this.reload
+    }
+  },
+  methods: {
+    reload() {
+      console.log('reload')
+    }
+  }
+}
+&lt;/script&gt;
+复制代码
+
+// Home.vue
+&lt;template&gt;
+  &lt;div&gt;
+    Home
+    &lt;provide-test&gt;&lt;/provide-test&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+// 这里我们只是把需要用到 provide 数据的组件引入，可以看出我们并没有使用
+import ProvideTest from '@/components/ProvideTest.vue'
+export default {
+  components: {
+    ProvideTest
+  }
+}
+&lt;/script&gt;
+复制代码
+
+// components/ProvideTest.vue
+&lt;template&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  // 这里我们使用 indect 来接收 父组件传递过来的数据，可以看出这种方式类似于 props 接收
+  inject: ['info', 'reload'],
+  mounted() {
+    // 然后就可以通过实例访问这些数据了
+    console.log(this.info)
+    this.reload()
+  }
+}
+&lt;/script&gt;
+复制代码
+</code></pre>
+<p>当然 <code>inject</code> 也不是只能通过数据来接收参数；具体参考 [cn.vuejs.org/v2/api/#pro…](https://cn.vuejs.org/v2/api/ target=)</p>
+<blockquote>
+<p><code>provide</code> 和 <code>inject</code> 绑定并不是响应式的， 这是刻意为之，如果你传入了一个可监听的对象，那么其对象的 property 还是可响应式的； <code>inject</code> 接收过来的数据，不要试图修改，会报错的</p>
+</blockquote>
+<h2 id="非父子组件传值-onon-onemit">非父子组件传值 on/on / on/emit</h2>
+<blockquote>
+<p>$emit 这个咱们前面就知道了 触发当前实例上的事件， 附件参数传给监听器的回调 （可以实现子组件向父组件间的传值）</p>
+<p>了解如何传值之前先了解 <code>$on</code></p>
+<p><code>$on</code> 监听当前实例的上的自定义事件，事件可以由 <code>$emit</code> 触发，回调函数会接收所有传入事件触发的额外参数， 乍一看和指令 v-on 差不多，那么下面就看下具体示例</p>
+</blockquote>
+<pre><code>// About.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click=&quot;handle&quot;&gt;点击传递&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  methods: {
+    handle() {
+      // 这里使用 emit 触发一个自定义事件 如果是监听原生事件 同样可以传递 event
+      this.$emit('on-click', '单文件内被监听了')
+    }
+  },
+  mounted() {
+    // 在 mounted 中 用 on 去监听触发的事件， 并且接收传递过来的参数
+    this.$on('on-click', msg =&gt; {
+      console.log(msg)
+    })
+  }
+}
+&lt;/script&gt;
+复制代码
+</code></pre>
+<p>当然如果只是这样使用， 肯定是略显鸡肋， 既然知道 API 的特性，那么下面看父子组件传值</p>
+<blockquote>
+<p>兄弟组件之间的通信，<code>EventBus</code> Vue 中也叫 事件总线，是一种<strong>发布订阅模式</strong>（<a href="https://juejin.im/post/6844903513009422343">关于发布订阅模式</a>）通过 <code>EventBus</code> 来作为沟通桥梁，让所有组件共用一个事件中心，可以像该事件中心注册事件或者接收事件</p>
+</blockquote>
+<pre><code>// Bus/index.js
+import Vue from 'vue'
+
+// 创建一个空的 Vue 实例 用来做 桥梁
+export const Bus = new Vue()
+复制代码
+
+// main.js
+import { Bus } from './Bus'
+// 将这个空的实例绑定到 vue 的原型中
+Vue.prototype.$bus = Bus
+复制代码
+
+// About.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click=&quot;handle&quot;&gt;点击传递&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      message: ''
+    }
+  },
+  methods: {
+    handle() {
+      // 通过 $bus.$emit 触发事件 可以是自定义事件也可以是原生事件
+      this.$bus.$emit('click', '其他文件内被监听了', event)
+    }
+  }
+}
+&lt;/script&gt;
+复制代码
+
+// Home.vue
+&lt;template&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  mounted() {
+    // 兄弟组件中可以通过 $bus.$on 监听触发的事件， 并且接收一个回调处理参数
+    this.$bus.$on('click', (msg, e) =&gt; {
+      console.log(msg)
+      console.log(e)
+    })
+  }
+}
+&lt;/script&gt;
+复制代码
+</code></pre>
+<p><strong>注意：</strong> 组件挂在之前会执行 <code>mounted</code> 钩子，所以在这个钩子中监听触发的事件，当然在 <code>created</code> 中也是可以的 建议还是 <code>mounted</code></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[<转>新手入门 Github Webhooks 完美自动化部署教程]]></title>
         <id>https://imcm.xyz/Github-webhook/</id>
@@ -1045,85 +3089,6 @@ if __name__ == '__main__':
 <p><img src="https://imcm.xyz/post-images/1597377198390.jpg" alt="" loading="lazy"><br>
 <img src="https://imcm.xyz/post-images/1597377288128.jpg" alt="" loading="lazy"></p>
 <p>转自：<a href="http://es.xiecheng.live/">XieCheng</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[LinuxVPS 自建ZeroTier 的MOON根目录服务器]]></title>
-        <id>https://imcm.xyz/linux-zerotier-moon/</id>
-        <link href="https://imcm.xyz/linux-zerotier-moon/">
-        </link>
-        <updated>2020-08-12T12:20:39.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="说明">说明</h3>
-<p>zerotier 可以作为一款 p2p 的 vlan 内网穿透工具，功能强大且易用，同类产品还有 frp和 LanProxy等。最近有个朋友有创建 p2p vlan 的需求，在简单调研之后决定使用 zerotier 作为基础工具。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="说明">说明</h3>
-<p>zerotier 可以作为一款 p2p 的 vlan 内网穿透工具，功能强大且易用，同类产品还有 frp和 LanProxy等。最近有个朋友有创建 p2p vlan 的需求，在简单调研之后决定使用 zerotier 作为基础工具。</p>
-<!-- more -->
-<p>官方给出的使用方案比较简单。首先需要一个中心的节点用于两个内网节点的握手，该中心节点需要有一个公网 IP。zerotier 官网提供了中心节点相关服务，免费账户有一定的使用限制，但是由于其节点位于国外，延迟比较高，且可能还需要科学上网才能使用。除此之外，zerotier 也支持自己搭建中心节点服务器，也叫做 MOON 服务器。下面是它的搭建步骤。</p>
-<h3 id="moon-服务器配置">MOON 服务器配置</h3>
-<p>操作系统版本是 <code>Ubuntu 18.04, Zerotier One</code> 版本是 <code>v1.2.10</code>, 公网 (也就是 MOON 服务器) 地址是 1.1.1.1。</p>
-<h4 id="1-通过官网文档根据不同操作系统选择不同的安装方式这里直接通过命令行安装">1. 通过<a href="https://www.zerotier.com/">官网</a>文档根据不同操作系统选择不同的安装方式，这里直接通过命令行安装</h4>
-<pre><code class="language-shell">curl -s 'https://pgp.mit.edu/pks/lookup?op=get&amp;search=0x1657198823E52A61' | gpg --import &amp;&amp; \ if z=(curl -s 'https://install.zerotier.com/' | gpg); then echo &quot;z&quot; | sudo bash; fi
-</code></pre>
-<p>如果上述命令运行失败，那么使用下面命令(建议用这个)</p>
-<pre><code class="language-shell">curl -s https://install.zerotier.com/ | sudo bash
-</code></pre>
-<h4 id="2-将-moon-服务器加入-zerotier-局域网">2. 将 MOON 服务器加入 Zerotier 局域网</h4>
-<p>虽然搭建了 MOON 服务器，我们还是需要借助 <a href="https://my.zerotier.com/network">zerotier network</a>，也就是需要先通过 zerotier 官网创建一个 network，并且内网节点需要使用 <code>join</code> 命令加入该网络才能实现内网节点的互通，换句话说 MOON 节点只起到了加速的作用，虚拟网络的分配和管理还是需要 zerotier 服务端参与。</p>
-<pre><code class="language-shell">zerotier-cli join &lt;network id&gt;
-</code></pre>
-<h4 id="3-生成配置文件">3. 生成配置文件</h4>
-<pre><code class="language-shell">sudo chmod 777 /var/lib/zerotier-one # 这里为了有写入文件的权限
-cd /var/lib/zerotier-one
-sudo zerotier-idtool initmoon identity.public &gt; moon.json
-</code></pre>
-<h4 id="4-修改配置文件-moonjson主要是添加公网-ip修改内容如下9993-是默认端口">4. 修改配置文件 <code>moon.json</code>，主要是添加公网 IP，修改内容如下，<code>9993</code> 是默认端口</h4>
-<pre><code class="language-shell">&quot;stableEndpoints&quot;: [ &quot;1.1.1.1/9993&quot; ] #修改为VPS公网IP/9993
-</code></pre>
-<p>还需要注意 <code>moon.json</code> 中的 id 值，它是 MOON 服务器的 ID，是一个 10 位的字符串，我的为 <code>efe9e9a259</code>，也可以用 <code>sudo zerotier-cli info</code> 查看，后面会用到。</p>
-<h4 id="5-生成-moon-文件">5. 生成 moon 文件</h4>
-<pre><code class="language-shell">sudo zerotier-idtool genmoon moon.json
-</code></pre>
-<h4 id="6-在-varlibzerotier-one-目录下新建-moonsd-文件夹中并将生成的-moon-文件放到该文件夹下我的-moon-文件名为-000000efe9e9a259moon">6. 在 <code>/var/lib/zerotier-one</code> 目录下新建 <code>moons.d</code> 文件夹中，并将生成的 moon 文件放到该文件夹下，我的 moon 文件名为 <code>000000efe9e9a259.moon</code></h4>
-<pre><code class="language-shell">mv 000000efe9e9a259.moon moons.d/
-</code></pre>
-<h4 id="7-重启-zerotier-one">7. 重启 <code>zerotier-one</code></h4>
-<pre><code class="language-shell">sudo systemctl restart zerotier-one.service
-</code></pre>
-<h3 id="内网节点配置本地设备">内网节点配置(本地设备)</h3>
-<h4 id="1-在内网节点安装-zerotier安装方法和上面类似根据文档选择不同操作系统的方法进行安装即可-请参考文章zerotier-无公网-ip-实现内网穿透">1. 在内网节点安装 zerotier，安装方法和上面类似，根据<a href="https://www.moewah.com/go/aHR0cHM6Ly93d3cuemVyb3RpZXIuY29tL2Rvd25sb2FkLnNodG1s">文档</a>选择不同操作系统的方法进行安装即可。请参考文章<a href="https://www.moewah.com/archives/1474.html">《ZeroTier 无公网 IP 实现内网穿透》</a></h4>
-<h4 id="2-将-moon-节点添加到常规节点">2. 将 MOON 节点添加到常规节点</h4>
-<pre><code class="language-shell">sudo zerotier-cli orbit efe9e9a259 efe9e9a259 # 注意这里是两次根节点的ID
-</code></pre>
-<p>如果没返回 <code>200 orbit OK</code> 的话，需要手动拷贝生成的 moon 文件 <code>000000efe9e9a259.moon</code> 文件到常规节点的机器上，位置如下:</p>
-<pre><code>Windows: C:\ProgramData\ZeroTier\One
-Macintosh: /Library/Application Support/ZeroTier/One (在 Terminal 中应为 /Library/Application\ Support/ZeroTier/One)
-Linux: /var/lib/zerotier-one
-FreeBSD/OpenBSD: /var/db/zerotier-one
-</code></pre>
-<h4 id="3-然后重启-zerotier-one">3. 然后重启 zerotier-one</h4>
-<p>查看节点列表，出现根服务器的 MOON 节点表示成功</p>
-<pre><code class="language-shell"> ~ sudo zerotier-cli listpeers
-200 listpeers     
-200 listpeers 3dfa0fd16b - -1 - LEAF
-200 listpeers 8841408a2e 45.32.248.87/9993;11749;11453 252 1.1.5 PLANET
-200 listpeers 9d219039f3 128.199.197.217/9993;11749;11381 390 1.1.5 PLANET
-200 listpeers abfd31bd47 178.128.240.145/35368;6238;14319 509 1.2.5 LEAF
-200 listpeers efe9e9a259 1.1.1.1/9993;6238;1184 36 1.2.12 MOON
-</code></pre>
-<h4 id="4-我们再在内网节点上运行-ifconfigwindows-是-ipconfig可以看到-zerotier-vlan-分配给其的内网-ip">4. 我们再在内网节点上运行 ifconfig(windows 是 ipconfig)，可以看到 zerotier vlan 分配给其的内网 IP</h4>
-<pre><code class="language-shell">zt0: flags=8843 metric 5000 mtu 2800
-    ether 1a:42:9a:39:7d:3f
-    inet 10.147.18.127 netmask 0xffffff00 broadcast 10.147.18.255
-    inet6 fe80::1842:9aff:fe39:7d3f%zt0 prefixlen 64 scopeid 0xc
-    inet6 fcec:2f1a:a769:487e:c00e::1 prefixlen 40
-    nd6 options=201
-    media: autoselect
-    status: active
-    open (pid 84214)
-</code></pre>
-<p>这里的 <code>10.147.18.127</code>就是其虚拟局域网的 IP，在另外一个局域网中通过上述过程配置另外一个节点，它的虚拟局域网 IP 为 <code>10.147.18.30</code>，两个节点通过 <code>ping</code> 可以互相通</p>
-<p>转自：<a href="https://opt.gs/posts/56602/">vps侦探</a></p>
 ]]></content>
     </entry>
 </feed>
