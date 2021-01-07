@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-01-07T09:37:14.600Z</updated>
+    <updated>2021-01-07T09:55:56.520Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -139,15 +139,11 @@ wget https://github.com/mayswind/AriaNg/releases/download/1.0.0/AriaNg-1.0.0.zip
 unzip AriaNg-1.0.0.zip -d aira
 </code></pre>
 <p>在浏览器中访问<code>http://your-ip/aira</code>即可打开AriaNg了。</p>
-<figure data-type="image" tabindex="1"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%887.24.23.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1610013315460.png" alt="" loading="lazy"></figure>
 <p>这时AriaNg显示未连接，在“系统设置-（PRC192.168.0.108）-Aria2 PRC 密钥 ”中，输入“<strong>secret</strong>” 即可连接！</p>
 <p>之后，就可以愉快的用树莓派下载电影或者文件了～</p>
-<figure data-type="image" tabindex="2"><a href="http://www.lxx1.com/4469/%e6%88%aa%e5%b1%8f2020-03-19%e4%b8%8b%e5%8d%8810-15-50"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%8810.15.50.png" alt="" loading="lazy"></a></figure>
-<h2 id="五-扩展">五、扩展</h2>
-<p>解决aira2下载速度慢或者下载速度为0的方法：使用http://edam.top/tk/更新 tracker 服务器，并将<code>bt-tracker=</code>后的服务器地址替换为最新的地址，可以显著提高下载速度。</p>
-<p>另外，树莓派开启SMB共享文件：<a href="http://www.lxx1.com/4434">树莓派上安装Samba实现文件共享</a></p>
-<p>如果想远程下载文件，可以通过树莓派内网穿透实现：<a href="http://www.lxx1.com/3709">树莓派使用Ngrok进行内网穿透，在公网上搭建个人博客</a></p>
-<p><strong>原创文章，转载请注明：</strong> 转载自<a href="https://www.lxx1.com/">科技爱好者博客</a></p>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1610013229922.png" alt="" loading="lazy"></figure>
+<p>转载自<a href="https://www.lxx1.com/">科技爱好者博客</a></p>
 ]]></content>
     </entry>
     <entry>
