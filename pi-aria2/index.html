@@ -9,7 +9,7 @@
 <meta name="description" content="&lt;span id=&#34;jinrishici-sentence&#34;&gt;正在加载今日诗词....&lt;/span&gt;
 &lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;">
 <meta name="theme-color" content="#000">
-<title>IMCM</title>
+<title>&lt;转&gt;树莓派使用Aria2搭建BT远程下载机 | IMCM</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1610012230737">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -49,6 +49,8 @@
 
 
 
+  <meta name="description" content="<转>树莓派使用Aria2搭建BT远程下载机" />
+  <meta name="keywords" content="aria2" />
 </head>
 
 <body>
@@ -181,10 +183,26 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  pisces">
+      class="section-layout pisces ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body pisces" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -246,198 +264,516 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E5%AE%89%E8%A3%85aria2">一、安装Aria2</a></li>
+<li><a href="#%E4%BA%8C-aria2%E9%85%8D%E7%BD%AE">二、Aria2配置</a>
+<ul>
+<li><a href="#21%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">2.1创建配置文件</a></li>
+<li><a href="#22%E6%B7%BB%E5%8A%A0%E5%A6%82%E4%B8%8B%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF">2.2添加如下配置信息</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E9%85%8D%E7%BD%AEaria2%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">三、配置aria2开机启动</a></li>
+<li><a href="#%E5%9B%9B-%E5%AE%89%E8%A3%85ariang%E4%BB%A5%E5%9C%A8%E7%BD%91%E9%A1%B5%E4%B8%8A%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86">四、安装AriaNg以在网页上进行下载管理</a><br>
+*
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85ariang">安装AriaNg</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E6%89%A9%E5%B1%95">五、扩展</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'pisces';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          nvm
-          <small class="language" data-lan="tag">标签</small>
-        </h2>
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
       </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://imcm.xyz/pi-aria2/">
+      &lt;转&gt;树莓派使用Aria2搭建BT远程下载机
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2021-01-07 18:31:28">2021-01-07</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://imcm.xyz/mac-nvm/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              07-13
-              <small>Mac 下安装 NVM</small>
-            </h1>
-          </div>
-        </div>
+      <a href="https://imcm.xyz/aria2/">
+        <span>aria2</span>
       </a>
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>6<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1241<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+    
+    
+    <span id="/pi-aria2/" data-flag-title="&lt;转&gt;树莓派使用Aria2搭建BT远程下载机" class="meta-item pc-show leancloud_visitors">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <p>开着电脑下电影速度比较慢，而且还很费电，这时可以使用树莓派，利用Aria2这个工具，搭建一个远程离线下载机，想看的电影，推送到树莓派下载后，使用SMB就可以在电视上观看了。要下载大文件，同样推送到树莓派下载，完成后再拉到电脑上，非常方便，以下是具体的搭建过程。</p>
+<h2 id="一-安装aria2">一、安装Aria2</h2>
+<pre><code class="language-shell">    sudo apt-get update
+    sudo apt-get install aria2
+</code></pre>
+<h2 id="二-aria2配置">二、Aria2配置</h2>
+<h3 id="21创建配置文件">2.1创建配置文件</h3>
+<pre><code class="language-shell">    mkdir -p ~/.config/aria2/
+    touch ~/.config/aria2/aria2.session
+    nano ~/.config/aria2/aria2.config
+</code></pre>
+<h3 id="22添加如下配置信息">2.2添加如下配置信息</h3>
+<pre><code class="language-shell">    # set your own path
+    dir=[yourpath]
+    disk-cache=32M
+    file-allocation=trunc
+    continue=true
+    
+    max-concurrent-downloads=10
+    
+    max-connection-per-server=16
+    min-split-size=10M
+    split=5
+    max-overall-download-limit=0
+    #max-download-limit=0
+    #max-overall-upload-limit=0
+    #max-upload-limit=0
+    disable-ipv6=false
+    
+    save-session=~/.config/aria2/aria2.session
+    input-file=~/.config/aria2/aria2.session
+    save-session-interval=60
+    
+    
+    enable-rpc=true
+    rpc-allow-origin-all=true
+    rpc-listen-all=true
+    rpc-secret=secret
+    #event-poll=select
+    rpc-listen-port=6800
+    
+    
+    # for PT user please set to false
+    enable-dht=true
+    enable-dht6=true
+    enable-peer-exchange=true
+    
+    # for increasing BT speed
+    listen-port=51413
+    #follow-torrent=true
+    #bt-max-peers=55
+    #dht-listen-port=6881-6999
+    #bt-enable-lpd=false
+    #bt-request-peer-speed-limit=50K
+    peer-id-prefix=-TR2770-
+    user-agent=Transmission/2.77
+    seed-ratio=0
+    #force-save=false
+    #bt-hash-check-seed=true
+    bt-seed-unverified=true
+    bt-save-metadata=true
+    bt-tracker=http://93.158.213.92:1337/announce,udp://151.80.120.114:2710/announce,udp://62.210.97.59:1337/announce,udp://188.241.58.209:6969/announce,udp://80.209.252.132:1337/announce,udp://208.83.20.20:6969/announce,udp://185.181.60.67:80/announce,udp://194.182.165.153:6969/announce,udp://37.235.174.46:2710/announce,udp://5.206.3.65:6969/announce,udp://89.234.156.205:451/announce,udp://92.223.105.178:6969/announce,udp://51.15.40.114:80/announce,udp://207.241.226.111:6969/announce,udp://176.113.71.60:6961/announce,udp://207.241.231.226:6969/announce
+</code></pre>
+<p>然后启动aria2：</p>
+<pre><code class="language-shell">$ sudo aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+Exception caught
+Exception: \[download\_helper.cc:563\] errorCode=1 Failed to open the file ~/.config/aria2/aria2.session, cause: File not found or it is a directory
+</code></pre>
+<p>结果出现错误，这是因为找不到aria2.session文件导致的，应该是无法识别“～”目录造成的，所以解决办法也很简单，将配置文件中的**“～”修改为“/home/pi”**即可。</p>
+<p>修改后再次启动aria2：</p>
+<pre><code class="language-shell">$ sudo aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+03/19 13:35:47 \[NOTICE\] IPv4 RPC: listening on TCP port 6800
+03/19 13:35:47 \[NOTICE\] IPv6 RPC: listening on TCP port 6800
+</code></pre>
+<p>可以看到aria2已经成功启动了！</p>
+<h2 id="三-配置aria2开机启动">三、配置aria2开机启动</h2>
+<p>创建systemctl service文件</p>
+<pre><code class="language-shell">    sudo nano /lib/systemd/system/aria2.service
+</code></pre>
+<p>User,conf-path下换成自己的username</p>
+<pre><code class="language-shell">[Unit]
+Description=Aria2 Service
+After=network.target
+
+[Service]
+User=pi    
+ExecStart=/usr/bin/aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+
+[Install]
+WantedBy=default.target
+</code></pre>
+<p>重载服务并设置开机启动</p>
+<pre><code class="language-shell">    sudo systemctl daemon-reload
+    sudo systemctl enable aria2
+    sudo systemctl start aria2
+    sudo systemctl status aria2
+</code></pre>
+<p>看到如下文字证明启动成功(记住TCP port，AiraNg配置以及公网端口映射需要)</p>
+<pre><code class="language-shell">$ sudo systemctl status aria2
+● aria2.service - Aria2 Service
+   Loaded: loaded (/lib/systemd/system/aria2.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2020-03-19 13:44:39 CST; 5s ago
+ Main PID: 6798 (aria2c)
+    Tasks: 1 (limit: 2200)
+   Memory: 3.4M
+   CGroup: /system.slice/aria2.service
+           └─6798 /usr/bin/aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+
+Mar 19 13:44:39 raspberrypi systemd\[1\]: Started Aria2 Service.
+Mar 19 13:44:39 raspberrypi aria2c\[6798\]: 03/19 13:44:39 \[NOTICE\] IPv4 RPC: listening on TCP port 6800
+Mar 19 13:44:39 raspberrypi aria2c\[6798\]: 03/19 13:44:39 \[NOTICE\] IPv6 RPC: listening on TCP port 6800
+</code></pre>
+<h2 id="四-安装ariang以在网页上进行下载管理">四、安装AriaNg以在网页上进行下载管理</h2>
+<p>AriaNg 是一个让 aria2 更容易使用的现代 Web 前端. AriaNg 使用纯 html &amp; javascript 开发, 所以其不需要任何编译器或运行环境. 只要将 AriaNg 放在 Web 服务器里并在浏览器中打开即可使用. AriaNg 使用响应式布局, 支持各种计算机或移动设备.</p>
+<p>安装AriaNg的前提是树莓派上已经配置好了web环境，如果没有，按照<a href="http://www.lxx1.com/3696">树莓派安装 lnmp 套件搭建个人博客网站服务器</a> 的教程，在树莓派上安装nginx软件（⚠️注意：只需要安装nginx即可）。</p>
+<h4 id="安装ariang">安装AriaNg</h4>
+<p>在<a href="https://github.com/mayswind/AriaNg/releases">这里</a>选择最新版本的AriaNg.</p>
+<pre><code>cd /var/www/html
+wget https://github.com/mayswind/AriaNg/releases/download/1.0.0/AriaNg-1.0.0.zip
+unzip AriaNg-1.0.0.zip -d aira
+</code></pre>
+<p>在浏览器中访问<code>http://your-ip/aira</code>即可打开AriaNg了。</p>
+<figure data-type="image" tabindex="1"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%887.24.23.png" alt="" loading="lazy"></figure>
+<p>这时AriaNg显示未连接，在“系统设置-（PRC192.168.0.108）-Aria2 PRC 密钥 ”中，输入“<strong>secret</strong>” 即可连接！</p>
+<p>之后，就可以愉快的用树莓派下载电影或者文件了～</p>
+<figure data-type="image" tabindex="2"><a href="http://www.lxx1.com/4469/%e6%88%aa%e5%b1%8f2020-03-19%e4%b8%8b%e5%8d%8810-15-50"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%8810.15.50.png" alt="" loading="lazy"></a></figure>
+<h2 id="五-扩展">五、扩展</h2>
+<p>解决aira2下载速度慢或者下载速度为0的方法：使用http://edam.top/tk/更新 tracker 服务器，并将<code>bt-tracker=</code>后的服务器地址替换为最新的地址，可以显著提高下载速度。</p>
+<p>另外，树莓派开启SMB共享文件：<a href="http://www.lxx1.com/4434">树莓派上安装Samba实现文件共享</a></p>
+<p>如果想远程下载文件，可以通过树莓派内网穿透实现：<a href="http://www.lxx1.com/3709">树莓派使用Ngrok进行内网穿透，在公网上搭建个人博客</a></p>
+<p><strong>原创文章，转载请注明：</strong> 转载自<a href="https://www.lxx1.com/">科技爱好者博客</a></p>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      imcm
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://imcm.xyz/pi-aria2/" title="&lt;转&gt;树莓派使用Aria2搭建BT远程下载机">https://imcm.xyz/pi-aria2/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://imcm.xyz/aria2/"># aria2</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="一万字总结Vue2.6.X" href="https://imcm.xyz/one-vue/">一万字总结Vue2.6.X</a>
+        <a class="nav-mobile-next" title="一万字总结Vue2.6.X" href="https://imcm.xyz/one-vue/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -650,6 +986,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -6782,7 +7335,6 @@ printf(&amp;quot;Hello, Markdown.&amp;quot;);&lt;br&gt;
     speed: 200
   });
 </script>
-
 
 
 

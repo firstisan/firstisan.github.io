@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-01-06T11:04:37.946Z</updated>
+    <updated>2021-01-07T09:37:14.600Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -11,6 +11,145 @@
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2021, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[<转>树莓派使用Aria2搭建BT远程下载机]]></title>
+        <id>https://imcm.xyz/pi-aria2/</id>
+        <link href="https://imcm.xyz/pi-aria2/">
+        </link>
+        <updated>2021-01-07T10:31:28.000Z</updated>
+        <content type="html"><![CDATA[<p>开着电脑下电影速度比较慢，而且还很费电，这时可以使用树莓派，利用Aria2这个工具，搭建一个远程离线下载机，想看的电影，推送到树莓派下载后，使用SMB就可以在电视上观看了。要下载大文件，同样推送到树莓派下载，完成后再拉到电脑上，非常方便，以下是具体的搭建过程。</p>
+<h2 id="一-安装aria2">一、安装Aria2</h2>
+<pre><code class="language-shell">    sudo apt-get update
+    sudo apt-get install aria2
+</code></pre>
+<h2 id="二-aria2配置">二、Aria2配置</h2>
+<h3 id="21创建配置文件">2.1创建配置文件</h3>
+<pre><code class="language-shell">    mkdir -p ~/.config/aria2/
+    touch ~/.config/aria2/aria2.session
+    nano ~/.config/aria2/aria2.config
+</code></pre>
+<h3 id="22添加如下配置信息">2.2添加如下配置信息</h3>
+<pre><code class="language-shell">    # set your own path
+    dir=[yourpath]
+    disk-cache=32M
+    file-allocation=trunc
+    continue=true
+    
+    max-concurrent-downloads=10
+    
+    max-connection-per-server=16
+    min-split-size=10M
+    split=5
+    max-overall-download-limit=0
+    #max-download-limit=0
+    #max-overall-upload-limit=0
+    #max-upload-limit=0
+    disable-ipv6=false
+    
+    save-session=~/.config/aria2/aria2.session
+    input-file=~/.config/aria2/aria2.session
+    save-session-interval=60
+    
+    
+    enable-rpc=true
+    rpc-allow-origin-all=true
+    rpc-listen-all=true
+    rpc-secret=secret
+    #event-poll=select
+    rpc-listen-port=6800
+    
+    
+    # for PT user please set to false
+    enable-dht=true
+    enable-dht6=true
+    enable-peer-exchange=true
+    
+    # for increasing BT speed
+    listen-port=51413
+    #follow-torrent=true
+    #bt-max-peers=55
+    #dht-listen-port=6881-6999
+    #bt-enable-lpd=false
+    #bt-request-peer-speed-limit=50K
+    peer-id-prefix=-TR2770-
+    user-agent=Transmission/2.77
+    seed-ratio=0
+    #force-save=false
+    #bt-hash-check-seed=true
+    bt-seed-unverified=true
+    bt-save-metadata=true
+    bt-tracker=http://93.158.213.92:1337/announce,udp://151.80.120.114:2710/announce,udp://62.210.97.59:1337/announce,udp://188.241.58.209:6969/announce,udp://80.209.252.132:1337/announce,udp://208.83.20.20:6969/announce,udp://185.181.60.67:80/announce,udp://194.182.165.153:6969/announce,udp://37.235.174.46:2710/announce,udp://5.206.3.65:6969/announce,udp://89.234.156.205:451/announce,udp://92.223.105.178:6969/announce,udp://51.15.40.114:80/announce,udp://207.241.226.111:6969/announce,udp://176.113.71.60:6961/announce,udp://207.241.231.226:6969/announce
+</code></pre>
+<p>然后启动aria2：</p>
+<pre><code class="language-shell">$ sudo aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+Exception caught
+Exception: \[download\_helper.cc:563\] errorCode=1 Failed to open the file ~/.config/aria2/aria2.session, cause: File not found or it is a directory
+</code></pre>
+<p>结果出现错误，这是因为找不到aria2.session文件导致的，应该是无法识别“～”目录造成的，所以解决办法也很简单，将配置文件中的**“～”修改为“/home/pi”**即可。</p>
+<p>修改后再次启动aria2：</p>
+<pre><code class="language-shell">$ sudo aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+03/19 13:35:47 \[NOTICE\] IPv4 RPC: listening on TCP port 6800
+03/19 13:35:47 \[NOTICE\] IPv6 RPC: listening on TCP port 6800
+</code></pre>
+<p>可以看到aria2已经成功启动了！</p>
+<h2 id="三-配置aria2开机启动">三、配置aria2开机启动</h2>
+<p>创建systemctl service文件</p>
+<pre><code class="language-shell">    sudo nano /lib/systemd/system/aria2.service
+</code></pre>
+<p>User,conf-path下换成自己的username</p>
+<pre><code class="language-shell">[Unit]
+Description=Aria2 Service
+After=network.target
+
+[Service]
+User=pi    
+ExecStart=/usr/bin/aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+
+[Install]
+WantedBy=default.target
+</code></pre>
+<p>重载服务并设置开机启动</p>
+<pre><code class="language-shell">    sudo systemctl daemon-reload
+    sudo systemctl enable aria2
+    sudo systemctl start aria2
+    sudo systemctl status aria2
+</code></pre>
+<p>看到如下文字证明启动成功(记住TCP port，AiraNg配置以及公网端口映射需要)</p>
+<pre><code class="language-shell">$ sudo systemctl status aria2
+● aria2.service - Aria2 Service
+   Loaded: loaded (/lib/systemd/system/aria2.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2020-03-19 13:44:39 CST; 5s ago
+ Main PID: 6798 (aria2c)
+    Tasks: 1 (limit: 2200)
+   Memory: 3.4M
+   CGroup: /system.slice/aria2.service
+           └─6798 /usr/bin/aria2c --conf-path=/home/pi/.config/aria2/aria2.config
+
+Mar 19 13:44:39 raspberrypi systemd\[1\]: Started Aria2 Service.
+Mar 19 13:44:39 raspberrypi aria2c\[6798\]: 03/19 13:44:39 \[NOTICE\] IPv4 RPC: listening on TCP port 6800
+Mar 19 13:44:39 raspberrypi aria2c\[6798\]: 03/19 13:44:39 \[NOTICE\] IPv6 RPC: listening on TCP port 6800
+</code></pre>
+<h2 id="四-安装ariang以在网页上进行下载管理">四、安装AriaNg以在网页上进行下载管理</h2>
+<p>AriaNg 是一个让 aria2 更容易使用的现代 Web 前端. AriaNg 使用纯 html &amp; javascript 开发, 所以其不需要任何编译器或运行环境. 只要将 AriaNg 放在 Web 服务器里并在浏览器中打开即可使用. AriaNg 使用响应式布局, 支持各种计算机或移动设备.</p>
+<p>安装AriaNg的前提是树莓派上已经配置好了web环境，如果没有，按照<a href="http://www.lxx1.com/3696">树莓派安装 lnmp 套件搭建个人博客网站服务器</a> 的教程，在树莓派上安装nginx软件（⚠️注意：只需要安装nginx即可）。</p>
+<h4 id="安装ariang">安装AriaNg</h4>
+<p>在<a href="https://github.com/mayswind/AriaNg/releases">这里</a>选择最新版本的AriaNg.</p>
+<pre><code>cd /var/www/html
+wget https://github.com/mayswind/AriaNg/releases/download/1.0.0/AriaNg-1.0.0.zip
+unzip AriaNg-1.0.0.zip -d aira
+</code></pre>
+<p>在浏览器中访问<code>http://your-ip/aira</code>即可打开AriaNg了。</p>
+<figure data-type="image" tabindex="1"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%887.24.23.png" alt="" loading="lazy"></figure>
+<p>这时AriaNg显示未连接，在“系统设置-（PRC192.168.0.108）-Aria2 PRC 密钥 ”中，输入“<strong>secret</strong>” 即可连接！</p>
+<p>之后，就可以愉快的用树莓派下载电影或者文件了～</p>
+<figure data-type="image" tabindex="2"><a href="http://www.lxx1.com/4469/%e6%88%aa%e5%b1%8f2020-03-19%e4%b8%8b%e5%8d%8810-15-50"><img src="http://www.lxx1.com/wp-content/uploads/2020/03/%E6%88%AA%E5%B1%8F2020-03-19%E4%B8%8B%E5%8D%8810.15.50.png" alt="" loading="lazy"></a></figure>
+<h2 id="五-扩展">五、扩展</h2>
+<p>解决aira2下载速度慢或者下载速度为0的方法：使用http://edam.top/tk/更新 tracker 服务器，并将<code>bt-tracker=</code>后的服务器地址替换为最新的地址，可以显著提高下载速度。</p>
+<p>另外，树莓派开启SMB共享文件：<a href="http://www.lxx1.com/4434">树莓派上安装Samba实现文件共享</a></p>
+<p>如果想远程下载文件，可以通过树莓派内网穿透实现：<a href="http://www.lxx1.com/3709">树莓派使用Ngrok进行内网穿透，在公网上搭建个人博客</a></p>
+<p><strong>原创文章，转载请注明：</strong> 转载自<a href="https://www.lxx1.com/">科技爱好者博客</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一万字总结Vue2.6.X]]></title>
         <id>https://imcm.xyz/one-vue/</id>
@@ -3074,21 +3213,6 @@ if __name__ == '__main__':
 <h4 id="2-cookie能用多久还不知道反正我挂了40多天了-验证失败了也会微信通知更新下cookies就行">2. COOKIE能用多久还不知道，，反正我挂了40多天了。。。验证失败了，也会微信通知，更新下COOKIES就行。</h4>
 <h4 id="3签到分数不保证-现在大多是10分左右偶尔50分-这个腾讯的锅~就当腾讯云函数来背吧~">3.签到分数不保证。。现在大多是10分左右，偶尔50分+。。。这个腾讯的锅~<s>就当腾讯云函数来背吧</s>~</h4>
 <p>来源(Source)：<a href="https://lsdlhlx.top/2019/10/%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E8%8E%B7%E5%BE%97v%E5%8A%9B%E5%80%BC/">西瓜小窝</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ECMAScript 2015～2020 语法思维导图]]></title>
-        <id>https://imcm.xyz/ecmascript/</id>
-        <link href="https://imcm.xyz/ecmascript/">
-        </link>
-        <updated>2020-08-14T11:52:34.000Z</updated>
-        <summary type="html"><![CDATA[<p>ECMAScript 2015～2020 思维导图</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>ECMAScript 2015～2020 思维导图</p>
-<!-- more -->
-<p><img src="https://imcm.xyz/post-images/1597377198390.jpg" alt="" loading="lazy"><br>
-<img src="https://imcm.xyz/post-images/1597377288128.jpg" alt="" loading="lazy"></p>
-<p>转自：<a href="http://es.xiecheng.live/">XieCheng</a></p>
 ]]></content>
     </entry>
 </feed>
