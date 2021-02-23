@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-01-07T09:55:56.520Z</updated>
+    <updated>2021-02-23T03:31:14.660Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -12,12 +12,287 @@
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2021, IMCM</rights>
     <entry>
+        <title type="html"><![CDATA[如何在Raspberry Pi上安装Docker和Portainer！]]></title>
+        <id>https://imcm.xyz/docker-portainer/</id>
+        <link href="https://imcm.xyz/docker-portainer/">
+        </link>
+        <updated>2021-02-22T11:36:57.000Z</updated>
+        <summary type="html"><![CDATA[<p>今天，我们将研究如何在Raspberry Pi上安装Docker和Portainer。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>今天，我们将研究如何在Raspberry Pi上安装Docker和Portainer。</p>
+<!-- more -->
+<p>这个过程非常简单，但是在以后的教程中我们将使用Portainer来设置不同的docker容器，因此这是我们要研究的第一件事。该树莓派4用以作为小，因为它是非常强大的。结合大量的大型Docker容器不需要强大的CPU的事实，在Raspberry Pi上运行某些Docker容器对于许多人来说是一个不错的选择。</p>
+<p>以下步骤将利用Raspberry Pi OS的全新安装。如果您不确定如何执行此操作，请在此处进行说明。</p>
+<h3 id="所需的硬件">所需的硬件</h3>
+<ul>
+<li>
+<p>Raspbery Pi 4：Docker和Portainer可以安装在较旧的Raspberry Pi设备上，但是Raspberry Pi 4比较旧的设备具有更大的处理能力，这将带来更好的性能。</p>
+</li>
+<li>
+<p>微型SD卡：这里不需要任何疯狂的东西，只需一个具有足够存储空间的优质微型SD卡即可。</p>
+</li>
+<li>
+<p>Raspberry Pi 4保护套：这是我最喜欢的Raspberry Pi 4保护套之一，但是任何情况下都可以。</p>
+</li>
+<li>
+<p>电源：为Raspberry Pi供电。</p>
+</li>
+<li>
+<p>HDMI电缆：我通常通过SSH连接到Raspberry Pi设备，因此仅当您打算将Raspberry Pi连接到显示器时才需要。</p>
+</li>
+</ul>
+<h3 id="说明-在raspberry-pi上安装docker和portainer">说明-在Raspberry Pi上安装Docker和Portainer</h3>
+<ol>
+<li>通过运行以下命令，确保您的Raspberry Pi是最新的。</li>
+</ol>
+<pre><code class="language-shell">sudo apt update
+sudo apt upgrade -y
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1613976193237.webp" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>接下来要运行的脚本是在Raspberry Pi上安装Docker的脚本。Portainer是用于管理Docker容器的GUI，因此我们需要确保已安装Docker。</li>
+</ol>
+<pre><code class="language-shell">curl -sSL https://get.docker.com |  sh
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1613976202912.webp" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>脚本完成后，我们需要为Pi用户帐户授予Docker访问权限。</li>
+</ol>
+<pre><code class="language-shell">sudo usermod -aG docker pi
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1613976214762.webp" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>添加用户后，我们将运行命令以下载用于ARM处理器的最新Portainer映像（Raspberry Pi使用的映像）。</li>
+</ol>
+<pre><code class="language-shell">sudo docker pull portainer/portainer-ce:alpine
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1613976221298.webp" alt="" loading="lazy"></figure>
+<ol start="5">
+<li>我们的最后一步是创建一个将运行Portainer的新容器。如果您已经将Raspberry Pi上的端口9000用于其他用途（这不太可能），则需要更改以下端口。</li>
+</ol>
+<pre><code class="language-shell">sudo docker run --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:alpine
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://imcm.xyz/post-images/1613976234190.webp" alt="" loading="lazy"></figure>
+<ol start="6">
+<li>现在，您应该能够导航到Raspberry Pi的IP地址和端口9000来访问Portainer。当您到达那里时，请创建一个用户名和密码。</li>
+</ol>
+<pre><code class="language-shell">http://[RASPBERRY_PI_IP_ADDRESS]:9000
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://imcm.xyz/post-images/1613976243565.webp" alt="" loading="lazy"></figure>
+<ol start="7">
+<li>
+<p>选择本地并连接。<br>
+<img src="https://imcm.xyz/post-images/1613976251702.webp" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>现在，您应该已连接到Portainer！<br>
+<img src="https://imcm.xyz/post-images/1613976256721.webp" alt="" loading="lazy"></p>
+</li>
+</ol>
+<h3 id="结论">结论</h3>
+<p>这是一个非常简单的过程，但是我们将在以后的教程中使用它。我认为最好为此创建一个特定的教程，而不是在以后的所有教程中都安装Docker / Portainer。如有任何疑问，请在评论中保留。谢谢阅读！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[树莓派实现温控风扇]]></title>
+        <id>https://imcm.xyz/raspberry-smartfan/</id>
+        <link href="https://imcm.xyz/raspberry-smartfan/">
+        </link>
+        <updated>2021-02-10T07:16:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>树莓派风扇声音太大了, 非常影响睡觉， 不开风扇cpu温度又很容易太高了</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>树莓派风扇声音太大了, 非常影响睡觉， 不开风扇cpu温度又很容易太高了</p>
+<!-- more -->
+<h3 id="准备">准备</h3>
+<p>杜邦线母对母2根, 公对母2根, 直接淘宝买40pin的2排<br>
+三极管S85501个，淘宝买2块钱50个包邮<br>
+S8550为PNP型三极管，基极施加低电平时才导通电路，如果是用的NPN型三极管则与之相反<br>
+树莓派小风扇1个<br>
+树莓派引脚:<br>
+<img src="https://imcm.xyz/post-images/1612941425828.png" alt="" loading="lazy"></p>
+<p>三极管引脚:<br>
+<img src="https://imcm.xyz/post-images/1612941453685.jpeg" alt="" loading="lazy"></p>
+<ul>
+<li>
+<p>E: 发射机<br>
+正级(接电源正极, 5V)<br>
+可接树莓派4号引脚</p>
+</li>
+<li>
+<p>B: 基级<br>
+信号极控制是否通电(GPIO)<br>
+可以接树莓派8号引脚</p>
+</li>
+<li>
+<p>C：集电极<br>
+负极 (接电源负极, Ground)<br>
+可以接树莓派6号引脚</p>
+</li>
+</ul>
+<h3 id="接线">接线</h3>
+<ol>
+<li>风扇红线(正极)接树莓派5V，如4号引脚</li>
+<li>风扇黑线(负极)接三极管C(集电集)</li>
+<li>三极管E(发射极)接树莓派Ground, 如6号引脚</li>
+<li>三极管B级, 接树莓派GPIO，如8号引脚<br>
+如图:<br>
+<img src="https://imcm.xyz/post-images/1612941492479.png" alt="" loading="lazy"></li>
+</ol>
+<h3 id="python程序风扇">Python程序风扇</h3>
+<p>在python交互式命令行下测试下是否可行</p>
+<pre><code class="language-shell">pi@raspberrypi:~/script $ python
+Python 2.7.16 (default, Apr  6 2019, 01:42:57) 
+[GCC 8.2.0] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import RPi.GPIO as GPIO
+&gt;&gt;&gt; GPIO_OUT = 14
+&gt;&gt;&gt; GPIO.setmode(GPIO.BCM)
+&gt;&gt;&gt; GPIO.setwarnings(False)
+&gt;&gt;&gt; GPIO.setup(GPIO_OUT, GPIO.OUT, initial=GPIO.HIGH)
+&gt;&gt;&gt; GPIO.output(GPIO_OUT, GPIO.LOW)  # 风扇开
+&gt;&gt;&gt; GPIO.output(GPIO_OUT, GPIO.HIGH) # 风扇关闭
+</code></pre>
+<blockquote>
+<p>注：PNP型三极管GPIO.LOW是开, HIGH是关， NPN型相反</p>
+</blockquote>
+<h3 id="完整程序">完整程序:</h3>
+<p><a href="https://raw.githubusercontent.com/lovehhf/raspi_script/master/smartfan.py">smartfan.py</a></p>
+<h4 id="主要逻辑">主要逻辑:</h4>
+<ol>
+<li>读取/sys/class/thermal/thermal_zone0/temp内容, 除1000获取CPU温度</li>
+<li>风扇初始状态设置为关闭状态</li>
+<li>温度低于55度且当前处于关闭状态开机风扇</li>
+<li>温度低于45度且当前处于开启状态关闭风扇</li>
+<li>每隔15秒查一下温度并更新状态</li>
+</ol>
+<pre><code class="language-shell">mkdir -p /home/pi/script &amp;&amp; cd /home/pi/script
+wget https://raw.githubusercontent.com/lovehhf/raspi_script/master/smartfan.py
+</code></pre>
+<h3 id="supervisor管理python进程">supervisor管理python进程</h3>
+<p>添加配置文件: vim /etc/supervisor/conf.d/fan.conf:<br>
+内容如下:</p>
+<pre><code class="language-shell">[program:fan]
+command=/usr/bin/python3 /home/pi/script/smartfan.py
+user=root
+directory=/home/pi/script
+stdout_logfile=/var/log/supervisor/%(program_name)s-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)s-stderr.log
+autorestart=true
+autostart=true
+</code></pre>
+<p>重启supervisor并查看状态:</p>
+<pre><code class="language-shell">pi@raspberrypi:/var/log $ sudo systemctl restart supervisor
+pi@raspberrypi:/var/log $ sudo supervisorctl status fan
+fan                              RUNNING   pid 3903, uptime 0:01:26
+</code></pre>
+<h3 id="测试">测试</h3>
+<pre><code class="language-shell">sudo apt install stress
+stress -c 50   # cpu压力测试, 开50个进程不停地sqrt, 一下子风扇就转起来了
+tail -f /var/log/fan_control.log  # 查看日志
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何从主项目更新fork的项目]]></title>
+        <id>https://imcm.xyz/git-fork/</id>
+        <link href="https://imcm.xyz/git-fork/">
+        </link>
+        <updated>2021-01-29T13:36:15.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="如何从主项目更新fork的项目">如何从主项目更新fork的项目？</h1>
+<p>当我们从项目A fork了一份到自己的仓库后，项目A的作者还是继续更新。我们该怎么在不重复fork的情况下，更新项目A的内容到自己的仓库呢？</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="如何从主项目更新fork的项目">如何从主项目更新fork的项目？</h1>
+<p>当我们从项目A fork了一份到自己的仓库后，项目A的作者还是继续更新。我们该怎么在不重复fork的情况下，更新项目A的内容到自己的仓库呢？</p>
+<!-- more -->
+<p>可以按照下面的操作进行。</p>
+<h4 id="step-1">step 1</h4>
+<p>打开：terminal，cd到自己fork后git clone的project下</p>
+<p>首先需要打开terminal终端，进入到从github上fork的项目，并且该项目被git clone的你自己的本地目录下。</p>
+<h4 id="step-2">step 2</h4>
+<pre><code class="language-shell">&gt; git remote add upstream https://github.com/xxxx/xxxx.git
+</code></pre>
+<p>与上游仓库同步代码之前，必须配置 remote，“xxxx”代表你需要与之保持同步的数据源，本次lunnlew的AutoSignMachine为例，git项目地址<br>
+<img src="https://imcm.xyz/post-images/1612145554103.png" alt="" loading="lazy"></p>
+<p>查看本地远程仓库</p>
+<pre><code class="language-shell">&gt; git remote -v
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1612145638658.png" alt="" loading="lazy"></figure>
+<h4 id="step-3">step 3</h4>
+<pre><code class="language-shell">&gt; git fetch upstream
+</code></pre>
+<p>从远程fork仓库更新同步代码<br>
+<img src="https://imcm.xyz/post-images/1612145759397.png" alt="" loading="lazy"></p>
+<h4 id="step-4">step 4</h4>
+<pre><code class="language-shell">&gt; git merge upstream/main
+</code></pre>
+<p>进行主节点和上游节点数据的合并<br>
+<img src="https://imcm.xyz/post-images/1612145867583.png" alt="" loading="lazy"></p>
+<h4 id="step-6">step 6</h4>
+<pre><code class="language-shell">&gt; git push
+</code></pre>
+<p>合并后的文件进行push操作，将本地文件上传至github服务器上。<br>
+<img src="https://imcm.xyz/post-images/1612145911370.png" alt="" loading="lazy"></p>
+<h4 id="tips">tips</h4>
+<ol>
+<li>你自己的文件在push到github之前一定要进行add和commit的操作，否则会有报错的提示</li>
+<li>操作完成后，去GitHub确认，自己项目文件内容与上游数据一致性，接下来再进行pull request操作</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[收集的Git教程]]></title>
+        <id>https://imcm.xyz/git-course/</id>
+        <link href="https://imcm.xyz/git-course/">
+        </link>
+        <updated>2021-01-26T14:47:09.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="在网络上搜集到的全部git学习资料">在网络上搜集到的全部Git学习资料</h2>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="在网络上搜集到的全部git学习资料">在网络上搜集到的全部Git学习资料</h2>
+<!-- more -->
+<h3 id="1-实验楼">1. 实验楼</h3>
+<blockquote>
+<p><a href="https://www.shiyanlou.com/" title="实验楼">https://www.shiyanlou.com/</a></p>
+<p>实验楼是国内领先的IT技术实训平台，采用创新的“在线实验”学习模式，为学生及在职程序员提供编程、运维、测试、云计算、大数据、数据库等最新的IT技术实践课程。</p>
+</blockquote>
+<h3 id="2-廖雪峰的官方网站">2. 廖雪峰的官方网站</h3>
+<blockquote>
+<p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="廖雪峰的官方网站">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></p>
+<p><a href="http://weibo.com/liaoxuefeng">廖雪峰</a>，十年软件开发经验，业余产品经理，精通Java/Python/Ruby/Visual Basic/Objective C等，对开源框架有深入研究，著有《Spring 2.0核心技术与最佳实践》一书，多个业余开源项目托管在GitHub</p>
+</blockquote>
+<h3 id="3-git-简明指南">3. git - 简明指南</h3>
+<blockquote>
+<p><a href="http://rogerdudler.github.io/git-guide/index.zh.html">http://rogerdudler.github.io/git-guide/index.zh.html</a></p>
+<p>超简洁图文介绍</p>
+</blockquote>
+<h3 id="4-图解git">4. 图解git</h3>
+<blockquote>
+<p><a href="http://marklodato.github.io/visual-git-guide/index-zh-cn.html">http://marklodato.github.io/visual-git-guide/index-zh-cn.html</a></p>
+</blockquote>
+<h3 id="5-阳志平的网站-如何高效利用github">5. 阳志平的网站-《如何高效利用GitHub》</h3>
+<blockquote>
+<p><a href="http://www.yangzhiping.com/tech/github.html">http://www.yangzhiping.com/tech/github.html</a></p>
+<p>正是Github，让社会化编程成为现实。本文尝试谈谈GitHub的文化、技巧与影响。</p>
+</blockquote>
+<h3 id="6-pro-git">6. Pro Git</h3>
+<blockquote>
+<p><a href="http://iissnan.com/progit/">http://iissnan.com/progit/</a></p>
+</blockquote>
+<h3 id="7-易百教程">7. 易百教程</h3>
+<blockquote>
+<p><a href="http://www.yiibai.com/git">http://www.yiibai.com/git</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[<转>树莓派使用Aria2搭建BT远程下载机]]></title>
         <id>https://imcm.xyz/pi-aria2/</id>
         <link href="https://imcm.xyz/pi-aria2/">
         </link>
         <updated>2021-01-07T10:31:28.000Z</updated>
+        <summary type="html"><![CDATA[<p>开着电脑下电影速度比较慢，而且还很费电，这时可以使用树莓派，利用Aria2这个工具，搭建一个远程离线下载机，想看的电影，推送到树莓派下载后，使用SMB就可以在电视上观看了。要下载大文件，同样推送到树莓派下载，完成后再拉到电脑上，非常方便，以下是具体的搭建过程。</p>
+]]></summary>
         <content type="html"><![CDATA[<p>开着电脑下电影速度比较慢，而且还很费电，这时可以使用树莓派，利用Aria2这个工具，搭建一个远程离线下载机，想看的电影，推送到树莓派下载后，使用SMB就可以在电视上观看了。要下载大文件，同样推送到树莓派下载，完成后再拉到电脑上，非常方便，以下是具体的搭建过程。</p>
+<!-- more -->
 <h2 id="一-安装aria2">一、安装Aria2</h2>
 <pre><code class="language-shell">    sudo apt-get update
     sudo apt-get install aria2
@@ -2529,686 +2804,6 @@ ln -s /usr/local/openssl/include/openssl /usr/include/openssl
 <h2 id="lvs">LVS</h2>
 <p>Linux 虚拟服务器（Linux Virtual Server，LVS）是一个虚拟的服务器集群系统，用于实现负载均衡</p>
 <p>以上内容均摘录自维基百科、百度百科</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PHP 5 String 函数]]></title>
-        <id>https://imcm.xyz/php-5-array/</id>
-        <link href="https://imcm.xyz/php-5-array/">
-        </link>
-        <updated>2020-09-10T03:10:45.000Z</updated>
-        <summary type="html"><![CDATA[<p>PHP String 函数是 PHP 核心的组成部分。无需安装即可使用这些函数。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>PHP String 函数是 PHP 核心的组成部分。无需安装即可使用这些函数。</p>
-<!-- more -->
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addcslashes()</td>
-<td>返回在指定的字符前添加反斜杠的字符串。</td>
-</tr>
-<tr>
-<td>addslashes()</td>
-<td>返回在预定义的字符前添加反斜杠的字符串。</td>
-</tr>
-<tr>
-<td>bin2hex()</td>
-<td>把 ASCII 字符的字符串转换为十六进制值。</td>
-</tr>
-<tr>
-<td>chop()</td>
-<td>移除字符串右侧的空白字符或其他字符。</td>
-</tr>
-<tr>
-<td>chr()</td>
-<td>从指定 ASCII 值返回字符。</td>
-</tr>
-<tr>
-<td>chunk_split()</td>
-<td>把字符串分割为一连串更小的部分。</td>
-</tr>
-<tr>
-<td>convert_cyr_string()</td>
-<td>把字符串由一种 Cyrillic 字符集转换成另一种。</td>
-</tr>
-<tr>
-<td>convert_uudecode()</td>
-<td>对 uuencode 编码的字符串进行解码。</td>
-</tr>
-<tr>
-<td>convert_uuencode()</td>
-<td>使用 uuencode 算法对字符串进行编码。</td>
-</tr>
-<tr>
-<td>count_chars()</td>
-<td>返回字符串所用字符的信息。</td>
-</tr>
-<tr>
-<td>crc32()</td>
-<td>计算一个字符串的 32 位 CRC（循环冗余校验）。</td>
-</tr>
-<tr>
-<td>crypt()</td>
-<td>单向的字符串加密法（hashing）。</td>
-</tr>
-<tr>
-<td>echo()</td>
-<td>输出一个或多个字符串。</td>
-</tr>
-<tr>
-<td>explode()</td>
-<td>把字符串打散为数组。</td>
-</tr>
-<tr>
-<td>fprintf()</td>
-<td>把格式化的字符串写入到指定的输出流。</td>
-</tr>
-<tr>
-<td>get_html_translation_table()</td>
-<td>返回 htmlspecialchars() 和 htmlentities() 使用的翻译表。</td>
-</tr>
-<tr>
-<td>hebrev()</td>
-<td>把希伯来（Hebrew）文本转换为可见文本。</td>
-</tr>
-<tr>
-<td>hebrevc()</td>
-<td>把希伯来（Hebrew）文本转换为可见文本，并把新行（\n）转换为 <br>。</td>
-</tr>
-<tr>
-<td>hex2bin()</td>
-<td>把十六进制值的字符串转换为 ASCII 字符。</td>
-</tr>
-<tr>
-<td>html_entity_decode()</td>
-<td>把 HTML 实体转换为字符。</td>
-</tr>
-<tr>
-<td>htmlentities()</td>
-<td>把字符转换为 HTML 实体。</td>
-</tr>
-<tr>
-<td>htmlspecialchars_decode()</td>
-<td>把一些预定义的 HTML 实体转换为字符。</td>
-</tr>
-<tr>
-<td>htmlspecialchars()</td>
-<td>把一些预定义的字符转换为 HTML 实体。</td>
-</tr>
-<tr>
-<td>implode()</td>
-<td>返回一个由数组元素组合成的字符串。</td>
-</tr>
-<tr>
-<td>join()</td>
-<td>implode() 的别名。</td>
-</tr>
-<tr>
-<td>lcfirst()</td>
-<td>把字符串中的首字符转换为小写。</td>
-</tr>
-<tr>
-<td>levenshtein()</td>
-<td>返回两个字符串之间的 Levenshtein 距离。</td>
-</tr>
-<tr>
-<td>localeconv()</td>
-<td>返回本地数字及货币格式信息。</td>
-</tr>
-<tr>
-<td>ltrim()</td>
-<td>移除字符串左侧的空白字符或其他字符。</td>
-</tr>
-<tr>
-<td>md5()</td>
-<td>计算字符串的 MD5 散列。</td>
-</tr>
-<tr>
-<td>md5_file()</td>
-<td>计算文件的 MD5 散列。</td>
-</tr>
-<tr>
-<td>metaphone()</td>
-<td>计算字符串的 metaphone 键。</td>
-</tr>
-<tr>
-<td>money_format()</td>
-<td>返回格式化为货币字符串的字符串。</td>
-</tr>
-<tr>
-<td>nl_langinfo()</td>
-<td>返回指定的本地信息。</td>
-</tr>
-<tr>
-<td>nl2br()</td>
-<td>在字符串中的每个新行之前插入 HTML 换行符。</td>
-</tr>
-<tr>
-<td>number_format()</td>
-<td>通过千位分组来格式化数字。</td>
-</tr>
-<tr>
-<td>ord()</td>
-<td>返回字符串中第一个字符的 ASCII 值。</td>
-</tr>
-<tr>
-<td>parse_str()</td>
-<td>把查询字符串解析到变量中。</td>
-</tr>
-<tr>
-<td>print()</td>
-<td>输出一个或多个字符串。</td>
-</tr>
-<tr>
-<td>printf()</td>
-<td>输出格式化的字符串。</td>
-</tr>
-<tr>
-<td>quoted_printable_decode()</td>
-<td>把 quoted-printable 字符串转换为 8 位字符串。</td>
-</tr>
-<tr>
-<td>quoted_printable_encode()</td>
-<td>把 8 位字符串转换为 quoted-printable 字符串。</td>
-</tr>
-<tr>
-<td>quotemeta()</td>
-<td>引用元字符。</td>
-</tr>
-<tr>
-<td>rtrim()</td>
-<td>移除字符串右侧的空白字符或其他字符。</td>
-</tr>
-<tr>
-<td>setlocale()</td>
-<td>设置地区信息（地域信息）。</td>
-</tr>
-<tr>
-<td>sha1()</td>
-<td>计算字符串的 SHA-1 散列。</td>
-</tr>
-<tr>
-<td>sha1_file()</td>
-<td>计算文件的 SHA-1 散列。</td>
-</tr>
-<tr>
-<td>similar_text()</td>
-<td>计算两个字符串的相似度。</td>
-</tr>
-<tr>
-<td>soundex()</td>
-<td>计算字符串的 soundex 键。</td>
-</tr>
-<tr>
-<td>sprintf()</td>
-<td>把格式化的字符串写入一个变量中。</td>
-</tr>
-<tr>
-<td>sscanf()</td>
-<td>根据指定的格式解析来自一个字符串的输入。</td>
-</tr>
-<tr>
-<td>str_getcsv()</td>
-<td>把 CSV 字符串解析到数组中。</td>
-</tr>
-<tr>
-<td>str_ireplace()</td>
-<td>替换字符串中的一些字符（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>str_pad()</td>
-<td>把字符串填充为新的长度。</td>
-</tr>
-<tr>
-<td>str_repeat()</td>
-<td>把字符串重复指定的次数。</td>
-</tr>
-<tr>
-<td>str_replace()</td>
-<td>替换字符串中的一些字符（大小写敏感）。</td>
-</tr>
-<tr>
-<td>str_rot13()</td>
-<td>对字符串执行 ROT13 编码。</td>
-</tr>
-<tr>
-<td>str_shuffle()</td>
-<td>随机地打乱字符串中的所有字符。</td>
-</tr>
-<tr>
-<td>str_split()</td>
-<td>把字符串分割到数组中。</td>
-</tr>
-<tr>
-<td>str_word_count()</td>
-<td>计算字符串中的单词数。</td>
-</tr>
-<tr>
-<td>strcasecmp()</td>
-<td>比较两个字符串（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>strchr()</td>
-<td>查找字符串在另一字符串中的第一次出现。（strstr() 的别名。）</td>
-</tr>
-<tr>
-<td>strcmp()</td>
-<td>比较两个字符串（大小写敏感）。</td>
-</tr>
-<tr>
-<td>strcoll()</td>
-<td>比较两个字符串（根据本地设置）。</td>
-</tr>
-<tr>
-<td>strcspn()</td>
-<td>返回在找到任何指定的字符之前，在字符串查找的字符数。</td>
-</tr>
-<tr>
-<td>strip_tags()</td>
-<td>剥去字符串中的 HTML 和 PHP 标签。</td>
-</tr>
-<tr>
-<td>stripcslashes()</td>
-<td>删除由 addcslashes() 函数添加的反斜杠。</td>
-</tr>
-<tr>
-<td>stripslashes()</td>
-<td>删除由 addslashes() 函数添加的反斜杠。</td>
-</tr>
-<tr>
-<td>stripos()</td>
-<td>返回字符串在另一字符串中第一次出现的位置（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>stristr()</td>
-<td>查找字符串在另一字符串中第一次出现的位置（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>strlen()</td>
-<td>返回字符串的长度。中文字符串的处理使用 mb_strlen() 函数。</td>
-</tr>
-<tr>
-<td>strnatcasecmp()</td>
-<td>使用一种&quot;自然排序&quot;算法来比较两个字符串（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>strnatcmp()</td>
-<td>使用一种&quot;自然排序&quot;算法来比较两个字符串（大小写敏感）。</td>
-</tr>
-<tr>
-<td>strncasecmp()</td>
-<td>前 n 个字符的字符串比较（大小写不敏感）。</td>
-</tr>
-<tr>
-<td>strncmp()</td>
-<td>前 n 个字符的字符串比较（大小写敏感）。</td>
-</tr>
-<tr>
-<td>strpbrk()</td>
-<td>在字符串中搜索指定字符中的任意一个。</td>
-</tr>
-<tr>
-<td>strpos()</td>
-<td>返回字符串在另一字符串中第一次出现的位置（大小写敏感）。</td>
-</tr>
-<tr>
-<td>strrchr()</td>
-<td>查找字符串在另一个字符串中最后一次出现。</td>
-</tr>
-<tr>
-<td>strrev()</td>
-<td>反转字符串。</td>
-</tr>
-<tr>
-<td>strripos()</td>
-<td>查找字符串在另一字符串中最后一次出现的位置(大小写不敏感)。</td>
-</tr>
-<tr>
-<td>strrpos()</td>
-<td>查找字符串在另一字符串中最后一次出现的位置(大小写敏感)。</td>
-</tr>
-<tr>
-<td>strspn()</td>
-<td>返回在字符串中包含的特定字符的数目。</td>
-</tr>
-<tr>
-<td>strstr()</td>
-<td>查找字符串在另一字符串中的第一次出现（大小写敏感）。</td>
-</tr>
-<tr>
-<td>strtok()</td>
-<td>把字符串分割为更小的字符串。</td>
-</tr>
-<tr>
-<td>strtolower()</td>
-<td>把字符串转换为小写字母。</td>
-</tr>
-<tr>
-<td>strtoupper()</td>
-<td>把字符串转换为大写字母。</td>
-</tr>
-<tr>
-<td>strtr()</td>
-<td>转换字符串中特定的字符。</td>
-</tr>
-<tr>
-<td>substr()</td>
-<td>返回字符串的一部分。</td>
-</tr>
-<tr>
-<td>mb_substr()</td>
-<td>返回中文字符串的一部分。</td>
-</tr>
-<tr>
-<td>substr_compare()</td>
-<td>从指定的开始位置（二进制安全和选择性区分大小写）比较两个字符串。</td>
-</tr>
-<tr>
-<td>substr_count()</td>
-<td>计算子串在字符串中出现的次数。</td>
-</tr>
-<tr>
-<td>substr_replace()</td>
-<td>把字符串的一部分替换为另一个字符串。</td>
-</tr>
-<tr>
-<td>trim()</td>
-<td>移除字符串两侧的空白字符和其他字符。</td>
-</tr>
-<tr>
-<td>ucfirst()</td>
-<td>把字符串中的首字符转换为大写。</td>
-</tr>
-<tr>
-<td>ucwords()</td>
-<td>把字符串中每个单词的首字符转换为大写。</td>
-</tr>
-<tr>
-<td>vfprintf()</td>
-<td>把格式化的字符串写到指定的输出流。</td>
-</tr>
-<tr>
-<td>vprintf()</td>
-<td>输出格式化的字符串。</td>
-</tr>
-<tr>
-<td>vsprintf()</td>
-<td>把格式化字符串写入变量中。</td>
-</tr>
-<tr>
-<td>wordwrap()</td>
-<td>按照指定长度对字符串进行折行处理。</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux/Mac下统计当前文件夹下的文件个数、目录个数]]></title>
-        <id>https://imcm.xyz/linuxmac-list-fields/</id>
-        <link href="https://imcm.xyz/linuxmac-list-fields/">
-        </link>
-        <updated>2020-08-31T13:09:40.000Z</updated>
-        <summary type="html"><![CDATA[<p>这篇文章主要介绍了Linux下统计当前文件夹下的文件个数、目录个数,本文使用ls命令配合管理、grep命令实现统计需求</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这篇文章主要介绍了Linux下统计当前文件夹下的文件个数、目录个数,本文使用ls命令配合管理、grep命令实现统计需求</p>
-<!-- more -->
-<h3 id="1-统计当前文件夹下文件的个数">1. 统计当前文件夹下文件的个数</h3>
-<pre><code class="language-shell">ls -l |grep &quot;^-&quot;|wc -l
-</code></pre>
-<h3 id="2-统计当前文件夹下目录的个数">2.  统计当前文件夹下目录的个数</h3>
-<pre><code class="language-shell">ls -l |grep &quot;^d&quot;|wc -l
-</code></pre>
-<h3 id="3-统计当前文件夹下文件的个数包括子文件夹里的">3. 统计当前文件夹下文件的个数，包括子文件夹里的</h3>
-<pre><code class="language-shell">ls -lR|grep &quot;^-&quot;|wc -l
-</code></pre>
-<h3 id="4-统计文件夹下目录的个数包括子文件夹里的">4. 统计文件夹下目录的个数，包括子文件夹里的</h3>
-<pre><code class="language-shell">ls -lR|grep &quot;^d&quot;|wc -l
-</code></pre>
-<h3 id="5-说明">5. 说明</h3>
-<ul>
-<li>代码如下:</li>
-</ul>
-<pre><code class="language-shell">ls -l
-</code></pre>
-<p>长列表输出当前文件夹下文件信息(注意这里的文件，不同于一般的文件，可能是目录、链接、设备文件等)</p>
-<ul>
-<li>代码如下:</li>
-</ul>
-<pre><code class="language-shell">grep &quot;^-&quot;
-</code></pre>
-<p>这里将长列表输出信息过滤一部分，只保留一般文件，如果只保留目录就是 ^d</p>
-<ul>
-<li>代码如下:</li>
-</ul>
-<pre><code class="language-shell">wc -l
-</code></pre>
-<p>统计输出信息的行数，因为已经过滤得只剩一般文件了，所以统计结果就是一般文件信息的行数，又由于一行信息对应一个文件，所以也就是文件的个数。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Docker CE 镜像源]]></title>
-        <id>https://imcm.xyz/docker-pi/</id>
-        <link href="https://imcm.xyz/docker-pi/">
-        </link>
-        <updated>2020-08-28T14:46:12.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="1-使用官方安装脚本自动安装-仅适用于公网环境">1. 使用官方安装脚本自动安装 （仅适用于公网环境）</h3>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="1-使用官方安装脚本自动安装-仅适用于公网环境">1. 使用官方安装脚本自动安装 （仅适用于公网环境）</h3>
-<!-- more -->
-<pre><code class="language-shell">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-</code></pre>
-<h3 id="2-手动安装帮助-阿里云ecs可以通过内网安装见注释部分内容">2. 手动安装帮助 (阿里云ECS可以通过内网安装，见注释部分内容)</h3>
-<h4 id="ubuntu-1404-1604-使用apt-get进行安装">Ubuntu 14.04 16.04 (使用apt-get进行安装)</h4>
-<pre><code class="language-shell"># step 1: 安装必要的一些系统工具
-sudo apt-get update
-sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
-# step 2: 安装GPG证书
-curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-# Step 3: 写入软件源信息
-sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
-# Step 4: 更新并安装 Docker-CE
-sudo apt-get -y update
-sudo apt-get -y install docker-ce
-
-注意：其他注意事项在下面的注释中
-# 安装指定版本的Docker-CE:
-# Step 1: 查找Docker-CE的版本:
-# apt-cache madison docker-ce
-#   docker-ce | 17.03.1~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
-#   docker-ce | 17.03.0~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
-# Step 2: 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.1~ce-0~ubuntu-xenial)
-# sudo apt-get -y install docker-ce=[VERSION]
-
-# 通过经典网络、VPC网络内网安装时，用以下命令替换Step 2、Step 3中的命令
-# 经典网络：
-# curl -fsSL http://mirrors.aliyuncs.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-# sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyuncs.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
-# VPC网络：
-# curl -fsSL http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-# sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.cloud.aliyuncs.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
-</code></pre>
-<h4 id="centos-7-使用yum进行安装">CentOS 7 (使用yum进行安装)</h4>
-<pre><code class="language-shell"># step 1: 安装必要的一些系统工具
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-# Step 2: 添加软件源信息
-sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-# Step 3: 更新并安装 Docker-CE
-sudo yum makecache fast
-sudo yum -y install docker-ce
-# Step 4: 开启Docker服务
-sudo service docker start
-
-注意：其他注意事项在下面的注释中
-# 官方软件源默认启用了最新的软件，您可以通过编辑软件源的方式获取各个版本的软件包。例如官方并没有将测试版本的软件源置为可用，你可以通过以下方式开启。同理可以开启各种测试版本等。
-# vim /etc/yum.repos.d/docker-ce.repo
-#   将 [docker-ce-test] 下方的 enabled=0 修改为 enabled=1
-#
-# 安装指定版本的Docker-CE:
-# Step 1: 查找Docker-CE的版本:
-# yum list docker-ce.x86_64 --showduplicates | sort -r
-#   Loading mirror speeds from cached hostfile
-#   Loaded plugins: branch, fastestmirror, langpacks
-#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            docker-ce-stable
-#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            @docker-ce-stable
-#   docker-ce.x86_64            17.03.0.ce-1.el7.centos            docker-ce-stable
-#   Available Packages
-# Step2 : 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.0.ce.1-1.el7.centos)
-# sudo yum -y install docker-ce-[VERSION]
-# 注意：在某些版本之后，docker-ce安装出现了其他依赖包，如果安装失败的话请关注错误信息。例如 docker-ce 17.03 之后，需要先安装 docker-ce-selinux。
-# yum list docker-ce-selinux- --showduplicates | sort -r
-# sudo yum -y install docker-ce-selinux-[VERSION]
-
-# 通过经典网络、VPC网络内网安装时，用以下命令替换Step 2中的命令
-# 经典网络：
-# sudo yum-config-manager --add-repo http://mirrors.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
-# VPC网络：
-# sudo yum-config-manager --add-repo http://mirrors.could.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
-</code></pre>
-<h3 id="安装校验">安装校验</h3>
-<pre><code class="language-shell">root@iZbp12adskpuoxodbkqzjfZ:$ docker version
-Client:
- Version:      17.03.0-ce
- API version:  1.26
- Go version:   go1.7.5
- Git commit:   3a232c8
- Built:        Tue Feb 28 07:52:04 2017
- OS/Arch:      linux/amd64
-
-Server:
- Version:      17.03.0-ce
- API version:  1.26 (minimum version 1.12)
- Go version:   go1.7.5
- Git commit:   3a232c8
- Built:        Tue Feb 28 07:52:04 2017
- OS/Arch:      linux/amd64
- Experimental: false
-</code></pre>
-<h3 id="常用命令">常用命令</h3>
-<pre><code class="language-shell">#查看 Docker 版本
-docker -v
-sudo docker pull 仓库/镜像:版本（留空的话默认为 latest）
-sudo docker run 加参数，用来创建容器
-#查看运行容器
-sudo docker ps
-#查看所有下载的镜像
-sudo docker images
-#进入容器终端
-sudo docker exec -i -t ha /bin/bash
-#实时查看10行的 ha 日志
-sudo docker logs -f -t --tail 10 ha
-#重启 systemctl 守护进程
-sudo systemctl daemon-reload
-#设置 Docker 开机启动
-sudo systemctl enable docker
-#开启 Docker 服务
-sudo systemctl start docker
-
-#下载 Docker 图形化界面 portainer
-sudo docker pull portainer/portainer
-#创建 portainer 容器
-sudo docker volume create portainer_data
-#运行 portainer
-sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-</code></pre>
-<h3 id="参考资料">参考资料</h3>
-<p>其他关于旧版本Docker卸载以及测试开发版本Docker安装的帮助，可以参考官方文档的说明进行安装</p>
-<p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">CentOS帮助链接</a><br>
-<a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Ubuntu帮助链接</a><br>
-<a href="https://docs.docker.com/engine/installation/linux/docker-ce/debian/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Debian帮助链接</a><br>
-<a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/?spm=a2c6h.12873639.0.0.1aba47efpIg1xo">Fedora帮助链接</a></p>
-<p>转自：<a href="https://developer.aliyun.com/article/110806">阿里云开发社区</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[腾讯视频自动签到获得V力值]]></title>
-        <id>https://imcm.xyz/qcloud-v/</id>
-        <link href="https://imcm.xyz/qcloud-v/">
-        </link>
-        <updated>2020-08-16T15:27:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>本教程需要用到腾讯云的云函数SCF。没有腾讯云账户的请先申请账户，注册<a href="https://cloud.tencent.com/act/cps/redirect-all?redirect=10135&amp;opc_hash_key=XG7JfqCPIb8b1609">腾讯云</a>。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>本教程需要用到腾讯云的云函数SCF。没有腾讯云账户的请先申请账户，注册<a href="https://cloud.tencent.com/act/cps/redirect-all?redirect=10135&amp;opc_hash_key=XG7JfqCPIb8b1609">腾讯云</a>。</p>
-<!-- more -->
-<h3 id="1-浏览器打开腾讯视频官网">1. 浏览器打开腾讯视频官网：</h3>
-<p>https://v.qq.com/<br>
-登录VIP账号</p>
-<h3 id="2-vip账号登录成功后打开另一个地址">2. VIP账号登录成功后，打开另一个地址：</h3>
-<p>https://vip.video.qq.com/fcgi-bin/comm_cgi?name=hierarchical_task_system&amp;cmd=2<br>
-（没错这个就是签到地址。APP抓出来的。）</p>
-<h3 id="3-在第二个地址按下快捷键ctrlshiftj">3. 在第二个地址，按下快捷键：CTRL+SHIFT+J</h3>
-<p>在&gt;后面输入：</p>
-<pre><code>document.cookie
-</code></pre>
-<p>回车，复制【引号里】的内容（脚本要用的cookies）：</p>
-<p>用qq或者微信登录<a href="https://console.cloud.tencent.com/scf">腾讯云scf</a>(无服务器云函数)</p>
-<p>函数服务=》（选择区域，上海，广州，成都，香港，北京）<br>
-=》新建=》空白函数=》函数名称（随便写，比如txsp_qiandao）=》运行环境（python3.6）=》下一步</p>
-<p>复制下面代码：</p>
-<pre><code class="language-python"># -*- coding: utf8 -*-
- 
-import requests
-import re
-import time
-from urllib.parse import quote
- 
-def start():
-    try:
-        s = requests.session()
- 
-        cookie1 = 'TXSP_COOKIE'
- 
-        this_time = int(round(time.time() * 1000))
- 
-        login_url = 'https://vip.video.qq.com/fcgi-bin/comm_cgi?name=hierarchical_task_system&amp;cmd=2&amp;_=' + str(this_time)
- 
-        headers={
-            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.204 Safari/537.36',
-            'Cookie': cookie1
-        }
- 
-        res =s.get(login_url,headers=headers).text
- 
-        print('访问结果：'+res)
- 
-        if 'Account Verify Error' in res:
-            print('cookies失效，通知SERVER酱！')
-            requests.get('https://sc.ftqq.com/SCKEY.send?text=' + quote('腾讯视频自动签到失败~'+time.strftime('%Y.%m.%d',time.localtime(time.time()))) +'&amp;desp='+quote('cookies失效，请更新！\n'))
-        else:
-            print('签到完成')
- 
-    except Exception as e:
-        print(&quot;地址访问失败，通知SERVER酱！&quot;)
-        requests.get('https://sc.ftqq.com/SCKEY.send?text=' + quote('腾讯视频自动签到失败~'+time.strftime('%Y.%m.%d',time.localtime(time.time()))) +'&amp;desp='+quote('异常代码：\n'+str(e)))
- 
- 
-def main_handler(event, context):
-    return start()
- 
- 
-if __name__ == '__main__':
-    start()
-</code></pre>
-<p>代码需要修改的地方3处，</p>
-<ul>
-<li>TXSP_COOKIE （一处，刚才获取的cookies字符串）</li>
-<li>https://sc.ftqq.com/XXXX.send （两处，server酱的地址，申请地址：http://sc.ftqq.com/）</li>
-</ul>
-<p>完成。</p>
-<h3 id="4-触发方式定时触发-名称txsp_timer-自定义触发周期0-0-3-保存">4. 触发方式=》定时触发 / 名称：txsp_timer / 自定义触发周期（0 0 3 * * * *）保存</h3>
-<h3 id="5-函数代码测试如果日志显示checkin_score-5这个5就是获得的v力值签到过也会有中文提示">5. 函数代码=》测试（如果日志显示”checkin_score”: 5，这个5就是获得的V力值，签到过也会有中文提示）</h3>
-<h3 id="其他说明">其他说明</h3>
-<h4 id="1-如果日志里提示">1. 如果日志里提示：</h4>
-<p>{“msg”:”Account Verify Error”,”ret”:-10006}说明COOKIES获取错误。</p>
-<h4 id="2-cookie能用多久还不知道反正我挂了40多天了-验证失败了也会微信通知更新下cookies就行">2. COOKIE能用多久还不知道，，反正我挂了40多天了。。。验证失败了，也会微信通知，更新下COOKIES就行。</h4>
-<h4 id="3签到分数不保证-现在大多是10分左右偶尔50分-这个腾讯的锅~就当腾讯云函数来背吧~">3.签到分数不保证。。现在大多是10分左右，偶尔50分+。。。这个腾讯的锅~<s>就当腾讯云函数来背吧</s>~</h4>
-<p>来源(Source)：<a href="https://lsdlhlx.top/2019/10/%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E8%8E%B7%E5%BE%97v%E5%8A%9B%E5%80%BC/">西瓜小窝</a></p>
 ]]></content>
     </entry>
 </feed>
