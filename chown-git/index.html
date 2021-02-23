@@ -10,7 +10,7 @@
 &lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;">
 <meta name="theme-color" content="#000">
 <title>Git 忽略文件目录权限或文件拥有者的改变 | IMCM</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/firstisan/firstisan.github.io@master/favicon.ico?v=1614073159314">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/firstisan/firstisan.github.io@master/favicon.ico?v=1614074250908">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/firstisan/firstisan.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/firstisan/firstisan.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -1291,7 +1291,7 @@ unzip AriaNg-1.0.0.zip -d aira
 &lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;
 	{{ message }}
 &amp;lt;/div&amp;gt;
-复制代码
+
 
 const vm = new Vue({
 	el: &#39;#app&#39;,
@@ -1299,7 +1299,6 @@ const vm = new Vue({
 		message: &#39;hello vue&#39;
 	}
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;el&lt;/code&gt; : 　元素挂载点；只有在 new 创建实例的时候生效 ; 实例挂载之后可以使用 &lt;code&gt;vm.$el&lt;/code&gt; 访问&lt;/li&gt;
@@ -1323,7 +1322,7 @@ let user2 = new Component(options)
 
 user1.data.uname = &#39;ls&#39; // 修改 user1  触发了所有
 console.log(user2.data.uname) // ls
-复制代码
+
 
 // 正确示例
 let options = {
@@ -1343,7 +1342,6 @@ let user2 = new Component(options)
 user1.data.uname = &#39;ls&#39; 
 console.log(user2.data.uname) // zs
 console.log(user1.data.uname) // ls
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;由于组件是可以多次复用的 , 如果不使用 &lt;code&gt;function return&lt;/code&gt; 每个组件的 data 在内存中都是指向同一个地址的 , 由于 JavaScript 复杂数据类型的特性 , 那一个数据改变其他的也改变了 , 但是如果用了 &lt;code&gt;function return&lt;/code&gt; 其实就相当于申明了新变量 , 相互独立 , 自然就不存在以上例子中存在的问题 ; JavaScript 在赋值 &lt;code&gt;Object&lt;/code&gt; 时 , 是直接一个相同的内存地址 , 所以为了每个组件的独立 , 采用了这种方式 ; 但由于根组件只有一个 , 不存在数据污染的情况 , 所以就可以是一个对象 ;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;参考资料 :&lt;/strong&gt;&lt;/p&gt;
@@ -1361,17 +1359,15 @@ console.log(user1.data.uname) // ls
 &lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://user-gold-cdn.xitu.io/2020/7/24/1737f87f3b1db6fe?imageslim&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;pre&gt;&lt;code&gt;/* css */
 [v-cloak] { display: none; }
-复制代码
+
 
 &amp;lt;div v-cloak&amp;gt;{{ root }}&amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-text&#34;&gt;&lt;code&gt;v-text&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;更新某个元素节点下的值 ; 注意 : 会更新全部内容 , 如果想要局部更新 , 可以使用 &lt;code&gt;Mustache&lt;/code&gt; 语法&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-text=&amp;quot;root&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-html&#34;&gt;&lt;code&gt;v-html&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1379,7 +1375,7 @@ console.log(user1.data.uname) // ls
 &lt;p&gt;在网站上使用 HTML 是非常危险的 , 容易导致 XSS 工具 , 用户提交内容时 切记勿要使用&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-html=&amp;quot;html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-复制代码
+
 
 new Vue({
   el: &#39;#app&#39;,
@@ -1387,21 +1383,19 @@ new Vue({
     html: &#39;&amp;lt;p&amp;gt;hello vue&amp;lt;/p&amp;gt;&#39;
   }
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-pre&#34;&gt;&lt;code&gt;v-pre&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;原文输出 , 不会参与编译 , 输入什么内容就展示什么内容&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-pre&amp;gt;{{ will not compile }}&amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-once&#34;&gt;&lt;code&gt;v-once&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;被定义了 &lt;code&gt;v-once&lt;/code&gt; 指令的元素或者组件 (包括元素或组件内的子孙节点) 只能被渲染一次 , 首次渲染收 , 即时数据发生变化 , 也不会被重新渲染 , 一般用于静态内容展示 ;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-once&amp;gt;{{ content }}&amp;lt;/div&amp;gt;
-复制代码
+
 
 const vm = new Vue({
   el: &#39;#app&#39;,
@@ -1410,7 +1404,6 @@ const vm = new Vue({
   }
 })
 vm.content = &#39;update data&#39;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-show-与-v-if&#34;&gt;&lt;code&gt;v-show&lt;/code&gt; 与 &lt;code&gt;v-if&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1422,7 +1415,6 @@ vm.content = &#39;update data&#39;
 &lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://user-gold-cdn.xitu.io/2020/7/24/1737f8831ff7a2be?imageslim&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-if=&amp;quot;isShow&amp;quot;&amp;gt; v-if &amp;lt;/div&amp;gt;
 &amp;lt;div v-show=&amp;quot;isShow&amp;quot;&amp;gt; v-show &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;分支判断代码演示&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;!-- 最终一会展示一个 p 标签中的内容  --&amp;gt;
@@ -1437,7 +1429,6 @@ vm.content = &#39;update data&#39;
   	&amp;lt;span&amp;gt;不及格 : {{ score }}&amp;lt;/span&amp;gt;
   &amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-for&#34;&gt;&lt;code&gt;v-for&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1449,13 +1440,12 @@ vm.content = &#39;update data&#39;
 &amp;lt;div v-for=&amp;quot;(item, index) in items&amp;quot;&amp;gt;
   {{ item.text }}
 &amp;lt;/div&amp;gt;
-复制代码
+
 
 &amp;lt;!-- 对象循环 --&amp;gt;
 &amp;lt;div v-for=&amp;quot;(val, key, index) in object&amp;quot;&amp;gt;
   {{ val }} {{ key }} {{ index }}
 &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;为什么-v-for-必须添加唯一-key&#34;&gt;为什么 &lt;code&gt;v-for&lt;/code&gt; 必须添加唯一 &lt;code&gt;key&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1479,7 +1469,6 @@ const vm = new Vue({
 	  ]
   }
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;index&lt;/code&gt; 错误示例&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1495,7 +1484,6 @@ const vm = new Vue({
     &amp;lt;span&amp;gt;{{ user.uname }}&amp;lt;/span&amp;gt;
   &amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;唯一 Id 正确示例&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1505,7 +1493,6 @@ const vm = new Vue({
 &lt;pre&gt;&lt;code&gt;&amp;lt;li v-for=&amp;quot;(user, index) of users&amp;quot; :key=&amp;quot;user.id&amp;quot;&amp;gt;
   ......
 &amp;lt;/li&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;参考资料&lt;/strong&gt; :&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://juejin.im/post/6844904113587634184&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://juejin.im/post/6844904113587634184&#34;&gt;juejin.im/post/684490…&lt;/a&gt;&lt;/p&gt;
@@ -1524,7 +1511,6 @@ const vm = new Vue({
 // 绑定 style
 &amp;lt;div :style=&amp;quot;{fontSize: &#39;20px&#39;, color: &#39;white&#39;}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &amp;lt;div :style=&amp;quot;[{fontSize: &#39;20px&#39;}, {color: &#39;white&#39;}]&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;v-on&#34;&gt;&lt;code&gt;v-on&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1532,7 +1518,6 @@ const vm = new Vue({
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;button v-on:click=&amp;quot;count += 1&amp;quot;&amp;gt;&amp;lt;/button&amp;gt;
 {{ count }}
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;可以接收一个方法名称 ;&lt;/p&gt;
@@ -1541,7 +1526,7 @@ const vm = new Vue({
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;button @click=&amp;quot;handle&amp;quot;&amp;gt;点击1&amp;lt;/button&amp;gt;
 &amp;lt;button @click=&amp;quot;handle1(&#39;content&#39;, $event)&amp;quot;&amp;gt;点击2&amp;lt;/button&amp;gt;
-复制代码
+
 
 methods: {
   handle(e) {
@@ -1552,7 +1537,6 @@ methods: {
     console.log(e.target)
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;事件修饰符&#34;&gt;事件修饰符&lt;/h4&gt;
 &lt;ul&gt;
@@ -1578,14 +1562,12 @@ handle() {&lt;br&gt;
 console.log(&#39;///&#39;)&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;加了 &lt;code&gt;native&lt;/code&gt; 相当于把自定义组件看成了 html 可以直接在上面监听原生事件, 否则自定义组件上面绑定的就是自定义事件 , 而你在自定义事件上没有定义这个事件 , 所以不加 &lt;code&gt;native&lt;/code&gt; 不会执行&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 父组件中引用
 &amp;lt;my-component @click.native=&amp;quot;handle(&#39;父组件&#39;)&amp;quot;&amp;gt;&amp;lt;/my-component&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;参考资料&lt;/strong&gt; :&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/q/1010000011186651&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://segmentfault.com/q/1010000011186651&#34;&gt;segmentfault.com/q/101000001…&lt;/a&gt;&lt;/p&gt;
@@ -1598,24 +1580,20 @@ console.log(&#39;///&#39;)&lt;br&gt;
     &lt;div class=&#34;box2 box&#34; style=&#34;background: red;&#34; @click=&#34;handle(&#39;box3&#39;)&#34;&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-复制代码
 &lt;p&gt;// 允许只有修饰符 prevent 阻止默认事件&lt;br&gt;
 &amp;lt;a href=&amp;quot;http://www.baidu.com&amp;quot; @click.prevent &amp;gt;百度&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;// 多个事件修饰符可以连用触发时机也是相同的&lt;br&gt;
-&amp;lt;a href=&amp;quot;http://www.baidu.com&amp;quot; @click.prevent.stop=&amp;quot;handle(&#39;a&#39;)&amp;quot;&amp;gt;baidu&lt;/a&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+&amp;lt;a href=&amp;quot;http://www.baidu.com&amp;quot; @click.prevent.stop=&amp;quot;handle(&#39;a&#39;)&amp;quot;&amp;gt;baidu&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;按键修饰符&#34;&gt;按键修饰符&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Vue 中允许为 &lt;code&gt;v-on&lt;/code&gt; 监听键盘事件时添加键盘修饰符&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input v-on:keyup.enter=&amp;quot;submit&amp;quot;&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;当然提供了大多数的按键码别名 按键码&lt;/p&gt;
 &lt;p&gt;还可以通过全局 &lt;code&gt;Vue.config.keyCodes&lt;/code&gt; 自定义修饰符别名&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Vue.config.keyCodes.f1 = 112
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;v-model&#34;&gt;&lt;code&gt;v-model&lt;/code&gt;&lt;/h3&gt;
@@ -1625,23 +1603,23 @@ console.log(&#39;///&#39;)&lt;br&gt;
 &lt;pre&gt;&lt;code&gt;// 文本
 &amp;lt;input type=&amp;quot;text&amp;quot; v-model=&amp;quot;message&amp;quot;&amp;gt;
 &amp;lt;p&amp;gt;{{ message }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 多行文本
 &amp;lt;textarea cols=&amp;quot;30&amp;quot; rows=&amp;quot;10&amp;quot; v-model=&amp;quot;message&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;
 &amp;lt;p&amp;gt;{{ message }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 单选框
 &amp;lt;input type=&amp;quot;radio&amp;quot; value=&amp;quot;男&amp;quot; v-model=&amp;quot;sex&amp;quot;&amp;gt;男
 &amp;lt;input type=&amp;quot;radio&amp;quot; value=&amp;quot;女&amp;quot; v-model=&amp;quot;sex&amp;quot;&amp;gt;女
 &amp;lt;p&amp;gt;{{ sex }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 单个复选框
 &amp;lt;input type=&amp;quot;checkbox&amp;quot; v-model=&amp;quot;checked&amp;quot;&amp;gt;
 &amp;lt;p&amp;gt;{{ checked }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 多个复选框
 &amp;lt;input type=&amp;quot;checkbox&amp;quot; value=&amp;quot;打篮球&amp;quot; v-model=&amp;quot;hobby&amp;quot;/&amp;gt;打篮球
@@ -1649,7 +1627,7 @@ console.log(&#39;///&#39;)&lt;br&gt;
 &amp;lt;input type=&amp;quot;checkbox&amp;quot; value=&amp;quot;打气球&amp;quot; v-model=&amp;quot;hobby&amp;quot;/&amp;gt;打气球
 &amp;lt;input type=&amp;quot;checkbox&amp;quot; value=&amp;quot;打棒球&amp;quot; v-model=&amp;quot;hobby&amp;quot;/&amp;gt;打棒球
 &amp;lt;p&amp;gt;{{ hobby }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 选择框 -&amp;gt; 单选
 &amp;lt;select v-model=&amp;quot;selected&amp;quot;&amp;gt;
@@ -1658,7 +1636,7 @@ console.log(&#39;///&#39;)&lt;br&gt;
   &amp;lt;option&amp;gt;css&amp;lt;/option&amp;gt;
 &amp;lt;/select&amp;gt;
 &amp;lt;p&amp;gt;{{ selected }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 选择框 -&amp;gt; 多选
 &amp;lt;select v-model=&amp;quot;selectList&amp;quot; multiple&amp;gt;
@@ -1667,7 +1645,7 @@ console.log(&#39;///&#39;)&lt;br&gt;
   &amp;lt;option&amp;gt;css&amp;lt;/option&amp;gt;
 &amp;lt;/select&amp;gt;
 &amp;lt;p&amp;gt;{{ selectList }}&amp;lt;/p&amp;gt;
-复制代码
+
 
 // 实例对象
 new Vue({
@@ -1681,24 +1659,20 @@ new Vue({
     selectList: [] // 选择框 -&amp;gt; 多个
   }
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;修饰符&#34;&gt;修饰符&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;.lazy&lt;/code&gt; : 默认情况下 &lt;code&gt;v-model&lt;/code&gt; 在每次的 input 事件触发后将输入框内容进行同步 , 添加 &lt;code&gt;lazy&lt;/code&gt; 修饰符后 , 会变成 change 事件后同步数据&lt;/p&gt;
 &lt;input v-model.lazy=&#34;message&#34;&gt;
-复制代码
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;.number&lt;/code&gt; : 用户输入的值转为数值类型&lt;/p&gt;
 &lt;input v-model.number=&#34;age&#34;&gt;
-复制代码
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;.trim&lt;/code&gt; : 过滤输入框中的左右空白&lt;/p&gt;
 &lt;input v-model.trim=&#34;message&#34;&gt;
-复制代码
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;vueset&#34;&gt;&lt;code&gt;Vue.set&lt;/code&gt;&lt;/h2&gt;
@@ -1716,14 +1690,12 @@ mounted() {
   // 此时是不会生效的 , 如果再模块化的开发中还会报错
   this.info.age = 23
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;受 ES5 的限制 , Vue 不能检测到对象属性的添加或者删除 , 因为 Vue 在初始化的时候将属性转换为&lt;code&gt;getter&lt;/code&gt; &lt;code&gt;setter&lt;/code&gt; 所以属性必须要在 data 对象上才能让 Vue 转换 , 只有在 data 对象上 才是响应式的&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mounted() {
   // 正确写法
   this.$set(this.info, &#39;age&#39;, 23)
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Vue.set()&lt;/strong&gt; : 与 &lt;code&gt;this.$set&lt;/code&gt; 没有区别, 一个全局 一个局部 官网说 &lt;code&gt;this.$set&lt;/code&gt; 是 &lt;code&gt;Vue.set&lt;/code&gt; 的一个别名&lt;/p&gt;
 &lt;h2 id=&#34;methods&#34;&gt;&lt;code&gt;methods&lt;/code&gt;&lt;/h2&gt;
@@ -1738,7 +1710,6 @@ mounted() {
     }
   }
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;计算属性-computed&#34;&gt;计算属性 &lt;code&gt;computed&lt;/code&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1748,7 +1719,7 @@ mounted() {
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input1&amp;quot;/&amp;gt; + 
 &amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input2&amp;quot;/&amp;gt; =
 &amp;lt;span&amp;gt;{{ getSum() }}&amp;lt;/span&amp;gt;
-复制代码
+
 
 data() {
   return {
@@ -1762,13 +1733,12 @@ methods: {
     return this.sum = this.input1 + this.input2
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;下面我们使用计算属性解决 ; 可以看出我们去除了 data 中的 sum 属性 在 computed 中新增了 getSum 函数&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input1&amp;quot;/&amp;gt; + 
 &amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input2&amp;quot;/&amp;gt; =
 &amp;lt;span&amp;gt;{{ getSum }}&amp;lt;/span&amp;gt;
-复制代码
+
 
 data() {
   return {
@@ -1781,7 +1751,6 @@ computed: {
     return this.input1 + this.input2
   }
 },
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;那么问题来了 为什么定义了一个函数, 却当成属性执行 ? 其实这个只是简写而已 , 算是一个语法糖 , 每一个计算属性包含 get 和 set 当只有 get 时可以简写为 函数的格式&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;export default {
@@ -1796,7 +1765,6 @@ computed: {
     }
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;示例 : 看完这个例子就明白了为什么叫 计算属性了吧&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input1&amp;quot;/&amp;gt; + 
@@ -1804,7 +1772,7 @@ computed: {
 &amp;lt;span&amp;gt;{{ getSum }}&amp;lt;/span&amp;gt;
 &amp;lt;!-- set 函数可以接收这里传递过来的值 --&amp;gt;
 &amp;lt;button @click=&amp;quot;getSum = &#39;未知数&#39;&amp;quot;&amp;gt;修改 getSum&amp;lt;/button&amp;gt;
-复制代码
+
 
 computed: {
   getSum: {
@@ -1819,7 +1787,6 @@ computed: {
     }
   }
 },
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;侦听属性-watch&#34;&gt;侦听属性 &lt;code&gt;watch&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;虽然计算属性在大多数情况下都适用 , 但有时也需要一个自定义的侦听器 , 这个时候就需要 侦听属性 &lt;code&gt;watch&lt;/code&gt;&lt;/p&gt;
@@ -1828,7 +1795,7 @@ computed: {
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input1&amp;quot;/&amp;gt; + 
 &amp;lt;input type=&amp;quot;text&amp;quot; v-model.number=&amp;quot;input2&amp;quot;/&amp;gt; =
 &amp;lt;span&amp;gt;{{ getSum }}&amp;lt;/span&amp;gt;
-复制代码
+
 
 data() {
   return {
@@ -1851,7 +1818,6 @@ watch: {
     }
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果我们需要侦听对象属性, 可以在选项参数中使用 &lt;code&gt;deep: true&lt;/code&gt; 注意监听数据的变更不需要这么做&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;watch: {
@@ -1862,7 +1828,6 @@ watch: {
     deep: true 
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;watch 使用时有一个特点 , 就是当值第一次绑定的时候 , 不会执行监听函数 , 只有值发生改变时才会执行 , 如果我们需要在最初绑定值的时候也执行函数 , 则需要用到 &lt;code&gt;immediate: true&lt;/code&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;watch: {
@@ -1872,7 +1837,6 @@ watch: {
     immediate: true
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;methods-computed-watch-区别&#34;&gt;methods computed watch 区别&lt;/h2&gt;
 &lt;ul&gt;
@@ -1892,7 +1856,6 @@ watch: {
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;{{ msg | formatMsg }}
 &amp;lt;div v-bind:msg=&amp;quot;msg | formatMsg&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1909,27 +1872,23 @@ formatMsg(msg) {&lt;br&gt;
 return msg.toString().toUpperCase()&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;可以在创建 Vue 实例之前定义全局过滤器&lt;/p&gt;
 &lt;p&gt;Vue.filter(&#39;formatMsg&#39;, function(msg) {&lt;br&gt;
 return msg.toString().toUpperCase()&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;过滤器默认是以 &lt;code&gt;|&lt;/code&gt; 前面的的内容作为过滤器的第一个参数 , 还可以再次传入传输&lt;/p&gt;
 &lt;div&gt;{{ msg | formatMsg(&#39;lower&#39;) }}&lt;/div&gt;
-复制代码
 &lt;p&gt;Vue.filter(&#39;formatMsg&#39;, function(msg, args) {&lt;br&gt;
 console.log(msg) // lower&lt;br&gt;
 if (args === &#39;lower&#39;) {&lt;br&gt;
 return msg.toString().toLowerCase()&lt;br&gt;
 }&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;自定义指令-directive&#34;&gt;自定义指令 &lt;code&gt;directive&lt;/code&gt;&lt;/h2&gt;
@@ -1938,7 +1897,7 @@ return msg.toString().toLowerCase()&lt;br&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;自定获取焦点案例&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-focus/&amp;gt;
-复制代码
+
 
 // 全局指令 定义时不需要 v-  调用时要加上 v- 前缀
 Vue.directive(&#39;focus&#39;, {
@@ -1954,7 +1913,6 @@ directives: {
     }
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;钩子函数&#34;&gt;钩子函数&lt;/h3&gt;
 &lt;ul&gt;
@@ -1977,7 +1935,6 @@ directives: {
 &lt;li&gt;&lt;code&gt;value&lt;/code&gt; : 指令绑定的值 &lt;code&gt;v-drag=&amp;quot;true&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div v-drag&gt;
-复制代码
 &lt;p&gt;// 拖拽方块案例&lt;br&gt;
 Vue.directive(&#39;drag&#39;, {&lt;br&gt;
 // 初始化样式&lt;br&gt;
@@ -2015,8 +1972,7 @@ document.addEventListener(&#39;mouseup&#39;, function () {
 })
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;}&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;自定义指令修饰符&#34;&gt;自定义指令修饰符&lt;/h3&gt;
@@ -2025,7 +1981,7 @@ document.addEventListener(&#39;mouseup&#39;, function () {
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;// 我们先传入修饰符 limit 为自己定义的修饰符
 &amp;lt;div v-drag.limit&amp;gt;
-复制代码
+
 
 // 既然不想让他拖拽出视口, 那么就应该在鼠标移动的时候加入一些逻辑
 document.addEventListener(&#39;mousemove&#39;, function (e) {
@@ -2043,7 +1999,6 @@ document.addEventListener(&#39;mousemove&#39;, function (e) {
   }
   console.log(binding) // binding 对象
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;700&#34; height=&#34;234&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
 &lt;h3 id=&#34;自定义指令传参&#34;&gt;自定义指令传参&lt;/h3&gt;
@@ -2051,7 +2006,7 @@ document.addEventListener(&#39;mousemove&#39;, function (e) {
 &lt;p&gt;上面我们已经解决了拖出视口的问题 , 只要传递一个修饰符就解决了 , 那么现在我们希望可以手动的暂停拖拽 , 当然也是可行的 ;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div v-drag.limit=&amp;quot;{isDrag: false}&amp;quot;&amp;gt;
-复制代码
+
 
 document.addEventListener(&#39;mousemove&#39;, function (e) {
   let moveX = e.clientX - elLeft
@@ -2069,7 +2024,6 @@ document.addEventListener(&#39;mousemove&#39;, function (e) {
     el.style.top = moveY + &#39;px&#39;
   }
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;784&#34; height=&#34;254&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
 &lt;h2 id=&#34;组件&#34;&gt;组件&lt;/h2&gt;
@@ -2082,11 +2036,9 @@ document.addEventListener(&#39;mousemove&#39;, function (e) {
 &lt;p&gt;全局组件&lt;/p&gt;
 &lt;p&gt;Vue.component(&#39;GlobalComponent&#39;, {&lt;br&gt;
 template: &lt;code&gt;&amp;lt;div&amp;gt; hello component &amp;lt;/div&amp;gt;&lt;/code&gt;&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;p&gt;// 命名时推荐驼峰 , 调用时推荐 - 链接, html 不识别大小写&lt;br&gt;
-&lt;global-component&gt;&lt;/global-component&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+&lt;global-component&gt;&lt;/global-component&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;局部组件&lt;/p&gt;
@@ -2097,13 +2049,11 @@ SonComponent: {&lt;br&gt;
 template: &lt;code&gt;&amp;lt;div&amp;gt;hello private component&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
-})&lt;br&gt;
-复制代码&lt;/p&gt;
+})&lt;/p&gt;
 &lt;p&gt;// 组件可以被复用多次&lt;br&gt;
 &lt;private-component&gt;&lt;/private-component&gt;&lt;br&gt;
 &lt;private-component&gt;&lt;/private-component&gt;&lt;br&gt;
-&lt;private-component&gt;&lt;/private-component&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+&lt;private-component&gt;&lt;/private-component&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;模块化开发中的组件&lt;/p&gt;
@@ -2112,10 +2062,8 @@ template: &lt;code&gt;&amp;lt;div&amp;gt;hello private component&amp;lt;/div&amp
 components: {&lt;br&gt;
 SonComponent&lt;br&gt;
 }&lt;br&gt;
-}&lt;br&gt;
-复制代码&lt;/p&gt;
-&lt;p&gt;&lt;son-component&gt;&lt;/son-component&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+}&lt;/p&gt;
+&lt;p&gt;&lt;son-component&gt;&lt;/son-component&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;通过-props-向子组件传递数据&#34;&gt;通过 &lt;code&gt;props&lt;/code&gt; 向子组件传递数据&lt;/h3&gt;
@@ -2126,7 +2074,7 @@ SonComponent&lt;br&gt;
 &amp;lt;div&amp;gt;
   &amp;lt;son-component content=&amp;quot;传递给子组件的数据, 如果动态传值可以加 v-bind&amp;quot;&amp;gt;&amp;lt;/son-component&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
+
 
 // 子组件
 Vue.component(&#39;SonComponent&#39;, {
@@ -2136,7 +2084,6 @@ Vue.component(&#39;SonComponent&#39;, {
    props: [&#39;content&#39;],
    template: `&amp;lt;div&amp;gt; {{ content }} &amp;lt;/div&amp;gt;`
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;props 可以是数组也可以是一个对象 , 用来接收来自父组件的数据 ;&lt;/p&gt;
@@ -2163,8 +2110,7 @@ required: true,&lt;br&gt;
 // 如果传进来的 content 长度大于 20 就会报错&lt;br&gt;
 validator: (value) =&amp;gt; value.length &amp;gt;= 20&lt;br&gt;
 }&lt;br&gt;
-}&lt;br&gt;
-复制代码&lt;/p&gt;
+}&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;监听子组件事件-emit&#34;&gt;监听子组件事件 &lt;code&gt;$emit&lt;/code&gt;&lt;/h3&gt;
@@ -2181,11 +2127,9 @@ validator: (value) =&amp;gt; value.length &amp;gt;= 20&lt;br&gt;
     &lt;button @click=&#34;$emit(son-com, [1, 2, 3])&#34;&gt;&lt;/button&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-复制代码
 &lt;p&gt;// 父组件&lt;br&gt;
 // 监听子组件定义的自定义事件 , 通过 $event 访问第一个传递的参数&lt;br&gt;
-&amp;lt;son-component @son-com=&amp;quot;msg = $event&amp;quot;&amp;gt;&lt;/son-component&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+&amp;lt;son-component @son-com=&amp;quot;msg = $event&amp;quot;&amp;gt;&lt;/son-component&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;事件处理函数传值&lt;/p&gt;
@@ -2204,7 +2148,6 @@ export default {
   }
 }
 &lt;/script&gt;
-复制代码
 &lt;p&gt;// 父组件&lt;br&gt;
 &lt;template&gt;&lt;/p&gt;
   &lt;div class=&#34;parent&#34;&gt;
@@ -2228,7 +2171,6 @@ export default {
   }
 }
 &lt;/script&gt;
-复制代码
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;事件处理函数传递多个值&lt;/p&gt;
@@ -2248,7 +2190,6 @@ export default {
   }
 }
 &lt;/script&gt;
-复制代码
 &lt;p&gt;// 父组件&lt;br&gt;
 &lt;template&gt;&lt;/p&gt;
   &lt;div class=&#34;son&#34;&gt;
@@ -2266,17 +2207,14 @@ export default {
   }
 }
 &lt;/script&gt;
-复制代码
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;组件上使用-v-model&#34;&gt;组件上使用 &lt;code&gt;v-model&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;在使用这个功能之前我们需要先了解一个东西 , &lt;code&gt;v-model&lt;/code&gt; 究竟是什么 ; 其实它从某种程度来说就是一个语法糖&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; v-model=&amp;quot;msg&amp;quot;/&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;等价于&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;input :value=&amp;quot;msg&amp;quot; @input=&amp;quot;msg = $event.target.value&amp;quot;/&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;应用到组件中就是下面这样 为了不引起歧义, 我把自定义的事件以及属性加了test 前缀详情看[官网](https://cn.vuejs.org/v2/guide/components.html target=)&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 父组件
@@ -2285,7 +2223,6 @@ export default {
   @test-input=&amp;quot;searchText = $event&amp;quot;
   &amp;gt;
 &amp;lt;/model-input&amp;gt; 
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -2300,14 +2237,12 @@ v-bind:value=&amp;quot;testValue&amp;quot;&lt;br&gt;
 @input=&amp;quot;$emit(&#39;test-input&#39;, $event.target.value)&amp;quot;&lt;/p&gt;
 &lt;blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;// script&lt;br&gt;
-props: [&#39;testValue&#39;] // 自定义属性传递过来的值&lt;br&gt;
-复制代码&lt;/p&gt;
+props: [&#39;testValue&#39;] // 自定义属性传递过来的值&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;此时我们再优化一下 , 使用 &lt;code&gt;v-model&lt;/code&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 父组件
 &amp;lt;model-input v-model=&amp;quot;searchText&amp;quot;&amp;gt;&amp;lt;/model-input&amp;gt; 
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;由于我们组件中使用了 v-model 而前面我们也提到了 v-model 其实是 v-bind 和 v-on 的语法糖 , 所以只能用 value 属性和 input 事件&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 子组件
@@ -2318,7 +2253,6 @@ props: [&#39;testValue&#39;] // 自定义属性传递过来的值&lt;br&gt;
 &amp;gt;
 // script
 props: [&#39;value&#39;] 
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;那么问题来了 , 上面我们提过 v-model 默认是 value属性 和 input事件 , 但是像单选框 , 复选框等类型怎么处理 ? 对此 Vue 提供了 &lt;code&gt;model&lt;/code&gt; 选项来避免这样的冲突&lt;/p&gt;
@@ -2333,7 +2267,6 @@ data() {
     isChecked: false
   }
 },
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;选中 和 未选中 返回 true / false&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 子组件
@@ -2357,7 +2290,6 @@ export default {
     }
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;组件插槽&#34;&gt;组件插槽&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -2373,7 +2305,7 @@ export default {
     &amp;lt;p&amp;gt;这是组件的尾部&amp;lt;/p&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
+
 
 // 父组件
 &amp;lt;&amp;lt;template&amp;gt;
@@ -2384,7 +2316,6 @@ export default {
     &amp;lt;/slot-test&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;规则 :&lt;/strong&gt; 父级模板里的所有内容都是在父级作用域中编译的 ; 子模板的所有内容都在子作用域中编译&lt;/p&gt;
 &lt;h3 id=&#34;默认内容插槽&#34;&gt;默认内容插槽&lt;/h3&gt;
@@ -2399,7 +2330,6 @@ export default {
     &amp;lt;p&amp;gt;这是组件的尾部&amp;lt;/p&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;具名插槽&#34;&gt;具名插槽&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -2420,7 +2350,6 @@ export default {
     &amp;lt;/footer&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在向具名插槽提供内容的时候 , 可以在一个 &lt;code&gt;template&lt;/code&gt; 元素中上 使用&lt;code&gt;v-slot&lt;/code&gt; 指令 并以参数的形式提供名称&lt;/p&gt;
@@ -2436,7 +2365,6 @@ export default {
 	&amp;lt;/slot-test&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt; 中的所有内容都会传入响应的插槽 , 任何没有包裹在带有 &lt;code&gt;v-slot&lt;/code&gt; 的 &lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt; 中的内容都会被视为默认插槽的内容 ; 通俗一点来说 , 就是我在子组件中声明了多个 没有 &lt;code&gt;name&lt;/code&gt; 的 &lt;code&gt;&amp;lt;slot&amp;gt;&lt;/code&gt; , 那么 我在父组件中 , 只需要渲染一次 , 所有子组件的插槽就都会被渲染 ;&lt;/p&gt;
@@ -2451,7 +2379,7 @@ export default {
 &amp;lt;div&amp;gt;
   &amp;lt;slot&amp;gt;&amp;lt;/slot&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
+
 
 /* 父组件 */
 
@@ -2468,7 +2396,6 @@ export default {
     &amp;lt;!-- 内容。。。。--&amp;gt;
   &amp;lt;/template&amp;gt;
 &amp;lt;/slot-test&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;作用域插槽&#34;&gt;作用域插槽&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -2493,7 +2420,7 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
+
 
 // 父组件
 &amp;lt;template&amp;gt;
@@ -2506,7 +2433,6 @@ export default {
     &amp;lt;/slot-test&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;独占默认插槽缩写语法&#34;&gt;独占默认插槽缩写语法&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -2526,7 +2452,7 @@ data(){
     }
   }
 }
-复制代码
+
 
 // 父组件
 &amp;lt;div&amp;gt;
@@ -2534,7 +2460,6 @@ data(){
     {{ slotProps.user.firstName }}
   &amp;lt;/slot-test&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;不要尝试插槽的 &amp;quot;缩写语法&amp;quot; 和 &amp;quot;具名插槽混用&amp;quot; 会导致作用域不明确&lt;/li&gt;
@@ -2551,7 +2476,6 @@ data(){
     {{ user.firstName }}
   &amp;lt;/slot-test&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;在提供多个 prop 的时候 ，它同样开启了 prop 重命名的功能&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
@@ -2559,7 +2483,6 @@ data(){
     {{ preson.firstName }}
   &amp;lt;/slot-test&amp;gt;
 &amp;lt;/div&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;插槽其他示例&#34;&gt;插槽其他示例&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -2584,14 +2507,13 @@ data(){
   {id: 3, uname: &#39;we&#39;},
   {id: 4, uname: &#39;mz&#39;},
 ]
-复制代码
+
 
 // 父组件
 &amp;lt;test v-slot:todo=&amp;quot;slotProps&amp;quot;&amp;gt;
   &amp;lt;!-- 本来是显示名字的改成了显示id --&amp;gt;
   {{ slotProps.item.id }}
 &amp;lt;/test&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;动态组件-component&#34;&gt;动态组件 &lt;code&gt;component&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;在说动态组件之前， 先动手实现一个 tab 分页，不然貌似不是很好理解 😂&lt;/p&gt;
@@ -2624,7 +2546,6 @@ export default {
     }
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;830&#34; height=&#34;396&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2638,7 +2559,7 @@ export default {
 &lt;p&gt;看代码示例， 我们只需要 template 中引入组件的部分 以及在 script 中的 data 新增一个属性&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;!-- 每次点击 button 的时候触发 handle事件函数时 is绑定的值会重新渲染组件 --&amp;gt;
 &amp;lt;component :is=&amp;quot;showWhat&amp;quot;&amp;gt;&amp;lt;/component&amp;gt;
-复制代码
+
 
 data() {
   return {
@@ -2654,7 +2575,6 @@ methods: {
     title === &#39;list&#39; ? this.showWhat = &#39;ItemList&#39; : this.showWhat = &#39;ItemPost&#39;
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;830&#34; height=&#34;396&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2664,7 +2584,6 @@ methods: {
 &amp;lt;keep-alive&amp;gt;  
   &amp;lt;component :is=&amp;quot;showWhat&amp;quot;&amp;gt;&amp;lt;/component&amp;gt;
 &amp;lt;/keep-alive&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;异步组件&#34;&gt;异步组件&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -2674,7 +2593,6 @@ methods: {
 &lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
   &amp;lt;div&amp;gt;这是一个简单的组件&amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后在主组件内常规引入看下效果&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
@@ -2692,7 +2610,6 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;看下图， 上面的书写方式，加载出来的组件，会被全部渲染到一个文件里面，如果我们的这个页面组件很多，或者说有些组件，只有触发了特定操作后才会显示，我们是不是就没有必要在页面渲染时，就把所有的组件全部加载呢 ？&lt;/p&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;827&#34; height=&#34;470&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
@@ -2704,7 +2621,6 @@ export default {
     Dynamic: () =&amp;gt; import Dynamic from &#39;@/component/Dynamic.vue&#39;
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;可以看出下图多出了 &lt;code&gt;0.js&lt;/code&gt; 由此可见 vue-cli 帮助我们分开打包了文件；这个文件在被加载之后，就会被缓存起来；这个例子只是看出了它被拆开了，并不能证明咱们开始说的按需渲染的道理；基于这个例子可以再改一下，加一个判断逻辑&lt;/p&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;931&#34; height=&#34;498&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
@@ -2714,7 +2630,6 @@ export default {
     &amp;lt;dynamic  v-if=&amp;quot;isShow&amp;quot;&amp;gt;&amp;lt;/dynamic&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/template&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;下图可以看出没有显示子组件时， 把这个文件给缓存起来了，只有真正调用到的时候才会加载对应的资源；&lt;/p&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;1015&#34; height=&#34;549&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
@@ -2737,7 +2652,6 @@ export default {
     console.log(this.$refs.inputRef)
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果 ref 和 v-for 一起使用的话 , 那么 &lt;code&gt;this.refs&lt;/code&gt; 将会得到一个元素数组&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
@@ -2750,7 +2664,6 @@ export default {
 mounted() {
   console.log(this.$refs.forRef)
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;$refs&lt;/code&gt; 只会在组件渲染完成后生效 , 并且它不是响应式的 , 这仅作为用于直接操作子组件的 逃生舱 应该尽量避免在模板或者计算属性中访问 &lt;code&gt;$refs&lt;/code&gt;&lt;/p&gt;
@@ -2790,8 +2703,7 @@ console.log(&#39;itemList 被激活&#39;)&lt;br&gt;
 },&lt;br&gt;
 deactivated() {&lt;br&gt;
 console.log(&#39;itemList 被停用 / 失活&#39;)&lt;br&gt;
-},&lt;br&gt;
-复制代码&lt;/p&gt;
+},&lt;/p&gt;
 &lt;p&gt;// 父组件&lt;br&gt;
 // toggle 切换时触发子组件中的这两个钩子函数&lt;br&gt;
 &amp;lt;button @click=&amp;quot;com = &#39;ItemPost&#39;&amp;quot;&amp;gt;post&lt;/button&gt;&lt;br&gt;
@@ -2799,7 +2711,6 @@ console.log(&#39;itemList 被停用 / 失活&#39;)&lt;br&gt;
 &lt;keep-alive&gt;
   &lt;component :is=&#34;com&#34;&gt;&lt;/component&gt;
 &lt;/keep-alive&gt;
-复制代码
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;beforeDestroy&lt;/code&gt; : &lt;strong&gt;销毁前&lt;/strong&gt; 实例销毁之前调用 , 这里各种数据仍然可以访问 ; 可以再次销毁定时器, 解绑事件等操作&lt;/p&gt;
@@ -2868,7 +2779,6 @@ export default {
   }
 }
 &lt;/script&gt;
-复制代码
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;1165&#34; height=&#34;473&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
@@ -2902,7 +2812,6 @@ export default {
 &lt;pre&gt;&lt;code&gt;&amp;lt;transition&amp;gt;
   &amp;lt;dynamic v-if=&amp;quot;isShow&amp;quot;&amp;gt;&amp;lt;/dynamic&amp;gt;
 &amp;lt;/transition&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果 &lt;code&gt;&amp;lt;transition&amp;gt;&lt;/code&gt; 没有 name 属性 类名默认是 &lt;code&gt;v-&lt;/code&gt; 开头 , 如果使用了自定义名字 , 替换成自定名字开头 ; &lt;strong&gt;transition 不会被渲染成真是的 DOM 元素&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;示例 : &lt;code&gt;&amp;lt;transition name=&amp;quot;my-trans&amp;quot;&amp;gt;&lt;/code&gt; &lt;code&gt;my-trans-enter&lt;/code&gt;&lt;/p&gt;
@@ -2916,7 +2825,6 @@ export default {
     transition: all .5s ;
   }
 &amp;lt;/style&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;多个组件的过渡&#34;&gt;多个组件的过渡&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;transition&amp;gt;
@@ -2924,7 +2832,7 @@ export default {
     &amp;lt;component :is=&amp;quot;showWhat&amp;quot;&amp;gt;&amp;lt;/component&amp;gt;
   &amp;lt;/keep-alive&amp;gt;
 &amp;lt;/transition&amp;gt;
-复制代码
+
 
 &amp;lt;style lang=&amp;quot;css&amp;quot;&amp;gt;
   .v-enter, .v-leave-to{
@@ -2934,7 +2842,6 @@ export default {
     transition: opacity .3s ease;
   }
 &amp;lt;/style&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;![](https://juejin.cn/post/data:image/svg+xml;utf8,&lt;?xml version=&#34;1.0&#34;?&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; width=&#34;1015&#34; height=&#34;549&#34;&gt;&lt;/svg&gt;)&lt;/p&gt;
 &lt;h4 id=&#34;过渡模式&#34;&gt;过渡模式&lt;/h4&gt;
@@ -2952,7 +2859,6 @@ export default {
     &amp;lt;component :is=&amp;quot;showWhat&amp;quot;&amp;gt;&amp;lt;/component&amp;gt;
   &amp;lt;/keep-alive&amp;gt;
 &amp;lt;/transition&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;初始渲染过渡&#34;&gt;初始渲染过渡&lt;/h3&gt;
 &lt;p&gt;可以通过 &lt;code&gt;appear&lt;/code&gt; 属性设置节点的初始渲染过渡 ; 需要注意的是, 这个关键字加上之后, 默认就会带有过渡效果 , &lt;code&gt;translateY&lt;/code&gt; 也可以自定义类名和钩子 ; [初始渲染过渡](https://cn.vuejs.org/v2/guide/transitions.html target=)&lt;/p&gt;
@@ -2960,7 +2866,6 @@ export default {
   &amp;lt;div v-if=&amp;quot;toggle&amp;quot;&amp;gt;post&amp;lt;/div&amp;gt;
   &amp;lt;div v-else&amp;gt;list&amp;lt;/div&amp;gt;
 &amp;lt;/transition&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;列表过渡&#34;&gt;列表过渡&lt;/h3&gt;
 &lt;p&gt;列表过渡需要用到 &lt;code&gt;&amp;lt;transition-group&amp;gt;&lt;/code&gt;&lt;/p&gt;
@@ -2975,7 +2880,6 @@ export default {
     &lt;p&gt;{{ user.uname }}&lt;/p&gt;
   &lt;/li&gt;
 &lt;/transition-group&gt;
-复制代码
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;更多动画相关 : &lt;a href=&#34;https://cn.vuejs.org/v2/guide/transitions.html&#34;&gt;Vue过渡动画&lt;/a&gt;&lt;/p&gt;
@@ -2991,7 +2895,6 @@ export default {
     this.$refs.divRef.innerHTML = &#39;hello vue&#39;
   })
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;混入-mixin&#34;&gt;混入 Mixin&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -3035,7 +2938,6 @@ export default {
   background: palegreen;
 }
 &amp;lt;/style&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后我们在同级别的目录下建立一个 Mixin 对象&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// path: Mixin/MyButton/index.js
@@ -3046,7 +2948,6 @@ export default {
     MyButton
   }
 }
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后我们在页面中去使用它&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;!-- views/page.vue --&amp;gt;
@@ -3061,7 +2962,6 @@ export default {
   mixins: [MyButton]  
 }
 &amp;lt;/script&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;简单总结一下, 可以看出我们上面虽然用的有些牵强, 不晓得有没有注意到 , 我们实际上等于把 注册组件的方式给抽离出去了, 取而代之的是把他混入进去, 这里就可以简单理解, 很想 合并了两个对象的概念 , 那么接下来就看一下细节&lt;/p&gt;
@@ -3106,8 +3006,7 @@ handle1() {&lt;br&gt;
 console.log(&#39;mixin handle1&#39;)&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
-}&lt;br&gt;
-复制代码&lt;/p&gt;
+}&lt;/p&gt;
 &lt;template&gt;
   &lt;div&gt;&lt;/div&gt;
 &lt;/template&gt;
@@ -3134,8 +3033,7 @@ console.log(&#39;component handle&#39;)&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
 }&lt;br&gt;
-&lt;/script&gt;&lt;br&gt;
-复制代码&lt;/p&gt;
+&lt;/script&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;全局混入&#34;&gt;全局混入&lt;/h3&gt;
@@ -3150,7 +3048,6 @@ Vue.mixin({
   created() {},
   // ......
 })
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;provide-inject-依赖注入&#34;&gt;provide / inject 依赖注入&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -3186,7 +3083,7 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
+
 
 // Home.vue
 &amp;lt;template&amp;gt;
@@ -3204,7 +3101,7 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
+
 
 // components/ProvideTest.vue
 &amp;lt;template&amp;gt;
@@ -3221,7 +3118,6 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;当然 &lt;code&gt;inject&lt;/code&gt; 也不是只能通过数据来接收参数；具体参考 [cn.vuejs.org/v2/api/#pro…](https://cn.vuejs.org/v2/api/ target=)&lt;/p&gt;
 &lt;blockquote&gt;
@@ -3255,7 +3151,6 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;当然如果只是这样使用， 肯定是略显鸡肋， 既然知道 API 的特性，那么下面看父子组件传值&lt;/p&gt;
 &lt;blockquote&gt;
@@ -3266,13 +3161,13 @@ import Vue from &#39;vue&#39;
 
 // 创建一个空的 Vue 实例 用来做 桥梁
 export const Bus = new Vue()
-复制代码
+
 
 // main.js
 import { Bus } from &#39;./Bus&#39;
 // 将这个空的实例绑定到 vue 的原型中
 Vue.prototype.$bus = Bus
-复制代码
+
 
 // About.vue
 &amp;lt;template&amp;gt;
@@ -3295,7 +3190,7 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
+
 
 // Home.vue
 &amp;lt;template&amp;gt;
@@ -3312,7 +3207,6 @@ export default {
   }
 }
 &amp;lt;/script&amp;gt;
-复制代码
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 组件挂在之前会执行 &lt;code&gt;mounted&lt;/code&gt; 钩子，所以在这个钩子中监听触发的事件，当然在 &lt;code&gt;created&lt;/code&gt; 中也是可以的 建议还是 &lt;code&gt;mounted&lt;/code&gt;&lt;/p&gt;
 ">一万字总结Vue2.6.X</a>
