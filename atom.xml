@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-03-15T10:12:55.792Z</updated>
+    <updated>2021-03-15T10:24:20.527Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://imcm.xyz"/>
+    <link rel="self" href="https://imcm.xyz/atom.xml"/>
     <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;正在加载今日诗词....&lt;/span&gt;
 &lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://imcm.xyz/images/avatar.png</logo>
+    <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2021, IMCM</rights>
     <entry>
         <title type="html"><![CDATA[解放鼠标手，成为键盘侠：macOS 常用快捷键分享]]></title>
-        <id>http://localhost:4000/ac-shortcut/</id>
-        <link href="http://localhost:4000/ac-shortcut/">
+        <id>https://imcm.xyz/ac-shortcut/</id>
+        <link href="https://imcm.xyz/ac-shortcut/">
         </link>
         <updated>2021-03-15T12:57:32.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="前言">前言‍</h3>
@@ -25,7 +25,7 @@
 <!-- more -->
 <h3 id="快捷键标识简介">快捷键标识简介</h3>
 <p>当你在应用菜单中发现部分操作项后边有一些特殊标识而不知道对应的含义时，可以先对Mac特有的按键标识做下简单的了解，例如下图：</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1615802862051.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1615802862051.png" alt="" loading="lazy"></figure>
 <p>Mac常用的特殊按键标识有下边这些：</p>
 <ul>
 <li>
@@ -57,7 +57,7 @@
 </li>
 </ul>
 <p>可调出虚拟键盘（点击顶部输入法，在下拉菜单中，显示虚拟键盘选项）查看对应键位（对应苹果Magic Keyboard妙控键盘键位）</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1615802870725.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1615802870725.png" alt="" loading="lazy"></figure>
 <h4 id="1-调度中心">1、调度中心</h4>
 <p>因为需要同时打开多个App或者同一App的多个窗口，如果放到同一个桌面上，寻找对应的窗口会非常的麻烦，此时Mac提供的调度中心（多桌面管理）就发挥了至关重要的作用，主要适用于非苹果官方键盘。</p>
 <ul>
@@ -75,7 +75,7 @@
 <p>小技巧：<br>
 App默认只在一个桌面空间中使用，此时在其他桌面中点击App时，会自动切换回原先打开过的桌面中，如果想在多个桌面中同时使用，可以在程序坞已启动App上右键-选项-分配给-所有桌面即可。</p>
 </blockquote>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1615802877944.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1615802877944.png" alt="" loading="lazy"></figure>
 <h4 id="2-系统常用">2、系统常用</h4>
 <ul>
 <li>
@@ -207,8 +207,8 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
     </entry>
     <entry>
         <title type="html"><![CDATA[如何在Raspberry Pi上安装Docker和Portainer！]]></title>
-        <id>http://localhost:4000/docker-portainer/</id>
-        <link href="http://localhost:4000/docker-portainer/">
+        <id>https://imcm.xyz/docker-portainer/</id>
+        <link href="https://imcm.xyz/docker-portainer/">
         </link>
         <updated>2021-02-22T11:36:57.000Z</updated>
         <summary type="html"><![CDATA[<p>今天，我们将研究如何在Raspberry Pi上安装Docker和Portainer。</p>
@@ -239,45 +239,45 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 <pre><code class="language-shell">sudo apt update
 sudo apt upgrade -y
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1613976193237.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1613976193237.webp" alt="" loading="lazy"></figure>
 <ol start="2">
 <li>接下来要运行的脚本是在Raspberry Pi上安装Docker的脚本。Portainer是用于管理Docker容器的GUI，因此我们需要确保已安装Docker。</li>
 </ol>
 <pre><code class="language-shell">curl -sSL https://get.docker.com |  sh
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1613976202912.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1613976202912.webp" alt="" loading="lazy"></figure>
 <ol start="3">
 <li>脚本完成后，我们需要为Pi用户帐户授予Docker访问权限。</li>
 </ol>
 <pre><code class="language-shell">sudo usermod -aG docker pi
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1613976214762.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1613976214762.webp" alt="" loading="lazy"></figure>
 <ol start="4">
 <li>添加用户后，我们将运行命令以下载用于ARM处理器的最新Portainer映像（Raspberry Pi使用的映像）。</li>
 </ol>
 <pre><code class="language-shell">sudo docker pull portainer/portainer-ce:alpine
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1613976221298.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1613976221298.webp" alt="" loading="lazy"></figure>
 <ol start="5">
 <li>我们的最后一步是创建一个将运行Portainer的新容器。如果您已经将Raspberry Pi上的端口9000用于其他用途（这不太可能），则需要更改以下端口。</li>
 </ol>
 <pre><code class="language-shell">sudo docker run --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:alpine
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1613976234190.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://imcm.xyz/post-images/1613976234190.webp" alt="" loading="lazy"></figure>
 <ol start="6">
 <li>现在，您应该能够在浏览器输入Raspberry Pi的IP地址和端口9000来访问Portainer。当打开页面时，请新建一个用户名和密码。</li>
 </ol>
 <pre><code class="language-shell">http://[RASPBERRY_PI_IP_ADDRESS]:9000
 </code></pre>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1613976243565.webp" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://imcm.xyz/post-images/1613976243565.webp" alt="" loading="lazy"></figure>
 <ol start="7">
 <li>
 <p>选择本地并连接。<br>
-<img src="http://localhost:4000/post-images/1613976251702.webp" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1613976251702.webp" alt="" loading="lazy"></p>
 </li>
 <li>
 <p>现在，应该已连接到Portainer！<br>
-<img src="http://localhost:4000/post-images/1613976256721.webp" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1613976256721.webp" alt="" loading="lazy"></p>
 </li>
 </ol>
 <h3 id="结论">结论</h3>
@@ -286,8 +286,8 @@ sudo apt upgrade -y
     </entry>
     <entry>
         <title type="html"><![CDATA[树莓派实现温控风扇]]></title>
-        <id>http://localhost:4000/raspberry-smartfan/</id>
-        <link href="http://localhost:4000/raspberry-smartfan/">
+        <id>https://imcm.xyz/raspberry-smartfan/</id>
+        <link href="https://imcm.xyz/raspberry-smartfan/">
         </link>
         <updated>2021-02-10T07:16:00.000Z</updated>
         <summary type="html"><![CDATA[<p>树莓派风扇声音太大了, 非常影响睡觉， 不开风扇cpu温度又很容易太高了</p>
@@ -300,9 +300,9 @@ sudo apt upgrade -y
 S8550为PNP型三极管，基极施加低电平时才导通电路，如果是用的NPN型三极管则与之相反<br>
 树莓派小风扇1个<br>
 树莓派引脚:<br>
-<img src="http://localhost:4000/post-images/1612941425828.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612941425828.png" alt="" loading="lazy"></p>
 <p>三极管引脚:<br>
-<img src="http://localhost:4000/post-images/1612941453685.jpeg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612941453685.jpeg" alt="" loading="lazy"></p>
 <ul>
 <li>
 <p>E: 发射机<br>
@@ -327,7 +327,7 @@ S8550为PNP型三极管，基极施加低电平时才导通电路，如果是用
 <li>三极管E(发射极)接树莓派Ground, 如6号引脚</li>
 <li>三极管B级, 接树莓派GPIO，如8号引脚<br>
 如图:<br>
-<img src="http://localhost:4000/post-images/1612941492479.png" alt="" loading="lazy"></li>
+<img src="https://imcm.xyz/post-images/1612941492479.png" alt="" loading="lazy"></li>
 </ol>
 <h3 id="python程序风扇">Python程序风扇</h3>
 <p>在python交互式命令行下测试下是否可行</p>
@@ -385,8 +385,8 @@ tail -f /var/log/fan_control.log  # 查看日志
     </entry>
     <entry>
         <title type="html"><![CDATA[如何从主项目更新fork的项目]]></title>
-        <id>http://localhost:4000/git-fork/</id>
-        <link href="http://localhost:4000/git-fork/">
+        <id>https://imcm.xyz/git-fork/</id>
+        <link href="https://imcm.xyz/git-fork/">
         </link>
         <updated>2021-01-29T13:36:15.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="如何从主项目更新fork的项目">如何从主项目更新fork的项目？</h1>
@@ -403,26 +403,26 @@ tail -f /var/log/fan_control.log  # 查看日志
 <pre><code class="language-shell">&gt; git remote add upstream https://github.com/xxxx/xxxx.git
 </code></pre>
 <p>与上游仓库同步代码之前，必须配置 remote，“xxxx”代表你需要与之保持同步的数据源，本次lunnlew的AutoSignMachine为例，git项目地址<br>
-<img src="http://localhost:4000/post-images/1612145554103.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612145554103.png" alt="" loading="lazy"></p>
 <p>查看本地远程仓库</p>
 <pre><code class="language-shell">&gt; git remote -v
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1612145638658.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1612145638658.png" alt="" loading="lazy"></figure>
 <h4 id="step-3">step 3</h4>
 <pre><code class="language-shell">&gt; git fetch upstream
 </code></pre>
 <p>从远程fork仓库更新同步代码<br>
-<img src="http://localhost:4000/post-images/1612145759397.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612145759397.png" alt="" loading="lazy"></p>
 <h4 id="step-4">step 4</h4>
 <pre><code class="language-shell">&gt; git merge upstream/main
 </code></pre>
 <p>进行主节点和上游节点数据的合并<br>
-<img src="http://localhost:4000/post-images/1612145867583.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612145867583.png" alt="" loading="lazy"></p>
 <h4 id="step-6">step 6</h4>
 <pre><code class="language-shell">&gt; git push
 </code></pre>
 <p>合并后的文件进行push操作，将本地文件上传至github服务器上。<br>
-<img src="http://localhost:4000/post-images/1612145911370.png" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1612145911370.png" alt="" loading="lazy"></p>
 <h4 id="tips">tips</h4>
 <ol>
 <li>你自己的文件在push到github之前一定要进行add和commit的操作，否则会有报错的提示</li>
@@ -432,8 +432,8 @@ tail -f /var/log/fan_control.log  # 查看日志
     </entry>
     <entry>
         <title type="html"><![CDATA[收集的Git教程]]></title>
-        <id>http://localhost:4000/git-course/</id>
-        <link href="http://localhost:4000/git-course/">
+        <id>https://imcm.xyz/git-course/</id>
+        <link href="https://imcm.xyz/git-course/">
         </link>
         <updated>2021-01-26T14:47:09.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="在网络上搜集到的全部git学习资料">在网络上搜集到的全部Git学习资料</h2>
@@ -476,8 +476,8 @@ tail -f /var/log/fan_control.log  # 查看日志
     </entry>
     <entry>
         <title type="html"><![CDATA[<转>树莓派使用Aria2搭建BT远程下载机]]></title>
-        <id>http://localhost:4000/pi-aria2/</id>
-        <link href="http://localhost:4000/pi-aria2/">
+        <id>https://imcm.xyz/pi-aria2/</id>
+        <link href="https://imcm.xyz/pi-aria2/">
         </link>
         <updated>2021-01-07T10:31:28.000Z</updated>
         <summary type="html"><![CDATA[<p>开着电脑下电影速度比较慢，而且还很费电，这时可以使用树莓派，利用Aria2这个工具，搭建一个远程离线下载机，想看的电影，推送到树莓派下载后，使用SMB就可以在电视上观看了。要下载大文件，同样推送到树莓派下载，完成后再拉到电脑上，非常方便，以下是具体的搭建过程。</p>
@@ -605,17 +605,17 @@ wget https://github.com/mayswind/AriaNg/releases/download/1.0.0/AriaNg-1.0.0.zip
 unzip AriaNg-1.0.0.zip -d aira
 </code></pre>
 <p>在浏览器中访问<code>http://your-ip/aira</code>即可打开AriaNg了。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1610013315460.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1610013315460.png" alt="" loading="lazy"></figure>
 <p>这时AriaNg显示未连接，在“系统设置-（PRC192.168.0.108）-Aria2 PRC 密钥 ”中，输入“<strong>secret</strong>” 即可连接！</p>
 <p>之后，就可以愉快的用树莓派下载电影或者文件了～</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1610013229922.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1610013229922.png" alt="" loading="lazy"></figure>
 <p>转载自<a href="https://www.lxx1.com/">科技爱好者博客</a></p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[一万字总结Vue2.6.X]]></title>
-        <id>http://localhost:4000/one-vue/</id>
-        <link href="http://localhost:4000/one-vue/">
+        <id>https://imcm.xyz/one-vue/</id>
+        <link href="https://imcm.xyz/one-vue/">
         </link>
         <updated>2021-01-06T10:37:59.000Z</updated>
         <content type="html"><![CDATA[<h2 id="vue">Vue</h2>
@@ -2552,8 +2552,8 @@ export default {
     </entry>
     <entry>
         <title type="html"><![CDATA[<转>新手入门 Github Webhooks 完美自动化部署教程]]></title>
-        <id>http://localhost:4000/Github-webhook/</id>
-        <link href="http://localhost:4000/Github-webhook/">
+        <id>https://imcm.xyz/Github-webhook/</id>
+        <link href="https://imcm.xyz/Github-webhook/">
         </link>
         <updated>2020-12-22T14:26:59.000Z</updated>
         <content type="html"><![CDATA[<h3 id="前言">前言</h3>
@@ -2569,7 +2569,7 @@ export default {
 <pre><code class="language-shell">vim /usr/local/php/etc/php.ini
 </code></pre>
 <p>查找shell_exec,在disable_functions中删除shell_exec字段.<br>
-<img src="http://localhost:4000/post-images/1608622210723.jpg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1608622210723.jpg" alt="" loading="lazy"></p>
 <p>重启php.ini保存设置</p>
 <pre><code class="language-shell">/etc/init.d/php-fpm restart
 </code></pre>
@@ -2597,23 +2597,23 @@ export default {
 <p>创建ssh公钥</p>
 <pre><code class="language-shell">ssh-keygen -t rsa
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1608622389755.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1608622389755.jpg" alt="" loading="lazy"></figure>
 <p>获取你的公钥id_rsa.pub</p>
 <pre><code class="language-shell">cat /home/www/.ssh/id_rsa.pub
 </code></pre>
 <h4 id="登陆github配置ssh公钥">登陆GitHub配置ssh公钥</h4>
 <p>登陆GitHub - 进入仓库 - Settings - Deploy keys - Add Deploy keys<br>
 粘贴刚才创建的公钥</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1608622410820.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1608622410820.jpg" alt="" loading="lazy"></figure>
 <h4 id="首次git-clone仓库">首次git clone仓库</h4>
 <p>验证ssh公钥配置成功</p>
 <pre><code class="language-shell">ssh -T git@github.com
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1608622477397.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1608622477397.jpg" alt="" loading="lazy"></figure>
 <p>首次clone仓库成功</p>
 <pre><code class="language-shell">git clone git@github.com:xxxxxx/xxxxxxx.git
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1608622485033.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://imcm.xyz/post-images/1608622485033.jpg" alt="" loading="lazy"></figure>
 <h4 id="配置webhookphp">配置webhook.php</h4>
 <p>在项目网站根目录创建webhook.php获得外网链接为https://yourdoamin.com/webhook.php<br>
 粘贴以下代码,只需要更改keySecret和wwwRoot即可.</p>
@@ -2675,7 +2675,7 @@ Payload URL 输入刚才获取的webhook.php的外网链接.<br>
 Content type 保持默认<br>
 Secret 输入刚才配置webhook.php创建的验证密码<br>
 Add webhook 完成创建<br>
-<img src="http://localhost:4000/post-images/1608622528975.jpg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1608622528975.jpg" alt="" loading="lazy"></p>
 <h4 id="恢复关闭www登陆">恢复关闭www登陆</h4>
 <p>exit退出www登陆切回root,在次关闭www登陆.</p>
 <pre><code class="language-shell">vim /etc/passwd
@@ -2685,7 +2685,7 @@ Add webhook 完成创建<br>
 </code></pre>
 <h4 id="自动化部署成功">自动化部署成功</h4>
 <p>本地push代码到GitHub后,可以看到返回信息提示服务器pull成功.<br>
-<img src="http://localhost:4000/post-images/1608622569768.jpg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1608622569768.jpg" alt="" loading="lazy"></p>
 <h3 id="关键点和相关错误">关键点和相关错误</h3>
 <h4 id="权限">权限</h4>
 <p>网上很多教程都没有提到权限问题,所以对于新手小白来说,就会不知道为什么不成功.而少数提到权限的教程,也没有非常详细指导用户如何配置.所以如果部署有问题,请检查权限问题,新手用户可以严格按照本教程先部署成功,在来自行修改你需要的配置.</p>
@@ -2693,10 +2693,10 @@ Add webhook 完成创建<br>
 <p>webhook.php的代码网上也有很多种,有些能用有些无法使用,本文提供的是经过测试可用的,大家也可以自行搜索或者编辑.</p>
 <h4 id="service-timeout">Service Timeout</h4>
 <p>当遇到push大量代码时,服务器pull需要更长的时间,所以webhook返回给GitHub的信息如下图会出现Service Timeout超时错误,但实际上服务器也成功执行了pull,你可以登陆服务器检查来确认,同时也可以根据你的项目实际情况自行修改webhook.php执行配置.<br>
-<img src="http://localhost:4000/post-images/1608622604663.jpg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1608622604663.jpg" alt="" loading="lazy"></p>
 <h4 id="证书错误">证书错误</h4>
 <p>有可能会出现下图中的证书错误提示,请更换证书,测试时使用的Let's Encrypt的泛域名证书就会报错,博主更换为腾讯云申请的单域名证书就可以了.<br>
-<img src="http://localhost:4000/post-images/1608622614276.jpg" alt="" loading="lazy"></p>
+<img src="https://imcm.xyz/post-images/1608622614276.jpg" alt="" loading="lazy"></p>
 <h3 id="结语">结语</h3>
 <p>特别感谢以下两篇文章给予了关于www权限和webhook.php两个关键点的帮助:<br>
 <a href="https://learnku.com/articles/34320">gitee 和 GitHub 的 webhook 的使用，实现服务器代码的自动更新</a><br>
@@ -2706,8 +2706,8 @@ Add webhook 完成创建<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题]]></title>
-        <id>http://localhost:4000/libcrypto-ssh-waring/</id>
-        <link href="http://localhost:4000/libcrypto-ssh-waring/">
+        <id>https://imcm.xyz/libcrypto-ssh-waring/</id>
+        <link href="https://imcm.xyz/libcrypto-ssh-waring/">
         </link>
         <updated>2020-12-21T11:30:39.000Z</updated>
         <summary type="html"><![CDATA[<p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
@@ -2751,8 +2751,8 @@ ldconfig
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux手动升级OpenSSL]]></title>
-        <id>http://localhost:4000/linux-update-openssl/</id>
-        <link href="http://localhost:4000/linux-update-openssl/">
+        <id>https://imcm.xyz/linux-update-openssl/</id>
+        <link href="https://imcm.xyz/linux-update-openssl/">
         </link>
         <updated>2020-12-10T12:49:21.000Z</updated>
         <summary type="html"><![CDATA[<p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
