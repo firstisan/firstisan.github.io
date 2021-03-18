@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-03-18T01:42:07.167Z</updated>
+    <updated>2021-03-18T08:00:42.825Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -30,13 +30,13 @@
         <link href="https://imcm.xyz/ac-shortcut/">
         </link>
         <updated>2021-03-15T12:57:32.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="前言">前言‍</h3>
+        <summary type="html"><![CDATA[<h2 id="前言">前言‍</h2>
 <p>作为Mac电脑的重度使用者，如果只使用鼠标操作，不可避免的会降低使用效率，所以快捷键显得尤为便捷，本文将分享笔者作为程序猿🐒常用的一些快捷键，解放你的鼠标手。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h3 id="前言">前言‍</h3>
+        <content type="html"><![CDATA[<h2 id="前言">前言‍</h2>
 <p>作为Mac电脑的重度使用者，如果只使用鼠标操作，不可避免的会降低使用效率，所以快捷键显得尤为便捷，本文将分享笔者作为程序猿🐒常用的一些快捷键，解放你的鼠标手。</p>
 <!-- more -->
-<h3 id="快捷键标识简介">快捷键标识简介</h3>
+<h2 id="快捷键标识简介">快捷键标识简介</h2>
 <p>当你在应用菜单中发现部分操作项后边有一些特殊标识而不知道对应的含义时，可以先对Mac特有的按键标识做下简单的了解，例如下图：</p>
 <figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1615802862051.png" alt="" loading="lazy"></figure>
 <p>Mac常用的特殊按键标识有下边这些：</p>
@@ -71,7 +71,7 @@
 </ul>
 <p>可调出虚拟键盘（点击顶部输入法，在下拉菜单中，显示虚拟键盘选项）查看对应键位（对应苹果Magic Keyboard妙控键盘键位）</p>
 <figure data-type="image" tabindex="2"><img src="https://imcm.xyz/post-images/1615802870725.png" alt="" loading="lazy"></figure>
-<h4 id="1-调度中心">1、调度中心</h4>
+<h3 id="1-调度中心">1、调度中心</h3>
 <p>因为需要同时打开多个App或者同一App的多个窗口，如果放到同一个桌面上，寻找对应的窗口会非常的麻烦，此时Mac提供的调度中心（多桌面管理）就发挥了至关重要的作用，主要适用于非苹果官方键盘。</p>
 <ul>
 <li>
@@ -89,7 +89,7 @@
 App默认只在一个桌面空间中使用，此时在其他桌面中点击App时，会自动切换回原先打开过的桌面中，如果想在多个桌面中同时使用，可以在程序坞已启动App上右键-选项-分配给-所有桌面即可。</p>
 </blockquote>
 <figure data-type="image" tabindex="3"><img src="https://imcm.xyz/post-images/1615802877944.png" alt="" loading="lazy"></figure>
-<h4 id="2-系统常用">2、系统常用</h4>
+<h3 id="2-系统常用">2、系统常用</h3>
 <ul>
 <li>
 <p>Command+Tab  在多个打开的App之间切换到最近打开的App，按住Command不放即可使用 Tab/~ 前后切换App</p>
@@ -125,7 +125,7 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 <p>Command+Shift+4+Space  对选定App整个窗口进行截图</p>
 </li>
 </ul>
-<h4 id="4-开关机-睡眠">4、开关机、睡眠</h4>
+<h3 id="4-开关机-睡眠">4、开关机、睡眠</h3>
 <p>笔者工作使用iMac，电源键不好按，所以开关机快捷键还是比较适用于笔记本系列。</p>
 <ul>
 <li>
@@ -144,7 +144,7 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 <blockquote>
 <p>注意：部分开关机快捷键不适用于带TouchID解锁的机型</p>
 </blockquote>
-<h4 id="5-finder访达">5、Finder（访达）</h4>
+<h3 id="5-finder访达">5、Finder（访达）</h3>
 <ul>
 <li>
 <p>Command+Shift+G  打开“前往文件夹”窗口</p>
@@ -174,7 +174,7 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 <p>Command+Shift+.  控制隐藏文件的显隐（在 macOS Sierra及以上系统(Mojave)中生效，低版本系统可以使用终端命令行控制）</p>
 </li>
 </ul>
-<h4 id="6-浏览器">6、浏览器</h4>
+<h3 id="6-浏览器">6、浏览器</h3>
 <ul>
 <li>
 <p>Command+T  打开新标签页</p>
@@ -192,7 +192,7 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 <p>Command+Shift+R  强制刷新</p>
 </li>
 </ul>
-<h4 id="7-xcode">7、Xcode</h4>
+<h3 id="7-xcode">7、Xcode</h3>
 <p>Apple官方集成开发工具（IDE），此部分针对iOSer。</p>
 <ul>
 <li>
@@ -216,6 +216,110 @@ App默认只在一个桌面空间中使用，此时在其他桌面中点击App�
 </ul>
 <p>以上就是本文的所有内容了，希望能对大家有所帮助！更多快捷键可访问参考链接查看</p>
 <p>转自:<a href="https://www.ithome.com/0/540/134.htm">IT之家</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Watchtower - 自动更新 Docker 镜像与容器]]></title>
+        <id>https://imcm.xyz/watchtower-auto-update-docker/</id>
+        <link href="https://imcm.xyz/watchtower-auto-update-docker/">
+        </link>
+        <updated>2021-03-05T12:54:48.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p><a href="https://containrrr.github.io/watchtower/">Watchtower</a> 是一款实现自动化更新 Docker 镜像与容器的实用工具.它监控着所有正在运行的容器以及相关镜像,当检测本地镜像与镜像仓库中的镜像有差异时,会自动拉取最新镜像并使用最初部署时的参数重新启动相应的容器.</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p><a href="https://containrrr.github.io/watchtower/">Watchtower</a> 是一款实现自动化更新 Docker 镜像与容器的实用工具.它监控着所有正在运行的容器以及相关镜像,当检测本地镜像与镜像仓库中的镜像有差异时,会自动拉取最新镜像并使用最初部署时的参数重新启动相应的容器.</p>
+<!-- more -->
+<h2 id="部署">部署</h2>
+<h3 id="快速启动">快速启动</h3>
+<p>执行以下标准命令启动 Watch­tower 容器,并每 5 分钟一次检查所有容器的镜像是否为最新版,如发现镜像更新将会自动停止容器,删除容器,拉取最新镜像,在以之前启动容器的命令启动容器.</p>
+<pre><code class="language-shell">docker run -d \
+    --name watchtower \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower
+</code></pre>
+<h3 id="清理旧镜像">清理旧镜像</h3>
+<p>镜像在更新后旧镜像标签会变为none,长期自动更新会导致过多的none镜像占用空间,加入--cleanup参数可以在每次更新后自动删除none镜像.</p>
+<pre><code class="language-shell">docker run -d \
+    --name watchtower \
+    --restart always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup
+</code></pre>
+<h3 id="指定容器更新">指定容器更新</h3>
+<p>如无需自动更新所有稳定运行的容器,可以配置仅更新指定容器,只需要在命令后加上容器名.例如只更新nginx和redis.</p>
+<pre><code class="language-shell">docker run -d \
+    --name watchtower \
+    --restart always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup \
+    nginx redis
+</code></pre>
+<blockquote>
+<p>注意指定容器需填写 容器名 ,并非镜像名.由于部分容器启动时可能没有定义 --name 参数,请执行 docker ps 查询核对容器名.</p>
+</blockquote>
+<h3 id="配置自动更新频率">配置自动更新频率</h3>
+<p>Watch­tower 默认每 5 分钟轮询一次,可以使用以下参数配置更新的频率.</p>
+<ul>
+<li>--interval,-i 配置更新周期,默认300秒.</li>
+<li>--schedule,-s 配置定时更新,使用Cron表达式,例如&quot;0 0 1 * * *&quot;.即每天凌晨1点更新.</li>
+</ul>
+<blockquote>
+<p>注意:当使用 -s 参数来配置定时更新时,由于容器内默认为 UTC 时间,上述设置的 凌晨1点 实际上是北京时间 早上9点 .可以通过加上 -e TZ=Asia/Shanghai 环境变量来定义时区,此时配置的时间则为北京时间.</p>
+</blockquote>
+<h3 id="每小时更新一次">每小时更新一次</h3>
+<pre><code class="language-shell">docker run -d \
+    --name watchtower \
+    --restart always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup \
+    -i 3600
+</code></pre>
+<h3 id="每天凌晨1点更新北京时间">每天凌晨1点更新（北京时间）</h3>
+<pre><code class="language-shell">docker run -d \
+    --name watchtower \
+    --restart always \
+    -e TZ=Asia/Shanghai \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup \
+    -s &quot;0 0 1 * * *&quot;
+</code></pre>
+<h3 id="手动更新">手动更新</h3>
+<p>使用手动更新的方式,运行一次Watch­tower容器来更新所需的容器,更新后会自动删除本次运行的Watch­tower容器.只需要加上--rm和--run-once参数即可.同时也可以配合以上指定容器或指定排除容器的参数来使用.</p>
+<h4 id="手动更新所有容器">手动更新所有容器</h4>
+<pre><code class="language-shell">docker run --rm \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup \
+    --run-once
+</code></pre>
+<h4 id="手动更新指定容器">手动更新指定容器</h4>
+<pre><code class="language-shell">docker run --rm \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower \
+    --cleanup \
+    --run-once \
+    nginx redis
+</code></pre>
+<blockquote>
+<p>注意指定容器需填写 容器名 ,并非镜像名.由于部分容器启动时可能没有定义 --name 参数,请执行 docker ps 查询核对容器名.<br>
+手动运行更新时会出现以下消息,表示正在更新,请耐心等待几分钟.</p>
+</blockquote>
+<pre><code class="language-shell">time=&quot;2020-02-18T03:58:24Z&quot; level=info msg=&quot;Running a one time update.&quot;
+</code></pre>
+<p>随后提示找到更新镜像,停止容器,更新镜像,重启容器并移除旧镜像.至此更新完毕.</p>
+<pre><code class="language-shell">time=&quot;2020-02-18T04:02:45Z&quot; level=info msg=&quot;Found new xxxx/xxxx:latest image (sha256:10383f5b5720d7e1fxxxx137034c69b7f6xxxxxxafcc4e9d508b561af77)&quot;
+time=&quot;2020-02-18T04:02:45Z&quot; level=info msg=&quot;Stopping /xxxx (2e9ce1ebe319f3a35d80bxxxxxxxxxx6763ada155da957acb24fe76fc8a8c5) with SIGTERM&quot;
+time=&quot;2020-02-18T04:02:46Z&quot; level=info msg=&quot;Creating /xxxx&quot;
+time=&quot;2020-02-18T04:02:46Z&quot; level=info msg=&quot;Removing image sha256:ff4ee4caaa237174080c0d545xxxxxxxxxxxxxxx5d740ddc51e7737839cb5&quot;
+</code></pre>
+<h2 id="结语">结语</h2>
+<p>其他更多参数以及功能请参考官方文档: <a href="https://containrrr.github.io/watchtower/">Watchtower</a></p>
+<p>转自: <a href="https://www.ioiox.com/archives/84.html">IOIOX</a></p>
 ]]></content>
     </entry>
     <entry>
@@ -2715,51 +2819,6 @@ Add webhook 完成创建<br>
 <a href="https://learnku.com/articles/34320">gitee 和 GitHub 的 webhook 的使用，实现服务器代码的自动更新</a><br>
 <a href="https://www.jianshu.com/p/00bc0323e83f">gitlab之webhook自动部署</a></p>
 <p>本文转自:<a href="https://www.ioiox.com/archives/72.html">IOIOX</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux 解决“libssl.so.1.0.0 or libcrypto.so.1.0.0 no version information available”的问题]]></title>
-        <id>https://imcm.xyz/libcrypto-ssh-waring/</id>
-        <link href="https://imcm.xyz/libcrypto-ssh-waring/">
-        </link>
-        <updated>2020-12-21T11:30:39.000Z</updated>
-        <summary type="html"><![CDATA[<p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>相信很多人在使用 ssh 或者 curl 等等命令的时候都出现过“libssl.so.1.0.0 and libcrypto.so.1.0.0 no version information available”的问题，我也遇到这个问题很久了，一直懒得搭理它，因为ssh出现这个问题之后还能继续使用，直到前几天使用 nodejs 的时候又出现了这个问题严重影响了nodejs 的使用，我才决定要修复一下这个问题。</p>
-<!-- more -->
-<h3 id="解决方法一">解决方法一</h3>
-<p>先来个最简单的解决方法。我出现的错误具体是这样的：</p>
-<pre><code class="language-shell">ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
-ssh: /usr/local/openssl/lib/libcrypto.so.1.0.0: no version information available (required by ssh)
-</code></pre>
-<p>我在 /usr目录下搜索了一下这个libcrypto.so.1.0.0 和 libcrypto.so.1.0.0：</p>
-<pre><code class="language-shell">imcm@mac-mini:~$ sudo find /usr -name libcrypto.so.1.0.0
-[sudo] imcm 的密码： 
-/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0
-/usr/local/openssl/lib/libcrypto.so.1.0.0
-</code></pre>
-<p>在网上看到有人说是因为引用了不受系统承认的版本，那我就试着把 /usr/local/openssl/lib/ 目录下的libcrypto.so.1.0.0 和 libcrypto.so.1.0.0删掉(为了保险起见，我做了移动)：</p>
-<pre><code class="language-shell">sudo mv /usr/local/openssl/lib/libcrypto.so.1.0.0 /usr/local/openssl/lib/libcrypto.so.1.0.0.bk
-sudo mv /usr/local/openssl/lib/libssl.so.1.0.0 /usr/local/openssl/lib/libssl.so.1.0.0.bk
-</code></pre>
-<p>然后，case closed！问题解决 :(滑稽)</p>
-<h3 id="解决方法二">解决方法二</h3>
-<p>还有一种解决方法，是重新编译 openssl，指定全局的库路径。由于这个方法我没有试过(在主用机上搞这些有风险 :(懒得理) )，这里就直接给出原链接：https://stackoverflow.com/questions/18390833/no-version-information-available，需要 FQ 才能打开，在这里搬运一下：</p>
-<p>下载 1.0.0. 版本的 openssl 源码，在解压后的根目录里新建一个”openssl.ld”文件，文件内容如下：</p>
-<pre><code class="language-shell">OPENSSL_1.0.0 {
-    global:
-    *;
-};
-</code></pre>
-<p>接着执行：</p>
-<pre><code class="language-shell">make clean
-./config --prefix=/usr/local --openssldir=/usr/local/openssl shared -Wl,--version-script=openssl.ld -Wl,-Bsymbolic-functions
-make
-make test
-make install
-ldconfig
-</code></pre>
-<p>大致上就是这样，我的建议还是如果不懂就不要轻易试这个方法，方法一都已经能解决大部分的问题。</p>
 ]]></content>
     </entry>
 </feed>
