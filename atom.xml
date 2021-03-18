@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://imcm.xyz</id>
     <title>IMCM</title>
-    <updated>2021-03-15T10:24:20.527Z</updated>
+    <updated>2021-03-18T01:42:07.167Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://imcm.xyz"/>
     <link rel="self" href="https://imcm.xyz/atom.xml"/>
@@ -11,6 +11,19 @@
     <logo>https://imcm.xyz/images/avatar.png</logo>
     <icon>https://imcm.xyz/favicon.ico</icon>
     <rights>All rights reserved 2021, IMCM</rights>
+    <entry>
+        <title type="html"><![CDATA[git clone 加速]]></title>
+        <id>https://imcm.xyz/git-clone-accelerate/</id>
+        <link href="https://imcm.xyz/git-clone-accelerate/">
+        </link>
+        <updated>2021-03-18T14:40:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>使用github的镜像网站进行访问: github.com，我们将原本的网站中的github.com 进行替换为 github.com.cnpmjs.org即可</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>使用github的镜像网站进行访问: github.com，我们将原本的网站中的github.com 进行替换为 github.com.cnpmjs.org即可</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://imcm.xyz/post-images/1616031519815.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[解放鼠标手，成为键盘侠：macOS 常用快捷键分享]]></title>
         <id>https://imcm.xyz/ac-shortcut/</id>
@@ -475,7 +488,7 @@ tail -f /var/log/fan_control.log  # 查看日志
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[<转>树莓派使用Aria2搭建BT远程下载机]]></title>
+        <title type="html"><![CDATA[树莓派使用Aria2搭建BT远程下载机]]></title>
         <id>https://imcm.xyz/pi-aria2/</id>
         <link href="https://imcm.xyz/pi-aria2/">
         </link>
@@ -2551,7 +2564,7 @@ export default {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[<转>新手入门 Github Webhooks 完美自动化部署教程]]></title>
+        <title type="html"><![CDATA[新手入门 Github Webhooks 完美自动化部署教程]]></title>
         <id>https://imcm.xyz/Github-webhook/</id>
         <link href="https://imcm.xyz/Github-webhook/">
         </link>
@@ -2747,64 +2760,6 @@ make install
 ldconfig
 </code></pre>
 <p>大致上就是这样，我的建议还是如果不懂就不要轻易试这个方法，方法一都已经能解决大部分的问题。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux手动升级OpenSSL]]></title>
-        <id>https://imcm.xyz/linux-update-openssl/</id>
-        <link href="https://imcm.xyz/linux-update-openssl/">
-        </link>
-        <updated>2020-12-10T12:49:21.000Z</updated>
-        <summary type="html"><![CDATA[<p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>2020年12月08日，OpenSSL官方发布安全公告，披露CVE-2020-1971 OpenSSL GENERAL_NAME_cmp 拒绝服务漏洞。当两个GENERAL_NAME都包含同一个EDIPARTYNAME时，由于GENERAL_NAME_cmp函数未能正确处理，从而导致空指针引用，并可能导致拒绝服务。</p>
-<!-- more -->
-<h3 id="查看现有版本">查看现有版本</h3>
-<!-- more -->
-<pre><code class="language-shell">openssl version
-</code></pre>
-<p>输出：</p>
-<pre><code class="language-shell">OpenSSL 1.0.2g 1 Mar 2016
-</code></pre>
-<h3 id="备份旧版本">备份旧版本</h3>
-<pre><code class="language-shell">mv /usr/bin/openssl /usr/bin/openssl.old
-mv /usr/include/openssl /usr/include/openssl.old
-</code></pre>
-<h3 id="更新openssl">更新OpenSSL</h3>
-<ol>
-<li>下载</li>
-</ol>
-<pre><code class="language-shell">wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz
-</code></pre>
-<ol start="2">
-<li>解压</li>
-</ol>
-<pre><code class="language-shell">tar -zxvf openssl-1.1.1i.tar.gz
-</code></pre>
-<ol start="3">
-<li>编译安装</li>
-</ol>
-<pre><code class="language-shell">cd openssl-1.1.1i
-./config
-make &amp;&amp; make install
-</code></pre>
-<ol start="4">
-<li>设置软连接</li>
-</ol>
-<pre><code class="language-shell">ln -s /usr/local/openssl/bin/openssl /usr/bin/openssl
-ln -s /usr/local/openssl/include/openssl /usr/include/openssl
-</code></pre>
-<ol start="5">
-<li>设置动态地址库</li>
-</ol>
-<pre><code class="language-shell">echo '/usr/local/openssl/lib' &gt; /etc/ld.so.conf.d/openssl-ld.conf
-</code></pre>
-<h3 id="再次查看版本">再次查看版本</h3>
-<pre><code class="language-shell">openssl version
-</code></pre>
-<p>输出：</p>
-<pre><code class="language-shell">OpenSSL 1.1.1i 8 Dec 2020 (Library: OpenSSL 1.1.1d 10 Sep 2019)
-</code></pre>
 ]]></content>
     </entry>
 </feed>
